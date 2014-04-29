@@ -9,7 +9,7 @@ This function is a simple simulator of an amplification reaction based on a
 5-parameter Richards function.
 }
 \usage{
-AmpSim(cyc = c(1:35), b.eff = -25, bl = 0.05, ampl = 1, Cq = 20, 
+AmpSim(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1, Cq = 20, 
 	noise = FALSE, nnl = 0.025, nnl.method = "constant")
 }
 %- maybe also 'usage' for other objects documented here.
@@ -77,7 +77,7 @@ Stefan Roediger, Michal Burdukiewicz
 # Use an in-silico dilution of the template be adjusting 
 # the Cq parameter. A change of 3.32 cycles corresponds 
 # approximately to a 10-fold dilution.
-par(mrfow = c(2,1))
+par(mfrow = c(2,1))
 plot(NA, NA, xlim = c(1,40), ylim = c(0.01,2), xlab = "Cycles", 
      ylab = "Fluorescence", main = "In-silco Dilution Experiment")
 cycle.dilution <- seq(18, 35, 3.32)
@@ -97,7 +97,7 @@ for (i in 1:6) {
 	      Cq = cycle.dilution[i], noise = TRUE, nnl = 0.05), 
 	      type = "b", col = i, pch = 20)
 }
-par(mrfow = c(1,1))
+par(mfrow = c(1,1))
 
 # Example three
 # Apply constant, increasing, decreasing nose to 
@@ -117,7 +117,7 @@ for (j in 1:3){
 		   nnl.method = method[j]), type = "b", col = i, pch = 20)
    }
 }
-par(mrfow = c(1,1))
+par(mfrow = c(1,1))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

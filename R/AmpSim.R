@@ -1,12 +1,16 @@
-AmpSim <- function(cyc = c(1:35), b.eff = -25, bl = 0.05, ampl = 1, 
+AmpSim <- function(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1, 
 		   Cq = 20, noise = FALSE, nnl = 0.025, 
 		   nnl.method = "constant")
 {
-  tmp.warn <- getOption("warn")
-  options(warn = -1)
+#   tmp.warn <- getOption("warn")
+#   options(warn = -1)
   # Test if x and y exist and have identical lengths.
   if (is.null(cyc)) 
     stop("Enter cycle values")
+  if (min(cyc) < 1) 
+    stop("The minimum cycle value must be 1.")
+  if (Cq < 1) 
+    stop("The Cq value must larger than 1.")
   if (nnl < 0 || nnl > 0.1) 
     stop("nnl must be within 0 and 0.1.")
    
@@ -33,6 +37,6 @@ AmpSim <- function(cyc = c(1:35), b.eff = -25, bl = 0.05, ampl = 1,
   fluo <- fluo + NOISE
   res <- data.frame(cyc, fluo)
   } else (res <- data.frame(cyc, fluo))
-  options(warn = tmp.warn)
+#   options(warn = tmp.warn)
   res
 }
