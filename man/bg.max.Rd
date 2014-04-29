@@ -10,7 +10,7 @@ background noise. The detection is made without any assumptions regarding the
 model of the function.
 }
 \usage{
-bg.max(x, y, bg.corr = 1.3, bg.start = 3, verbose = FALSE)
+bg.max(x, y, bg.corr = 1.3, bg.start = 3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,10 +26,6 @@ bg.max(x, y, bg.corr = 1.3, bg.start = 3, verbose = FALSE)
 }
   \item{bg.start}{
 	a user defined value for the start of the background range.
-}
-  \item{verbose}{
-	sets if additional information such a the derivatives should be 
-	provided.
 }
 }
 \details{
@@ -58,6 +54,7 @@ Stefan Roediger, Michal Burdukiewicz
 
 \examples{
 # First example: Test for the background of an amplification reaction.
+#ALL MUST BE REDONE, BECAUSE bg.max NOW RETURN S4 OBJECTS
 par(mfrow = c(2,1))
 res <- AmpSim(cyc = c(1:40), Cq = 25)
 plot(res, xlim = c(1,40), ylim = c(-0.1,1), xlab = "Cycles", 

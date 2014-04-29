@@ -1,0 +1,43 @@
+\name{bg}
+\docType{class}
+\alias{bg-class}
+\alias{bg}
+
+\title{Class \code{"bg"}}
+\description{
+A class 
+}
+
+\section{Slots}{
+  \describe{
+    \item{\code{d}:}{\code{"data.frame"} }
+    \item{\code{d1}:}{\code{"data.frame"} }
+    \item{\code{delta}:}{ \code{"numeric"} }
+    \item{\code{delta1}:}{ \code{"numeric"} }
+    \item{\code{bg.start}:}{ \code{"numeric"} }
+    \item{\code{bg.stop}:}{ \code{"numeric"} }
+    \item{\code{bg.corr}:}{ \code{"numeric"} }
+    \item{\code{fluo}:}{ \code{"numeric"} }
+    \item{\code{amp.stop}:}{ \code{"numeric"} }
+}
+}
+\section{Methods}{
+  \describe{
+    \item{summary}{\code{signature(object = "bg")}: ... }
+   }
+}
+\author{
+Stefan Roediger, Michal Burdukiewicz
+}
+
+
+\seealso{
+\code{\link{bg.max}}
+}
+\examples{
+res <- AmpSim(cyc = 1:40, Cq = 25)
+tmp <- bg.max(res[, 1], res[, 2])
+summary(tmp)
+}
+
+\keyword{classes}

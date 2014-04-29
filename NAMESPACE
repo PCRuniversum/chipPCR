@@ -2,6 +2,15 @@ importFrom(outliers, rm.outlier)
 importFrom(robustbase, lmrob)
 importFrom(signal, sgolayfilt)
 
+exportClasses(
+    "amptest",
+    "bg"
+)
+
+exportMethods(
+  "show",
+  "summary")
+
 export(
 	"AmpSim",
 	"amptester",
