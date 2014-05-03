@@ -1,35 +1,43 @@
 effcalc <- function(x, y, logx = TRUE, CV = FALSE, 
 		    xlab = "log10(Concentration)", ylab = "Cq", 
 		    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
-		    trend = TRUE, res.fit = TRUE, show.res = TRUE, type = "p", 
-		    pch = 19, length = 0.05, col = "black"){
+		    trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
+		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
+		    col = "black"){
 		    
-  #Define if "robust" or standard function should be used as measures
-  options(warn = -1)
   #Test if x and y exist.
   if (is.null(x)) 
    stop("Enter Concentration")
   if (is.null(y)) 
    stop("Enter Cq data")
   
-  x.tmp <- log10(x)
+  if (logx) {
+    x.tmp <- log10(x)
+  } else {
+     x.tmp <- x
+     }
   
   if (rob) {
-            loc.fct <- median
-	    dev.fct <- mad
-	    } else {
-		    loc.fct <- mean
-		    dev.fct <- sd
-		    }
+    loc.fct <- median
+    dev.fct <- mad
+  } else {
+      loc.fct <- mean
+      dev.fct <- sd
+    }
 		    
-  y.m <- apply(y, 1, loc.fct)
-  y.sd <- apply(y, 1, dev.fct)
-	
+  if (ncol(data.frame(y)) > 1) {
+    y.m <- apply(y, 1, loc.fct)
+    y.sd <- apply(y, 1, dev.fct)
+  } else {
+     y.m <- y
+     y.sd <- rep(0, length(y))
+  }
+  	
   if (RSD) {
-	    y.cv <- (y.sd / y.m) * 100
-	   } else {
-		   y.cv	<- y.sd / y.m
-		  }
+    y.cv <- (y.sd / y.m) * 100
+  } else {
+      y.cv <- y.sd / y.m
+    }
   
   # Aggregate calculated data and check for consistency
   # of the concentration (check if Na of Inf values
@@ -38,7 +46,8 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
   # the linear regression are present.).
   
   res <- data.frame(x.tmp, y.m, y.sd, y.cv)
-  res <- res[which(res[, 1]  >= 0), ]
+  res <- res[which(is.finite(res[, 1])), ]
+  
   if (nrow(res) < 2) {
     stop("Can not perform calculation. At least two
 	  dilutions required.")
@@ -83,12 +92,13 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
   
   # Perform a linear regression based on the values of the 
   # calculated mean/median
-  lm.log <- lm(res[, 2] ~ res[, 1])
-  Rsqured <- round(summary(lm.log)[["r.squared"]], 3)
+  lm.res <- lm(res[, 2] ~ res[, 1])
+  # Calculate goodness of fit
+  Rsqured <- round(summary(lm.res)[["r.squared"]], 3)
   
   # Calculate the amplification efficiency (in percent)
-  AE <- round(10^(-1/coef(lm.log)[2])/ 2 * 100, 1)
-  
+  AE <- round(10^(-1/coef(lm.res)[2])/ 2 * 100, 1)
+
   # Calculate correlation between the concentration and 
   # the Cq values along with the significance level
   cortest <- cor.test(res[, 1], res[, 2])
@@ -105,12 +115,35 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
       sign.out <- "; p > 0.05"
   }
   
+  # Add "legend" with amplification efficiency, goodness of fit to plot
+  # ToDo: expression(italic(R)^2 == Rsqured) for ... "R^2 = ", Rsqured ...?
+  if (res.fit) {
+      main <- paste("Efficiency = ", AE, " %", "\n",
+		    "R^2 = ", Rsqured, "\n",
+		    "r = ", round(cortest$estimate, 3), sign.out, "\n",
+		    sep = "")
+  }
   # Plot the Coefficient of Variance
   plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
 	max(res[, 2] + res[, 3])), xlab = xlab, 
 	ylab = ylab, type = type, pch = pch, col = col,
 	main = main
-	)
+  )
+  
+  if (CI) {
+  # add area and border lines of confidence interval
+  # fix, does not yet work properly
+  #polygon(c(rev(x.ci), x.ci),
+  #	c(predict.ci[, 3], rev(predict.ci[, 2])),
+  #	col = "lightgrey", border = NA)
+      # prediction and parameters for confidence interval
+  x.ci <- seq(coords[1], coords[2], length.out= nrow(res))
+  predict.ci <- predict.lm(lm.res, newdata = data.frame(x.ci), 
+			interval = "confidence", level = level)
+			
+    lines(rev(x.ci), predict.ci[ ,2], col = "lightblue")
+    lines(rev(x.ci), predict.ci[ ,3], col = "lightblue")
+  }
   # Add error bar to the location parameters
   arrows(res[, 1], res[, 2] + res[, 3], res[, 1], 
 	  res[, 2] - res[, 3], angle = 90, code = 3, 
@@ -118,17 +151,7 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
   
   # Add trend line of linear regression to plot
   if (trend) {
-    abline(lm.log)
-  }
-  
-  # Add "legend" with amplification efficiency, goodness of fit to plot
-  if (res.fit) {
-      text(coords[2] * 0.95, coords[4] * 0.95, 
-	  paste("Efficiency = ", AE, " %", "\n",
-	  "R^2 = ", Rsqured, "\n",
-	  "r = ", round(cortest$estimate, 3), sign.out, "\n",
-	  sep = ""), cex = 1.1
-	  )
+    abline(lm.res)
   }
   
   # Restore default graphic parameters
@@ -137,7 +160,7 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
   # res is the an object of the type data.frame containing the 
   # concentration, location, deviation and coefficient of variance.
   if (show.res) {
-      return(list(res = res, amplification.efficiency = AE, regression = lm.log, 
+      return(list(res = res, amplification.efficiency = AE, regression = lm.res, 
 	      correlation.test = cortest))
   }
 }
