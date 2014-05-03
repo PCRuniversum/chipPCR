@@ -15,24 +15,45 @@ MFIaggr <- function(x, y, CV = FALSE, RSD = FALSE, rob = FALSE,
    stop("Use two cycle values (e.g., llul = c(1,10)) to set 
         the range for the analysis.")
   
+  # llul defines the range of interrest (ROI) to be analyzed
+  # in detail. In particular, early cycles (background range)
+  # and final cycles (plateau phase) are potential targets.
   llul <- sort(llul)	
   
+ # Decide which method for the calculation of location and 
+ # dispersion should be used. "rob" means robust and it will
+ # use median and MAD instead of mean and sd
+  
   if (rob) {
-            loc.fct <- median
-	    dev.fct <- mad
-	    } else {
-		    loc.fct <- mean
-		    dev.fct <- sd
-		    }
-		    
+	loc.fct <- median
+	dev.fct <- mad
+  } else {
+	loc.fct <- mean
+	dev.fct <- sd
+    }
+
+  # NOTE: no error hanling in if only on collumn of input data is
+  # used. Waring: apply will fail in this case. Need fix: yes, see
+  # effcalc
+  
+  # Use apply over the input data to calculate the location and 
+  # dispersion of a data bulk
+  
   y.m <- apply(y, 1, loc.fct)
   y.sd <- apply(y, 1, dev.fct)
-	
+  
+  # Decide if the relative standard deviation should be 
+  # calculated
+  
   if (RSD) {
-	    y.cv <- (y.sd / y.m) * 100
-	   } else {
-		   y.cv	<- y.sd / y.m
-		  }
+    y.cv <- (y.sd / y.m) * 100
+  } else {
+    y.cv <- y.sd / y.m
+    }
+  
+  # Apply the results to the data.frame "res" and label
+  # collumns according to the used location and dispersion
+  # method
   res <- data.frame(x, y.m, y.sd, y.cv)
 
   if (rob == TRUE && RSD == FALSE) {
@@ -57,20 +78,26 @@ MFIaggr <- function(x, y, CV = FALSE, RSD = FALSE, rob = FALSE,
 		     "Deviation (SD)", 
 		     "Coefficient of Variance (RSD)")
   }
-	
+  
+  # Determine the coordinates ("coords") from the input data
+  # and store them for the plots
+  
   coords <- c(min(x), max(x), min(y), max(y))
-	
+  
+  # Calcuate robust und non-robust location and dispersion
+  # parameters of the ROI and apply the results to stats
+  
   stats <- c(round(mean(unlist(y[llul, ]), na.rm = TRUE), 3),
 	    round(median(unlist(y[llul, ]), na.rm = TRUE), 3), 
 	    round(sd(unlist(y[llul, ]), na.rm = TRUE), 2),
 	    round(mad(unlist(y[llul, ]), na.rm = TRUE), 2)
 	    )
 
-	
+  # store the default plot parameters	
   default.par <- par()
   
   #Plot the Coefficient of Variance
-
+	
      if (errplot) {
 	    if (CV) {
 		par(fig = c(0,0.6,0,1))
@@ -82,9 +109,12 @@ MFIaggr <- function(x, y, CV = FALSE, RSD = FALSE, rob = FALSE,
 			        sep = "")
 		)
 		
+		# Add a range for the ROI
 		abline(v = llul, col = "lightgrey")
 		      #Plot the location with error bars.
 		
+		# "Calculate" the Quantile-Quantile plots and density plots
+		# and plot the results
 		par(fig = c(0.65,1,0.5,1), new = TRUE)
 		res.dens <- density(unlist(y[llul, ]))
 		plot(res.dens, xlab = "RFU", main = paste("Cycle ", 
@@ -122,7 +152,7 @@ MFIaggr <- function(x, y, CV = FALSE, RSD = FALSE, rob = FALSE,
 		qqline(unlist(y[llul, ]))
 	    }
 	  }
-	
+	# Restore default par parameters
 	  par(default.par)
 
 	#res is the an object of the type data.frame containing the 
