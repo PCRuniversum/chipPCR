@@ -20,7 +20,11 @@ bg.max <-
     if (bg.start < 0 || bg.start > length(x)) 
       stop("bg.start must be within 0 and the number of x values.")
     
+    
     y <- fixNA(x, y, spline = TRUE)
+    
+    #TODO - below part should go into method
+    input <- data.frame(cyc = x, fluo = y)
     
     yval.d <- supsmu(x, y, span = 0.09)$y
     delta <- vector()
@@ -70,6 +74,7 @@ bg.max <-
 		  background value.")
     new("bg", d = d, d1 = d1, delta = delta, delta1 = delta1, 
         bg.start = bg.start, bg.stop = bg.stop, 
-        bg.corr = bg.corr, fluo = fluo, amp.stop = amp.stop)
+        bg.corr = bg.corr, fluo = fluo, amp.stop = amp.stop,
+        input = input)
     
   }

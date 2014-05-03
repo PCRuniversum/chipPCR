@@ -19,6 +19,7 @@ A class
     \item{\code{bg.corr}:}{ \code{"numeric"} }
     \item{\code{fluo}:}{ \code{"numeric"} }
     \item{\code{amp.stop}:}{ \code{"numeric"} }
+    \item{\code{input}:}{ \code{"data.frame"} of original input data.}
 }
 }
 \section{Methods}{
