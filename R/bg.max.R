@@ -20,13 +20,24 @@ bg.max <-
     if (bg.start < 0 || bg.start > length(x)) 
       stop("bg.start must be within 0 and the number of x values.")
     
+    # Remove missing calues form y by using the fixNA function 
+    # with the cubic spline method
     
     y <- fixNA(x, y, spline = TRUE)
     
     #TODO - below part should go into method
+    
     input <- data.frame(cyc = x, fluo = y)
     
+    # Use Friedman's SuperSmoother to smooth the data
+    # The smoothed data have less steep slopes in the 
+    # transistion phase from linear to exponential
     yval.d <- supsmu(x, y, span = 0.09)$y
+    
+    # Form the derivatives of the smoothe data.
+    # The maximum and the minimum of the seconde derivative
+    # are the starting points to define the approximate 
+    # start and the end of the exponential phase
     delta <- vector()
     deltax <- vector()
     for (i in 1L:(length(yval.d) - 1)) {
@@ -57,6 +68,9 @@ bg.max <-
                         bg.corr * (d1[which(d1[, 2] == min(d1[, 2])), 1] - 
                                      d[which(d[, 2] == max(d[, 2])), 1]), 0) 
     
+    # Perform error handling on the the estimated start and end 
+    # of the amplification process. Used hard coded values to prevent
+    # to early or to late bg.start or bg.stop values.
     if (is.na(bg.stop)) {bg.stop <- round(length(yval.d) * 0.8)}
     if (bg.stop <= 9) {bg.stop <- 10}
     if ((bg.stop >= length(yval.d) * 0.6) || (is.na(bg.stop))) {
