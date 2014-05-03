@@ -106,42 +106,42 @@ P. Schierack. \emph{Microchim Acta} 2014:1--18. DOI:
 # First Example
 # Amplification efficiency plot 
 
-require(MBmca)
-par(mfrow = c(1,2), las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
-    font = 2, cex.main = 1, oma = c(0.1, 0.1, 0.5, 0.1))
+# require(MBmca)
+# par(mfrow = c(1,2), las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
+#    font = 2, cex.main = 1, oma = c(0.1, 0.1, 0.5, 0.1))
 
 # Simulate a qPCR reaction with AmpSim for 45 cycles and some noise.
-plot(NA, NA, xlim = c(1,45), ylim = c(0.01,1.1), xlab = "Cycles", 
-     ylab = "Fluorescence", 
-     main = "")
-mtext("A", cex = 2, side = 3, adj = 0, font = 2)     
-cycle <- rep(seq(15, 34, 3.5), 3)
+# plot(NA, NA, xlim = c(1,45), ylim = c(0.01,1.1), xlab = "Cycles", 
+#      ylab = "Fluorescence", 
+#      main = "")
+# mtext("A", cex = 2, side = 3, adj = 0, font = 2)
+# cycle <- rep(seq(15, 34, 3.5), 3)
 
-dilution <-rep(c(100, 10, 1, 0.1, 0.01, 0.001), 3)
+# dilution <-rep(c(100, 10, 1, 0.1, 0.01, 0.001), 3)
 
-ma.out <- matrix(data = NA, nrow = 45, 
-		 ncol = length(cycle))
+# ma.out <- matrix(data = NA, nrow = 45, 
+# 		 ncol = length(cycle))
 		 
-Cq.out <- vector()
+# Cq.out <- vector()
 
-for (i in 1:18) {
-  ma.out[1:45, i] <- AmpSim(cyc = c(1:45), b.eff = -50, bl = 0.001, 
-			    ampl = 1, Cq = cycle[i], noise = TRUE, 
-			    nnl = 0.02)[, 2]
-  lines(1:45, ma.out[, i])
-  tmpP <- mcaSmoother(1:45, ma.out[, i])
-  Cq.tmp <- diffQ2(tmpP, inder = TRUE)$xTm1.2.D2[1]
-  abline(v = Cq.tmp)
-  Cq.out <- c(Cq.out, Cq.tmp)
-}
+# for (i in 1:18) {
+#   ma.out[1:45, i] <- AmpSim(cyc = c(1:45), b.eff = -50, bl = 0.001, 
+# 			      ampl = 1, Cq = cycle[i], noise = TRUE, 
+# 			      nnl = 0.02)[, 2]
+#   lines(1:45, ma.out[, i])
+#   tmpP <- mcaSmoother(1:45, ma.out[, i])
+#   Cq.tmp <- diffQ2(tmpP, inder = TRUE)$xTm1.2.D2[1]
+#   abline(v = Cq.tmp)
+#   Cq.out <- c(Cq.out, Cq.tmp)
+# }
 
-tmp <- data.frame(dilution[1:6],
-		  Cq.out[1:6],
-		  Cq.out[7:12],
-		  Cq.out[13:18])
+# tmp <- data.frame(dilution[1:6],
+# 		  Cq.out[1:6],
+# 		  Cq.out[7:12],
+# 		  Cq.out[13:18])
 
-effcalc(tmp[, 1], tmp[, 2:4], CI = TRUE)
-mtext("B", cex = 2, side = 3, adj = 0, font = 2)
+# effcalc(tmp[, 1], tmp[, 2:4], CI = TRUE)
+# mtext("B", cex = 2, side = 3, adj = 0, font = 2) 
 
 }
 
