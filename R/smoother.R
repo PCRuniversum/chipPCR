@@ -82,10 +82,10 @@ smoother <-
 	    supsmu = do.call(function(x, y, span = 0.01)
 	      supsmu(x = x, y = y, span = span)
 			      , c(list(x = x, y = y.tmp), ...))[["y"]],
-	    whit1 = do.call(function(y, lambda = 10)
+	    whit1 = do.call(function(y, lambda = 0.01)
 	      whit1(y = y, lambda = lambda)
 	      , c(list(y = y.tmp), ...)),
-	    whit2 = do.call(function(y, lambda = 10)
+	    whit2 = do.call(function(y, lambda = 0.01)
 	      whit2(y = y, lambda = lambda)
 	      , c(list(y = y.tmp), ...))
     )
