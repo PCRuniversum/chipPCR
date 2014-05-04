@@ -20,14 +20,14 @@ setMethod("bg.max", signature(x = "data.frame", y="missing"),
           function(x, y, bg.corr = 1.3, bg.start = 3) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            calc.bg(x[,1], x[,2], bg.corr, bg.start)
+            calc.bg(x[, 1], x[, 2], bg.corr, bg.start)
           })
 
 setMethod("bg.max", signature(x = "matrix", y = "missing"), 
           function(x, y, bg.corr = 1.3, bg.start = 3) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            calc.bg(x[,1], x[,2], bg.corr, bg.start)
+            calc.bg(x[, 1], x[, 2], bg.corr, bg.start)
           })
 
 #workhorse function
@@ -59,9 +59,9 @@ calc.bg <- function(x, y, bg.corr, bg.start) {
   delta <- vector()
   deltax <- vector()
   for (i in 1L:(length(yval.d) - 1)) {
-    delta.t <- yval.d[i+1] - yval.d[i]
+    delta.t <- yval.d[i + 1] - yval.d[i]
     delta <- c(delta, delta.t)
-    delta.tx <- (x[i+1] + x[i]) / 2
+    delta.tx <- (x[i + 1] + x[i]) / 2
     deltax <- c(deltax, delta.tx)
   }
   
@@ -92,7 +92,7 @@ calc.bg <- function(x, y, bg.corr, bg.start) {
   if (is.na(bg.stop)) {bg.stop <- round(length(yval.d) * 0.8)}
   if (bg.stop <= 9) {bg.stop <- 10}
   if ((bg.stop >= length(yval.d) * 0.6) || (is.na(bg.stop))) {
-    bg.stop <- round(length(yval.d)*0.6)
+    bg.stop <- round(length(yval.d) * 0.6)
   }
   #threshold bg.max
   th.bg <- median(y[c(bg.stop - 1, bg.stop, bg.stop + 1)])  
