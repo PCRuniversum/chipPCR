@@ -2,10 +2,12 @@
 \docType{class}
 \alias{bg-class}
 \alias{bg}
+\alias{summary.bg}
+\alias{summary,bg-method}
 
 \title{Class \code{"bg"}}
 \description{
-A class 
+An S4 class containing the output \code{\link{bg.max}} function.
 }
 
 \section{Slots}{
@@ -35,7 +37,7 @@ Stefan Roediger, Michal Burdukiewicz
 
 
 \seealso{
-\code{\link{bg.max}}, \code{\link{plot}}
+\code{\link{bg.max}}, \code{\link{plot.bg}}
 }
 \examples{
 res <- AmpSim(cyc = 1:40, Cq = 25)
