@@ -14,6 +14,8 @@ fixNA <- function(x, y, spline = TRUE, verbose = FALSE) {
   if (verbose) 
     print(paste(nNA, "missing value(s) imputed.", sep = " "))
   
+  # If NAs are present in the data set, substitie them by
+  # linear approximation or by splines
   if ((nNA > 0) && (class(try(approx(x, y, n = length(x)), 
                               silent = TRUE))!="try-error")) {
     if (!spline) y[which(is.na(y))] <- approx(x, y, 
@@ -21,7 +23,9 @@ fixNA <- function(x, y, spline = TRUE, verbose = FALSE) {
     if (spline) y[which(is.na(y))] <- spline(x, y, 
                                              n = length(y))$y[which(is.na(y))]
   } else {
+  # If imputation fails use 0 instead
     y[which(is.na(y))] <- 0
   }
+
   if (length(which(is.na(y) == TRUE)) == 0) y <- y
 }
