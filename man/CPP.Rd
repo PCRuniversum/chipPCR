@@ -11,8 +11,9 @@ normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
 }
 \usage{
-CPP(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, minmax = FALSE, 
-    qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08)
+CPP(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, 
+    minmax.m = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
+    nl = 0.08)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -33,8 +34,9 @@ CPP(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, minmax = FALSE,
 	If set to TRUE, median is used instead of mean in outlier replacement. 
 	The mean is used by default.
 }
-  \item{minmax}{
-	is a logical argument to use a quantile normalization.
+  \item{minmax.m}{
+	is a argument to use a "none", "minmax", or "quantile"
+	normalization.
 }
   \item{qnL}{
 	is the quantile to be used for the quantile normalization.
@@ -96,7 +98,7 @@ plot(NA, NA, xlab = "Time [sec]", ylab = "refMFI",
      main = "Curve Pre-Processor Applied to HDA Data", 
      xlim = c(0, 2500), ylim = c(0,1.1), pch = 20)
 for (i in 3:5) {
-  y.cpp <- CPP(C17[2:50, 1], C17[2:50, i], minmax = TRUE, 
+  y.cpp <- CPP(C17[2:50, 1], C17[2:50, i], minmax.m = "minmax", 
 	      bg.outliers = TRUE)$y.norm
   lines(C17[2:50, 1], y.cpp, col = i - 2, 
 	type = "b", pch = 20)
