@@ -8,6 +8,9 @@ fixNA <- function(x, y, spline = TRUE, verbose = FALSE) {
     stop("Use abscissa and ordinate data with same number of elements")
   #	      Number of missing values "nNA"
   nNA <- length(which(is.na(y) == TRUE))
+  
+  # Indicate if information about the number of missing
+  # values is needed
   if (verbose) 
     print(paste(nNA, "missing value(s) imputed.", sep = " "))
   
@@ -15,7 +18,7 @@ fixNA <- function(x, y, spline = TRUE, verbose = FALSE) {
                               silent = TRUE))!="try-error")) {
     if (!spline) y[which(is.na(y))] <- approx(x, y, 
                                               n = length(x))$y[which(is.na(y))]
-    if (spline) y[which(is.na(y))] <- spline(x,y, 
+    if (spline) y[which(is.na(y))] <- spline(x, y, 
                                              n = length(y))$y[which(is.na(y))]
   } else {
     y[which(is.na(y))] <- 0
