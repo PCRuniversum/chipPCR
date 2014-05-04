@@ -33,6 +33,7 @@ Stefan Roediger, Michal Burdukiewicz
 }
 \examples{
 cyc <- seq(1, cycno <- 35, 1)
+b <- -14.29; c <- 0.18; d <- 39.18; e <- 19.14
 fluo.pos <- c + (d - c)/(1 + exp(b * (log(cyc) - log(e))))
 ampt <- amptester(fluo.pos, background = c(0, 2))
 summary(ampt)

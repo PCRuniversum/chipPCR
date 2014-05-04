@@ -1,8 +1,7 @@
 smoother <-
   function (x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
 	    method = "savgol", ...) { 
-    tmp.warn <- getOption("warn")
-    options(warn = -1)
+
     # Test if x and y exist and have identical lengths.
     if (is.null(x)) 
       stop("Enter abscissa value")
@@ -37,9 +36,13 @@ smoother <-
       method <- "spline"
     if (grepl(method, "supsmu"))
       method <- "supsmu"
+    if (grepl(method, "whit1"))
+      method <- "whit1"
+    if (grepl(method, "whit2"))
+      method <- "whit2"
     
     if (!(method %in% c("lowess", "mova", "savgol", "smooth", "spline", 
-			"supsmu")))
+                        "supsmu", "whit1", "whit2")))
       stop("Invalid method chosen.")
       
 ######TODO##############################################
@@ -73,7 +76,13 @@ smoother <-
 	    }, c(list(x = x, y = y.tmp))),
 	    supsmu = do.call(function(x, y, span = 0.01)
 	      supsmu(x = x, y = y, span = span)
-			      , c(list(x = x, y = y.tmp), ...))[["y"]]
+			      , c(list(x = x, y = y.tmp), ...))[["y"]],
+	    whit1 = do.call(function(y, lambda = 10)
+	      whit1(y = y, lambda = lambda)
+	      , c(list(y = y.tmp), ...)),
+	    whit2 = do.call(function(y, lambda = 10)
+	      whit2(y = y, lambda = lambda)
+	      , c(list(y = y.tmp), ...))
     )
     
     # Invoke the CPP function to perform a preprocessing of the 
@@ -82,8 +91,7 @@ smoother <-
     # bg.max function which is used by CPP
     tmp.CPP  <- CPP(x = x, y = y.tmp, trans = trans, 
 		    bg.outliers = bg.outliers)
-    options(warn = tmp.warn)
-    
+   
     # Do output of the smoothed data
     y.norm <- tmp.CPP$y.norm
     attr(y.norm, "method") <- method

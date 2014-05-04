@@ -42,7 +42,10 @@ smoother(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE,
 		    polynomial regression, "mova" for moving average, "savgol" 
 		    for Savitzky-Golay smoothing filter, "smooth" for cubic 
 		    spline smooth, "spline" for standard cubic spline smooth, 
-		    or "supsmu" for Friedman's SuperSmoother.
+		    "supsmu" for Friedman's SuperSmoother,
+        "whit1" for weighted Whittaker smoothing with a ﬁrst order ﬁnite 
+        difference penalty or "whit2" for weighted Whittaker smoothing 
+        with a second order ﬁnite difference penalty.
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 
@@ -67,7 +70,9 @@ least squares estimate) or cubic splines. Splines apply non-parametric
 regression by local cubic polynomials between knot points. Other examples for 
 smoothers include Savitzky-Golay smoothing filter, Friedman's SuperSmoother, 
 and Whittaker smoother. Several methods were integrated in the \code{chipPCR} 
-package. The function \code{\link[chipPCR]{smoother}} is a wrapper for smoother 
+package. 
+
+The function \code{\link[chipPCR]{smoother}} is a wrapper for smoother 
 functions and filters commonly used to process amplification curve data. The 
 \code{\link[chipPCR]{smoother}} function was enhanced by functionality of the 
 \code{\link[chipPCR]{fixNA}} and \code{\link[chipPCR]{CPP}} functions. The 
@@ -85,8 +90,8 @@ further details refer to the \code{\link[stats]{smooth.spline}} function. The
 parameter "spline" for standard cubic spline smooth has currently no 
 additional parameter. The parameter "supsmu" for Friedman's SuperSmoother can 
 be tuned by the parameter \code{span}. For further details refer to the 
-\code{\link[stats]{supsmu}} function.
-
+\code{\link[stats]{supsmu}} function. The parameter "lambda" for Weighted Whittaker 
+smoothing FIX ME.
 }
 
 \author{

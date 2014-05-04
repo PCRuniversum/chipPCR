@@ -52,27 +52,45 @@ setMethod("summary", signature(object = "bg"), function(object) {
 })
 
 
-setMethod("plot", signature(x = "bg"), function(x) {
-  #smallest and biggest fluorescence values 
-  ylims <- range(sapply(list(slot(x, "d")[2], 
-                       slot(x, "d1")[2], 
-                       slot(x, "input")[2]),
-                  range))
+setMethod("plot", signature(x = "bg"), function(x, what = 1:3, add = FALSE, indicators = TRUE,
+                                                legend = TRUE,
+                                                plot.colors = c("black", "red", "blue"), 
+                                                ...) {
+  if (!all(what %in% 1:3)) 
+    stop("'what' must contain values from set: 1, 2, 3.")
   
-  plot(slot(x, "input"), xlim = range(slot(x, "input")[1]), 
-       ylim = ylims, xlab = "Cycles", 
-       ylab = "Fluorescence", 
-       main = "Estimation of the Background Range\n in Absence of Noise", 
-       type = "b", pch = 20)
+  if (length(unique(what)) != length(what)) 
+    stop("'what' must contain unique values.")
   
-  points(slot(x, "d"), col = "red", type = "b", pch = 20)
-  points(slot(x, "d1"), col = "blue", type = "b", pch = 20)
-  abline(v = slot(x, "bg.start"))
-  text(slot(x, "bg.start"), 0.2, "Background start", pos = 4)
-  abline(v = slot(x, "bg.stop"), col = "blue")
-  text(slot(x, "bg.stop"), 0.25, "Background stop", pos = 4, col = "blue")
-  abline(v = slot(x, "amp.stop"), col = "green")
-  text(slot(x, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
-  legend("topleft", c("Raw data", "First derivative", "Second derivative"), 
-         pch = rep(20,3), col = c(1,2,4))
+  if (length(plot.colors) != 3) 
+    stop("'plot.colors' must contain three colors.")
+  
+  #needed data frames
+  all.dfs <- c("input", "d", "d1")  
+  
+  #smallest and biggest fluorescence values
+  ylims <- range(sapply(what, function(i) {
+    range(slot(x, all.dfs[i])[2])
+  }))
+  
+  if(!add) {
+    plot(x = range(slot(x, "input")[1]),  y = ylims, xlab = "Cycles", 
+         ylab = "Fluorescence", cex = 0, ...)
+    
+    if (indicators) {
+      abline(v = slot(x, "bg.start"))
+      text(slot(x, "bg.start"), 0.2, "Background start", pos = 4)
+      abline(v = slot(x, "bg.stop"), col = "blue")
+      text(slot(x, "bg.stop"), 0.25, "Background stop", pos = 4, col = "blue")
+      abline(v = slot(x, "amp.stop"), col = "green")
+      text(slot(x, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
+    }
+  }
+  for (i in what) {
+    points(slot(x, all.dfs[i]), col = plot.colors[i], type = "b", pch = 20)
+  }
+  
+  if (legend)
+    legend("topleft", c("Raw data", "First derivative", "Second derivative")[what], 
+           pch = rep(20,3), col = plot.colors)
 })

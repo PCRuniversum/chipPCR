@@ -56,42 +56,14 @@ Stefan Roediger, Michal Burdukiewicz
 # First example: Test for the background of an amplification reaction.
 par(mfrow = c(2,1))
 res <- AmpSim(cyc = c(1:40), Cq = 25)
-plot(res, xlim = c(1,40), ylim = c(-0.1,1), xlab = "Cycles", 
-     ylab = "Fluorescence", 
-     main = "Estimation of the Background Range\n in Absence of Noise", 
-     type = "b", pch = 20)
 background <- bg.max(res[, 1], res[, 2])
-
-points(slot(background, "d"), col = "red", type = "b", pch = 20)
-points(slot(background, "d1"), col = "blue", type = "b", pch = 20)
-abline(v = slot(background, "bg.start"))
-  text(slot(background, "bg.start"), 0.2, "Background start", pos = 4)
-abline(v = slot(background, "bg.stop"), col = "blue")
-  text(slot(background, "bg.stop"), 0.25, "Background stop", pos = 4, col = "blue")
-abline(v = slot(background, "amp.stop"), col = "green")
-  text(slot(background, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
-legend(4, 1, c("Raw data", "First derivative", "Second derivative"), 
-       pch = rep(20,3), col = c(1,2,4))
-#alternatively just plot(background)
-
-res <- AmpSim(cyc = c(1:40), Cq = 25, noise = TRUE)
-plot(res, xlim = c(1,40), ylim = c(-0.1,1), xlab = "Cycles", 
-     ylab = "Fluorescence", 
-     main = "Estimation of the Background Range\n in Presence of Noise", 
-     type = "b", pch = 20)
-background <- bg.max(res[, 1], res[, 2])
-
-points(slot(background, "d"), col = "red", type = "b", pch = 20)
-points(slot(background, "d1"), col = "blue", type = "b", pch = 20)
-abline(v = slot(background, "bg.start"))
-text(slot(background, "bg.start"), 0.2, "Background start", pos = 4)
-abline(v = slot(background, "bg.stop"), col = "blue")
-text(slot(background, "bg.stop"), 0.25, "Background stop", pos = 4, col = "blue")
-abline(v = slot(background, "amp.stop"), col = "green")
-text(slot(background, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
-legend(4, 1, c("Raw data", "First derivative", "Second derivative"), 
-       pch = rep(20,3), col = c(1,2,4))
+plot(background, main = "Estimation of the Background Range\n in Absence of Noise")
+res.noise <- AmpSim(cyc = c(1:40), Cq = 25, noise = TRUE)
+background.noise <- bg.max(res.noise[, 1], res.noise[, 2])
+plot(background.noise, main = "Estimation of the Background Range\n in Presence of Noise")
 par(mfrow = c(1,1))
+
+
 # Second example: A simple function to test for a background range.
 # Data were taken form the chipPCR C17 data set.
 # Note that the not the time but the "cycle number" was
@@ -99,7 +71,7 @@ par(mfrow = c(1,1))
 data(C17)
 plot(C17[, 2], C17[,  3], xlab = "Cycle", ylab = "RFU", 
      main = "Estimate the begin of the Amplification\n of a HDA", pch = 20)
-res <- bg.max(C17[, 2], C17[, 3], bg.corr = 1.4, bg.start = 3, verbose = FALSE)
+res <- bg.max(C17[, 2], C17[, 3], bg.corr = 1.4, bg.start = 3)
 abline(v = c(slot(res, "bg.start"), slot(res, "bg.stop")), col = c(1,2))
 abline(h = slot(res, "fluo"), col = "blue")
 
@@ -120,7 +92,7 @@ plot(NA, NA, xlim = c(1, 40), ylim = c(0, 1), xlab = "Cycles",
 for (i in 1:length(e)) {
   fluo <- c + (d - c)/(1 + exp(b * (log(cyc) - log(e[i]))))
   points(cyc, fluo, type = "b", col = i, pch = 20)
-  res <- bg.max(cyc, fluo, bg.corr = 1.4, bg.start = 3, verbose = FALSE)
+  res <- bg.max(cyc, fluo, bg.corr = 1.4, bg.start = 3)
   abline(v = slot(res, "bg.stop"), col = i)
   abline(h = slot(res, "fluo"), col = i)
 }

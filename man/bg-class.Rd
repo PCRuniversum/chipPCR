@@ -24,7 +24,9 @@ A class
 }
 \section{Methods}{
   \describe{
-    \item{summary}{\code{signature(object = "bg")}: ... }
+    \item{summary}{\code{signature(object = "bg")}: prints information about object 
+    prettier than \code{show}.}
+    \item{plot}{\code{signature(x = "bg")}: plots background information. See \code{\link{plot.bg}}}
    }
 }
 \author{
@@ -33,7 +35,7 @@ Stefan Roediger, Michal Burdukiewicz
 
 
 \seealso{
-\code{\link{bg.max}}
+\code{\link{bg.max}}, \code{\link{plot}}
 }
 \examples{
 res <- AmpSim(cyc = 1:40, Cq = 25)

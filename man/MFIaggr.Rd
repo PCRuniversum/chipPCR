@@ -7,9 +7,9 @@ Multiple comparison of the cycle dependent variance of the refMFI
 \description{
  MFIaggr is used for a fast multiple comparison of the cycle dependent 
 variance of the refMFI. \code{MFIaggr} returns an object of the class 
-list with columns ``Cycle'', ``Location'' (Mean, Median), 
-``Deviation'' (Standard Deviation, Median Absolute Deviation) and 
-``Coefficient of Variation''.
+list with columns 'Cycle', 'Location' (Mean, Median), 
+'Deviation' (Standard Deviation, Median Absolute Deviation) and 
+'Coefficient of Variation'.
 }
 \usage{
 MFIaggr(x, y, CV = FALSE, RSD = FALSE, rob = FALSE, 

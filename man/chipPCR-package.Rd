@@ -69,8 +69,7 @@ P. Schierack. \emph{Microchim Acta} 2014:1--18. DOI:
 data(C17)
 plot(C17[, 2], C17[,  3], xlab = "time [min]", ylab = "Fluorescence", 
       pch = 20)
-res <- bg.max(C17[, 2], C17[, 3], bg.corr = 1.4, bg.start = 3, 
-	      verbose = FALSE)
-abline(v = c(res$bg.start, res$bg.stop), col = c(1,2))
-abline(h = res$fluo, col = "blue")
+res <- bg.max(C17[, 2], C17[, 3], bg.corr = 1.4, bg.start = 3)
+abline(v = c(slot(res, "bg.start"), slot(res, "bg.stop")), col = c(1,2))
+abline(h = slot(res, "fluo"), col = "blue")
 }

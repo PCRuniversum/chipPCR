@@ -1,5 +1,5 @@
 bg.max <-
-  function (x, y, bg.corr = 1.3, bg.start = 3, verbose = FALSE) {
+  function (x, y, bg.corr = 1.3, bg.start = 3) {
     
     # Test if x and y exist and have identical lengths.
     if (is.null(x)) 
@@ -34,7 +34,7 @@ bg.max <-
     # transistion phase from linear to exponential
     yval.d <- supsmu(x, y, span = 0.09)$y
     
-    # Form the derivatives of the smoothe data.
+    # Form the derivatives of the smoothed data.
     # The maximum and the minimum of the seconde derivative
     # are the starting points to define the approximate 
     # start and the end of the exponential phase

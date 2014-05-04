@@ -1,6 +1,8 @@
 importFrom(outliers, rm.outlier)
 importFrom(robustbase, lmrob)
 importFrom(signal, sgolayfilt)
+importFrom(ptw, whit1, whit2)
+import("methods")
 
 exportClasses(
     "amptest",
