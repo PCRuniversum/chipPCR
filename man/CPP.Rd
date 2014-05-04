@@ -12,7 +12,7 @@ in the background range and to test if an amplification is significant.
 }
 \usage{
 CPP(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, minmax = FALSE, 
-    qnL = 0.1, amptest = FALSE, manual = FALSE, nl = NULL)
+    qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
