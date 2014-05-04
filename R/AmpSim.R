@@ -34,7 +34,7 @@ AmpSim <- function(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1,
   if (nnl.method == "decrease") {
 	NOISE <- sort(rnorm(length(fluo), 
 			mean = mean.noise, 
-			d = sd.noise), decreasing = TRUE)
+			sd = sd.noise), decreasing = TRUE)
   }
   if (nnl.method == "constant") {
 	NOISE <- rnorm(length(fluo), 

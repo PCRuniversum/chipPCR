@@ -5,13 +5,13 @@
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Plot bg object
+Plot \code{bg} objects
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Draw quick diagnostic plots of amplification reaction.
 }
 \usage{
-plot.bg(x, what = 1:3, add = FALSE, indicators = TRUE, legend = TRUE, 
+\S4method{plot}{bg}(x, what = 1:3, add = FALSE, indicators = TRUE, legend = TRUE, 
         plot.colors = c("black", "red", "blue"), ...)
 }
 %- maybe also 'usage' for other objects documented here.

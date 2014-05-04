@@ -1,11 +1,14 @@
 \name{amptest}
 \docType{class}
 \alias{amptest-class}
-\alias{amptest}
+\alias{summary.amptest}
+\alias{summary,amptest-method}
+\alias{show.amptest}
+\alias{show,amptest-method}
 
 \title{Class \code{"amptest"}}
 \description{
-A class 
+An S4 class containing the output \code{\link{amptester}} function.
 }
 
 \section{Slots}{
@@ -19,8 +22,9 @@ A class
 }
 \section{Methods}{
   \describe{
-    \item{summary}{\code{signature(object = "amptest")}: ... }
-    \item{show}{\code{signature(object = "amptest")}: ... }
+    \item{summary}{\code{signature(object = "amptest")}: prints summary of the object.}
+    \item{show}{\code{signature(object = "amptest")}: prints only \code{.Data} slot of the
+    object.}
    }
 }
 \author{
