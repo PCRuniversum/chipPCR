@@ -50,6 +50,11 @@ smoother <-
 #     # Test if window size of moving average is correct
 #     if (movaww <= 1 || movaww > 10) 
 #       stop("Enter movaww value between 1 and 10")
+#     # The test of movaww should be dependent on the number of
+#     # of elements. For example, movaww of 10 and 35 elements will 
+#     # be a bad smoother, but movaww of 10 and 350 elements will be 
+#     # ok. Proposels: either make it emerical (define ranges) or test
+#     # the shift of the first derivative maximumvalue
 ######/TODO##############################################
 
     # impute missing values by linear approximation in "y" and substitute 
