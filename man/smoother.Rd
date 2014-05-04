@@ -43,9 +43,9 @@ smoother(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE,
 		    for Savitzky-Golay smoothing filter, "smooth" for cubic 
 		    spline smooth, "spline" for standard cubic spline smooth, 
 		    "supsmu" for Friedman's SuperSmoother,
-        "whit1" for weighted Whittaker smoothing with a ﬁrst order ﬁnite 
+        "whit1" for weighted Whittaker smoothing with a first order finite 
         difference penalty or "whit2" for weighted Whittaker smoothing 
-        with a second order ﬁnite difference penalty.
+        with a second order finite difference penalty.
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 

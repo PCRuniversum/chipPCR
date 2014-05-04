@@ -1,5 +1,11 @@
 \name{bg.max}
 \alias{bg.max}
+\alias{bg.max.numeric}
+\alias{bg.max.matrix}
+\alias{bg.max.data.frame}
+\alias{bg.max,numeric,numeric-method}
+\alias{bg.max,matrix,missing-method}
+\alias{bg.max,data.frame,missing-method}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Simple function to detect and correct the background range
@@ -10,15 +16,21 @@ background noise. The detection is made without any assumptions regarding the
 model of the function.
 }
 \usage{
-bg.max(x, y, bg.corr = 1.3, bg.start = 3)
+\S4method{bg.max}{numeric,numeric}(x, y, bg.corr = 1.3, bg.start = 3)
+
+\S4method{bg.max}{matrix,missing}(x, y, bg.corr = 1.3, bg.start = 3)
+
+\S4method{bg.max}{data.frame,missing}(x, y, bg.corr = 1.3, bg.start = 3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-    \code{x} is a vector containing the time or cycle values.
+    \code{x} is a vector containing the time or cycle values or data frame/matrix containing 
+    cycle in the first column and fluorescence values in the second column. 
 }
   \item{y}{
-        \code{y} is a vector containing the fluorescence values.
+        \code{y} is a vector containing the fluorescence values. Used only if \code{x} is 
+        also a vector. 
 }
   \item{bg.corr}{
 	a value which helps to tweak on the suggested background value of 
@@ -56,10 +68,10 @@ Stefan Roediger, Michal Burdukiewicz
 # First example: Test for the background of an amplification reaction.
 par(mfrow = c(2,1))
 res <- AmpSim(cyc = c(1:40), Cq = 25)
-background <- bg.max(res[, 1], res[, 2])
+background <- bg.max(res)
 plot(background, main = "Estimation of the Background Range\n in Absence of Noise")
 res.noise <- AmpSim(cyc = c(1:40), Cq = 25, noise = TRUE)
-background.noise <- bg.max(res.noise[, 1], res.noise[, 2])
+background.noise <- bg.max(res.noise)
 plot(background.noise, main = "Estimation of the Background Range\n in Presence of Noise")
 par(mfrow = c(1,1))
 
@@ -71,7 +83,7 @@ par(mfrow = c(1,1))
 data(C17)
 plot(C17[, 2], C17[,  3], xlab = "Cycle", ylab = "RFU", 
      main = "Estimate the begin of the Amplification\n of a HDA", pch = 20)
-res <- bg.max(C17[, 2], C17[, 3], bg.corr = 1.4, bg.start = 3)
+res <- bg.max(C17[, 2:3], bg.corr = 1.4, bg.start = 3)
 abline(v = c(slot(res, "bg.start"), slot(res, "bg.stop")), col = c(1,2))
 abline(h = slot(res, "fluo"), col = "blue")
 
