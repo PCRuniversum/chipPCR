@@ -6,9 +6,9 @@ fixNA <- function(x, y, spline = TRUE, verbose = FALSE) {
     stop("Enter ordinate value")
   if (length(x) != length(y)) 
     stop("Use abscissa and ordinate data with same number of elements")
-      # Test if y contains somethings else than NAs
-  if(complete.cases(y) != is.na(y))
-    warnings("Use ordinate contain non-number elements (e.g., strings)")
+  # Test if y contains somethings else than NAs
+  #if(complete.cases(y) != is.na(y))
+  #  warnings("Use ordinate contain non-number elements (e.g., strings)")
 
   #	      Number of missing values "nNA"
   nNA <- length(which(is.na(y) == TRUE))
