@@ -1,8 +1,15 @@
 \name{smoother}
 \alias{smoother}
+\alias{smoother.numeric}
+\alias{smoother.matrix}
+\alias{smoother.data.frame}
+\alias{smoother,numeric,numeric-method}
+\alias{smoother,matrix,missing-method}
+\alias{smoother,data.frame,missing-method}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Wrapper for Several Smoother of Amplification Data
+Wrapper for Several Smoothers of Amplification Data
 }
 \description{
 Smoother is a wrapper for several smoothing functions including LOWESS, Moving 
@@ -10,16 +17,20 @@ Average, Friedman's SuperSmoother, Cubic Spline and Savitzky-Golay smoothing
 filter for amplification curve data.
 }
 \usage{
-smoother(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
-	 method = "savgol", ...)
+\S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
+                                     method = "savgol", ...)
+\S4method{smoother}{matrix,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
+                                    spline = TRUE, method = "savgol", ...)
+\S4method{smoother}{data.frame,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
+                    spline = TRUE, method = "savgol", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
     \item{x}{
-	      x values for smoothing
+	      \code{x} is a vector containing values for smoothing or data frame/matrix with values for smoothing. 
   }
     \item{y}{
-	      y values for smoothing
+	      \code{y} values for smoothing. Used only if \code{x} is also a vector. 
   }
     \item{trans}{
 	      perform a linear transformation based on the trend of the 
@@ -36,7 +47,7 @@ smoother(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE,
 	    approximation.
   }
     \item{method}{
-		    defines which smoothing method should be used. The 
+		    a vector of names defining which smoothing method should be used. The 
 		    Savitzky-Golay smoothing filter is the default smoother. 
 		    Use "lowess" for LOWESS smoother (locally-weighted 
 		    polynomial regression, "mova" for moving average, "savgol" 
@@ -44,8 +55,9 @@ smoother(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE,
 		    spline smooth, "spline" for standard cubic spline smooth, 
 		    "supsmu" for Friedman's SuperSmoother,
         "whit1" for weighted Whittaker smoothing with a first order finite 
-        difference penalty or "whit2" for weighted Whittaker smoothing 
-        with a second order finite difference penalty.
+        difference penalty, "whit2" for weighted Whittaker smoothing 
+        with a second order finite difference penalty or "all" for all implemented
+        smoothing algorithms. 
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 
