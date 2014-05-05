@@ -42,10 +42,6 @@ is a vectors of colors used in plot. Must have length 3.
 Arguments to be passed further, such as graphical parameters.
 }
 }
-\details{
-FIX ME
-}
-
 \author{
 Stefan Roediger, Michal Burdukiewicz
 }

@@ -2,8 +2,6 @@
 \docType{class}
 \alias{bg-class}
 \alias{bg}
-\alias{summary.bg}
-\alias{summary,bg-method}
 
 \title{Class \code{"bg"}}
 \description{
@@ -27,8 +25,10 @@ An S4 class containing the output \code{\link{bg.max}} function.
 \section{Methods}{
   \describe{
     \item{summary}{\code{signature(object = "bg")}: prints information about object 
-    prettier than \code{show}.}
-    \item{plot}{\code{signature(x = "bg")}: plots background information. See \code{\link{plot.bg}}}
+    prettier than \code{show} and allows easy access to some slots. See 
+    \code{\link{summary.bg}}}
+    \item{plot}{\code{signature(x = "bg")}: plots background information. 
+    See \code{\link{plot.bg}}}
    }
 }
 \author{
@@ -37,12 +37,13 @@ Stefan Roediger, Michal Burdukiewicz
 
 
 \seealso{
-\code{\link{bg.max}}, \code{\link{plot.bg}}
+\code{\link{bg.max}}, \code{\link{plot.bg}}, \code{\link{summary.bg}}
 }
 \examples{
 res <- AmpSim(cyc = 1:40, Cq = 25)
-tmp <- bg.max(res[, 1], res[, 2])
+tmp <- bg.max(res)
 summary(tmp)
+plot(tmp)
 }
 
 \keyword{classes}

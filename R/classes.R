@@ -41,14 +41,20 @@ setClass("bg", representation(d = "data.frame",
                               input = "data.frame"))
 
 
-setMethod("summary", signature(object = "bg"), function(object) {
-  #TODO smart way to present deltas' values
+setMethod("summary", signature(object = "bg"), function(object, print = TRUE) {
+  if (print) {
   cat(paste0("\nBackground start: ", slot(object, "bg.start")))
   cat(paste0("\nBackground stop: ", slot(object, "bg.stop")))
   cat(paste0("\nBackground correlation: ", slot(object, "bg.corr")))
   cat(paste0("\nEnd of the amplification reaction: ", slot(object, "amp.stop")))
-  cat(paste0("\nFluoercence at the end of the amplification reaction: ", 
+  cat(paste0("\nFluorescence at the end of the amplification reaction: ", 
              round(slot(object, "fluo"), options("digits")[["digits"]])))
+  }
+  invisible(c(bg.start = slot(object, "bg.start"), 
+    bg.stop = slot(object, "bg.stop"),
+    bg.corr = slot(object, "bg.corr"),
+    amp.stop = slot(object, "amp.stop"),
+    fluo = slot(object, "fluo")))
 })
 
 
