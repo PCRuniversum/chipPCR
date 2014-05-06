@@ -18,6 +18,12 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
   # "none" does basically nothing, "minmax" does a minimum maximum
   # normalization, "luqn" does a qauntile normalization based
   # on the qnL value and zscore is (y - mean(y))/sd(y)
+  # Alternativ for minmax:
+  # minmax <- function(x, lv = 0, tv = 1) {
+  # ((x - min(x)) * (tv - lv) / (max(x) - min(x))) + lv 
+  # }
+  # scales between user defined ranges
+  
   method <- tolower(minmax.m)
   if (grepl(method, "none"))
       method <- "none"
