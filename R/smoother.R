@@ -1,4 +1,4 @@
-smoother <- function (x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
+smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
                       method = "savgol", ...) {
   stop("Wrong classes of 'x'", call. = TRUE, domain = NA)
 }

@@ -1,6 +1,12 @@
 \name{fixNA}
 \alias{fixNA}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\alias{fixNA.numeric}
+\alias{fixNA.matrix}
+\alias{fixNA.data.frame}
+\alias{fixNA,numeric,numeric-method}
+\alias{fixNA,matrix,missing-method}
+\alias{fixNA,data.frame,missing-method}
+
 \title{
 Impute missing values into a column of amplification data
 }
@@ -10,15 +16,19 @@ column of data. The imputation is based on a linear approximation by default.
 However, the data can also be estimated from an approximation by splines.
 }
 \usage{
-fixNA(x, y, spline = TRUE, verbose = FALSE)
+\S4method{fixNA}{numeric,numeric}(x, y, spline = TRUE, verbose = FALSE)
+\S4method{fixNA}{matrix,missing}(x, y, spline = TRUE, verbose = FALSE)
+\S4method{fixNA}{data.frame,missing}(x, y, spline = TRUE, verbose = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-    \code{x} is a vector containing the time or cycle values.
+    \code{x} is a vector containing the time or cycle values or data frame/matrix with 
+    values for smoothing.
 }
   \item{y}{
-    \code{y} is a vector containing the fluorescence values.
+    \code{y} is a vector containing the fluorescence values. Used only if \code{x} is 
+    also a vector. 
 }
   \item{spline}{
 	\code{spline} is a logical operator which defines of missing values 
