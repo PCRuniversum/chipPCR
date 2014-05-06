@@ -1,5 +1,5 @@
 smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
-                      method = "savgol", ...) {
+                     method = "savgol", ...) {
   stop("Wrong classes of 'x'", call. = TRUE, domain = NA)
 }
 
@@ -61,8 +61,8 @@ smooth <-
     if (length(method) != 1 || method != "all") {
       for (i in pos.meth) 
         for (j in 1L:length(method))
-        if (any(grepl(method[j], i)))
-          method[j] <- i
+          if (any(grepl(method[j], i)))
+            method[j] <- i
       
       #check for presence of invalid names
       invalids <- !(method %in% pos.meth)
@@ -87,10 +87,14 @@ smooth <-
     
     # impute missing values by linear approximation in "y" and substitute 
     # them in "y.tmp"
-    y.tmp <- fixNA(x,y, spline = spline)
-    
-    all.smooths <- lapply(method, function(i) {
-      y.tmp <- switch(i,
+    if(any(is.na(y))) {
+      y.tmp <- fixNA(x, y, spline = spline)
+    } else {
+      y.tmp <- y
+    }
+
+    all.smooths <- lapply(1L:length(method), function(i) {
+      y.tmp <- switch(method[i],
                       lowess = do.call(function(x, y, f = 0.01, iter = 3)
                         lowess(x = x, y = y, f = f, iter = iter)
                         , c(list(x = x, y = y.tmp), ...))[["y"]],
@@ -131,5 +135,7 @@ smooth <-
     })
     
     #attr(y.norm, "method") <- method
-    do.call(cbind, all.smooths)
+    res <- do.call(cbind, all.smooths)
+    colnames(res) <- method
+    res
   }

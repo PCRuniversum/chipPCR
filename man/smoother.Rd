@@ -114,7 +114,7 @@ Stefan Roediger, Michal Burdukiewicz
 # Results of different smoothers. A in-silico amplification was performed
 # using the AmpSim function and different smoothers were applied. Optimally
 # all smoothers should give the same result (which is not the case)).
-tmp <- AmpSim(cyc = c(1:35), bl = 0)
+tmp <- AmpSim(cyc = 1:35, bl = 0)
 
 plot(tmp, main = "In-silico real-time PCR\n Effect of Smoother", 
      xlab = "Cycles", ylab ="refMFI", ylim = c(0,1), pch = 20, 

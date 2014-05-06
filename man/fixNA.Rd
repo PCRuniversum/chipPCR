@@ -23,11 +23,11 @@ However, the data can also be estimated from an approximation by splines.
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-    \code{x} is a vector containing the time or cycle values or data frame/matrix with 
-    values for smoothing.
+    \code{x} is a vector containing the time or cycle values or data frame/matrix where second
+    column contains missing data.
 }
   \item{y}{
-    \code{y} is a vector containing the fluorescence values. Used only if \code{x} is 
+    \code{y} is a vector containing missing values. Used only if \code{x} is 
     also a vector. 
 }
   \item{spline}{
@@ -59,7 +59,7 @@ or plateau phases of an amplification reaction. The parameter
 \code{\link[stats]{spline}} on \code{\link[chipPCR]{fixNA}} enables a trend 
 estimation on splines and may be more appropriate in most scenarios. Other 
 smooting functions such as the Savitzky-Golay smoothing filter have the 
-intrinsic capability to remove missing values [Savitzk and Golay 1964, 
+intrinsic capability to remove missing values [Savitzky and Golay 1964, 
 Eilers 2003].
 }
 
