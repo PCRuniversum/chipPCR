@@ -35,7 +35,7 @@ CPP(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
 	The mean is used by default.
 }
   \item{minmax.m}{
-	is a argument to use a "none", "minmax", "quantile", or
+	is a argument to use a "none", "minmax", "lugn", or
 	"zscore" normalization.
 }
   \item{qnL}{
