@@ -16,8 +16,8 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
     
   # Select a method for the normalization
   # "none" does basically nothing, "minmax" does a minimum maximum
-  # normalization and "quantile" does a qauntile normalization based
-  # on the qnL value
+  # normalization, "quantile" does a qauntile normalization based
+  # on the qnL value and zscore is (y - mean(y))/sd(y)
   method <- tolower(minmax.m)
   if (grepl(method, "none"))
       method <- "none"
@@ -25,7 +25,9 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
       method <- "quantile"
   if (grepl(method, "minmax"))
       method <- "minmax"
-  if (!(method %in% c("none", "quantile", "minmax")))
+  if (grepl(method, "zscore"))
+      method <- "zscore"
+  if (!(method %in% c("none", "quantile", "minmax", "zscore")))
     stop("Invalid method chosen.")
 
   # Remove missing values from y
@@ -72,7 +74,8 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
   		      switch(method,
 	 		     none = do.call(function(y) y, c(list(y = y))),
 	 		     minmax = do.call(function(y) (y - min(y)) / (max(y) - min(y)), c(list(y = y))),
-	 		     quantile = do.call(function(y, qnL) (y - quantile(y, qnL)) / (quantile(y, 1  - qnL) - quantile(y, qnL)), c(list(y = y, qnL = qnL)))
+	 		     quantile = do.call(function(y, qnL) (y - quantile(y, qnL)) / (quantile(y, 1  - qnL) - quantile(y, qnL)), c(list(y = y, qnL = qnL))),
+	 		     zscore = do.call(function(y) (y - mean(y)) / sd(y), c(list(y = y)))
   		      )	
 		}
 
