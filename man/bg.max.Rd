@@ -16,11 +16,11 @@ background noise. The detection is made without any assumptions regarding the
 model of the function.
 }
 \usage{
-\S4method{bg.max}{numeric,numeric}(x, y, bg.corr = 1.3, bg.start = 3)
+\S4method{bg.max}{numeric,numeric}(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE)
 
-\S4method{bg.max}{matrix,missing}(x, y, bg.corr = 1.3, bg.start = 3)
+\S4method{bg.max}{matrix,missing}(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE)
 
-\S4method{bg.max}{data.frame,missing}(x, y, bg.corr = 1.3, bg.start = 3)
+\S4method{bg.max}{data.frame,missing}(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,6 +38,11 @@ model of the function.
 }
   \item{bg.start}{
 	a user defined value for the start of the background range.
+}
+  \item{inder.approx}{
+  a \code{logical} value defining if data should be numerically derived by
+  \code{\link{inder}} function. If \code{FALSE}, derivative is calculated by the
+  finite difference method.
 }
 }
 \details{
