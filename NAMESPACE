@@ -6,7 +6,8 @@ import("methods")
 
 exportClasses(
     "amptest",
-    "bg"
+    "bg",
+    "der"
 )
 
 exportMethods(

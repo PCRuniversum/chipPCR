@@ -4,7 +4,7 @@ setGeneric("plot")
 #just for writing comfort, self explanatory
 setClassUnion("numericOrNULL",c("numeric","NULL"))
 
-#amptester function
+#amptest class, amptester function -------------------------------
 setClass("amptest", contains = "numeric", representation(.Data = "numeric", 
                                                          decision = "character",
                                                          noiselevel = "numeric",
@@ -28,7 +28,7 @@ setMethod("summary", signature(object = "amptest"), function(object) {
 })
 
 
-#bg.max function
+#bg class, bg.max function -------------------------------
 setClass("bg", representation(d = "data.frame", 
                               d1 = "data.frame",
                               delta = "numeric",
@@ -38,12 +38,12 @@ setClass("bg", representation(d = "data.frame",
                               bg.corr = "numeric",
                               fluo = "numeric",
                               amp.stop = "numeric",
-                              input = "data.frame"))
+                              raw.data = "data.frame"))
 
 
 setMethod("summary", signature(object = "bg"), function(object, print = TRUE) {
   if (print) {
-  cat(paste0("\nBackground start: ", slot(object, "bg.start")))
+  cat(paste0("Background start: ", slot(object, "bg.start")))
   cat(paste0("\nBackground stop: ", slot(object, "bg.stop")))
   cat(paste0("\nBackground correlation: ", slot(object, "bg.corr")))
   cat(paste0("\nEnd of the amplification reaction: ", slot(object, "amp.stop")))
@@ -72,7 +72,7 @@ setMethod("plot", signature(x = "bg"), function(x, what = 1:3, add = FALSE, indi
     stop("'plot.colors' must contain three colors.")
   
   #needed data frames
-  all.dfs <- c("input", "d", "d1")  
+  all.dfs <- c("raw.data", "d", "d1")  
   
   #smallest and biggest fluorescence values
   ylims <- range(sapply(what, function(i) {
@@ -80,7 +80,7 @@ setMethod("plot", signature(x = "bg"), function(x, what = 1:3, add = FALSE, indi
   }))
   
   if(!add) {
-    plot(x = range(slot(x, "input")[1]),  y = ylims, xlab = "Cycles", 
+    plot(x = range(slot(x, "raw.data")[1]),  y = ylims, xlab = "Cycles", 
          ylab = "Fluorescence", cex = 0, ...)
     
     if (indicators) {
@@ -100,3 +100,30 @@ setMethod("plot", signature(x = "bg"), function(x, what = 1:3, add = FALSE, indi
     legend("topleft", c("Raw data", "First derivative", "Second derivative")[what], 
            pch = rep(20,3), col = plot.colors)
 })
+
+
+
+#der class ----------------------
+setClass("der", contains = "matrix", representation(.Data = "matrix", 
+                               method = "character"))
+
+
+setMethod("summary", signature(object = "der"), function(object, digits = 0, print = TRUE) {
+  data <- slot(object, ".Data")
+  FDM <- data[data[, "d1y"] == max(data[, "d1y"]), "x"] 
+  SDM <- data[data[, "d2y"] == max(data[, "d2y"]), "x"]
+  SDm <- data[data[, "d2y"] == min(data[, "d2y"]), "x"]
+  SDC <- sqrt(SDM * SDm)
+  if (print) {
+    cat(paste0("Smoothing method: ", slot(object, "method")))
+    cat(paste0("First derivative maximum: ", round(FDM, digits = digits)))
+    cat(paste0("\nSecond derivative maximum: ", round(SDM, digits = digits)))
+    cat(paste0("\nSecond derivative minimum: ", round(SDm, digits = digits)))
+    cat(paste0("\nSecond derivative center: ", round(SDC, digits = digits)))
+  }
+  invisible(c(FDM = FDM, 
+              SDM = SDM,
+              SDm = SDm,
+              SDC = SDC))
+})
+

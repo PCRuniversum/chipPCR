@@ -78,13 +78,9 @@ inder <- function(x, y, Nip = 4, logy = FALSE) {
                vapply(3L:(length(y) - 2), function(i) sec_midpoint(y[(i - 2):(i + 2)], h), 0),
                sec_endpoint1(y[(length(y) - 5):length(y)], h),
                sec_endpoint0(y[(length(y) - 5):length(y)], h))
-               
-  FDM <- x[which(first_der == max(first_der))]
-  SDM <- x[which(sec_der == max(sec_der))]
-  SDm <- x[which(sec_der == min(sec_der))]
-  SDC <- sqrt(SDM * SDm)
-  
-  list("x" = x, "y" = y, "1st_der" = first_der, "2nd_der" = sec_der, 
-	"SDM" = SDM, "SDm" = SDm, "SDC" = SDC, "FDM" = FDM, "h" = h)
+                 
+  dat <- cbind(x, y, first_der, sec_der)
+  names(dat) <- c("x", "y", "d1y", "d2y")
+  new("der", '.Data' = dat, 'method' = "spline")
 }
 

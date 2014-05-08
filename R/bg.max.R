@@ -115,6 +115,6 @@ calc.bg <- function(x, y, bg.corr, bg.start, inder.approx) {
   new("bg", d = d, d1 = d1, delta = delta, delta1 = delta1, 
       bg.start = bg.start, bg.stop = bg.stop, 
       bg.corr = bg.corr, fluo = fluo, amp.stop = amp.stop,
-      input = input)
+      raw.data = input)
   
 }
