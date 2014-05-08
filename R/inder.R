@@ -80,7 +80,7 @@ inder <- function(x, y, Nip = 4, logy = FALSE) {
                sec_endpoint0(y[(length(y) - 5):length(y)], h))
                  
   dat <- cbind(x, y, first_der, sec_der)
-  names(dat) <- c("x", "y", "d1y", "d2y")
+  colnames(dat) <- c("x", "y", "d1y", "d2y")
   new("der", '.Data' = dat, 'method' = "spline")
 }
 

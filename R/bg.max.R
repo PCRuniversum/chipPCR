@@ -53,11 +53,11 @@ calc.bg <- function(x, y, bg.corr, bg.start, inder.approx) {
   yval.d <- supsmu(x, y, span = 0.09)$y
   
   if (inder.approx) {
-    der <- inder(x, yval.d)
-    deltax <- der[["x"]]
-    deltax1 <- der[["x"]]
-    delta <- der[["1st_der"]]
-    delta1 <- der[["2nd_der"]]
+    der <- <- slot(inder(x, yval.d), ".Data")
+    deltax <- der[, "x"]
+    deltax1 <- der[, "x"]
+    delta <- der[, "d1y"]
+    delta1 <- der[, "d2y"]
   } else {
   # Form the derivatives of the smoothed data.
   # The maximum and the minimum of the seconde derivative
