@@ -46,7 +46,7 @@ model of the function.
 }
 }
 \details{
-background range herein refers to a level of fluorescence measured before any 
+Background range herein refers to a level of fluorescence measured before any 
 specific amplification is detectable. The raw data (e.g., fluorescence 
 intensity) measured after each step (cycle or time point) follow a non-linear 
 progress. The background is assumed to be constant for the entire measurement. 

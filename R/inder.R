@@ -84,3 +84,19 @@ inder <- function(x, y, Nip = 4, logy = FALSE) {
   new("der", '.Data' = dat, 'method' = "spline")
 }
 
+setGeneric("inder")
+
+
+setMethod("inder", signature(x = "data.frame", y="missing"), 
+          function(x, y, Nip = 4, logy = FALSE) { 
+            if (ncol(x) != 2) 
+              stop("'x' must have two columns.")
+            inder(x[, 1], x[, 2], Nip = Nip, logy = logy)
+          })
+
+setMethod("inder", signature(x = "matrix", y = "missing"), 
+          function(x, y, Nip = 4, logy = FALSE) { 
+            if (ncol(x) != 2) 
+              stop("'x' must have two columns.")
+            inder(x[, 1], x[, 2], Nip = Nip, logy = logy)
+          })

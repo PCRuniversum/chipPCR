@@ -1,6 +1,12 @@
 \name{inder}
 \alias{inder}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\alias{inder.numeric}
+\alias{inder.matrix}
+\alias{inder.data.frame}
+\alias{inder,numeric,numeric-method}
+\alias{inder,matrix,missing-method}
+\alias{inder,data.frame,missing-method}
+
 \title{
 Interpolate derivatives
 }
@@ -17,11 +23,12 @@ inder(x, y, Nip = 4, logy = FALSE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-is a vector of independent variable.
+is a \code{numeric} vector of independent variable or data frame/matrix containing
+abscissa and ordinate values.
 }
 
   \item{y}{
-is a vector of dependent variable.
+is a vector of dependent variable. Ommited if \code{x} is data frame or matrix.
 }
   \item{Nip}{
 is a value which defines how often an interpolation takes place at n equally 
@@ -38,24 +45,11 @@ is used.
 }
 \details{
 The function \code{y = f(x)} is numerically derived by five-point stencil. This 
-method do not require any assumptions regarding the function \code{f}. The 
-function \code{inder} calculates the approximate second derivative maximum 
-(SDM) which is commonly used to quantify quantitative real-time PCR 
-experiments. The SDM might also be useful for isothermal amplification 
-processes. The SDM is calculated from a derived cubic spline. Similarly the 
-first approximate approximate derivative maximum (FDM), second derivative 
-minimum (SDm), and approximate second derivative center (SDC, geometric mean 
-of SDM and SDm) are available. FDM, SDm and SDC values can be used to further 
-characterize the amplification process.
+method do not require any assumptions regarding the function \code{f}.
 }
 \value{
-A list of four elements. The element named \code{x} contains smoothed 
-independent variable. The element named \code{y} contains smoothed dependent 
-variable. The element named \code{1st_der} contains values of the first 
-derivative. The element named \code{2nd_der} contains values of the second 
-first derivative. The element named \code{SDM} contains approximate second 
-derivative maximum, \code{SDm} contains approximate second derivative minimum, 
-and \code{SDC} contains approximate second derivative center.
+An object of \code{\linkS4class{der}} class containing smoothed original data and
+
 }
 \references{
 Ruijter JM, Pfaffl MW, Zhao S, et al. (2013) Evaluation of qPCR curve analysis 

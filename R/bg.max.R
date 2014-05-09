@@ -53,7 +53,7 @@ calc.bg <- function(x, y, bg.corr, bg.start, inder.approx) {
   yval.d <- supsmu(x, y, span = 0.09)$y
   
   if (inder.approx) {
-    der <- <- slot(inder(x, yval.d), ".Data")
+    der <- slot(inder(x, yval.d), ".Data")
     deltax <- der[, "x"]
     deltax1 <- der[, "x"]
     delta <- der[, "d1y"]

@@ -32,7 +32,7 @@ Stefan Roediger, Michal Burdukiewicz
 }
 \examples{
 
-res <- AmpSim(cyc = c(1:40), Cq = 25)
+res <- AmpSim(cyc = 1:40, Cq = 25)
 background <- bg.max(res[, 1], res[, 2])
 #just print summary
 summary(background)
@@ -42,6 +42,6 @@ vals <- summary(background, print = FALSE)
 print(vals)
 
 #easily access different values
-vals["bg.start"]
+vals["FDM"]
 }
 \keyword{manip}
