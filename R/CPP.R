@@ -88,6 +88,10 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
   
   y.norm <- normalizer(y = y.norm, method = method, qnL = qnL)
   
+  # Test do give some output of the signal difference (backround vs. plateau)
+  dB.y <- abs(quantile(y, 1 - qnL) / quantile(y, qnL))
+  dB.res <- 10 * log(dB.y, base = 20)
+  
   # Test if the amplifification is likely to be positive
   if (amptest) {
     y.norm <- amptester(y.norm, manual = manual, 
@@ -95,5 +99,5 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
                         noiselevel = nl)
   }
   
-  list(y.norm = y.norm, BG = BG)
+  list(y.norm = y.norm, BG = BG, dB = dB.res)
 }
