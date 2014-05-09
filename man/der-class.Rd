@@ -25,6 +25,10 @@ An S4 class containing the output \code{\link{inder}} function.
     object.}
    }
 }
+
+\details{
+Blabla
+}
 \author{
 Stefan Roediger, Michal Burdukiewicz
 }

@@ -1,43 +1,43 @@
-#point f'(x_i)
-first_midpoint <- function(y, h)
+#point f'(x.i)
+first.midpoint <- function(y, h)
   1/12/h * (y[1] - 8 * y[2] + 8 * y[4] - y[5])
 
-#point f'(x_0)
-first_beginpoint0 <- function(y, h)
+#point f'(x.0)
+first.beginpoint0 <- function(y, h)
   1/12/h * (-25 * y[1] + 48 * y[2] - 36 * y[3] + 16 * y[4] - 3 * y[5])
 
-#point f'(x_1)
-first_beginpoint1 <- function(y, h)
+#point f'(x.1)
+first.beginpoint1 <- function(y, h)
   1/12/h * (-3 * y[1] - 10 * y[2] + 18 * y[3] - 6 * y[4] + y[5])
 
-#point f'(x_{n-1})
-first_endpoint1 <- function(y, h)
-  - first_beginpoint1(rev(y), h)
+#point f'(x.{n-1})
+first.endpoint1 <- function(y, h)
+  - first.beginpoint1(rev(y), h)
 
-#point f'(x_n)
-first_endpoint0 <- function(y, h)
-   - first_beginpoint0(rev(y), h)
+#point f'(x.n)
+first.endpoint0 <- function(y, h)
+   - first.beginpoint0(rev(y), h)
 
 
-#point f''(x_i)
-sec_midpoint <- function(y, h)
+#point f''(x.i)
+sec.midpoint <- function(y, h)
   1/12/h^2 * (- y[1] + 16 * y[2] - 30 * y[3]  +  16 * y[4] - y[5])
 
-#point f''(x_0)
-sec_beginpoint0 <- function(y, h)
+#point f''(x.0)
+sec.beginpoint0 <- function(y, h)
   1/12/h^2 * (35 * y[1] - 104 * y[2] + 114 * y[3]  -  56 * y[4] + 11 * y[5])
 
-#point f''(x_1)
-sec_beginpoint1 <- function(y, h)
+#point f''(x.1)
+sec.beginpoint1 <- function(y, h)
   1/12/h^2 * (11 * y[1] - 20 * y[2] + 6 * y[3]  +  4 * y[4] - y[5])
 
-#point f''(x_{n-1})
-sec_endpoint1 <- function(y, h)
-  sec_beginpoint1(rev(y), h)
+#point f''(x.{n-1})
+sec.endpoint1 <- function(y, h)
+  sec.beginpoint1(rev(y), h)
 
-#point f''(x_n)
-sec_endpoint0 <- function(y, h)
-  sec_beginpoint0(rev(y), h)
+#point f''(x.n)
+sec.endpoint0 <- function(y, h)
+  sec.beginpoint0(rev(y), h)
 
 
 inder <- function(x, y, Nip = 4, logy = FALSE) {
@@ -67,19 +67,19 @@ inder <- function(x, y, Nip = 4, logy = FALSE) {
   
   h <- h[1]
   #calculate midpoints
-  first_der <- c(first_beginpoint0(y[1:5], h),
-                 first_beginpoint1(y[1:5], h),
-                 vapply(3L:(length(y) - 2), function(i) first_midpoint(y[(i - 2):(i + 2)], h), 0),
-                 first_endpoint1(y[(length(y) - 5):length(y)], h),
-                 first_endpoint0(y[(length(y) - 5):length(y)], h))
+  first.der <- c(first.beginpoint0(y[1:5], h),
+                 first.beginpoint1(y[1:5], h),
+                 vapply(3L:(length(y) - 2), function(i) first.midpoint(y[(i - 2):(i + 2)], h), 0),
+                 first.endpoint1(y[(length(y) - 5):length(y)], h),
+                 first.endpoint0(y[(length(y) - 5):length(y)], h))
   
-  sec_der <- c(sec_beginpoint0(y[1:5], h),
-               sec_beginpoint1(y[1:5], h),
-               vapply(3L:(length(y) - 2), function(i) sec_midpoint(y[(i - 2):(i + 2)], h), 0),
-               sec_endpoint1(y[(length(y) - 5):length(y)], h),
-               sec_endpoint0(y[(length(y) - 5):length(y)], h))
+  sec.der <- c(sec.beginpoint0(y[1:5], h),
+               sec.beginpoint1(y[1:5], h),
+               vapply(3L:(length(y) - 2), function(i) sec.midpoint(y[(i - 2):(i + 2)], h), 0),
+               sec.endpoint1(y[(length(y) - 5):length(y)], h),
+               sec.endpoint0(y[(length(y) - 5):length(y)], h))
                  
-  dat <- cbind(x, y, first_der, sec_der)
+  dat <- cbind(x, y, first.der, sec.der)
   colnames(dat) <- c("x", "y", "d1y", "d2y")
   new("der", '.Data' = dat, 'method' = "spline")
 }

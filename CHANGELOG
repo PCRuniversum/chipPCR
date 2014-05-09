@@ -8,6 +8,7 @@ Changes from Version 0.0.6 to 0.0.7 [XX XX 2014]
 * CPP has further normalize methods
 * added methods to fixNA
 * bg.max now used inder method by default
+* added rounder function for rounding results of inder
 
 Changes from Version 0.0.5 to 0.0.6 [April 24 2014] 
 
