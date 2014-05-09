@@ -1,8 +1,6 @@
 \name{der}
 \docType{class}
 \alias{der-class}
-\alias{summary.der}
-\alias{summary,der-method}
 \alias{show.der}
 \alias{show,der-method}
 

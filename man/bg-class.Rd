@@ -19,7 +19,7 @@ An S4 class containing the output \code{\link{bg.max}} function.
     \item{\code{bg.corr}:}{ \code{"numeric"} }
     \item{\code{fluo}:}{ \code{"numeric"} }
     \item{\code{amp.stop}:}{ \code{"numeric"} }
-    \item{\code{input}:}{ \code{"data.frame"} of original input data.}
+    \item{\code{raw.data}:}{ \code{"data.frame"} of original input data.}
 }
 }
 \section{Methods}{

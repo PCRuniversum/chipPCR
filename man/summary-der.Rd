@@ -1,4 +1,4 @@
-\name{summary}
+\name{summary-der}
 \alias{summary.der}
 \alias{summary,der-method}
 
@@ -10,7 +10,7 @@ Summarize \code{\linkS4class{der}} objects and easily access results of \code{\l
 function.
 }
 \usage{
-\S4method{summary}{der}(object, print = TRUE)
+\S4method{summary}{der}(object, digits = 0, print = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -55,7 +55,7 @@ Stefan Roediger, Michal Burdukiewicz
 }
 
 \seealso{
-\code{\linkS4class{inder}}
+\code{\linkS4class{der}}
 }
 \examples{
 

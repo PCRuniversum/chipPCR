@@ -148,7 +148,8 @@ for (i in 1:18) {
 				nnl = 0.02)[, 2]
   lines(1:cyc.no, ma.out[, i])
   tmpP <- mcaSmoother(1:cyc.no, ma.out[, i])
-  Cq.tmp <- diffQ2(tmpP, inder = TRUE)$xTm1.2.D2[1]
+  #TURNED OFF INDER - NEED ADD NEW COMPATIBILITY TO MBmca
+  Cq.tmp <- diffQ2(tmpP, inder = FALSE)$xTm1.2.D2[1]
   abline(v = Cq.tmp)
   Cq.out <- c(Cq.out, Cq.tmp)
 }

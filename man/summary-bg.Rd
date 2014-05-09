@@ -1,4 +1,4 @@
-\name{summary}
+\name{summary-bg}
 \alias{summary.bg}
 \alias{summary,bg-method}
 
