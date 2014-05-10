@@ -1,5 +1,5 @@
 amptester <-
-  function (y, manual = FALSE, noiselevel = 0.08, background = NULL) {
+  function(y, manual = FALSE, noiselevel = 0.08, background = NULL) {
     # Test if y exist.
     if (is.null(y)) 
       stop("Enter y value")

@@ -1,5 +1,5 @@
-smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
-                     method = "savgol", ...) {
+smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, 
+		     spline = TRUE, method = "savgol", ...) {
   stop("Wrong classes of 'x'", call. = TRUE, domain = NA)
 }
 
@@ -13,7 +13,8 @@ setMethod("smoother", signature(x = "numeric", y = "numeric"),
               stop("Enter ordinate value")
             
             if (length(x) != length(y)) 
-              stop("Use abscissa and ordinate data with same number of elements")
+              stop("Use abscissa and ordinate data with same 
+		    number of elements")
             
             smooth(x, y, trans, bg.outliers, spline, method, ...)
           })
@@ -37,7 +38,7 @@ setMethod("smoother", signature(x = "matrix", y = "missing"),
 
 #workhorse function
 smooth <-
-  function (x, y, trans, bg.outliers, spline, method, ...) { 
+  function(x, y, trans, bg.outliers, spline, method, ...) { 
     
     # Determine the time/cycle resolution of the data
     deltaCyc <- vector()
@@ -67,7 +68,8 @@ smooth <-
       #check for presence of invalid names
       invalids <- !(method %in% pos.meth)
       if (sum(invalids) > 0)
-        stop(paste0("Invalid method(s) chosen: ", paste0(method[invalids], collapse = ", ")))
+        stop(paste0("Invalid method(s) chosen: ", paste0(method[invalids], 
+		    collapse = ", ")))
     } else {
       method <- pos.meth
     }

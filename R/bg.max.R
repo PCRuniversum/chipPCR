@@ -1,30 +1,35 @@
-bg.max <- function (x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE) {
+bg.max <- function(x, y, bg.corr = 1.3, bg.start = 3, 
+		    inder.approx = TRUE) {
   stop("Wrong classes of 'x'", call. = TRUE, domain = NA)
 }
 
 setGeneric("bg.max")
 
 setMethod("bg.max", signature(x = "numeric", y = "numeric"), 
-          function(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE) {
+          function(x, y, bg.corr = 1.3, bg.start = 3, 
+		    inder.approx = TRUE) {
             # Test if x and y have identical lengths.
             if (is.null(y)) 
               stop("Enter ordinate value")
             
             if (length(x) != length(y)) 
-              stop("Use abscissa and ordinate data with same number of elements")
+              stop("Use abscissa and ordinate data with same number 
+		    of elements")
             
             calc.bg(x, y, bg.corr, bg.start, inder.approx)
           })
 
 setMethod("bg.max", signature(x = "data.frame", y="missing"), 
-          function(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE) { 
+          function(x, y, bg.corr = 1.3, bg.start = 3, 
+          inder.approx = TRUE) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             calc.bg(x[, 1], x[, 2], bg.corr, bg.start, inder.approx)
           })
 
 setMethod("bg.max", signature(x = "matrix", y = "missing"), 
-          function(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE) { 
+          function(x, y, bg.corr = 1.3, bg.start = 3, 
+          inder.approx = TRUE) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             calc.bg(x[, 1], x[, 2], bg.corr, bg.start, inder.approx)
