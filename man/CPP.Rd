@@ -106,6 +106,15 @@ for (i in 3:5) {
 legend(50, 1, c("55 deg Celsius", "60 deg Celsius", "65 deg Celsius"), 
 	col = c(1,2,3), pch = rep(20,3))
 par(mfrow = c(1,1))
+
+# Example for dB analysis
+T60 <- cbind(apply(VIMCFX96_60[, c(2:97)], 2, 
+		    function(x) CPP(VIMCFX96_60[, 1], x)$dB))
+T69 <- cbind(apply(VIMCFX96_69[, c(2:97)], 2, 
+		    function(x) CPP(VIMCFX96_69[, 1], x)$dB))
+		    
+plot(T60, T69, xlab = "dB @ 60 deg. Celsius", 
+      ylab = "dB @ 69 deg. Celsius")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
