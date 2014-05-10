@@ -22,27 +22,27 @@ model of the function.
 
 \S4method{bg.max}{data.frame,missing}(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{
-    \code{x} is a vector containing the time or cycle values or data frame/matrix containing 
+    is a vector containing the time or cycle values or data frame/matrix containing 
     cycle in the first column and fluorescence values in the second column. 
 }
   \item{y}{
-        \code{y} is a vector containing the fluorescence values. Used only if \code{x} is 
-        also a vector. 
+    is a vector containing the fluorescence values. Used only if \code{x} is 
+    also a vector. 
 }
   \item{bg.corr}{
-	a value which helps to tweak on the suggested background value of 
-	\code{\link[chipPCR]{bg.max}}.
+  	a value which helps to tweak on the suggested background value of 
+    \code{\link[chipPCR]{bg.max}}.
 }
   \item{bg.start}{
-	a user defined value for the start of the background range.
+	  a user defined value for the start of the background range.
 }
   \item{inder.approx}{
-  a \code{logical} value defining if data should be numerically derived by
-  \code{\link{inder}} function. If \code{FALSE}, derivative is calculated by the
-  finite difference method.
+    a \code{logical} value defining if data should be numerically derived by
+    \code{\link{inder}} function. If \code{FALSE}, derivative is calculated by the
+    finite difference method.
 }
 }
 \details{
@@ -55,7 +55,9 @@ that the signal difference of successive cycles in the linear ground phase is
 approximately constant. After transition in the early exponential phase the 
 signal changes drastically. First data are smoothed by Friedman's 'super 
 smoother' (as found in \code{\link[stats]{supsmu}}. Thereof the approximate 
-1st (FD) and 2nd (FD2) derivative are calculated. The difference of cycles at 
+1st (FD) and 2nd (FD2) derivative are calculated. 
+
+The difference of cycles at 
 the maxima of the 1st and 2nd approximate derivative and a correction factor 
 are used to estimate the range before the exponential phase. This simple 
 function finds the background range without modeling the function. The start 
@@ -72,10 +74,10 @@ Stefan Roediger, Michal Burdukiewicz
 \examples{
 # First example: Test for the background of an amplification reaction.
 par(mfrow = c(2,1))
-res <- AmpSim(cyc = c(1:40), Cq = 25)
+res <- AmpSim(cyc = 1:40, Cq = 25)
 background <- bg.max(res)
 plot(background, main = "Estimation of the Background Range\n in Absence of Noise")
-res.noise <- AmpSim(cyc = c(1:40), Cq = 25, noise = TRUE)
+res.noise <- AmpSim(cyc = 1:40, Cq = 25, noise = TRUE)
 background.noise <- bg.max(res.noise)
 plot(background.noise, main = "Estimation of the Background Range\n in Presence of Noise")
 par(mfrow = c(1,1))
