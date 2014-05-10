@@ -18,7 +18,7 @@ quantification) of an amplification curve. But it can also be used to calculate
 the first positive derivative aka melting point.
 }
 \usage{
-inder(x, y, Nip = 4, logy = FALSE)
+inder(x, y, Nip = 4, logy = FALSE, smooth.method = "spline")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -41,6 +41,11 @@ resolution. A high \code{Nip} may improve the precision. \code{Nip}s less than
 If \code{logy} is TRUE than a semi-decadic log scale graph (corresponds to the 
 linear phase) to illustrate the exponential dynamic of the qPCR amplification
 is used.
+}
+
+  \item{smooth.method}{
+a character vector of length 1 defining smoothing method used. Currently accepted 
+values: "spline", "supsmu".
 }
 }
 \details{

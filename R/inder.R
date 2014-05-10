@@ -40,7 +40,7 @@ sec.endpoint0 <- function(y, h)
   sec.beginpoint0(rev(y), h)
 
 
-inder <- function(x, y, Nip = 4, logy = FALSE) {
+inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
   
   if (length(x) != length(y)) 
     stop("Use x and y vectors with same number of elements")
@@ -51,7 +51,13 @@ inder <- function(x, y, Nip = 4, logy = FALSE) {
   if (Nip > 10) 
      warning("Nip larger than 10 may case over-fitting")
   
-  tmp.xy <- spline(x, y, n = Nip * length(x))
+  if (smooth.method == "spline") {
+    tmp.xy <- spline(x, y, n = Nip * length(x))
+  } 
+  
+  if (smooth.method == "supsmu") {
+    tmp.xy <- supsmu(x, y, span = 0.09)
+  } 
   
   x <- tmp.xy[["x"]]
   y <- tmp.xy[["y"]]
@@ -81,22 +87,22 @@ inder <- function(x, y, Nip = 4, logy = FALSE) {
                  
   dat <- cbind(x, y, first.der, sec.der)
   colnames(dat) <- c("x", "y", "d1y", "d2y")
-  new("der", '.Data' = dat, 'method' = "spline")
+  new("der", '.Data' = dat, 'method' = smooth.method)
 }
 
 setGeneric("inder")
 
 
 setMethod("inder", signature(x = "data.frame", y="missing"), 
-          function(x, y, Nip = 4, logy = FALSE) { 
+          function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            inder(x[, 1], x[, 2], Nip = Nip, logy = logy)
+            inder(x[, 1], x[, 2], Nip = Nip, logy = logy, smooth.method = smooth.method)
           })
 
 setMethod("inder", signature(x = "matrix", y = "missing"), 
-          function(x, y, Nip = 4, logy = FALSE) { 
+          function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            inder(x[, 1], x[, 2], Nip = Nip, logy = logy)
+            inder(x[, 1], x[, 2], Nip = Nip, logy = logy, smooth.method = smooth.method)
           })

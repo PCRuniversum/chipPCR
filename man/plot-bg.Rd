@@ -12,7 +12,7 @@ Draw quick diagnostic plots of amplification reaction.
 }
 \usage{
 \S4method{plot}{bg}(x, what = 1:3, add = FALSE, indicators = TRUE, legend = TRUE, 
-        plot.colors = c("black", "red", "blue"), ...)
+        stan.labs = TRUE, plot.colors = c("black", "red", "blue"), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -34,6 +34,11 @@ transition indication lines aren't plotted.
 }
   \item{legend}{
 is a \code{"logical"} argument. If \code{TRUE}, legend is added to the plot.
+}
+
+  \item{stan.labs}{
+is a \code{"logical"} argument. If \code{TRUE}, standard axis labels ("Cycle" and
+"Fluorescence") are added.
 }
   \item{plot.colors}{
 is a vectors of colors used in plot. Must have length 3.
