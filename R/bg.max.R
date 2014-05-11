@@ -58,7 +58,7 @@ calc.bg <- function(x, y, bg.corr, bg.start, inder.approx) {
   # start and the end of the exponential phase
   
   if (inder.approx) {
-    der <- inder(x, y)
+    der <- inder(x, y, smooth.method = "supsmu")
   } else {
     #Now what?
   }

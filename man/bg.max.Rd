@@ -55,7 +55,8 @@ that the signal difference of successive cycles in the linear ground phase is
 approximately constant. After transition in the early exponential phase the 
 signal changes drastically. First data are smoothed by Friedman's 'super 
 smoother' (as found in \code{\link[stats]{supsmu}}. Thereof the approximate 
-1st (FD) and 2nd (FD2) derivative are calculated. 
+1st (FD) and 2nd (FD2) derivative are calculated by a five-point stencil 
+\code{link{inder}}. 
 
 The difference of cycles at 
 the maxima of the 1st and 2nd approximate derivative and a correction factor 
