@@ -12,10 +12,14 @@ Interpolate derivatives
 }
 \description{
 A function \code{inder} ("in" + "der" = interpolate derivatives)) for 
-interpolating first and second derivatives using the five-point 
-stencil. Therefore this function can be used to estimate the Cq (cycle of 
-quantification) of an amplification curve. But it can also be used to calculate
-the first positive derivative aka melting point.
+interpolating first and second derivatives using the five-point stencil. 
+Therefore this function can be used to estimate the Cq (cycle of 
+quantification) of an amplification curve. First positive derivative also 
+known as First Derivative Maximum (FDM) and the Second Derivative Maximum 
+(SDM) are calculated this way. However, from the mathematical point of view 
+it can also be used to calculate the melting point for melting curve 
+analysis (compare Rödiger et al. 2013) provided that the sign of the 
+derivative is changed.
 }
 \usage{
 inder(x, y, Nip = 4, logy = FALSE, smooth.method = "spline")
@@ -23,43 +27,56 @@ inder(x, y, Nip = 4, logy = FALSE, smooth.method = "spline")
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-is a \code{numeric} vector of independent variable or data frame/matrix containing
+is a \code{numeric} vector of independent variable or data frame/matrix 
+containing
 abscissa and ordinate values.
 }
 
   \item{y}{
-is a vector of dependent variable. Ommited if \code{x} is data frame or matrix.
+is a vector of dependent variable. Omitted if \code{x} is data frame or 
+matrix.
 }
   \item{Nip}{
-is a value which defines how often an interpolation takes place at n equally 
+is a value which defines how often an interpolation takes place at n 
+equally 
 spaced points spanning the interval (default 4). \code{Nip} is a such a 
-resolution. A high \code{Nip} may improve the precision. \code{Nip}s less than 
-2 and higher than 20 are not meaningful.
+resolution. A high \code{Nip} may improve the precision. \code{Nip}s less 
+than 
+2 and higher than 20 are not meaningful for conventional qPCR with up to 
+50 cycles. However, higher \code{Nip}s might be appropriate for isothermal
+amplification reactions.
 }
 
   \item{logy}{
-If \code{logy} is TRUE than a semi-decadic log scale graph (corresponds to the 
-linear phase) to illustrate the exponential dynamic of the qPCR amplification
+If \code{logy} is TRUE than a semi-decadic log scale graph (corresponds to 
+the 
+linear phase) to illustrate the exponential dynamic of the qPCR 
+amplification
 is used.
 }
 
   \item{smooth.method}{
-a character vector of length 1 defining smoothing method used. Currently accepted 
+a character vector of length 1 defining smoothing method used. Currently 
+accepted 
 values: "spline", "supsmu".
 }
 }
 \details{
-The function \code{y = f(x)} is numerically derived by five-point stencil. This 
-method do not require any assumptions regarding the function \code{f}.
+The function \code{y = f(x)} is numerically derived by five-point stencil. 
+This method do not require any assumptions regarding the function \code{f}.
 }
 \value{
-An object of \code{\linkS4class{der}} class containing smoothed original data and
-
+An object of \code{\linkS4class{der}} class containing smoothed original 
+data.
 }
 \references{
-Ruijter JM, Pfaffl MW, Zhao S, et al. (2013) Evaluation of qPCR curve analysis 
-methods for reliable biomarker discovery: bias, resolution, precision, and 
-implications. \emph{Methods} San Diego Calif 59:32--46.
+Ruijter JM, Pfaffl MW, Zhao S, et al. (2013) Evaluation of qPCR curve 
+analysis methods for reliable biomarker discovery: bias, resolution, 
+precision, and implications. \emph{Methods} San Diego Calif 59:32--46.
+
+Surface Melting Curve Analysis with R. S. Roediger, A. Boehm and I. 
+Schimke. \emph{The R Journal}. 5(2):37--52, 2013. 
+\url{http://journal.r-project.org}
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz
