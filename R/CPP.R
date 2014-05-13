@@ -101,3 +101,29 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
   
   list(y.norm = y.norm, BG = BG, dB = dB.res)
 }
+
+
+setGeneric("CPP")
+
+  
+setMethod("CPP", signature(x = "data.frame", y="missing"), 
+          function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, 
+                   minmax.m = "none", qnL = 0.1, 
+                   amptest = FALSE, manual = FALSE, nl = 0.08) { 
+            if (ncol(x) != 2) 
+              stop("'x' must have two columns.")
+            CPP(x[, 1], x[, 2], trans = trans, bg.outliers = bg.outliers, 
+                median = median, minmax.m = minmax.m, qnL = qnL,
+                amptest = amptest, manual = manual, nl = nl)
+          })
+
+setMethod("CPP", signature(x = "matrix", y="missing"), 
+          function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, 
+                   minmax.m = "none", qnL = 0.1, 
+                   amptest = FALSE, manual = FALSE, nl = 0.08) { 
+            if (ncol(x) != 2) 
+              stop("'x' must have two columns.")
+            CPP(x[, 1], x[, 2], trans = trans, bg.outliers = bg.outliers, 
+                median = median, minmax.m = minmax.m, qnL = qnL,
+                amptest = amptest, manual = manual, nl = nl)
+          })
