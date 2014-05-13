@@ -1,41 +1,41 @@
-#point f'(x.i)
+# point f'(x.i)
 first.midpoint <- function(y, h)
   1/12/h * (y[1] - 8 * y[2] + 8 * y[4] - y[5])
 
-#point f'(x.0)
+# point f'(x.0)
 first.beginpoint0 <- function(y, h)
   1/12/h * (-25 * y[1] + 48 * y[2] - 36 * y[3] + 16 * y[4] - 3 * y[5])
 
-#point f'(x.1)
+# point f'(x.1)
 first.beginpoint1 <- function(y, h)
   1/12/h * (-3 * y[1] - 10 * y[2] + 18 * y[3] - 6 * y[4] + y[5])
 
-#point f'(x.{n-1})
+# point f'(x.{n-1})
 first.endpoint1 <- function(y, h)
   - first.beginpoint1(rev(y), h)
 
-#point f'(x.n)
+# point f'(x.n)
 first.endpoint0 <- function(y, h)
    - first.beginpoint0(rev(y), h)
 
 
-#point f''(x.i)
+# point f''(x.i)
 sec.midpoint <- function(y, h)
   1/12/h^2 * (- y[1] + 16 * y[2] - 30 * y[3]  +  16 * y[4] - y[5])
 
-#point f''(x.0)
+# point f''(x.0)
 sec.beginpoint0 <- function(y, h)
   1/12/h^2 * (35 * y[1] - 104 * y[2] + 114 * y[3]  -  56 * y[4] + 11 * y[5])
 
-#point f''(x.1)
+# point f''(x.1)
 sec.beginpoint1 <- function(y, h)
   1/12/h^2 * (11 * y[1] - 20 * y[2] + 6 * y[3]  +  4 * y[4] - y[5])
 
-#point f''(x.{n-1})
+# point f''(x.{n-1})
 sec.endpoint1 <- function(y, h)
   sec.beginpoint1(rev(y), h)
 
-#point f''(x.n)
+# point f''(x.n)
 sec.endpoint0 <- function(y, h)
   sec.beginpoint0(rev(y), h)
 
@@ -64,15 +64,15 @@ inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
   
   if (logy == TRUE) y <- log10(tmp.xy[["y"]])
   
-  #calculate h, naive approach
+  # calculate h, naive approach
   h <- vapply(2L:length(x), function(i) x[i] - x[i - 1], 0)
-  #instead of zero, in statement should be the minina
+  # instead of zero, in statement should be the minina
   if (var(h) > .Machine[["double.eps"]]) 
     warning("Points are not equidistant. The results of interpolation 
 	      could be not correct.")
   
   h <- h[1]
-  #calculate midpoints
+  # calculate midpoints
   first.der <- c(first.beginpoint0(y[1:5], h),
                  first.beginpoint1(y[1:5], h),
                  vapply(3L:(length(y) - 2), function(i) first.midpoint(y[(i - 2):(i + 2)], h), 0),
@@ -97,12 +97,14 @@ setMethod("inder", signature(x = "data.frame", y="missing"),
           function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            inder(x[, 1], x[, 2], Nip = Nip, logy = logy, smooth.method = smooth.method)
+            inder(x[, 1], x[, 2], Nip = Nip, logy = logy, 
+		  smooth.method = smooth.method)
           })
 
 setMethod("inder", signature(x = "matrix", y = "missing"), 
           function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            inder(x[, 1], x[, 2], Nip = Nip, logy = logy, smooth.method = smooth.method)
+            inder(x[, 1], x[, 2], Nip = Nip, logy = logy, 
+		  smooth.method = smooth.method)
           })

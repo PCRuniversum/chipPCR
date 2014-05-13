@@ -5,7 +5,7 @@
 Round der objects
 }
 \description{
-Function \code{\link{inder}} calulates numeric derivatives on smoothed data which results
+Function \code{\link{inder}} calculates numeric derivatives on smoothed data which results
 in data points not observable in reality. The \code{rounder} function averages such result
 to the real values of cycle number.
 }
