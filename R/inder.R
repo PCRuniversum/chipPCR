@@ -42,8 +42,7 @@ sec.endpoint0 <- function(y, h)
 
 inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
   
-  if (length(x) != length(y)) 
-    stop("Use x and y vectors with same number of elements")
+  testxy(x, y)
   
   if (Nip < 1) 
      stop("Use Nip equal or larger to 1")
