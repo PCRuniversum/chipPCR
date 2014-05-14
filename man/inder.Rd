@@ -16,10 +16,10 @@ interpolating first and second derivatives using the five-point stencil.
 Therefore this function can be used to estimate the Cq (cycle of 
 quantification) of an amplification curve. First positive derivative also 
 known as First Derivative Maximum (FDM) and the Second Derivative Maximum 
-(SDM) are calculated this way. However, from the mathematical point of view 
-it can also be used to calculate the melting point for melting curve 
-analysis (compare Rödiger et al. 2013) provided that the sign of the 
-derivative is changed.
+(SDM) are calculated this way (Ruijter et al. 2013). However, from the 
+mathematical point of view it can also be used to calculate the melting 
+point for melting curve analysis (compare Roediger et al. 2013) provided 
+that the sign of the derivative is changed.
 }
 \usage{
 inder(x, y, Nip = 4, logy = FALSE, smooth.method = "spline")

@@ -82,7 +82,7 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
            none = do.call(function(y) y, c(list(y = y))),
            minmax = do.call(function(y) (y - min(y)) / (max(y) - min(y)), c(list(y = y))),
            luqn = do.call(function(y, qnL) (y - quantile(y, qnL)) / (quantile(y, 1  - qnL) - quantile(y, qnL)), c(list(y = y, qnL = qnL))),
-           zscore = do.call(function(y) (y - mean(y)) / sd(y), c(list(y = y)))
+           zscore = do.call(function(y) 1 + ((y - mean(y)) / sd(y)), c(list(y = y)))
     )	
   }
   

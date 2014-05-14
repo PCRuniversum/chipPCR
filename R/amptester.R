@@ -27,7 +27,15 @@ amptester <-
       }
       decision <- "unknown"
     } else {
-      if (t.test(head(y), tail(y), alternative = "less")$p.value > 0.01) {
+      # Apply a simple rule to take the first 20 percent and the last 15 percent
+      # of any input data set to calculate the number of elements for the head 
+      # (nh) and tail (nt), to deal with other data types like isothermal
+      # amplifications
+      
+      nh <- trunc(length(y) * 0.2)
+      nt <- trunc(length(y) * 0.15)
+      if (t.test(head(y, n = nh), tail(y, n = nt), 
+		  alternative = "less")$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
         decision <- "negative"
         
