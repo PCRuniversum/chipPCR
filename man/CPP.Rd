@@ -1,6 +1,12 @@
 \name{CPP}
 \alias{CPP}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\alias{CPP.numeric}
+\alias{CPP.matrix}
+\alias{CPP.data.frame}
+\alias{CPP,numeric,numeric-method}
+\alias{CPP,matrix,missing-method}
+\alias{CPP,data.frame,missing-method}
+
 \title{
 Curve Pre-Processor
 }
@@ -11,17 +17,27 @@ normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
 }
 \usage{
-CPP(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, 
-    minmax.m = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
-    nl = 0.08)
+\S4method{CPP}{numeric,numeric}(x, y, trans = TRUE, bg.outliers = FALSE, 
+               median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
+               manual = FALSE, nl = 0.08)
+
+\S4method{CPP}{matrix,missing}(x, y, trans = TRUE, bg.outliers = FALSE, 
+               median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
+               manual = FALSE, nl = 0.08)
+
+\S4method{CPP}{data.frame,missing}(x, y, trans = TRUE, bg.outliers = FALSE, 
+               median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
+               manual = FALSE, nl = 0.08)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-    is a vector containing the time or cycle values.
+    is a vector containing the time or cycle values or a matrix/data frame
+    containing both time or cycle values and fluorescence.
 }
   \item{y}{
-        is a vector containing the fluorescence values.
+        is a vector containing the fluorescence values. Omitted if \code{x} 
+        is a data frame/matrix.
 }
   \item{trans}{
 	defines if the slope of the background range in a curve should be 
