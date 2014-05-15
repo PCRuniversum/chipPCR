@@ -2,14 +2,7 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
                 minmax.m = "none", qnL = 0.1, 
                 amptest = FALSE, manual = FALSE, nl = 0.08) {
   
-  # Test if x and y exist and have identical lengths.
-  if (is.null(x)) 
-    stop("Enter abscissa value")
-  if (is.null(y)) 
-    stop("Enter ordinate value")
-  if (length(x) != length(y)) 
-    stop("Use abscissa and ordinate data with same number of 
-		elements")
+  testxy(x, y)
   # Test meaningfulness of qnL
   if (qnL <= 0.001 || qnL >= 0.999) 
     stop("qnL must be within 0.001 and 0.999.")

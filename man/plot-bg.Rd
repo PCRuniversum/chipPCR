@@ -44,7 +44,7 @@ is a \code{"logical"} argument. If \code{TRUE}, standard axis labels ("Cycle" an
 is a vectors of colors used in plot. Must have length 3.
 }
   \item{...}{
-Arguments to be passed further, such as graphical parameters.
+Arguments to be passed further to the plot function, such as graphical parameters.
 }
 }
 \author{
@@ -58,13 +58,13 @@ Stefan Roediger, Michal Burdukiewicz
 
 #step-by-step plotting bg object
 
-res <- AmpSim(cyc = c(1:40), Cq = 25)
-background <- bg.max(res[, 1], res[, 2])
+res <- AmpSim(cyc = 1:40, Cq = 25)
+background <- bg.max(res)
 
 plot(background)
 
 #above is equivalent of below
-plot(res, xlim = c(1,40), ylim = c(-0.1,1), xlab = "Cycles", 
+plot(res, xlim = c(1, 40), ylim = c(-0.1, 1), xlab = "Cycles", 
      ylab = "Fluorescence",
      type = "b", pch = 20)
 
@@ -77,7 +77,7 @@ abline(v = slot(background, "bg.stop"), col = "blue")
 abline(v = slot(background, "amp.stop"), col = "green")
   text(slot(background, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
 legend(4, 1, c("Raw data", "First derivative", "Second derivative"), 
-       pch = rep(20,3), col = c(1,2,4))
+       pch = rep(20, 3), col = c(1, 2, 4))
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

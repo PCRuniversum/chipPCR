@@ -1,8 +1,6 @@
 amptester <-
   function(y, manual = FALSE, noiselevel = 0.08, background = NULL) {
-    # Test if y exist.
-    if (is.null(y)) 
-      stop("Enter y value")
+    testxy(x, y)
     # Test if background has only two values
     if (!is.null(background) && length(background) != 2)
       stop("Use only two values (e.g., background = c(1,10)) 
