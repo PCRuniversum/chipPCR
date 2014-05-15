@@ -142,3 +142,4 @@ plot(T60, T69, xlab = "dB @ 60 deg. Celsius",
 \keyword{ outlier }
 \keyword{ normalize }
 \keyword{ amplification }
+\keyword{ methods }

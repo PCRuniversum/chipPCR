@@ -199,3 +199,4 @@ plot(tmp, type = "b", col = 1, pch = 20, xlab = "", ylab = "RFU",
 \keyword{ spline }
 \keyword{ Friedman }
 \keyword{ Savitzky-Golay }
+\keyword{ methods }

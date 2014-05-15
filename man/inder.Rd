@@ -131,3 +131,4 @@ plot(isPCR, xlab = "Cycle", ylab = "RFU", ylim = c(-0.15,1),
 \keyword{ derivative }
 \keyword{ SDM }
 \keyword{ FDM }
+\keyword{ methods }

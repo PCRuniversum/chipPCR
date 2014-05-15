@@ -1,9 +1,9 @@
-testxy <- function(x, y) {
+testxy <- function(x, y, txt.x = "Enter abscissa value", txt.y = "Enter ordinate value") {
   # Test if x and y exist and have identical lengths.
   if (is.null(x)) 
-    stop("Enter abscissa value")
+    stop(txt.x)
   if (is.null(y)) 
-    stop("Enter ordinate value")
+    stop(txt.y)
 #   if (is.numeric(x) ) 
 #     stop("Abscissa value must have numeric class")
 #   if (is.numeric(y)) 

@@ -5,11 +5,8 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
 		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
 		    col = "black"){
 		    
-  #Test if x and y exist.
-  if (is.null(x)) 
-   stop("Enter Concentration")
-  if (is.null(y)) 
-   stop("Enter Cq data")
+  testxy(x, y, txt.x = "Enter Concentration", txt.y = "Enter Cq data")
+
   
   if (logx) {
     x.tmp <- log10(x)
@@ -164,3 +161,39 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
 	      correlation.test = cortest))
   }
 }
+
+setGeneric("effcalc")
+
+setMethod("effcalc", signature(x = "data.frame", y="missing"), 
+          function(x, y, logx = TRUE, CV = FALSE, 
+                   xlab = "log10(Concentration)", ylab = "Cq", 
+                   main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
+                   trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
+                   show.res = TRUE, type = "p", pch = 19, length = 0.05, 
+                   col = "black") { 
+            if (ncol(x) != 2) 
+              stop("'x' must have two columns.")
+            effcalc(x[, 1], x[, 2], logx = logx, CV = CV, 
+                    xlab = xlab, ylab = ylab, 
+                    main = main, RSD = RSD, rob = rob, 
+                    trend = trend, res.fit = res.fit, CI = CI, level = level,
+                    show.res = show.res, type = type, pch = pch, length = length, 
+                    col = col)
+          })
+
+setMethod("effcalc", signature(x = "data.frame", y="matrix"), 
+          function(x, y, logx = TRUE, CV = FALSE, 
+                   xlab = "log10(Concentration)", ylab = "Cq", 
+                   main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
+                   trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
+                   show.res = TRUE, type = "p", pch = 19, length = 0.05, 
+                   col = "black") { 
+            if (ncol(x) != 2) 
+              stop("'x' must have two columns.")
+            effcalc(x[, 1], x[, 2], logx = logx, CV = CV, 
+                    xlab = xlab, ylab = ylab, 
+                    main = main, RSD = RSD, rob = rob, 
+                    trend = trend, res.fit = res.fit, CI = CI, level = level,
+                    show.res = show.res, type = type, pch = pch, length = length, 
+                    col = col)
+          })

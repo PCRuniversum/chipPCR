@@ -117,7 +117,6 @@ for (i in 1:length(e)) {
   abline(h = slot(res, "fluo"), col = i)
 }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{ background }
 \keyword{ range }
+\keyword{ methods }
