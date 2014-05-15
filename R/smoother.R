@@ -1,5 +1,5 @@
 smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, 
-		     spline = TRUE, method = "savgol", ...) {
+		     method = "savgol", ...) {
   # Determine the time/cycle resolution of the data
   testxy(x, y)
   
@@ -52,7 +52,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   # impute missing values by linear approximation in "y" and substitute 
   # them in "y.tmp"
   if(any(is.na(y))) {
-    y.tmp <- fixNA(x, y, spline = spline)
+    y.tmp <- fixNA(x, y, spline = TRUE)
   } else {
     y.tmp <- y
   }
@@ -109,7 +109,7 @@ setGeneric("smoother")
 
 
 setMethod("smoother", signature(x = "data.frame", y="missing"), 
-          function(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
+          function(x, y, trans = FALSE, bg.outliers = FALSE, 
                    method = "savgol", ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
@@ -117,7 +117,7 @@ setMethod("smoother", signature(x = "data.frame", y="missing"),
           })
 
 setMethod("smoother", signature(x = "matrix", y = "missing"), 
-          function(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
+          function(x, y, trans = FALSE, bg.outliers = FALSE, 
                    method = "savgol", ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")

@@ -1,6 +1,6 @@
 amptester <-
   function(y, manual = FALSE, noiselevel = 0.08, background = NULL) {
-    testxy(x, y)
+    testxy(x = y, y, both = FALSE)
     # Test if background has only two values
     if (!is.null(background) && length(background) != 2)
       stop("Use only two values (e.g., background = c(1,10)) 
@@ -12,6 +12,7 @@ amptester <-
     if (!is.null(background))
       background <- as.integer(sort(background))
     
+    # fix possible missing vaues with fixNA (spline method)
     y <- fixNA(1L:length(y), y)
     
     if (manual) {

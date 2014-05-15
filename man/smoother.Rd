@@ -17,12 +17,12 @@ Average, Friedman's SuperSmoother, Cubic Spline and Savitzky-Golay smoothing
 filter for amplification curve data.
 }
 \usage{
-\S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, bg.outliers = FALSE, spline = TRUE, 
+\S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, bg.outliers = FALSE, 
                                      method = "savgol", ...)
 \S4method{smoother}{matrix,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                                    spline = TRUE, method = "savgol", ...)
+                                    method = "savgol", ...)
 \S4method{smoother}{data.frame,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                    spline = TRUE, method = "savgol", ...)
+                    method = "savgol", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -40,11 +40,6 @@ filter for amplification curve data.
 			logical parameter which indicates of outliers should 
 			be removed from 
     background range.
-  }
-    \item{spline}{
-	    is a logical operator which defines of missing values should be 
-	    imputed by spline approximation. The default is linear a 
-	    approximation.
   }
     \item{method}{
 		    a vector of names defining which smoothing method should be used. The 
