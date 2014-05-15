@@ -111,9 +111,9 @@ smooth <-
                         df.tmp <- data.frame(smooth.spline(x, y)[10])
                         smooth.spline(x, y, df =  (df.tmp * df.fact))[["y"]]
                       }, c(list(x = x, y = y.tmp), ...)),
-                      spline = do.call(function(x, y) {
-                        spline(x, y, n = length(y.tmp))[["y"]]
-                      }, c(list(x = x, y = y.tmp))),
+                      spline = do.call(function(x, y, n = length(y.tmp)) {
+                        spline(x, y, n = n)[["y"]]
+                      }, c(list(x = x, y = y.tmp), ...)),
                       supsmu = do.call(function(x, y, span = 0.01)
                         supsmu(x = x, y = y, span = span)
                         , c(list(x = x, y = y.tmp), ...))[["y"]],

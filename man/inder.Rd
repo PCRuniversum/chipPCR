@@ -56,14 +56,18 @@ is used.
 }
 
   \item{smooth.method}{
-a character vector of length 1 defining smoothing method used. Currently 
-accepted 
-values: "spline", "supsmu".
+a character vector of length 1 or \code{NNULL} defining smoothing method used. Currently 
+accepted character values: "spline", "supsmu". If \code{NULL}, smoothing is not performed.
 }
 }
 \details{
 The function \code{y = f(x)} is numerically derived by five-point stencil. 
 This method do not require any assumptions regarding the function \code{f}.
+
+A smoothing procedure greatly enhances calculating derivative calculation. \code{inder}
+uses two smoothing algorithms best suited for this approach. A smoothing can
+be ommited by setting \code{smooth.method} to \code{NULL}, which is advisable in case of 
+the data already smoothed.
 }
 \value{
 An object of \code{\linkS4class{der}} class containing smoothed original 

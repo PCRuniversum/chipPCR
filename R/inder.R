@@ -16,8 +16,7 @@ first.endpoint1 <- function(y, h)
 
 # point f'(x.n)
 first.endpoint0 <- function(y, h)
-   - first.beginpoint0(rev(y), h)
-
+  - first.beginpoint0(rev(y), h)
 
 # point f''(x.i)
 sec.midpoint <- function(y, h)
@@ -45,18 +44,23 @@ inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
   testxy(x, y)
   
   if (Nip < 1) 
-     stop("Use Nip equal or larger to 1")
+    stop("Use Nip equal or larger to 1")
   
   if (Nip > 10) 
-     warning("Nip larger than 10 may case over-fitting")
+    warning("Nip larger than 10 may case over-fitting")
   
-  if (smooth.method == "spline") {
-    tmp.xy <- spline(x, y, n = Nip * length(x))
-  } 
-  
-  if (smooth.method == "supsmu") {
-    tmp.xy <- supsmu(x, y, span = 0.09)
-  } 
+  if(is.null(smooth.method)) {
+    x.tmp <- x
+    y.tmp <- y
+  } else {
+    if (smooth.method == "spline") {
+      tmp.xy <- spline(x, y, n = Nip * length(x))
+    } 
+    
+    if (smooth.method == "supsmu") {
+      tmp.xy <- supsmu(x, y, span = 0.09)
+    } 
+  }
   
   x <- tmp.xy[["x"]]
   y <- tmp.xy[["y"]]
@@ -83,7 +87,7 @@ inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
                vapply(3L:(length(y) - 2), function(i) sec.midpoint(y[(i - 2):(i + 2)], h), 0),
                sec.endpoint1(y[(length(y) - 5):length(y)], h),
                sec.endpoint0(y[(length(y) - 5):length(y)], h))
-                 
+  
   dat <- cbind(x, y, first.der, sec.der)
   colnames(dat) <- c("x", "y", "d1y", "d2y")
   new("der", '.Data' = dat, 'method' = smooth.method)
@@ -91,13 +95,12 @@ inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
 
 setGeneric("inder")
 
-
 setMethod("inder", signature(x = "data.frame", y="missing"), 
           function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             inder(x[, 1], x[, 2], Nip = Nip, logy = logy, 
-		  smooth.method = smooth.method)
+                  smooth.method = smooth.method)
           })
 
 setMethod("inder", signature(x = "matrix", y = "missing"), 
@@ -105,5 +108,5 @@ setMethod("inder", signature(x = "matrix", y = "missing"),
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             inder(x[, 1], x[, 2], Nip = Nip, logy = logy, 
-		  smooth.method = smooth.method)
+                  smooth.method = smooth.method)
           })
