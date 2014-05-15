@@ -1,5 +1,5 @@
-CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, 
-                minmax.m = "none", qnL = 0.1, 
+CPP <- function(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE, 
+		median = FALSE, minmax.m = "none", qnL = 0.1, 
                 amptest = FALSE, manual = FALSE, nl = 0.08) {
   
   testxy(x, y)
@@ -20,6 +20,29 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
     method <- "zscore"
   if (!(method %in% c("none", "luqn", "minmax", "zscore")))
     stop("Invalid method chosen.")
+    
+  # Define the method for the linear regression
+  # lmrob (robustbase) uses MM-type estimators, rfit (Rfit)
+  # uses a rank-based estimation model for linear regression,
+  # and lm (stats) an ordinary least squares 
+  
+  method.reg <- tolower(rob.reg)
+  if (grepl(method.reg, "lmrob"))
+    method.reg <- "lmrob"
+  if (grepl(method.reg, "rfit")) 
+    method.reg <- "rfit"
+  if (grepl(method.reg, "least")) 
+    method.reg <- "least"
+  if (!(method.reg %in% c("lmrob", "rfit", "least")))
+    stop("Invalid regression method chosen.")
+  
+  lm.fit <- function(y, x, method) {
+    switch(method,
+           lmrob = do.call(function(x, y) lmrob(y ~ x), c(list(x = x, y = y))),
+           rfit = do.call(function(x, y) rfit(y ~ x), c(list(x = x, y = y))),
+           least = do.call(function(x, y) lm(y ~ x), c(list(x = x, y = y)))
+    )	
+  }
   
   # Remove missing values from y
   if(any(is.na(y)))
@@ -41,16 +64,16 @@ CPP <- function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE,
   # If requested first try a robust linear regression. If robust linear 
   # regression fails try standard lm()
   if (trans) {
-    if (class(try(lmrob(y[c(BG)] ~ x[c(BG)]), 
+    if (class(try(lm.fit(y[c(BG)], x[c(BG)], method = method.reg), 
                   silent = TRUE)) == "try-error") { 
-      coefficients <- data.frame(lm(y[c(BG)] ~ x[c(BG)])[1]) 
+      coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], method = "least")[1]) 
     } else { 
-      lmrob.control <- suppressWarnings(lmrob(y[c(BG)] ~ x[c(BG)])) 
-      if ((class(lmrob.control)!="try-error") && 
+      lmrob.control <- suppressWarnings(lm.fit(y[c(BG)], x[c(BG)], method = method.reg)) 
+      if ((class(lmrob.control) != "try-error") && 
             (lmrob.control$converged == TRUE)) { 
-        coefficients <- data.frame(lmrob(y[c(BG)] ~ x[c(BG)])[1]) 
+        coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], method = method.reg)[1]) 
       } else { 
-        coefficients <- data.frame(lm(y[c(BG)] ~ x[c(BG)])[1]) 
+        coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], method = "least")[1]) 
       } 
     }
     # Apply linear model to the raw data
@@ -92,7 +115,8 @@ setGeneric("CPP")
 
   
 setMethod("CPP", signature(x = "data.frame", y="missing"), 
-          function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, 
+          function(x, y, trans = TRUE, rob.reg = "lmrob", 
+		   bg.outliers = FALSE, median = FALSE, 
                    minmax.m = "none", qnL = 0.1, 
                    amptest = FALSE, manual = FALSE, nl = 0.08) { 
             if (ncol(x) != 2) 
@@ -103,12 +127,14 @@ setMethod("CPP", signature(x = "data.frame", y="missing"),
           })
 
 setMethod("CPP", signature(x = "matrix", y="missing"), 
-          function(x, y, trans = TRUE, bg.outliers = FALSE, median = FALSE, 
+          function(x, y, trans = TRUE, rob.reg = "lmrob", 
+		   bg.outliers = FALSE, median = FALSE, 
                    minmax.m = "none", qnL = 0.1, 
                    amptest = FALSE, manual = FALSE, nl = 0.08) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            CPP(x[, 1], x[, 2], trans = trans, bg.outliers = bg.outliers, 
+            CPP(x[, 1], x[, 2], trans = trans, rob.reg = "lmrob", 
+		bg.outliers = bg.outliers, 
                 median = median, minmax.m = minmax.m, qnL = qnL,
                 amptest = amptest, manual = manual, nl = nl)
           })

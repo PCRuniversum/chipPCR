@@ -17,15 +17,15 @@ normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
 }
 \usage{
-\S4method{CPP}{numeric,numeric}(x, y, trans = TRUE, bg.outliers = FALSE, 
+\S4method{CPP}{numeric,numeric}(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE, 
                median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
                manual = FALSE, nl = 0.08)
 
-\S4method{CPP}{matrix,missing}(x, y, trans = TRUE, bg.outliers = FALSE, 
+\S4method{CPP}{matrix,missing}(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE, 
                median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
                manual = FALSE, nl = 0.08)
 
-\S4method{CPP}{data.frame,missing}(x, y, trans = TRUE, bg.outliers = FALSE, 
+\S4method{CPP}{data.frame,missing}(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE, 
                median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
                manual = FALSE, nl = 0.08)
 }
@@ -42,6 +42,9 @@ in the background range and to test if an amplification is significant.
   \item{trans}{
 	defines if the slope of the background range in a curve should be 
 	corrected by a linear regression.
+}
+  \item{rob.reg}{
+	defines the method ("rfit" or "lmrob") for the robust linear regression.
 }
   \item{bg.outliers}{
 	is a logical argument which to remove outliers in the background range.

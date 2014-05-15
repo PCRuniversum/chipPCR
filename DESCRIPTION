@@ -10,7 +10,7 @@ Description: The chipPCR package is a toolkit of helper functions to pre-process
 License: GPL-3
 Depends: R (>= 3.0.0), methods
 Suggests: MBmca (>= 0.0.2)
-Imports: outliers, ptw, robustbase, signal
+Imports: outliers, ptw, robustbase, signal, Rfit
 Packaged: 2014-04-29 14:57:25 UTC; tux
 NeedsCompilation: no
 Repository: CRAN

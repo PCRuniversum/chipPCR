@@ -7,6 +7,7 @@ Changes from Version 0.0.6 to 0.0.7 [XX XX 2014]
 * amptester has flexible head and tail now
 * smoother has now support for weighted Whittaker smoother
 * CPP has further normalize methods
+* CPP has new regression method (rank-based estimation models)
 * added methods to fixNA
 * bg.max now used inder method by default
 * added rounder function for rounding results of inder
