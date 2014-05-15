@@ -17,17 +17,17 @@ normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
 }
 \usage{
-\S4method{CPP}{numeric,numeric}(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE, 
-               median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
-               manual = FALSE, nl = 0.08)
+\S4method{CPP}{numeric,numeric}(x, y, trans = TRUE, rob.reg = "lmrob", 
+	       bg.outliers = FALSE, median = FALSE, norm = "none", 
+	       qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08)
 
-\S4method{CPP}{matrix,missing}(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE, 
-               median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
-               manual = FALSE, nl = 0.08)
+\S4method{CPP}{matrix,missing}(x, y, trans = TRUE, rob.reg = "lmrob", 
+	       bg.outliers = FALSE, median = FALSE, norm = "none", 
+	       qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08)
 
-\S4method{CPP}{data.frame,missing}(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE, 
-               median = FALSE, minmax.m = "none", qnL = 0.1, amptest = FALSE, 
-               manual = FALSE, nl = 0.08)
+\S4method{CPP}{data.frame,missing}(x, y, trans = TRUE, rob.reg = "lmrob", 
+	       bg.outliers = FALSE, median = FALSE, norm = "none", 
+	       qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -53,7 +53,7 @@ in the background range and to test if an amplification is significant.
 	If set to TRUE, median is used instead of mean in outlier replacement. 
 	The mean is used by default.
 }
-  \item{minmax.m}{
+  \item{norm}{
 	is a argument to use a "none", "minmax", "lugn", or
 	"zscore" normalization.
 }
@@ -79,16 +79,16 @@ makes it harder to determine a meaningful background value. Therefore
 \code{\link[chipPCR]{CPP}} can optionally remove outliers by finding the 
 value with largest difference from the mean as provided by the 
 \code{\link[outliers]{rm.outlier}} function. The functions also tries to 
-prevent calculations on non amplified signals. The parameter \code{qnL} is a 
-user defined quantile which is used for the quantile normalization. A quantile 
-normalization herein refers to an approach which is less prone to outliers 
-than a normalization based on the minimum and the maximum of an amplification 
-curve. The slope of the background range is often unequal to zero. By setting 
-the parameter \code{trans} it is possible to apply a simple correction of the 
-slope. Thereby either a robust linear regression by computing MM-type 
-regression estimators or a standard linear regression model. Care is needed 
-when using \code{trans} with time series (see \code{\link[stats]{lm}} for 
-details).
+prevent calculations on non amplified signals. The parameter \code{qnL} is 
+a user defined quantile which is used for the quantile normalization. A 
+quantile normalization herein refers to an approach which is less prone to 
+outliers than a normalization based on the minimum and the maximum of an 
+amplification curve. The slope of the background range is often unequal to 
+zero. By setting the parameter \code{trans} it is possible to apply a 
+simple correction of the slope. Thereby either a robust linear regression 
+by computing MM-type regression estimators, a nonparametric rank-based 
+estimator  or a standard linear regression model. Care is needed when using 
+\code{trans} with time series (see \code{\link[stats]{lm}} for details).
 }
 
 \author{
@@ -117,7 +117,7 @@ plot(NA, NA, xlab = "Time [sec]", ylab = "refMFI",
      main = "Curve Pre-Processor Applied to HDA Data", 
      xlim = c(0, 2500), ylim = c(0,1.1), pch = 20)
 for (i in 3:5) {
-  y.cpp <- CPP(C17[2:50, 1], C17[2:50, i], minmax.m = "minmax", 
+  y.cpp <- CPP(C17[2:50, 1], C17[2:50, i], norm = "minmax", 
 	      bg.outliers = TRUE)$y.norm
   lines(C17[2:50, 1], y.cpp, col = i - 2, 
 	type = "b", pch = 20)
