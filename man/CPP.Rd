@@ -44,7 +44,7 @@ in the background range and to test if an amplification is significant.
 	corrected by a linear regression.
 }
   \item{rob.reg}{
-	defines the method ("rfit" or "lmrob") for the robust linear regression.
+	defines the method ("rfit", "lmrob", "rq") for the robust linear regression.
 }
   \item{bg.outliers}{
 	is a logical argument which to remove outliers in the background range.
@@ -94,6 +94,8 @@ estimator  or a standard linear regression model. Care is needed when using
 \author{
 Stefan Roediger, Michal Burdukiewicz
 }
+
+\seealso{ \code{\link{rq}}, \code{\link{rfit}}, \code{\link{lm}}}
 
 \examples{
 # Function to pre-process an amplification curve.

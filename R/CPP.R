@@ -33,14 +33,17 @@ CPP <- function(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE,
     method.reg <- "rfit"
   if (grepl(method.reg, "least")) 
     method.reg <- "least"
-  if (!(method.reg %in% c("lmrob", "rfit", "least")))
+  if (grepl(method.reg, "rq")) 
+    method.reg <- "rq"
+  if (!(method.reg %in% c("lmrob", "rfit", "least", "rq")))
     stop("Invalid regression method chosen.")
   
   lm.fit <- function(y, x, method) {
     switch(method,
            lmrob = do.call(function(x, y) lmrob(y ~ x), c(list(x = x, y = y))),
            rfit = do.call(function(x, y) rfit(y ~ x), c(list(x = x, y = y))),
-           least = do.call(function(x, y) lm(y ~ x), c(list(x = x, y = y)))
+           least = do.call(function(x, y) lm(y ~ x), c(list(x = x, y = y))),
+           rq = do.call(function(x, y) rq(y ~ x), c(list(x = x, y = y)))
     )	
   }
   

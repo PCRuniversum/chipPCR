@@ -3,6 +3,7 @@ importFrom(robustbase, lmrob)
 importFrom(signal, sgolayfilt)
 importFrom(ptw, whit1, whit2)
 importFrom(Rfit, rfit)
+importFrom(quantreg, rq)
 import("methods")
 
 exportClasses(
