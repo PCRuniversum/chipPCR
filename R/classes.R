@@ -98,52 +98,139 @@ setMethod("plot", signature(x = "der"), function(x, what = 1:3, add = FALSE, ind
 
 #bg class, bg.max function -------------------------------
 setClass("bg", contains = "matrix", representation(.Data = "matrix", 
-                              bg.start = "numeric",
-                              bg.stop = "numeric",
-                              bg.corr = "numeric",
-                              fluo = "numeric",
-                              amp.stop = "numeric"))
+                                                   bg.start = "numeric",
+                                                   bg.stop = "numeric",
+                                                   bg.corr = "numeric",
+                                                   fluo = "numeric",
+                                                   amp.stop = "numeric"))
 
 
 setMethod("summary", signature(object = "bg"), function(object, print = TRUE) {
   if (print) {
-  cat(paste0("Background start: ", slot(object, "bg.start")))
-  cat(paste0("\nBackground stop: ", slot(object, "bg.stop")))
-  cat(paste0("\nBackground correlation: ", slot(object, "bg.corr")))
-  cat(paste0("\nEnd of the amplification reaction: ", slot(object, "amp.stop")))
-  cat(paste0("\nFluorescence at the end of the amplification reaction: ", 
-             round(slot(object, "fluo"), options("digits")[["digits"]])))
+    cat(paste0("Background start: ", slot(object, "bg.start")))
+    cat(paste0("\nBackground stop: ", slot(object, "bg.stop")))
+    cat(paste0("\nBackground correlation: ", slot(object, "bg.corr")))
+    cat(paste0("\nEnd of the amplification reaction: ", slot(object, "amp.stop")))
+    cat(paste0("\nFluorescence at the end of the amplification reaction: ", 
+               round(slot(object, "fluo"), options("digits")[["digits"]])))
   }
   invisible(c(bg.start = slot(object, "bg.start"), 
-    bg.stop = slot(object, "bg.stop"),
-    bg.corr = slot(object, "bg.corr"),
-    amp.stop = slot(object, "amp.stop"),
-    fluo = slot(object, "fluo")))
+              bg.stop = slot(object, "bg.stop"),
+              bg.corr = slot(object, "bg.corr"),
+              amp.stop = slot(object, "amp.stop"),
+              fluo = slot(object, "fluo")))
 })
 
 
-setMethod("plot", signature(x = "bg"), function(x, what = 1:3, add = FALSE, indicators = TRUE,
-                                                legend = TRUE, stan.labs = TRUE,
-                                                plot.colors = c("black", "red", "blue"), 
-                                                ...) {
-  plot(new("der", .Data = x, method = "supsmu"), what = what, add = add, legend = FALSE, plot.colors = plot.colors, ...)
-  if (stan.labs)
-    title(xlab = "Cycle", ylab = "Fluorescence")
-  
-  if (indicators) {
-    abline(v = slot(x, "bg.start"))
-    text(slot(x, "bg.start"), 0.2, "Background start", pos = 4)
-    abline(v = slot(x, "bg.stop"), col = "blue")
-    text(slot(x, "bg.stop"), 0.25, "Background stop", pos = 4, col = "blue")
-    abline(v = slot(x, "amp.stop"), col = "green")
-    text(slot(x, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
+
+
+
+
+#refMFI class, MFIaggr function -------------------------------
+setClass("refMFI", contains = "matrix", representation(.Data = "matrix", 
+                                                       density = "density", 
+                                                       qqnorm.data = "data.frame",
+                                                       stats = "numeric"))
+
+setMethod("show", signature(object = "refMFI"), function(object) {
+  print(slot(object, ".Data"))
+})
+
+setMethod("qqnorm", signature(y = "refMFI"), function(y, main = "Normal Q-Q Plot",
+                                                      xlab = "Theoretical Quantiles",
+                                                      ylab = "Sample Quantiles",
+                                                      plot.it = TRUE, datax = FALSE, ...) {
+  qqnorm(unlist(slot(y, "qqnorm.data")), main = main, xlab = xlab,
+         ylab = ylab, plot.it = plot.it, datax = datax)
+})
+
+setMethod("qqline", signature(y = "refMFI"), function(y, datax = FALSE, 
+                                                      distribution = qnorm,
+                                                      probs = c(0.25, 0.75), qtype = 7, ...) {
+  qqline(unlist(slot(y, "qqnorm.data")), datax = datax, distribution = distribution,
+         probs = probs, qtype = qtype)
+})
+
+setMethod("summary", signature(object = "refMFI"), function(object, print = TRUE) {
+  stats <- slot(object, "stats")
+  if (print) {
+    cat(paste0("Mean: ", stats[1]))
+    cat(paste0("\nMedian: ", stats[2]))
+    cat(paste0("\nStandard deviation: ", stats[3]))
+    cat(paste0("\nMedian absolute deviation: ", stats[4]))
   }
-
-  if (legend)
-    legend("topleft", c("Raw data", "First derivative", "Second derivative")[what], 
-           pch = rep(20,3), col = plot.colors)
+  invisible(c(mean = stats[1], 
+              median = stats[2],
+              sd = stats[3],
+              mad = stats[4]))
 })
 
 
-
-
+setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p", 
+                                                    pch = 19, length = 0.05, 
+                                                    col = "black") {
+  # store the default plot parameters  
+  default.par <- par("fig")
+  
+  res <- slot(x, ".Data")
+  res.dens <- slot(x, "density")
+  qqnorm.data <- unlist(slot(x, "qqnorm.data"))
+  llul <- rownames(slot(x, "qqnorm.data"))
+  stats <- slot(x, "stats")
+  ncol_y <- ncol(slot(x, "qqnorm.data"))
+  #Plot the Coefficient of Variance
+  
+  if (CV == FALSE) {
+    par(fig = c(0,0.6,0,1))
+    plot(res[, 1], res[, 4], xlab = "Cycle", ylab = "CV", 
+         type = type, pch = pch, col = col,
+         main = paste("ROI samples: ", ncol_y, "\n",
+                      "ROI mean: ", stats[1], " +- ", stats[3], "\n",
+                      "ROI median: ", stats[2], " +- ", stats[4],
+                      sep = "")
+    )
+    
+    # Add a range for the ROI
+    abline(v = llul, col = "lightgrey")
+    #Plot the location with error bars.
+    
+    # "Calculate" the Quantile-Quantile plots and density plots
+    # and plot the results
+    par(fig = c(0.65,1,0.5,1), new = TRUE)
+    
+    plot(res.dens, xlab = "RFU", main = paste("Cycle ", 
+                                              llul[1], " to ", llul[2], "\n", "bw ", 
+                                              round(res.dens$bw, 3), "\n", "N ", res.dens$n, 
+                                              sep = ""))
+    
+  } else {
+    par(fig = c(0,0.6,0,1))
+    plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
+                                      max(res[, 2] + res[, 3])), xlab = "Cycle", 
+         ylab = "MFI", type = type, pch = pch, col = col,
+         main = paste("ROI samples: ", ncol_y, "\n",
+                      "ROI mean: ", stats[1], " +- ", stats[3], "\n",
+                      "ROI median: ", stats[2], " +- ", stats[4],
+                      sep = ""))
+    abline(v = llul, col = "lightgrey")
+    
+    arrows(res[, 1], res[, 2] + res[, 3], res[, 1], 
+           res[, 2] - res[, 3], angle = 90, code = 3, 
+           length = length, col = col)
+    
+    par(fig = c(0.65,1,0.5,1), new = TRUE)
+    
+    plot(res.dens, xlab = "RFU", main = paste("ROI cycle ", 
+                                              llul[1], " to ", llul[2], "\n", "bw ", 
+                                              round(res.dens[["bw"]], 3), "\n", "N ", 
+                                              res.dens[["n"]], 
+                                              sep = ""))
+    
+  }
+  par(fig = c(0.65,1,0,0.5), new = TRUE)
+  qqnorm(x)
+  qqline(x)
+  
+  # Restore default graphic parameters
+  par(fig = default.par, new = FALSE)
+})

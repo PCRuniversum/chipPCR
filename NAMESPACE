@@ -14,6 +14,8 @@ exportClasses(
 
 exportMethods(
   "plot",
+  "qqnorm",
+  "qqline",
   "show",
   "summary")
 

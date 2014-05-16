@@ -10,10 +10,7 @@ An S4 class containing the output \code{\link[chipPCR]{bg.max}} function.
 
 \section{Slots}{
   \describe{
-    \item{\code{d}:}{\code{"data.frame"} }
-    \item{\code{d1}:}{\code{"data.frame"} }
-    \item{\code{delta}:}{ \code{"numeric"} }
-    \item{\code{delta1}:}{ \code{"numeric"} }
+    \item{\code{.Data}:}{\code{"matrix"} }
     \item{\code{bg.start}:}{ \code{"numeric"} }
     \item{\code{bg.stop}:}{ \code{"numeric"} }
     \item{\code{bg.corr}:}{ \code{"numeric"} }
