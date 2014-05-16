@@ -101,7 +101,8 @@ estimator  or a standard linear regression model. Care is needed when using
 Stefan Roediger, Michal Burdukiewicz
 }
 
-\seealso{ \code{\link{rq}}, \code{\link{rfit}}, \code{\link{lm}}}
+\seealso{ \code{\link[quantreg]{rq}}, \code{\link[Rfit]{rfit}}, 
+\code{\link[stats]{lm}}}
 
 \examples{
 # Function to pre-process an amplification curve.

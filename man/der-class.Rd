@@ -6,7 +6,7 @@
 
 \title{Class \code{"der"}}
 \description{
-An S4 class containing the output \code{\link{inder}} function.
+An S4 class containing the output \code{\link[chipPCR]{inder}} function.
 }
 
 \section{Slots}{
@@ -20,7 +20,7 @@ An S4 class containing the output \code{\link{inder}} function.
   \describe{
     \item{summary}{\code{signature(object = "der")}: calculates and prints approximate first
     derivative maximum, second derivative maximum, second derivative minimum and second
-    derivative center. See \code{\link{summary.der}}.}
+    derivative center. See \code{\link[chipPCR]{summary.der}}.}
     \item{show}{\code{signature(object = "der")}: prints only \code{.Data} slot of the
     object.}
    }
@@ -35,7 +35,7 @@ Stefan Roediger, Michal Burdukiewicz
 
 
 \seealso{
-\code{\link{inder}}
+\code{\link[chipPCR]{inder}}
 }
 \examples{
 pcr <- AmpSim(cyc = 1:40)

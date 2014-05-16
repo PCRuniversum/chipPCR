@@ -6,7 +6,8 @@
 Summary \code{bg} objects
 }
 \description{
-Summarize \code{\linkS4class{bg}} objects and easily access results of \code{\link{bg}} function.
+Summarize \code{\linkS4class{bg}} objects and easily access results of 
+\code{\link[chipPCR]{bg}} function.
 }
 \usage{
 \S4method{summary}{bg}(object, print = TRUE)

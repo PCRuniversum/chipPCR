@@ -6,7 +6,8 @@
 Summary \code{der} objects
 }
 \description{
-Summarize \code{\linkS4class{der}} objects and easily access results of \code{\link{inder}}
+Summarize \code{\linkS4class{der}} objects and easily access results of 
+\code{\link[chipPCR]{inder}}
 function.
 }
 \usage{

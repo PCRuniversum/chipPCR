@@ -5,7 +5,7 @@
 Round der objects
 }
 \description{
-Function \code{\link{inder}} calculates numeric derivatives on smoothed data which results
+Function \code{\link[chipPCR]{inder}} calculates numeric derivatives on smoothed data which results
 in data points not observable in reality. The \code{rounder} function averages such result
 to the real values of cycle number.
 }
@@ -19,7 +19,7 @@ a class \code{\linkS4class{der}} object.
 }
   \item{cyc}{
 a column containing cycle numbers after smoothing. In case of objects created by the
-\code{\link{inder}} function it is the first column.
+\code{\link[chipPCR]{inder}} function it is the first column.
 }
 }
 \details{
@@ -35,7 +35,7 @@ Stefan Roediger, Michal Burdukiewicz
 }
 
 \seealso{
-\code{\link{inder}}, \code{\linkS4class{der}}
+\code{\link[chipPCR]{inder}}, \code{\linkS4class{der}}
 }
 \examples{
 isPCR <- AmpSim(cyc = 1:40)

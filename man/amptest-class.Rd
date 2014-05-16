@@ -8,7 +8,7 @@
 
 \title{Class \code{"amptest"}}
 \description{
-An S4 class containing the output \code{\link{amptester}} function.
+An S4 class containing the output \code{\link[chipPCR]{amptester}} function.
 }
 
 \section{Slots}{
@@ -33,7 +33,7 @@ Stefan Roediger, Michal Burdukiewicz
 
 
 \seealso{
-\code{\link{amptester}}
+\code{\link[chipPCR]{amptester}}
 }
 \examples{
 cyc <- seq(1, cycno <- 35, 1)

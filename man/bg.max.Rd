@@ -41,7 +41,7 @@ model of the function.
 }
   \item{inder.approx}{
     a \code{logical} value defining if data should be numerically derived by
-    \code{\link{inder}} function. If \code{FALSE}, derivative is calculated by the
+    \code{\link[chipPCR]{inder}} function. If \code{FALSE}, derivative is calculated by the
     finite difference method.
 }
 }
