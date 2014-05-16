@@ -1,5 +1,5 @@
 smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, 
-		     method = "savgol", ...) {
+		     method = "savgol", CPP = TRUE, ...) {
   # Determine the time/cycle resolution of the data
   testxy(x, y)
   
@@ -87,7 +87,20 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
                       , c(list(y = y.tmp), ...))
     )
     
-    y.tmp
+    # Invoke the CPP function to perform a preprocessing of the 
+    # smoothed data
+    # TODO: check if there are potential problems related to the
+    # bg.max function which is used by CPP
+    if (CPP) {
+      tmp.CPP  <- CPP(x = x, y = y.tmp, trans = trans, 
+		      bg.outliers = bg.outliers)
+      
+      # Do output of the smoothed data
+      tmp.CPP$y.norm
+    } else {
+	y.tmp
+      }
+   y.tmp
   })
   
   #attr(y.norm, "method") <- method
@@ -102,7 +115,7 @@ setGeneric("smoother")
 
 setMethod("smoother", signature(x = "data.frame", y="missing"), 
           function(x, y, trans = FALSE, bg.outliers = FALSE, 
-                   method = "savgol", ...) { 
+                   method = "savgol", CPP = TRUE, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             smoother(x[,1], x[,2], trans, bg.outliers, spline, method, ...)
@@ -110,11 +123,8 @@ setMethod("smoother", signature(x = "data.frame", y="missing"),
 
 setMethod("smoother", signature(x = "matrix", y = "missing"), 
           function(x, y, trans = FALSE, bg.outliers = FALSE, 
-                   method = "savgol", ...) { 
+                   method = "savgol", CPP = TRUE, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             smoother(x[,1], x[,2], trans, bg.outliers, spline, method, ...)
           })
-
-
-
