@@ -17,17 +17,20 @@ normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
 }
 \usage{
-\S4method{CPP}{numeric,numeric}(x, y, trans = TRUE, rob.reg = "lmrob", 
-	       bg.outliers = FALSE, median = FALSE, norm = "none", 
-	       qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08)
+\S4method{CPP}{numeric,numeric}(x, y, smoother = TRUE, trans = TRUE, 
+	       rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
+	       norm = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
+	       nl = 0.08)
 
-\S4method{CPP}{matrix,missing}(x, y, trans = TRUE, rob.reg = "lmrob", 
-	       bg.outliers = FALSE, median = FALSE, norm = "none", 
-	       qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08)
+\S4method{CPP}{matrix,missing}(x, y, smoother = TRUE, trans = TRUE, 
+	       rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
+	       norm = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
+	       nl = 0.08)
 
-\S4method{CPP}{data.frame,missing}(x, y, trans = TRUE, rob.reg = "lmrob", 
-	       bg.outliers = FALSE, median = FALSE, norm = "none", 
-	       qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08)
+\S4method{CPP}{data.frame,missing}(x, y, smoother = TRUE, trans = TRUE, 
+	       rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
+	       norm = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
+	       nl = 0.08)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,6 +41,9 @@ in the background range and to test if an amplification is significant.
   \item{y}{
         is a vector containing the fluorescence values. Omitted if \code{x} 
         is a data frame/matrix.
+}
+  \item{smoother}{
+	logical parameter which indicates if smoother should be used.
 }
   \item{trans}{
 	defines if the slope of the background range in a curve should be 

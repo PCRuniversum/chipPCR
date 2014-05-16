@@ -18,11 +18,11 @@ filter for amplification curve data.
 }
 \usage{
 \S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                                     method = "savgol", ...)
+                                     method = "savgol", CPP = TRUE, ...)
 \S4method{smoother}{matrix,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                                    method = "savgol", ...)
+                                    method = "savgol", CPP = TRUE, ...)
 \S4method{smoother}{data.frame,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                    method = "savgol", ...)
+                    method = "savgol", CPP = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,8 +38,7 @@ filter for amplification curve data.
   }
     \item{bg.outliers}{
 			logical parameter which indicates of outliers should 
-			be removed from 
-    background range.
+			be removed from background range.
   }
     \item{method}{
 		    a vector of names defining which smoothing method should be used. The 
@@ -53,6 +52,10 @@ filter for amplification curve data.
         difference penalty, "whit2" for weighted Whittaker smoothing 
         with a second order finite difference penalty or "all" for all implemented
         smoothing algorithms. 
+  }
+  \item{CPP}{
+		  logical parameter which indicates if CPP (curve pre-procssor) should 
+			be used.
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 

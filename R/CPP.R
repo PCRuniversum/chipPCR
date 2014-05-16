@@ -1,6 +1,6 @@
-CPP <- function(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE, 
-		median = FALSE, norm = "none", qnL = 0.1, 
-                amptest = FALSE, manual = FALSE, nl = 0.08) {
+CPP <- function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
+		bg.outliers = FALSE, median = FALSE, norm = "none", 
+		qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08) {
   
   testxy(x, y)
   # Test meaningfulness of qnL
@@ -62,7 +62,19 @@ CPP <- function(x, y, trans = TRUE, rob.reg = "lmrob", bg.outliers = FALSE,
                             median = median)
     y[c(BG)] 	<- rm.outlier(y[c(BG)], opposite = TRUE, 
                             fill = TRUE, median = median)
-  } 
+  }
+  
+  # Invoke smoother to improve data for further calculations
+  # Note: "mova" will caus problems because it truncates the
+  # data (mova 3 -> first and last value miss at the end)
+  
+  if (smoother) {
+    y <- smoother(x, y, trans = FALSE, bg.outliers = FALSE, 
+			method = "spline", CPP = FALSE)
+  } else {
+      y
+  }
+  
   # Test if linear correction based on the background range is requested
   # If requested first try a robust linear regression. If robust linear 
   # regression fails try standard lm()
@@ -118,7 +130,7 @@ setGeneric("CPP")
 
   
 setMethod("CPP", signature(x = "data.frame", y="missing"), 
-          function(x, y, trans = TRUE, rob.reg = "lmrob", 
+          function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
                    norm = "none", qnL = 0.1, 
                    amptest = FALSE, manual = FALSE, nl = 0.08) { 
@@ -130,14 +142,14 @@ setMethod("CPP", signature(x = "data.frame", y="missing"),
           })
 
 setMethod("CPP", signature(x = "matrix", y="missing"), 
-          function(x, y, trans = TRUE, rob.reg = "lmrob", 
+          function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
                    norm = "none", qnL = 0.1, 
                    amptest = FALSE, manual = FALSE, nl = 0.08) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            CPP(x[, 1], x[, 2], trans = trans, rob.reg = "lmrob", 
-		bg.outliers = bg.outliers, 
+            CPP(x[, 1], x[, 2], smoother = TRUE, trans = trans, 
+		rob.reg = "lmrob", bg.outliers = bg.outliers, 
                 median = median, norm = norm, qnL = qnL,
                 amptest = amptest, manual = manual, nl = nl)
           })

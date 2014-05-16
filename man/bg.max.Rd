@@ -16,11 +16,11 @@ background noise. The detection is made without any assumptions regarding the
 model of the function.
 }
 \usage{
-\S4method{bg.max}{numeric,numeric}(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE)
+\S4method{bg.max}{numeric,numeric}(x, y, bg.corr = 1.3, bg.start = 1, inder.approx = TRUE)
 
-\S4method{bg.max}{matrix,missing}(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE)
+\S4method{bg.max}{matrix,missing}(x, y, bg.corr = 1.3, bg.start = 1, inder.approx = TRUE)
 
-\S4method{bg.max}{data.frame,missing}(x, y, bg.corr = 1.3, bg.start = 3, inder.approx = TRUE)
+\S4method{bg.max}{data.frame,missing}(x, y, bg.corr = 1.3, bg.start = 1, inder.approx = TRUE)
 }
 
 \arguments{
@@ -91,7 +91,7 @@ par(mfrow = c(1,1))
 data(C17)
 plot(C17[, 2], C17[,  3], xlab = "Cycle", ylab = "RFU", 
      main = "Estimate the begin of the Amplification\n of a HDA", pch = 20)
-res <- bg.max(C17[, 2:3], bg.corr = 1.4, bg.start = 3)
+res <- bg.max(C17[, 2:3], bg.corr = 1.4, bg.start = 1)
 abline(v = c(slot(res, "bg.start"), slot(res, "bg.stop")), col = c(1,2))
 abline(h = slot(res, "fluo"), col = "blue")
 
@@ -112,7 +112,7 @@ plot(NA, NA, xlim = c(1, 40), ylim = c(0, 1), xlab = "Cycles",
 for (i in 1:length(e)) {
   fluo <- c + (d - c)/(1 + exp(b * (log(cyc) - log(e[i]))))
   points(cyc, fluo, type = "b", col = i, pch = 20)
-  res <- bg.max(cyc, fluo, bg.corr = 1.4, bg.start = 3)
+  res <- bg.max(cyc, fluo, bg.corr = 1.4, bg.start = 1)
   abline(v = slot(res, "bg.stop"), col = i)
   abline(h = slot(res, "fluo"), col = i)
 }
