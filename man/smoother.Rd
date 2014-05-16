@@ -18,11 +18,11 @@ filter for amplification curve data.
 }
 \usage{
 \S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                                     method = "savgol", CPP = TRUE, ...)
+                                     method = "savgol", ...)
 \S4method{smoother}{matrix,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                                    method = "savgol", CPP = TRUE, ...)
+                                    method = "savgol", ...)
 \S4method{smoother}{data.frame,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                    method = "savgol", CPP = TRUE, ...)
+                    method = "savgol", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,7 +38,8 @@ filter for amplification curve data.
   }
     \item{bg.outliers}{
 			logical parameter which indicates of outliers should 
-			be removed from background range.
+			be removed from 
+    background range.
   }
     \item{method}{
 		    a vector of names defining which smoothing method should be used. The 
@@ -52,10 +53,6 @@ filter for amplification curve data.
         difference penalty, "whit2" for weighted Whittaker smoothing 
         with a second order finite difference penalty or "all" for all implemented
         smoothing algorithms. 
-  }
-  \item{CPP}{
-		  logical parameter which indicates if CPP (curve pre-procssor) should 
-			be used.
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 
@@ -85,7 +82,7 @@ package.
 The function \code{\link[chipPCR]{smoother}} is a wrapper for smoother 
 functions and filters commonly used to process amplification curve data. The 
 \code{\link[chipPCR]{smoother}} function was enhanced by functionality of the 
-\code{\link[chipPCR]{fixNA}} and \code{\link[chipPCR]{CPP}} functions. The 
+\code{\link[chipPCR]{fixNA}}. The 
 parameter "lowess" for LOWESS smoother (locally-weighted polynomial 
 regression) can be tuned by the parameters \code{f} and \code{iter} (see 
 \code{\link[stats]{lowess}} for details). The parameter "mova" for moving 
