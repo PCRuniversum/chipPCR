@@ -87,15 +87,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
                       , c(list(y = y.tmp), ...))
     )
     
-    # Invoke the CPP function to perform a preprocessing of the 
-    # smoothed data
-    # TODO: check if there are potential problems related to the
-    # bg.max function which is used by CPP
-    tmp.CPP  <- CPP(x = x, y = y.tmp, trans = trans, 
-                    bg.outliers = bg.outliers)
-    
-    # Do output of the smoothed data
-    tmp.CPP$y.norm
+    y.tmp
   })
   
   #attr(y.norm, "method") <- method

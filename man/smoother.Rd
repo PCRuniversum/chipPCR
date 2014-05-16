@@ -82,7 +82,7 @@ package.
 The function \code{\link[chipPCR]{smoother}} is a wrapper for smoother 
 functions and filters commonly used to process amplification curve data. The 
 \code{\link[chipPCR]{smoother}} function was enhanced by functionality of the 
-\code{\link[chipPCR]{fixNA}} and \code{\link[chipPCR]{CPP}} functions. The 
+\code{\link[chipPCR]{fixNA}}. The 
 parameter "lowess" for LOWESS smoother (locally-weighted polynomial 
 regression) can be tuned by the parameters \code{f} and \code{iter} (see 
 \code{\link[stats]{lowess}} for details). The parameter "mova" for moving 
