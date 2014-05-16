@@ -4,6 +4,7 @@ importFrom(signal, sgolayfilt)
 importFrom(ptw, whit1, whit2)
 importFrom(Rfit, rfit)
 importFrom(quantreg, rq)
+importFrom(shiny, runApp)
 import("methods")
 
 exportClasses(
@@ -21,6 +22,7 @@ exportMethods(
 
 export(
 	"AmpSim",
+	"AmpSim.gui",
 	"amptester",
 	"bg.max",
 	"CPP",
@@ -28,6 +30,6 @@ export(
 	"fixNA",
 	"inder",
 	"MFIaggr",
-  "rounder",
+	"rounder",
 	"smoother"
 )
