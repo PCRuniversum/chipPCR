@@ -181,7 +181,7 @@ setMethod("effcalc", signature(x = "data.frame", y="missing"),
                     col = col)
           })
 
-setMethod("effcalc", signature(x = "data.frame", y="matrix"), 
+setMethod("effcalc", signature(x = "matrix", y="missing"), 
           function(x, y, logx = TRUE, CV = FALSE, 
                    xlab = "log10(Concentration)", ylab = "Cq", 
                    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 

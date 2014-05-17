@@ -16,19 +16,19 @@ Analysis of the emplification efficiency
  list.
 }
 \usage{
-\S4method{bg.effcalc}{numeric,numeric}(x, y, logx = TRUE, CV = FALSE, 
+\S4method{effcalc}{numeric,numeric}(x, y, logx = TRUE, CV = FALSE, 
   	    xlab = "log10(Concentration)", ylab = "Cq", 
 		    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
 		    trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
 		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
 		    col = "black")
-\S4method{bg.effcalc}{matrix,missing}(x, y, logx = TRUE, CV = FALSE, 
+\S4method{effcalc}{matrix,missing}(x, y, logx = TRUE, CV = FALSE, 
         xlab = "log10(Concentration)", ylab = "Cq", 
 		    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
 		    trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
 		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
 		    col = "black")
-\S4method{bg.effcalc}{matrix,data.frame}(x, y, logx = TRUE, CV = FALSE, 
+\S4method{effcalc}{matrix,data.frame}(x, y, logx = TRUE, CV = FALSE, 
         xlab = "log10(Concentration)", ylab = "Cq", 
   	    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
 		    trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,

@@ -1,4 +1,4 @@
-\name{plot}
+\name{plot.bg}
 \alias{plot.bg}
 \alias{plot,bg-method}
 

@@ -1,4 +1,4 @@
-\name{plot}
+\name{plot.refMFI}
 \alias{plot.refMFI}
 \alias{plot,refMFI-method}
 

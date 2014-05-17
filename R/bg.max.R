@@ -1,4 +1,3 @@
-
 bg.max <- function(x, y, bg.corr = 1.3, bg.start = 1, inder.approx = TRUE) {
   testxy(x, y)
   
@@ -75,7 +74,7 @@ setMethod("bg.max", signature(x = "matrix", y = "missing"),
                    inder.approx = TRUE) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            calc.bg(x[, 1], x[, 2], bg.corr, bg.start, inder.approx)
+            bg.max(x[, 1], x[, 2], bg.corr, bg.start, inder.approx)
           })
 
 #workhorse function
