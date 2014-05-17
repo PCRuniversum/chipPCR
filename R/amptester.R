@@ -15,6 +15,16 @@ amptester <-
     # fix possible missing vaues with fixNA (spline method)
     y <- fixNA(1L:length(y), y)
     
+    # Simple test if data come from noise or presumably a melting curve
+    res.shapiro <- shapiro.test(y)$p.value
+    if (res.shapiro >= 0.001) {
+	    message("The distribution of the curve data indicates noise.
+		     \nThe data should be visually inspected.")
+	    mess.shapiro <- "Appears not to be an amplification curve"
+    } else {
+	    mess.shapiro <- "Appears to be an amplification curve"
+    }
+    
     if (manual) {
       noisebackground <- mean(y[background]) + 5 * sd(y[background])
       signal  <- mean(y[-(background)])

@@ -157,8 +157,8 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
   # res is the an object of the type data.frame containing the 
   # concentration, location, deviation and coefficient of variance.
   if (show.res) {
-      return(list(res = res, amplification.efficiency = AE, regression = lm.res, 
-	      correlation.test = cortest))
+      return(list(res = res, amplification.efficiency = AE, 
+		  regression = lm.res, correlation.test = cortest))
   }
 }
 
