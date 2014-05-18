@@ -1,3 +1,4 @@
+import("methods")
 importFrom(outliers, rm.outlier)
 importFrom(robustbase, lmrob)
 importFrom(signal, sgolayfilt)
@@ -5,23 +6,23 @@ importFrom(ptw, whit1, whit2)
 importFrom(Rfit, rfit)
 importFrom(quantreg, rq)
 importFrom(shiny, runApp)
-import("methods")
 
 exportClasses(
     "amptest",
     "bg",
-    "der"
+    "der",
+    "refMFI"
 )
 
 exportMethods(
   "plot",
-  "qqnorm",
   "qqline",
+  "qqnorm",
   "show",
   "summary")
 
 export(
-	"AmpSim",
+  "AmpSim",
 	"AmpSim.gui",
 	"amptester",
 	"bg.max",

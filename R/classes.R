@@ -122,7 +122,32 @@ setMethod("summary", signature(object = "bg"), function(object, print = TRUE) {
 })
 
 
-
+setMethod("plot", signature(x = "bg"), function(x, what = 1:3, add = FALSE, 
+                                                indicators = TRUE, 
+                                                legend = TRUE, stan.labs = TRUE, 
+                                                plot.colors = c("black", "red", "blue"), 
+                                                ...) {
+  if (stan.labs) {
+    plot(new("der", .Data = x, method = "supsmu"), what = what, 
+         add = add, legend = FALSE, plot.colors = plot.colors, xlab = "Cycle", 
+         ylab = "Fluorescence", ...)
+  } else {
+    plot(new("der", .Data = x, method = "supsmu"), what = what, 
+         add = add, legend = FALSE, plot.colors = plot.colors, ...)
+  }
+  
+  if (indicators) {
+    abline(v = slot(x, "bg.start"))
+    text(slot(x, "bg.start"), 0.2, "Background start", pos = 4)
+    abline(v = slot(x, "bg.stop"), col = "blue")
+    text(slot(x, "bg.stop"), 0.25, "Background stop", pos = 4, col = "blue")
+    abline(v = slot(x, "amp.stop"), col = "green")
+    text(slot(x, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
+  }
+  if (legend)
+    legend("topleft", c("Raw data", "First derivative", "Second derivative")[what], 
+           pch = rep(20,3), col = plot.colors)
+})
 
 
 

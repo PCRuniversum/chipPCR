@@ -1,13 +1,10 @@
 library(shiny)
 
-# Define UI for miles per gallon application
 shinyUI(pageWithSidebar(
 
-  # Give the application a title
   headerPanel("Amplification curve simulaton"),
 
   sidebarPanel(
-  #Define the sidebar inputs
   numericInput("cycles", "Cycles", 35, min = 10, max = 60),
   numericInput("b.eff", "Efficiency", -25), 
   numericInput("bl", "Baseline", 0.05), 
@@ -19,7 +16,6 @@ shinyUI(pageWithSidebar(
                 list("Constant" = "constant", 
                      "Decreasing" = "decrease", 
                      "Increasing" = "increase")),
-  # Add some help
 	hr(),
         helpText("The function AmpSim is a simple simulator for 
 		  amplification reaction. The function has several 
@@ -39,8 +35,11 @@ shinyUI(pageWithSidebar(
   ),
 
     mainPanel(
-	# Plot the simulation to the output
-        plotOutput("AmpSimPlot")
+      tabsetPanel(
+        tabPanel("Amplification plots", plotOutput("AmpSimPlot"), 
+                 verbatimTextOutput("bgSummary"), plotOutput("inderPlot")),
+        tabPanel("Amplification data", tableOutput("bgTable"))
+      )
     )
   )
 )
