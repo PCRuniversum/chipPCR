@@ -5,8 +5,10 @@ library(chipPCR)
 shinyServer(function(input, output) {
   res.AmpSim <- reactive({AmpSim(cyc = 1:input$cycles, 
                                  b.eff = input$b.eff, 
-                                 bl = input$bl, ampl = input$ampl, 
-                                 Cq = input$Cq, noise = input$noise, 
+                                 bl = input$bl,
+                                 ampl = input$ampl, 
+                                 Cq = input$Cq,
+                                 noise = input$noise, 
                                  nnl = input$nnl, 
                                  nnl.method = input$nnl.method)
   })
@@ -16,7 +18,7 @@ shinyServer(function(input, output) {
   # Create a plot
   
   output$AmpSimPlot <- renderPlot({
-    plot(res.AmpSim(), main = "Simulated curve")
+    plot(res.AmpSim(), main = "Simulated curve", type = "b")
   })
   
   output$inderPlot <- renderPlot({

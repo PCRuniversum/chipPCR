@@ -2,7 +2,7 @@ library(shiny)
 
 shinyUI(pageWithSidebar(
 
-  headerPanel("Amplification curve simulaton"),
+  headerPanel("Amplification curve simulation"),
 
   sidebarPanel(
   numericInput("cycles", "Cycles", 35, min = 10, max = 60),
@@ -18,10 +18,8 @@ shinyUI(pageWithSidebar(
                      "Increasing" = "increase")),
 	hr(),
         helpText("The function AmpSim is a simple simulator for 
-		  amplification reaction. The function has several 
-		  parameters which can be used to simulate the 
-		  amplification curve. b.eff and Cq are most connected 
-		  with another. Thus changing one of them will change 
+		  amplification reaction. Parameters: b.eff and Cq are 
+		  most connected. Changing one of them will change 
 		  both values. Cq can be used to define an approximate 
 		  Cq value. The expression 'approximate Cq value' is 
 		  used here because the actual Cq value is dependent on 
