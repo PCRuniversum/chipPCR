@@ -3,16 +3,23 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   # Determine the time/cycle resolution of the data
   testxy(x, y)
   
-  deltaCyc <- vector()
+  # Determine the time or resolution of the amplifification curve data
+  # is uniform. If not give a warning.
+  d.x <- vector()
   for (i in 1L:(length(x) - 1)){
     tmp <- abs(x[i] - x[i + 1])
-    deltaCyc <- c(deltaCyc,tmp)
+    d.x <- c(d.x, tmp)
   }
-  # Code taken from integer {base} example section
-  is.wholenumber <- function(x, tol = .Machine$double.eps^0.5)  abs(x - round(x)) < tol
-  if (is.wholenumber(mean(deltaCyc)) == FALSE)
-    warning("Not equidistant measurement! smoother might not 
-            work properly.")
+  
+  res.x <- list(d.x = d.x, 
+	   d.x.m = mean(d.x), 
+	   d.x.s = sd(d.x)
+	   )
+
+  if ((res.x$d.x.m + res.x$d.x.s) != res.x$d.x.m) {
+      warning("x is not uniform/equidistant (different inter cycle or time intervals.
+	       This may cause artifacts during the pre-processing.")
+  }
   
   #recognize method
   #possible methods
