@@ -1,5 +1,5 @@
 AmpSim <- function(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1, 
-		   Cq = 20, noise = FALSE, nnl = 0.025, 
+		   Cq = 20, b = 0, noise = FALSE, nnl = 0.025, 
 		   nnl.method = "constant") {
 #   tmp.warn <- getOption("warn")
 #   options(warn = -1)
@@ -16,7 +16,10 @@ AmpSim <- function(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1,
 # Define the model used to simulate the ammplification curve
 # based on a 5-parameter sigmoidal function
 
-  fluo <- bl + (ampl - bl) / (1 + exp(b.eff * (log(cyc) - log(Cq))))
+  fluo <- bl + (
+		(ampl - bl) / 
+		(1 + exp(b.eff * (log(cyc) - log(Cq))))
+		)
 
 # Decide if noise is added and how noise is added to the 
 # simulated curve
@@ -27,25 +30,25 @@ AmpSim <- function(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1,
  	mean.noise <- mean(fluo) * nnl
   	sd.noise <- sd(fluo) * nnl
   if (nnl.method == "increase") {
-	NOISE <- sort(rnorm(length(fluo), 
+	noise.sim <- sort(rnorm(length(fluo), 
 	mean = mean.noise, 
 	sd = sd.noise))
   }
   if (nnl.method == "decrease") {
-	NOISE <- sort(rnorm(length(fluo), 
+	noise.sim <- sort(rnorm(length(fluo), 
 			mean = mean.noise, 
 			sd = sd.noise), decreasing = TRUE)
   }
   if (nnl.method == "constant") {
-	NOISE <- rnorm(length(fluo), 
+	noise.sim <- rnorm(length(fluo), 
 			mean = mean.noise, 
 			sd = sd.noise)
   }
     
 # Add the noise the the simulated curve and combine the output
-    fluo <- fluo + NOISE
+    fluo <- fluo + noise.sim
     res <- data.frame(cyc, fluo)
   } else (res <- data.frame(cyc, fluo))
-#   options(warn = tmp.warn)
+
   res
 }
