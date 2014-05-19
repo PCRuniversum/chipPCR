@@ -20,12 +20,12 @@ Any ad-blocking software may be cause of malfunctions.
 }
 
 \examples{
-## Run from a R console following commands
-## Load the shiny and chipPCR package
-# require(shiny)
-## require(chipPCR)
-## Invoke the shiny AmpSim app in the default browser
-# runApp(paste(find.package("chipPCR"),"/AmpSim.gui", sep = ""))
+\dontrun{
+#Run from a R console following commands
+require(shiny)
+#Invoke the shiny AmpSim app in the default browser
+runApp(paste(find.package("chipPCR"),"/AmpSim.gui", sep = ""))
+}
 }
 
 \seealso{
