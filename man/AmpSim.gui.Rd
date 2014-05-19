@@ -38,3 +38,7 @@ runApp(paste(find.package("chipPCR"),"/AmpSim.gui", sep = ""))
 }
 
 \keyword{ hplot }
+\keyword{ simulation }
+\keyword{ shiny }
+\keyword{ GUI }
+\keyword{ browser }
