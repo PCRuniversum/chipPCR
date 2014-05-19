@@ -10,6 +10,7 @@
 \title{
 Curve Pre-Processor
 }
+
 \description{
 The function \code{\link[chipPCR]{CPP}} encompasses a set of functions to 
 pre-process an amplification curve. The pre-processing includes options to 
@@ -17,20 +18,24 @@ normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
 }
 \usage{
-\S4method{CPP}{numeric,numeric}(x, y, smoother = TRUE, trans = TRUE, 
-	       rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
-	       norm = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
-	       nl = 0.08)
+\S4method{CPP}{numeric,numeric}(x, y, smoother = TRUE, method = "savgol", 
+				trans = TRUE, rob.reg = "lmrob", 
+				bg.outliers = FALSE, median = FALSE, 
+				norm = "none", qnL = 0.1, amptest = FALSE, 
+				manual = FALSE, nl = 0.08, ...)
 
-\S4method{CPP}{matrix,missing}(x, y, smoother = TRUE, trans = TRUE, 
-	       rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
-	       norm = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
-	       nl = 0.08)
+\S4method{CPP}{matrix,missing}(x, y, smoother = TRUE, method = "savgol", 
+			       trans = TRUE, rob.reg = "lmrob", 
+			       bg.outliers = FALSE, median = FALSE, 
+			       norm = "none", qnL = 0.1, amptest = FALSE, 
+			       manual = FALSE, nl = 0.08, ...)
 
-\S4method{CPP}{data.frame,missing}(x, y, smoother = TRUE, trans = TRUE, 
-	       rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
-	       norm = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
-	       nl = 0.08)
+\S4method{CPP}{data.frame,missing}(x, y, smoother = TRUE, 
+				   method = "savgol", trans = TRUE, 
+				   rob.reg = "lmrob", bg.outliers = FALSE, 
+				   median = FALSE, norm = "none", 
+				   qnL = 0.1, amptest = FALSE, 
+				   manual = FALSE, nl = 0.08, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -39,24 +44,41 @@ in the background range and to test if an amplification is significant.
     containing both time or cycle values and fluorescence.
 }
   \item{y}{
-        is a vector containing the fluorescence values. Omitted if \code{x} 
+        is a vector containing the fluorescence values. Omitted if 
+\code{x} 
         is a data frame/matrix.
 }
   \item{smoother}{
 	logical parameter which indicates if smoother should be used.
 }
+
+  \item{method}{
+		a vector of names defining which smoothing method 
+should be used. The Savitzky-Golay smoothing filter is the default 
+smoother. Use "lowess" for LOWESS smoother (locally-weighted polynomial 
+regression, "mova" for moving average, "savgol" for Savitzky-Golay 
+smoothing filter, "smooth" for cubic spline smooth, "spline" for standard 
+cubic spline smooth, "supsmu" for Friedman's SuperSmoother, "whit1" for 
+weighted Whittaker smoothing with a first order finite difference penalty, 
+"whit2" for weighted Whittaker smoothing with a second order finite 
+difference penalty or "all" for all implemented smoothing algorithms. 
+}
+
   \item{trans}{
 	defines if the slope of the background range in a curve should be 
 	corrected by a linear regression.
 }
   \item{rob.reg}{
-	defines the method ("rfit", "lmrob", "rq") for the robust linear regression.
+	defines the method ("rfit", "lmrob", "rq") for the robust linear 
+regression.
 }
   \item{bg.outliers}{
-	is a logical argument which to remove outliers in the background range.
+	is a logical argument which to remove outliers in the background 
+range.
 }
   \item{median}{
-	If set to TRUE, median is used instead of mean in outlier replacement. 
+	If set to TRUE, median is used instead of mean in outlier 
+replacement. 
 	The mean is used by default.
 }
   \item{norm}{
@@ -76,6 +98,10 @@ in the background range and to test if an amplification is significant.
   \item{nl}{
 	is a value used as fixed threshold value for the background.
 }
+    \item{...}{
+	dot operator for diverse arguments of 
+	\code{\link[chipPCR]{smoother}} for details).
+  }
 }
 \details{
 The function \code{\link[chipPCR]{CPP}} uses the function 
@@ -93,7 +119,8 @@ amplification curve. The slope of the background range is often unequal to
 zero. By setting the parameter \code{trans} it is possible to apply a 
 simple correction of the slope. Thereby either a robust linear regression 
 by computing MM-type regression estimators, a nonparametric rank-based 
-estimator  or a standard linear regression model. Care is needed when using 
+estimator  or a standard linear regression model. Care is needed when 
+using 
 \code{trans} with time series (see \code{\link[stats]{lm}} for details).
 }
 
@@ -145,8 +172,7 @@ T69 <- cbind(apply(VIMCFX96_69[, c(2:97)], 2,
 plot(T60, T69, xlab = "dB @ 60 deg. Celsius", 
       ylab = "dB @ 69 deg. Celsius")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ background }
 \keyword{ noise }
 \keyword{ outlier }

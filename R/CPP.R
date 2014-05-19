@@ -1,6 +1,7 @@
-CPP <- function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
-		bg.outliers = FALSE, median = FALSE, norm = "none", 
-		qnL = 0.1, amptest = FALSE, manual = FALSE, nl = 0.08) {
+CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = TRUE, 
+		rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
+		norm = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
+		nl = 0.08, ...) {
   
   testxy(x, y)
   # Test meaningfulness of qnL
@@ -9,16 +10,16 @@ CPP <- function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob",
   
   # Select a method for the smoothing
   
-  method <- tolower(norm)
-  if (grepl(method, "none"))
-    method <- "none"
-  if (grepl(method, "luqn")) 
-    method <- "luqn"
-  if (grepl(method, "minmax"))
-    method <- "minmax"
-  if (grepl(method, "zscore"))
-    method <- "zscore"
-  if (!(method %in% c("none", "luqn", "minmax", "zscore")))
+  method.norm <- tolower(norm)
+  if (grepl(method.norm, "none"))
+    method.norm <- "none"
+  if (grepl(method.norm, "luqn")) 
+    method.norm <- "luqn"
+  if (grepl(method.norm, "minmax"))
+    method.norm <- "minmax"
+  if (grepl(method.norm, "zscore"))
+    method.norm <- "zscore"
+  if (!(method.norm %in% c("none", "luqn", "minmax", "zscore")))
     stop("Invalid method chosen.")
     
   # Define the method for the linear regression
@@ -37,6 +38,29 @@ CPP <- function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob",
     method.reg <- "rq"
   if (!(method.reg %in% c("lmrob", "rfit", "least", "rq")))
     stop("Invalid regression method chosen.")
+  
+  # Define the method for the smoothing
+  # functionality identical to smoother function
+  method.smooth <- tolower(method)
+  if (grepl(method.smooth, "savgol"))
+    method.smooth <- "savgol"
+  if (grepl(method.smooth, "lowess")) 
+    method.smooth <- "lowess"
+  if (grepl(method.smooth, "mova")) 
+    method.smooth <- "mova"
+  if (grepl(method.smooth, "smooth")) 
+    method.smooth <- "smooth"
+  if (grepl(method.smooth, "spline")) 
+    method.smooth <- "spline"
+  if (grepl(method.smooth, "supsmu")) 
+    method.smooth <- "supsmu"
+  if (grepl(method.smooth, "whit1")) 
+    method.smooth <- "whit1"
+  if (grepl(method.smooth, "whit2")) 
+    method.smooth <- "whit2"
+  if (!(method.smooth %in% c("savgol", "lowess", "mova", "smooth", "spline", 
+			     "supsmu", "whit1", "whit2")))
+    stop("Invalid smoothing/filter method chosen.")
   
   lm.fit <- function(y, x, method) {
     switch(method,
@@ -65,12 +89,12 @@ CPP <- function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob",
   }
   
   # Invoke smoother to improve data for further calculations
-  # Note: "mova" will caus problems because it truncates the
-  # data (mova 3 -> first and last value miss at the end)
+  # SERVE BUG (Priority high): "mova" will caus problems because it 
+  # truncates the data (mova 3 -> first and last value miss at the end)
   
   if (smoother) {
     y <- smoother(x, y, trans = FALSE, bg.outliers = FALSE, 
-			method = "spline", CPP = FALSE)
+			method = method.smooth, CPP = FALSE, ...)
   } else {
       y
   }
@@ -80,15 +104,19 @@ CPP <- function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob",
   # regression fails try standard lm()
   if (trans) {
     if (class(try(lm.fit(y[c(BG)], x[c(BG)], method = method.reg), 
-                  silent = TRUE)) == "try-error") { 
-      coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], method = "least")[1]) 
+				  silent = TRUE)) == "try-error") { 
+      coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], 
+					  method = "least")[1]) 
     } else { 
-      lmrob.control <- suppressWarnings(lm.fit(y[c(BG)], x[c(BG)], method = method.reg)) 
+      lmrob.control <- suppressWarnings(lm.fit(y[c(BG)], x[c(BG)], 
+					  method = method.reg)) 
       if ((class(lmrob.control) != "try-error") && 
             (lmrob.control$converged == TRUE)) { 
-        coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], method = method.reg)[1]) 
+        coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], 
+					  method = method.reg)[1]) 
       } else { 
-        coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], method = "least")[1]) 
+        coefficients <- data.frame(lm.fit(y[c(BG)], x[c(BG)], 
+					  method = "least")[1]) 
       } 
     }
     # Apply linear model to the raw data
@@ -103,13 +131,17 @@ CPP <- function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob",
   normalizer <- function(y, method, qnL = qnL) {
     switch(method,
            none = do.call(function(y) y, c(list(y = y))),
-           minmax = do.call(function(y) (y - min(y)) / (max(y) - min(y)), c(list(y = y))),
-           luqn = do.call(function(y, qnL) (y - quantile(y, qnL)) / (quantile(y, 1  - qnL) - quantile(y, qnL)), c(list(y = y, qnL = qnL))),
-           zscore = do.call(function(y) 1 + ((y - mean(y)) / sd(y)), c(list(y = y)))
+           minmax = do.call(function(y) (y - min(y)) / (max(y) - min(y)), 
+			    c(list(y = y))),
+           luqn = do.call(function(y, qnL) (y - quantile(y, qnL)) / 
+			  (quantile(y, 1  - qnL) - quantile(y, qnL)), 
+			  c(list(y = y, qnL = qnL))),
+           zscore = do.call(function(y) 1 + ((y - mean(y)) / sd(y)), 
+			    c(list(y = y)))
     )	
   }
   
-  y.norm <- normalizer(y = y.norm, method = method, qnL = qnL)
+  y.norm <- normalizer(y = y.norm, method = method.norm, qnL = qnL)
   
   # Test do give some output of the signal difference (backround vs. plateau)
   dB.y <- abs(quantile(y, 1 - qnL) / quantile(y, qnL))
@@ -133,23 +165,23 @@ setMethod("CPP", signature(x = "data.frame", y="missing"),
           function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
                    norm = "none", qnL = 0.1, 
-                   amptest = FALSE, manual = FALSE, nl = 0.08) { 
+                   amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             CPP(x[, 1], x[, 2], trans = trans, bg.outliers = bg.outliers, 
                 median = median, norm = norm, qnL = qnL,
-                amptest = amptest, manual = manual, nl = nl)
+                amptest = amptest, manual = manual, nl = nl, ...)
           })
 
 setMethod("CPP", signature(x = "matrix", y="missing"), 
           function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
                    norm = "none", qnL = 0.1, 
-                   amptest = FALSE, manual = FALSE, nl = 0.08) { 
+                   amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             CPP(x[, 1], x[, 2], smoother = TRUE, trans = trans, 
 		rob.reg = "lmrob", bg.outliers = bg.outliers, 
                 median = median, norm = norm, qnL = qnL,
-                amptest = amptest, manual = manual, nl = nl)
+                amptest = amptest, manual = manual, nl = nl, ...)
           })
