@@ -6,7 +6,11 @@ Amplification Curve Simulation Graphical User Interface
 }
 \description{
 Launches graphical user interface that allows simulating and analyzing 
-amplification reactions.
+amplification reactions. The function will open the GUI in a webpage
+of the default browser. All parameters of the \code{\link[chipPCR]{AmpSim}} 
+function can be used. In addition shows the GUI some information calculated
+by the \code{\link[chipPCR]{bg.max}} in a summuary field and a plot
+below the simulated amplification curve.
 }
 \usage{
 AmpSim.gui()
@@ -21,9 +25,10 @@ Any ad-blocking software may be cause of malfunctions.
 
 \examples{
 \dontrun{
-#Run from a R console following commands
+# Run from a R console following commands
 require(shiny)
-#Invoke the shiny AmpSim app in the default browser
+
+# Invoke the shiny AmpSim app in the default browser
 runApp(paste(find.package("chipPCR"),"/AmpSim.gui", sep = ""))
 }
 }
