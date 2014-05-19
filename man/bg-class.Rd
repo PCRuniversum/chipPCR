@@ -12,12 +12,15 @@ An S4 class containing the output \code{\link[chipPCR]{bg.max}} function.
 
 \section{Slots}{
   \describe{
-    \item{\code{.Data}:}{\code{"matrix"} }
-    \item{\code{bg.start}:}{ \code{"numeric"} }
-    \item{\code{bg.stop}:}{ \code{"numeric"} }
-    \item{\code{bg.corr}:}{ \code{"numeric"} }
-    \item{\code{fluo}:}{ \code{"numeric"} }
-    \item{\code{amp.stop}:}{ \code{"numeric"} }
+    \item{\code{.Data}:}{\code{"matrix"} which columns represent respectively cycle number, 
+    raw fluorescence data, first derivative and second derivative.}
+    \item{\code{bg.start}:}{ \code{"numeric"} value representing start of the background range.}
+    \item{\code{bg.stop}:}{ \code{"numeric"} value representing end of the background range.}
+    \item{\code{bg.corr}:}{ \code{"numeric"} a value which helps to tweak on the suggested
+    background value of \code{bg.max}.}
+    \item{\code{fluo}:}{ \code{"numeric"} a value of fluorescence at the end of amplification.}
+    \item{\code{amp.stop}:}{ \code{"numeric"} value representing end of the amplification
+    .}
 }
 }
 \section{Methods}{

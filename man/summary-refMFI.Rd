@@ -6,7 +6,8 @@
 Summary \code{refMFI} objects
 }
 \description{
-Summarize \code{\linkS4class{refMFI}} objects and access FIX ME.
+Summarize \code{\linkS4class{refMFI}} objects and access general statistics of amplification
+reaction.
 }
 \usage{
 \S4method{summary}{refMFI}(object, print = TRUE)
