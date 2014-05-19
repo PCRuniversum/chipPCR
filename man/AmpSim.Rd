@@ -1,6 +1,6 @@
 \name{AmpSim}
 \alias{AmpSim}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Amplification curve simulator
 }
@@ -12,7 +12,7 @@ This function is a simple simulator of an amplification reaction based on a
 AmpSim(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1, Cq = 20, 
 	noise = FALSE, nnl = 0.025, nnl.method = "constant")
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{cyc}{
     is a vector containing the cycle values.
@@ -119,8 +119,7 @@ for (j in 1:3){
 }
 par(mfrow = c(1,1))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ simulation }
 \keyword{ amplification }
 \keyword{ Richards }

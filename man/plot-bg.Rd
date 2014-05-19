@@ -2,8 +2,6 @@
 \alias{plot.bg}
 \alias{plot,bg-method}
 
-
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Plot \code{bg} objects
 }
@@ -11,46 +9,51 @@ Plot \code{bg} objects
 Draw quick diagnostic plots of amplification reaction.
 }
 \usage{
-\S4method{plot}{bg}(x, what = 1:3, add = FALSE, indicators = TRUE, legend = TRUE, 
-        stan.labs = TRUE, plot.colors = c("black", "red", "blue"), ...)
+\S4method{plot}{bg}(x, what = 1:3, add = FALSE, indicators = TRUE, 
+		    legend = TRUE, stan.labs = TRUE, 
+		    plot.colors = c("black", "red", "blue"), ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{
 is a \code{\linkS4class{bg}} object.
 }
   \item{what}{
-is a vector specifying what should be plotted. \code{1} means raw data, \code{2} means
-first derivative and \code{3} means second derivative. Any combination of mentioned 
-values is valid, for example: c(1,2), c(1, 2, 3), c(2, 3). See Details and Examples.
+is a vector specifying what should be plotted. \code{1} means raw data, 
+\code{2} means first derivative and \code{3} means second derivative. Any 
+combination of mentioned values is valid, for example: c(1,2), c(1, 2, 3), 
+c(2, 3). See Details and Examples.
 }
   \item{add}{
-is a \code{"logical"} argument. If \code{TRUE}, plot is added to existing plot. Moreover, 
-enforces \code{indicators} = \code{FALSE}.
+is a \code{"logical"} argument. If \code{TRUE}, plot is added to existing 
+plot. Moreover, enforces \code{indicators} = \code{FALSE}.
 }
   \item{indicators}{
-is a \code{"logical"} argument. If \code{FALSE}, background start, stop and plateau 
-transition indication lines aren't plotted.
+is a \code{"logical"} argument. If \code{FALSE}, background start, stop and 
+plateau transition indication lines aren't plotted.
 }
   \item{legend}{
-is a \code{"logical"} argument. If \code{TRUE}, legend is added to the plot.
+is a \code{"logical"} argument. If \code{TRUE}, legend is added to the 
+plot.
 }
 
   \item{stan.labs}{
-is a \code{"logical"} argument. If \code{TRUE}, standard axis labels ("Cycle" and
-"Fluorescence") are added.
+is a \code{"logical"} argument. If \code{TRUE}, standard axis labels 
+("Cycle" and "Fluorescence") are added.
 }
   \item{plot.colors}{
 is a vectors of colors used in plot. Must have length 3.
 }
   \item{...}{
-Arguments to be passed further to the plot function, such as graphical parameters.
+Arguments to be passed further to the plot function, such as graphical 
+parameters.
 }
 }
 
 \details{
-\code{plot.bg} is simplified, ready-to-use version of \code{\link[chipPCR]{plot.der}}, which 
-still can be used whenever more flexible function is needed.
+\code{plot.bg} is simplified, ready-to-use version of 
+\code{\link[chipPCR]{plot.der}}, which still can be used whenever more 
+flexible function is needed.
 }
 
 \author{
@@ -77,13 +80,16 @@ plot(rounder(inder(res)), xlab = "Cycles",
 abline(v = slot(background, "bg.start"))
   text(slot(background, "bg.start"), 0.2, "Background start", pos = 4)
 abline(v = slot(background, "bg.stop"), col = "blue")
-  text(slot(background, "bg.stop"), 0.25, "Background stop", pos = 4, col = "blue")
+  text(slot(background, "bg.stop"), 0.25, "Background stop", pos = 4, 
+       col = "blue")
 abline(v = slot(background, "amp.stop"), col = "green")
-  text(slot(background, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
+  text(slot(background, "amp.stop"), 0.3, "Plateau transition", pos = 4, 
+       col = "green")
 legend(4, 1, c("Raw data", "First derivative", "Second derivative"), 
        pch = rep(20, 3), col = c(1, 2, 4))
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{hplot}
+\keyword{amplification}
+\keyword{quality}

@@ -7,30 +7,34 @@
 \alias{smoother,matrix,missing-method}
 \alias{smoother,data.frame,missing-method}
 
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Wrapper for Several Smoothers of Amplification Data
 }
 \description{
-Smoother is a wrapper for several smoothing functions including LOWESS, Moving 
-Average, Friedman's SuperSmoother, Cubic Spline and Savitzky-Golay smoothing 
-filter for amplification curve data.
+Smoother is a wrapper for several smoothing functions including LOWESS, 
+Moving Average, Friedman's SuperSmoother, Cubic Spline and Savitzky-Golay 
+smoothing filter for amplification curve data.
 }
 \usage{
-\S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                                     method = "savgol", CPP = TRUE, ...)
-\S4method{smoother}{matrix,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                                    method = "savgol", CPP = TRUE, ...)
-\S4method{smoother}{data.frame,missing}(x, y, trans = FALSE, bg.outliers = FALSE, 
-                    method = "savgol", CPP = TRUE, ...)
+\S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, 
+		    bg.outliers = FALSE, method = "savgol", 
+		    CPP = TRUE, ...)
+\S4method{smoother}{matrix,missing}(x, y, trans = FALSE, 
+		    bg.outliers = FALSE, method = "savgol", 
+		    CPP = TRUE, ...)
+\S4method{smoother}{data.frame,missing}(x, y, trans = FALSE, 
+		    bg.outliers = FALSE, method = "savgol", 
+		    CPP = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
     \item{x}{
-	      \code{x} is a vector containing values for smoothing or data frame/matrix with values for smoothing. 
+	      \code{x} is a vector containing values for smoothing or data 
+frame/matrix with values for smoothing. 
   }
     \item{y}{
-	      \code{y} values for smoothing. Used only if \code{x} is also a vector. 
+	      \code{y} values for smoothing. Used only if \code{x} is also 
+a vector. 
   }
     \item{trans}{
 	      perform a linear transformation based on the trend of the 
@@ -41,21 +45,19 @@ filter for amplification curve data.
 			be removed from background range.
   }
     \item{method}{
-		    a vector of names defining which smoothing method should be used. The 
-		    Savitzky-Golay smoothing filter is the default smoother. 
-		    Use "lowess" for LOWESS smoother (locally-weighted 
-		    polynomial regression, "mova" for moving average, "savgol" 
-		    for Savitzky-Golay smoothing filter, "smooth" for cubic 
-		    spline smooth, "spline" for standard cubic spline smooth, 
-		    "supsmu" for Friedman's SuperSmoother,
-        "whit1" for weighted Whittaker smoothing with a first order finite 
-        difference penalty, "whit2" for weighted Whittaker smoothing 
-        with a second order finite difference penalty or "all" for all implemented
-        smoothing algorithms. 
+		    a vector of names defining which smoothing method 
+should be used. The Savitzky-Golay smoothing filter is the default 
+smoother. Use "lowess" for LOWESS smoother (locally-weighted polynomial 
+regression, "mova" for moving average, "savgol" for Savitzky-Golay 
+smoothing filter, "smooth" for cubic spline smooth, "spline" for standard 
+cubic spline smooth, "supsmu" for Friedman's SuperSmoother, "whit1" for 
+weighted Whittaker smoothing with a first order finite difference penalty, 
+"whit2" for weighted Whittaker smoothing with a second order finite 
+difference penalty or "all" for all implemented smoothing algorithms. 
   }
   \item{CPP}{
-		  logical parameter which indicates if CPP (curve pre-procssor) should 
-			be used.
+		  logical parameter which indicates if CPP (curve 
+pre-procssor) should be used.
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 
@@ -64,44 +66,45 @@ filter for amplification curve data.
 }
 \details{
 Amplification curve data of experimental thermo-cyclers may deliver results 
-which are hard to interpret due to noise and scatter. For data presentation it 
-is often useful to smooth or filter the data prior to presentation. Smoothing 
-and filtering are different approaches with a similar outcome to pre-process 
-an input signal in order to make it available for an analysis step. Filtering 
-uses methods of signal processing. They take a data input and apply a function 
-to form an output. There are linear and non-linear filters. The most common 
-example of a linear filter is the the moving average. A moving average filter 
-replaces sequentially data points with the average of the neighbor data 
-points. The average is calculated from a defined span ("window") of odd 
-count (e.g., 3, 5). The average herein may also refer to the median, the 
-geometric or exponential mean. Smoothing in contrast uses statistical 
-approaches. Such approaches use for example local regression models (e.g., 
-least squares estimate) or cubic splines. Splines apply non-parametric 
-regression by local cubic polynomials between knot points. Other examples for 
-smoothers include Savitzky-Golay smoothing filter, Friedman's SuperSmoother, 
-and Whittaker smoother. Several methods were integrated in the \code{chipPCR} 
-package. 
+which are hard to interpret due to noise and scatter. For data presentation 
+it is often useful to smooth or filter the data prior to presentation. 
+Smoothing and filtering are different approaches with a similar outcome to 
+pre-process an input signal in order to make it available for an analysis 
+step. Filtering uses methods of signal processing. They take a data input 
+and apply a function to form an output. There are linear and non-linear 
+filters. The most common example of a linear filter is the the moving 
+average. A moving average filter replaces sequentially data points with the 
+average of the neighbor data points. The average is calculated from a 
+defined span ("window") of odd count (e.g., 3, 5). The average herein may 
+also refer to the median, the geometric or exponential mean. Smoothing in 
+contrast uses statistical approaches. Such approaches use for example local 
+regression models (e.g., least squares estimate) or cubic splines. Splines 
+apply non-parametric regression by local cubic polynomials between knot 
+points. Other examples for smoothers include Savitzky-Golay smoothing 
+filter, Friedman's SuperSmoother, and Whittaker smoother. Several methods 
+were integrated in the \code{chipPCR} package. 
 
 The function \code{\link[chipPCR]{smoother}} is a wrapper for smoother 
-functions and filters commonly used to process amplification curve data. The 
-\code{\link[chipPCR]{smoother}} function was enhanced by functionality of the 
-\code{\link[chipPCR]{fixNA}} and \code{\link[chipPCR]{CPP}} functions. The 
-parameter "lowess" for LOWESS smoother (locally-weighted polynomial 
-regression) can be tuned by the parameters \code{f} and \code{iter} (see 
-\code{\link[stats]{lowess}} for details). The parameter "mova" for moving 
-average can be tuned by the parameter \code{movaww}. \code{movaww} is the 
-window size used for the moving average (see \code{\link[stats]{filter}} for 
-details). The parameter "savgol" for Savitzky-Golay smoothing filter can be 
-tuned by the parameter \code{p} (see \code{\link[signal]{sgolayfilt}} for 
-details). The parameter "smooth" for cubic spline smooth can be tuned by the 
-parameter \code{df.fact}. A \code{df.fact} value of 1 will leave the raw data 
-almost unaffected while a value 0.5 will smooth the curve considerably. For 
-further details refer to the \code{\link[stats]{smooth.spline}} function. The 
-parameter "spline" for standard cubic spline smooth has currently no 
-additional parameter. The parameter "supsmu" for Friedman's SuperSmoother can 
-be tuned by the parameter \code{span}. For further details refer to the 
-\code{\link[stats]{supsmu}} function. The parameter "lambda" for Weighted Whittaker 
-smoothing FIX ME.
+functions and filters commonly used to process amplification curve data. 
+The \code{\link[chipPCR]{smoother}} function was enhanced by functionality 
+of the \code{\link[chipPCR]{fixNA}} and \code{\link[chipPCR]{CPP}} 
+functions. The parameter "lowess" for LOWESS smoother (locally-weighted 
+polynomial regression) can be tuned by the parameters \code{f} and 
+\code{iter} (see \code{\link[stats]{lowess}} for details). The parameter 
+"mova" for moving average can be tuned by the parameter \code{movaww}. 
+\code{movaww} is the window size used for the moving average (see 
+\code{\link[stats]{filter}} for details). The parameter "savgol" for 
+Savitzky-Golay smoothing filter can be tuned by the parameter \code{p} (see 
+\code{\link[signal]{sgolayfilt}} for details). The parameter "smooth" for 
+cubic spline smooth can be tuned by the parameter \code{df.fact}. A 
+\code{df.fact} value of 1 will leave the raw data almost unaffected while a 
+value 0.5 will smooth the curve considerably. For further details refer to 
+the \code{\link[stats]{smooth.spline}} function. The parameter "spline" for 
+standard cubic spline smooth has currently no additional parameter. The 
+parameter "supsmu" for Friedman's SuperSmoother can be tuned by the 
+parameter \code{span}. For further details refer to the 
+\code{\link[stats]{supsmu}} function. The parameter "lambda" is used in 
+Weighted Whittaker smoothing.
 }
 
 \author{
@@ -191,8 +194,7 @@ plot(tmp, type = "b", col = 1, pch = 20, xlab = "", ylab = "RFU",
       main = "Raw data")
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ smooth }
 \keyword{ spline }
 \keyword{ Friedman }

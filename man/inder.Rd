@@ -24,7 +24,7 @@ that the sign of the derivative is changed.
 \usage{
 inder(x, y, Nip = 4, logy = FALSE, smooth.method = "spline")
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{
 is a \code{numeric} vector of independent variable or data frame/matrix 
@@ -125,8 +125,7 @@ plot(isPCR, xlab = "Cycle", ylab = "RFU", ylim = c(-0.15,1),
   legend(1, 1, c("raw", "first derivative", "second derivative"), 
 	 col = c(1,4,2), lty = c(2,1,1), cex = 1.2)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ math }
 \keyword{ derivative }
 \keyword{ SDM }

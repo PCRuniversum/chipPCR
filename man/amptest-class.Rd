@@ -8,23 +8,28 @@
 
 \title{Class \code{"amptest"}}
 \description{
-An S4 class containing the output \code{\link[chipPCR]{amptester}} function.
+An S4 class containing the output \code{\link[chipPCR]{amptester}} 
+function.
 }
 
 \section{Slots}{
   \describe{
-    \item{\code{.Data}:}{\code{"numeric"} is a vector containing the fluorescence values.}
-    \item{\code{decision}:}{\code{"integer"} FIX ME}
-    \item{\code{noiselevel}:}{ \code{"numeric"} threshold for a significant amplification 
-    signal.}
-    \item{\code{background}:}{range of the background signal in the amplification curve.}
+    \item{\code{.Data}:}{\code{"numeric"} is a vector containing the 
+			 fluorescence values.}
+    \item{\code{decision}:}{\code{"integer"} states if the amplification 
+			    is "positive" or "negative"}
+    \item{\code{noiselevel}:}{ \code{"numeric"} threshold for a 
+			      significant amplification signal.}
+    \item{\code{background}:}{range of the background signal in the 
+			      amplification curve.}
 }
 }
 \section{Methods}{
   \describe{
-    \item{summary}{\code{signature(object = "amptest")}: prints summary of the object.}
-    \item{show}{\code{signature(object = "amptest")}: prints only \code{.Data} slot of the
-    object.}
+    \item{summary}{\code{signature(object = "amptest")}: prints summary 
+		   of the object.}
+    \item{show}{\code{signature(object = "amptest")}: prints only 
+		\code{.Data} slot of the object.}
    }
 }
 \author{

@@ -15,16 +15,20 @@ Multiple comparison of the cycle dependent variance of the refMFI
 variance of the refMFI.
 }
 \usage{
-\S4method{MFIaggr}{numeric,numeric}(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, rob = FALSE, llul = c(1,10))
-\S4method{MFIaggr}{matrix,missing}(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, rob = FALSE, llul = c(1,10))
-\S4method{MFIaggr}{data.frame,missing}(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, rob = FALSE, llul = c(1,10))
+\S4method{MFIaggr}{numeric,numeric}(x, y, cyc = 1, fluo = 2:ncol(x), 
+		   RSD = FALSE, rob = FALSE, llul = c(1,10))
+\S4method{MFIaggr}{matrix,missing}(x, y, cyc = 1, fluo = 2:ncol(x), 
+		   RSD = FALSE, rob = FALSE, llul = c(1,10))
+\S4method{MFIaggr}{data.frame,missing}(x, y, cyc = 1, fluo = 2:ncol(x), 
+		   RSD = FALSE, rob = FALSE, llul = c(1,10))
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{ is the column of a data frame for the cycle. }
   
   \item{y}{ are multiple columns of fluorescence values from a 
-\code{data.frame} (e.g., [, c(1:n)]). Ommited if \code{x} is matrix or data frame.}
+	    \code{data.frame} (e.g., [, c(1:n)]). Ommited if \code{x} is 
+	    matrix or data frame.}
 
   \item{cyc}{ is the index of column containing the cycle data. 
   Used only if \code{x} is matrix or data frame.}
@@ -84,3 +88,7 @@ plot(MFIaggr(VIMCFX96_60, fluo = c(2, 4)))
 }
 
 \keyword{ deviation }
+\keyword{ fluorescence }
+\keyword{ deviation }
+\keyword{ fluorescence }
+\keyword{ distribution }

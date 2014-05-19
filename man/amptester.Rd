@@ -1,6 +1,6 @@
 \name{amptester}
 \alias{amptester}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Amplification test
 }
@@ -11,7 +11,7 @@ amplification is significant.
 \usage{
 amptester(y, manual = FALSE, noiselevel = 0.08, background = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{y}{
         is a vector containing the fluorescence values.
@@ -113,7 +113,5 @@ legend(1,40, c("Positive", "Negative Control (noise)",
 	lwd = 2)
 }
 
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{ amplification }
 \keyword{ threshold }

@@ -20,7 +20,7 @@ However, the data can also be estimated from an approximation by splines.
 \S4method{fixNA}{matrix,missing}(x, y, spline = TRUE, verbose = FALSE)
 \S4method{fixNA}{data.frame,missing}(x, y, spline = TRUE, verbose = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{
     \code{x} is a vector containing the time or cycle values or data frame/matrix where second
@@ -109,8 +109,7 @@ plot(res.NA.spline, xlab = "Cycles", ylab = "Fluorescence", type = "b",
      abline(h = c(0.09, 0.14), col = "grey")     
 par(mfrow = c(1,1))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ spline }
 \keyword{ isothermal }
 \keyword{ linear }

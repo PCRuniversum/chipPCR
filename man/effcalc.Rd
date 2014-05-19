@@ -35,7 +35,7 @@ Analysis of the emplification efficiency
 		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
 		    col = "black")        
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{ is the column of a data frame for the concentration 
 	    (dilution). }

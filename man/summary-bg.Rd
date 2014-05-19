@@ -12,13 +12,14 @@ Summarize \code{\linkS4class{bg}} objects and easily access results of
 \usage{
 \S4method{summary}{bg}(object, print = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{object}{
 is a \code{\linkS4class{bg}} object.
 }
   \item{print}{
-is a \code{logical} value determining if pretty summary of the object should be printed.
+is a \code{logical} value determining if pretty summary of the object 
+should be printed.
 }
  
 }
