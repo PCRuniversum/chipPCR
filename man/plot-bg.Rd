@@ -47,6 +47,7 @@ is a vectors of colors used in plot. Must have length 3.
 Arguments to be passed further to the plot function, such as graphical parameters.
 }
 }
+
 \author{
 Stefan Roediger, Michal Burdukiewicz
 }

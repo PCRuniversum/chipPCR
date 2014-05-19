@@ -101,7 +101,8 @@ estimator  or a standard linear regression model. Care is needed when using
 Stefan Roediger, Michal Burdukiewicz
 }
 
-\seealso{ \code{\link[quantreg]{rq}}, \code{\link[Rfit]{rfit}}, 
+\seealso{ 
+\code{\link[quantreg]{rq}}, \code{\link[Rfit]{rfit}}, 
 \code{\link[stats]{lm}}}
 
 \examples{
