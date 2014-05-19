@@ -5,9 +5,8 @@
 Round der objects
 }
 \description{
-Function \code{\link[chipPCR]{inder}} calculates numeric derivatives on smoothed data which results
-in data points not observable in reality. The \code{rounder} function averages such result
-to the real values of cycle number.
+Function \code{\link[chipPCR]{inder}} calculates numeric derivatives on smoothed data which results in data points not observable in reality. The \code{rounder} function averages 
+such result to the real values of cycle number.
 }
 \usage{
 rounder(object, cyc = 1)
@@ -21,9 +20,6 @@ a class \code{\linkS4class{der}} object.
 a column containing cycle numbers after smoothing. In case of objects created by the
 \code{\link[chipPCR]{inder}} function it is the first column.
 }
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
 }
 \value{
 An object of the class \code{\linkS4class{der}} containing cycle number and averaged values of

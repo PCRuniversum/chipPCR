@@ -5,7 +5,7 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
 		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
 		    col = "black"){
 		    
-  testxy(x, y, txt.x = "Enter Concentration", txt.y = "Enter Cq data")
+  testxy(x, y, txt.x = "Enter Concentration", txt.y = "Enter Cq data", length = FALSE)
 
   
   if (logx) {

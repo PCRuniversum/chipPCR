@@ -33,7 +33,9 @@ is a \code{\linkS4class{refMFI}} object.
 
 \item{col}{ \code{col} is a graphical parameter used to define the length 
            of the error bar used in the plot. }
-
+}
+\details{
+The plot being a result of this function is built from three subplots.
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz

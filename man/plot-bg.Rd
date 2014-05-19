@@ -48,12 +48,17 @@ Arguments to be passed further to the plot function, such as graphical parameter
 }
 }
 
+\details{
+\code{plot.bg} is simplified, ready-to-use version of \code{\link[chipPCR]{plot.der}}, which 
+still can be used whenever more flexible function is needed.
+}
+
 \author{
 Stefan Roediger, Michal Burdukiewicz
 }
 
 \seealso{
-\code{\linkS4class{bg}}
+\code{\linkS4class{bg}}, \code{\link[chipPCR]{plot.der}}
 }
 \examples{
 
@@ -65,12 +70,10 @@ background <- bg.max(res)
 plot(background)
 
 #above is equivalent of below
-plot(res, xlim = c(1, 40), ylim = c(-0.1, 1), xlab = "Cycles", 
+plot(rounder(inder(res)), xlab = "Cycles", 
      ylab = "Fluorescence",
-     type = "b", pch = 20)
+     pch = 20, legend = FALSE)
 
-points(slot(background, "d"), col = "red", type = "b", pch = 20)
-points(slot(background, "d1"), col = "blue", type = "b", pch = 20)
 abline(v = slot(background, "bg.start"))
   text(slot(background, "bg.start"), 0.2, "Background start", pos = 4)
 abline(v = slot(background, "bg.stop"), col = "blue")

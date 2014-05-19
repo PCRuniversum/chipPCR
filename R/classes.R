@@ -54,7 +54,7 @@ setMethod("show", signature(object = "der"), function(object) {
   print(slot(object, ".Data"))
 })
 
-setMethod("plot", signature(x = "der"), function(x, what = 1:3, add = FALSE, indicators = TRUE,
+setMethod("plot", signature(x = "der"), function(x, what = 1:3, add = FALSE,
                                                  legend = TRUE,
                                                  plot.colors = c("black", "red", "blue"), 
                                                  ...) {
@@ -67,8 +67,6 @@ setMethod("plot", signature(x = "der"), function(x, what = 1:3, add = FALSE, ind
   if (length(plot.colors) != 3) 
     stop("'plot.colors' must contain three colors.")
   
-  
-  
   #smallest and biggest fluorescence values
   ylims <- range(sapply(what + 1, function(i) {
     x[, i]
@@ -76,18 +74,10 @@ setMethod("plot", signature(x = "der"), function(x, what = 1:3, add = FALSE, ind
   
   if(!add) {
     plot(x = range(x[, 1]),  y = ylims, cex = 0, ...)
-    
-    #     if (indicators) {
-    #       abline(v = slot(x, "bg.start"))
-    #       text(slot(x, "bg.start"), 0.2, "Background start", pos = 4)
-    #       abline(v = slot(x, "bg.stop"), col = "blue")
-    #       text(slot(x, "bg.stop"), 0.25, "Background stop", pos = 4, col = "blue")
-    #       abline(v = slot(x, "amp.stop"), col = "green")
-    #       text(slot(x, "amp.stop"), 0.3, "Plateau transition", pos = 4, col = "green")
-    #     }
   }
+  
   for (i in what)
-    points(x[, c(1, i + 1)], col = plot.colors[i], type = "b", pch = 20)
+    points(x[, c(1, i + 1)], col = plot.colors[i], pch = 20, type = "b")
   
   
   if (legend)
@@ -121,6 +111,9 @@ setMethod("summary", signature(object = "bg"), function(object, print = TRUE) {
               fluo = slot(object, "fluo")))
 })
 
+setMethod("show", signature(object = "bg"), function(object) {
+  print(slot(object, ".Data"))
+})
 
 setMethod("plot", signature(x = "bg"), function(x, what = 1:3, add = FALSE, 
                                                 indicators = TRUE, 

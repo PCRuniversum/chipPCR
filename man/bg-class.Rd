@@ -2,6 +2,8 @@
 \docType{class}
 \alias{bg-class}
 \alias{bg}
+\alias{show.bg}
+\alias{show,bg-method}
 
 \title{Class \code{"bg"}}
 \description{
@@ -20,11 +22,14 @@ An S4 class containing the output \code{\link[chipPCR]{bg.max}} function.
 }
 \section{Methods}{
   \describe{
+  \item{plot}{\code{signature(x = "bg")}: plots background information. 
+    See \code{\link[chipPCR]{plot.bg}}}
+  \item{show}{\code{signature(object = "bg")}: prints only \code{.Data} slot of the
+    object.}
     \item{summary}{\code{signature(object = "bg")}: prints information about object 
     prettier than \code{show} and allows easy access to some slots. See 
     \code{\link[chipPCR]{summary.bg}}}
-    \item{plot}{\code{signature(x = "bg")}: plots background information. 
-    See \code{\link[chipPCR]{plot.bg}}}
+    
    }
 }
 \author{
