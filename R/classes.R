@@ -242,9 +242,10 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     par(fig = c(0.65,1,0.5,1), new = TRUE)
     
     plot(res.dens, xlab = "RFU", main = paste("ROI cycle ", 
-                                              llul[1], " to ", llul[2], "\n", "bw ", 
-                                              round(res.dens[["bw"]], 3), "\n", "N ", 
-                                              res.dens[["n"]], 
+                                              llul[1], " to ", llul[2], 
+                                              "\n", "bw ", 
+                                              round(res.dens[["bw"]], 3), 
+                                              "\n", "N ", res.dens[["n"]], 
                                               sep = ""))
     
   }
