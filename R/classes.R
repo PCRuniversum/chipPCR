@@ -217,15 +217,18 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     par(fig = c(0.65,1,0.5,1), new = TRUE)
     
     plot(res.dens, xlab = "RFU", main = paste("Cycle ", 
-                                              llul[1], " to ", llul[2], "\n", "bw ", 
-                                              round(res.dens$bw, 3), "\n", "N ", res.dens$n, 
+                                              llul[1], " to ", llul[2], 
+                                              "\n", "bw ", 
+                                              round(res.dens$bw, 3), 
+                                              "\n", "N ", res.dens$n, 
                                               sep = ""))
     
   } else {
     par(fig = c(0,0.6,0,1))
     plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
-                                      max(res[, 2] + res[, 3])), xlab = "Cycle", 
-         ylab = "MFI", type = type, pch = pch, col = col,
+                                      max(res[, 2] + res[, 3])), 
+                                      xlab = "Cycle", ylab = "MFI", 
+                                      type = type, pch = pch, col = col,
          main = paste("ROI samples: ", ncol_y, "\n",
                       "ROI mean: ", stats[1], " +- ", stats[3], "\n",
                       "ROI median: ", stats[2], " +- ", stats[4],

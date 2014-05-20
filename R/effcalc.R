@@ -5,7 +5,8 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
 		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
 		    col = "black"){
 		    
-  testxy(x, y, txt.x = "Enter Concentration", txt.y = "Enter Cq data", length = FALSE)
+  testxy(x, y, txt.x = "Enter Concentration", txt.y = "Enter Cq data", 
+	  length = FALSE)
 
   
   if (logx) {
@@ -177,8 +178,8 @@ setMethod("effcalc", signature(x = "data.frame", y="missing"),
                     xlab = xlab, ylab = ylab, 
                     main = main, RSD = RSD, rob = rob, 
                     trend = trend, res.fit = res.fit, CI = CI, level = level,
-                    show.res = show.res, type = type, pch = pch, length = length, 
-                    col = col)
+                    show.res = show.res, type = type, pch = pch, 
+                    length = length, col = col)
           })
 
 setMethod("effcalc", signature(x = "matrix", y="missing"), 
@@ -193,7 +194,7 @@ setMethod("effcalc", signature(x = "matrix", y="missing"),
             effcalc(x[, 1], x[, 2], logx = logx, CV = CV, 
                     xlab = xlab, ylab = ylab, 
                     main = main, RSD = RSD, rob = rob, 
-                    trend = trend, res.fit = res.fit, CI = CI, level = level,
-                    show.res = show.res, type = type, pch = pch, length = length, 
-                    col = col)
+                    trend = trend, res.fit = res.fit, CI = CI, 
+                    level = level, show.res = show.res, type = type, 
+                    pch = pch, length = length, col = col)
           })

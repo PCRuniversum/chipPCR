@@ -1,5 +1,5 @@
 AmpSim <- function(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1, 
-		   Cq = 20, b = 0, noise = FALSE, nnl = 0.025, 
+		   Cq = 20, noise = FALSE, nnl = 0.025, 
 		   nnl.method = "constant") {
 #   tmp.warn <- getOption("warn")
 #   options(warn = -1)

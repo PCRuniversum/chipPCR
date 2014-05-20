@@ -1,4 +1,5 @@
-MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, rob = FALSE, llul = c(1,10)){
+MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, 
+		    rob = FALSE, llul = c(1,10)){
   
   #Define if "robust" or standard function should be used as measures
   #Test if x and y exist.
@@ -93,12 +94,14 @@ setGeneric("MFIaggr")
 
 
 setMethod("MFIaggr", signature(x = "data.frame", y="missing"), 
-          function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, rob = FALSE, llul = c(1,10)) { 
+          function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, 
+		   rob = FALSE, llul = c(1,10)) { 
             MFIaggr(x[, cyc], x[, fluo], RSD = RSD, rob = rob, llul = llul)
           })
 
 setMethod("MFIaggr", signature(x = "matrix", y="missing"), 
-          function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, rob = FALSE, llul = c(1,10)) { 
+          function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, 
+		   rob = FALSE, llul = c(1,10)) { 
             MFIaggr(x[, cyc], x[, fluo], RSD = RSD, rob = rob, llul = llul)
           })
 

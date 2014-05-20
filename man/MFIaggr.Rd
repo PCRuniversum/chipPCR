@@ -43,7 +43,7 @@ standard deviation (RSD) in percent. }
 absolute deviation (MAD) are calculated instead of the mean and standard 
 deviation. }
   
- \item{llul}{ \code{llul} is a parameter to define the lower and upper 
+ \item{llul}{ is a parameter to define the lower and upper 
   data limit (cycle), aka region of interest (ROI) used for the density 
   and quantile plot. }
 }
