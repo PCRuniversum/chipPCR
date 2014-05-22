@@ -63,9 +63,9 @@ Polymerase Chain Reaction Data Analysis \emph{Journal of Computational
 Biology}, 2013, Vol. 20(9), pp. 703-711
 
 Ruijter, J. M., Ramakers, C., Hoogaars, W. M. H., Karlen, Y., Bakker, O., 
-Hoff, M. J. B. v. d. and Moorman, A. F. M. Amplification efficiency: linking 
-baseline and bias in the analysis of quantitative PCR data, \emph{Nucleic 
-Acids Research}, 2009, Vol. 37(6), pp. e45-e45
+Hoff, M. J. B. v. d. and Moorman, A. F. M. Amplification efficiency: 
+linking baseline and bias in the analysis of quantitative PCR data, 
+\emph{Nucleic Acids Research}, 2009, Vol. 37(6), pp. e45-e45
 
 Rutledge, R. G. and Stewart, D. A kinetic-based sigmoidal model for the 
 polymerase chain reaction and its application to high-capacity absolute 
@@ -79,9 +79,10 @@ Wilhelm, J., Pingoud, A. and Hahn, M. SoFAR: software for fully automatic
 evaluation of real-time PCR data \emph{BioTechniques}, 2003, Vol. 34(2), 
 pp. 324-332
 
-Zhao, S. and Fernald, R. D. Comprehensive Algorithm for Quantitative Real-Time 
-Polymerase Chain Reaction \emph{Journal of computational biology: a journal of 
-computational molecular cell biology}, 2005, Vol. 12(8), pp. 1047-1064
+Zhao, S. and Fernald, R. D. Comprehensive Algorithm for Quantitative 
+Real-Time Polymerase Chain Reaction \emph{Journal of computational biology: 
+a journal of computational molecular cell biology}, 2005, Vol. 12(8), pp. 
+1047-1064
 
 }
 \author{

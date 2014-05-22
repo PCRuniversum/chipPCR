@@ -92,7 +92,7 @@ legend(40, 0.5, c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(1:3),
 	pch = rep(20,3))
 text(1,0.8, "A)", cex = 3)
 
-plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "time [min]", 
+plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "Time [min]", 
      ylab = "RFI", main = "VideoScan HCU HDA amplification\nMoving average")
 movaww <- seq(1,17,4)
 for (i in 1:length(movaww)) {
@@ -110,7 +110,7 @@ legend(2, 0.8, c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(1:3),
 legend(25,0.6, paste("movaww : ", movaww), pch = 20, lwd = 2, 
 	col = 1:length(movaww))
 
-plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "time [min]", 
+plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "Time [min]", 
      ylab = "RFI", main = "VideoScan HCU HDA amplification\nCubic Spline")
 df.fact <- seq(0.5,0.9,0.1)
 for (i in 1:length(df.fact)) {
@@ -129,7 +129,7 @@ legend(2, 0.8, c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(1:3),
 legend(25,0.6, paste("df.fact : ", df.fact), pch = 20, lwd = 2, 
 	col = 1:length(df.fact))
 
-plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "time [min]", 
+plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "Time [min]", 
      ylab = "RFI", main = "VideoScan HCU HDA amplification\nLowess")
 f <- seq(0.01,0.2,0.04)
 for (i in 1:length(f)) {
@@ -148,7 +148,7 @@ legend(2, 0.8, c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(1:3),
 legend(25,0.6, paste("f : ", f), pch = 20, lwd = 2, col = 1:length(f))
 
 
-plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "time [min]", 
+plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "Time [min]", 
      ylab = "RFI", main = "VideoScan HCU HDA amplification
 			    \nFriedman's ''super smoother''")
 span <- seq(0.01,0.05,0.01)
