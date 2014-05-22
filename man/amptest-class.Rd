@@ -18,8 +18,9 @@ function.
 			 fluorescence values.}
     \item{\code{decision}:}{\code{"integer"} states if the amplification 
 			    is "positive" or "negative"}
-    \item{\code{noiselevel}:}{ \code{"numeric"} threshold for a 
+    \item{\code{noiselevel}:}{ \code{"numeric"} user-defined threshold for a 
 			      significant amplification signal.}
+    \item{\code{noise}:}{ \code{"logical"} \code{TRUE} if noise was detected.}
     \item{\code{background}:}{range of the background signal in the 
 			      amplification curve.}
 }

@@ -8,6 +8,7 @@ setClassUnion("numericOrNULL",c("numeric","NULL"))
 setClass("amptest", contains = "numeric", representation(.Data = "numeric", 
                                                          decision = "character",
                                                          noiselevel = "numeric",
+                                                         noise = "logical",
                                                          background = "numericOrNULL"))
 
 setMethod("show", signature(object = "amptest"), function(object) {
@@ -16,7 +17,8 @@ setMethod("show", signature(object = "amptest"), function(object) {
 
 setMethod("summary", signature(object = "amptest"), function(object) {
   print(slot(object, ".Data"))
-  cat(paste0("\nDecision: ", slot(object, "decision")))  
+  cat(paste0("\nAmplification significance (decision): ", slot(object, "decision")))  
+  cat(paste0("\nNoise detected: ", slot(object, "noise")))
   cat(paste0("\nNoise level: ", slot(object, "noiselevel")))
   bcg <- slot(object, "background")
   if (is.null(bcg)) {
@@ -198,7 +200,7 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   ncol_y <- ncol(slot(x, "qqnorm.data"))
   #Plot the Coefficient of Variance
   
-  if (CV == FALSE) {
+  if (CV) {
     par(fig = c(0,0.6,0,1))
     plot(res[, 1], res[, 4], xlab = "Cycle", ylab = "CV", 
          type = type, pch = pch, col = col,
@@ -238,6 +240,9 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     arrows(res[, 1], res[, 2] + res[, 3], res[, 1], 
            res[, 2] - res[, 3], angle = 90, code = 3, 
            length = length, col = col)
+    deviation.measure <- strsplit(colnames(res)[3], "(", fixed = TRUE)[[1]][2]
+    deviation.measure <- substr(deviation.measure, 1, nchar(deviation.measure) - 1)
+    mtext(paste0("Deviation: ", deviation.measure), 4)
     
     par(fig = c(0.65,1,0.5,1), new = TRUE)
     
