@@ -204,7 +204,7 @@ tmp <- data.frame(dilution[1:6],
 # Determine the amplification efficiency by using the effcalc function
 effcalc(tmp[, 1], tmp[, 2:4], CI = TRUE)
 mtext("B", cex = 2, side = 3, adj = 0, font = 2) 
-
+par(mfrow = c(1,1))
 }
 
 \keyword{ efficiency }
