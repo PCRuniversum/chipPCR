@@ -1,4 +1,4 @@
-bg.max <- function(x, y, bg.corr = 1.3, bg.start = 1, inder.approx = TRUE) {
+bg.max <- function(x, y, bg.corr = 1.3, bg.start = 2, inder.approx = TRUE) {
   testxy(x, y)
   
   input <- data.frame(cyc = x, fluo = y)

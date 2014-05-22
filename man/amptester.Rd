@@ -31,20 +31,21 @@ amptester(y, manual = FALSE, noiselevel = 0.08, background = NULL)
 }
 }
 \details{
-  The function tries to estimate if a amplification process is taking place. 
-  To do so a several instances of tests are includes. The first involves a 
-  semiautomatic test if the range of the background is lower than the range of 
-  the assumed signal. To differ between the ranges an instance of 
-  \code{\link[chipPCR]{bg.max}} is used. Herein, the function assumes that an 
-  amplification takes place in case the signal of the amplification is larger 
-  than the mean + 5SD than the background. The automatic test uses a Student's 
-  t-Test \code{\link[stats]{t.test}} to compare the the beginning and the end 
-  of the data. The input values are delivered by \code{\link[utils]{head}} 
-  and \code{\link[utils]{tail}}, respectively. For other methods please refer 
-  to the references listed below. Instead of assigning a zero to negative 
-  amplification reaction uses the current implementation of 
-  \code{\link[chipPCR]{amptester}} very small random values. This is because 
-  some post function might fail in case all values are set to zero.
+  The function tries to estimate if a amplification process is taking 
+place. To do so a several instances of tests are includes. The first 
+involves a semiautomatic test if the range of the background is lower than 
+the range of the assumed signal. To differ between the ranges an instance 
+of \code{\link[chipPCR]{bg.max}} is used. Herein, the function assumes that 
+an amplification takes place in case the signal of the amplification is 
+larger than the \code{\link[stats]{median}} + 5 * \code{\link[stats]{mad}} 
+than the background. The automatic test uses a Student's t-Test 
+\code{\link[stats]{t.test}} to compare the the beginning and the end of the 
+data. The input values are delivered by \code{\link[utils]{head}} and 
+\code{\link[utils]{tail}}, respectively. For other methods please refer to 
+the references listed below. Instead of assigning a zero to negative 
+amplification reaction uses the current implementation of 
+\code{\link[chipPCR]{amptester}} very small random values. This is because 
+some post function might fail in case all values are set to zero.
 }
 
 \references{
