@@ -62,10 +62,11 @@ for (i in c(1,3,5,7)) {
 abline(h = 290, v = c(18, 23, 35))
 legend(60,800, c("Run 1", "Run 2", "Run 3", "Control"), pch = 20, lwd = 2)
   
+# Second example
 par(mfrow = c(2,1))
 
 type <- c("mova", "spline", "savgol")
-plot(NA, NA, xlim = c(0,80), ylim = c(-50,1100), xlab = "time [min]", 
+plot(NA, NA, xlim = c(0,80), ylim = c(0,1100), xlab = "time [min]", 
      ylab = "Voltage [micro V]", main = "ccPCR with mova, 
      spline and savgol")
 for (i in 1:3) {
@@ -78,10 +79,11 @@ for (i in 1:3) {
   }
 }
 
-abline(h = 50, v = c(17.5, 21.3, 32.9))
-legend(0,1000, c("mova", "spline", "savgol"), pch = 20, lwd = 2, col = c(1:3))
+abline(h = 200, v = c(17.5, 21.3, 32.9))
+legend(0, 1000, c("mova", "spline", "savgol"), pch = 20, lwd = 2, 
+	col = c(1:3))
   
-plot(NA, NA, xlim = c(10,40), ylim = c(-50,100), xlab = "time [min]", 
+plot(NA, NA, xlim = c(10,40), ylim = c(50,300), xlab = "time [min]", 
      ylab = "Voltage [micro V]", main = "ccPCR with mova, 
      spline and savgol")
 for (i in 1:3) {
@@ -93,12 +95,13 @@ for (i in 1:3) {
 	    col = i)
   }
 }
-abline(h = 50, v = c(17.5, 21.3, 32.9))
-legend(35,80, c("mova", "spline", "savgol"), pch = 20, lwd = 2, col = c(1:3))
+abline(h = 200, v = c(17.5, 21.3, 32.9))
+legend(10, 300, c("mova", "spline", "savgol"), pch = 20, lwd = 2, 
+	col = c(1:3))
 
 par(mfrow = c(1,1))
 
-# Second example
+# Third example
 method <- c("lowess","mova","savgol","smooth","spline", "supsmu")
 
 plot(NA, NA, xlim = c(0,100), ylim = c(-50,1100), xlab = "time [min]", 
@@ -115,8 +118,8 @@ for (i in 1:length(method)) {
 legend(0,1000, method, pch = 20, lwd = 2, col = 1:length(method))
 
 
-par(fig = c(0.5,1,0.15,0.75), new = TRUE)
-plot(NA, NA, xlim = c(10,40), ylim = c(-50,200), xlab = "time [min]", 
+par(fig = c(0.5,1,0.25,0.8), new = TRUE)
+plot(NA, NA, xlim = c(10,40), ylim = c(50,300), xlab = "time [min]", 
      ylab = "Voltage [micro V]", main = "")
 for (i in 1:length(method)) {
   for (j in c(1,3,5,7)) {
@@ -129,13 +132,12 @@ for (i in 1:length(method)) {
 }
 legend(0,1000, method, pch = 20, lwd = 2, col = 1:length(method))
 
-# Third example
+# Fourth example
 # Comparison of Lowess, Moving average and splines to smooth amplification 
 # curve data of
 # a capillary convective PCR.
-par(mfrow = c(2,1), cex = 0.9)
 
-plot(NA, NA, xlim = c(10,40), ylim = c(-50,200), xlab = "time [min]", 
+plot(NA, NA, xlim = c(10,40), ylim = c(50, 300), xlab = "time [min]", 
      ylab = "Voltage [micro V]", main = "ccPCR - Moving average")
 movaww <- seq(1,17,4)
 for (i in 1:length(movaww)) {
@@ -149,11 +151,11 @@ for (i in 1:length(movaww)) {
 		  cex = 0.5, col = i)
   }
 }
-text(10,160, "A)", cex = 3)
+text(10,300, "A)", cex = 3)
 legend(25,200, paste("movaww : ", movaww), pch = 20, lwd = 2, 
 	col = 1:length(movaww))
 
-plot(NA, NA, xlim = c(10,40), ylim = c(-50,200), xlab = "time [min]", 
+plot(NA, NA, xlim = c(10,40), ylim = c(50, 300), xlab = "time [min]", 
      ylab = "Voltage [micro V]", main = "ccPCR - Cubic Spline")
 df.fact <- seq(0.5,0.9,0.1)
 for (i in 1:length(df.fact)) {
@@ -167,13 +169,12 @@ for (i in 1:length(df.fact)) {
 		  cex = 0.5, col = i)
   }
 }
-text(10,160, "B)", cex = 3)
-legend(25,200, paste("df.fact : ", df.fact), pch = 20, lwd = 2, 
+text(10,300, "B)", cex = 3)
+legend(30,200, paste("df.fact : ", df.fact), pch = 20, lwd = 2, 
 	col = 1:length(df.fact))
+	
 
-par(mfrow = c(2,1), cex = 0.9)
-
-plot(NA, NA, xlim = c(10,40), ylim = c(-50,200), xlab = "time [min]", 
+plot(NA, NA, xlim = c(10,40), ylim = c(50, 300), xlab = "time [min]", 
      ylab = "Voltage [micro V]", main = "ccPCR - Lowess")
 f <- seq(0.01,0.2,0.04)
 for (i in 1:length(f)) {
@@ -186,10 +187,10 @@ for (i in 1:length(f)) {
 		  cex = 0.5, col = i)
   }
 }
-text(10,160, "C)", cex = 3)
-legend(25,200,  paste("f : ", f), pch = 20, lwd = 2, col = 1:length(f))
+text(10,300, "C)", cex = 3)
+legend(30,200,  paste("f : ", f), pch = 20, lwd = 2, col = 1:length(f))
 
-plot(NA, NA, xlim = c(10,40), ylim = c(-50,200), xlab = "time [min]", 
+plot(NA, NA, xlim = c(10,40), ylim = c(50, 300), xlab = "time [min]", 
      ylab = "Voltage [micro V]", 
      main = "ccPCR - Friedman's ''super smoother''")
 span <- seq(0.01,0.05,0.01)
@@ -204,7 +205,7 @@ for (i in 1:length(span)) {
 		  cex = 0.5, col = i)
   }
 }
-text(10,160, "D)", cex = 3)
+text(10,300, "D)", cex = 3)
 legend(25,200,  paste("span : ", f), pch = 20, lwd = 2, col = 1:length(span))
 
 par(mfrow = c(1,1), cex = 1)

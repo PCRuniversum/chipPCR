@@ -26,15 +26,14 @@ amptester <-
     }
     
     if (manual) {
-      noisebackground <- mean(y[background]) + 5 * sd(y[background])
-      signal  <- mean(y[-(background)])
+      signal  <- median(y[-(background)])
       if (signal <= noiselevel) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
       }
-      if ((mean(y) + 3 * sd(y)) <= noiselevel) {
+      if ((median(y[-(background)]) + 1.5 * mad(y[-(background)])) <= noiselevel) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
       }
-      decision <- "unknown"
+      decision <- "positive"
     } else {
       # Apply a simple rule to take the first 20 percent and the last 15 percent
       # of any input data set to calculate the number of elements for the head 
@@ -43,6 +42,7 @@ amptester <-
       
       nh <- trunc(length(y) * 0.2)
       nt <- trunc(length(y) * 0.15)
+      
       if (t.test(head(y, n = nh), tail(y, n = nt), 
 		  alternative = "less")$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
@@ -50,6 +50,19 @@ amptester <-
         
       } else {
         decision <- "positive"
+      }
+      
+      # Final test
+      # The meaninfulness can be tested by comparison of the signals
+      # 1) A robust "sigma" rule by median + 2 * mad 
+      # 2) comparison of the signal/noise ratio. If less than 1.3 (30 percent) 
+      # signal increase it is likely that nothing happened during the reaction.
+      noisebackground <- median(head(y, n = nh)) + 2 * mad(head(y, n = nh))
+      signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
+      if (signal <= noisebackground || signal/noisebackground <= 1.3) {
+	  decision <- "negative"
+      } else {
+	  decision <- "positive"
       }
     }
     new("amptest", 
