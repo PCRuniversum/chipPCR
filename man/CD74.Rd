@@ -86,9 +86,9 @@ implication of its physicochemical properties for qPCR applications.
 # dye EvaGreen and hydrolsis probes.
 
 data(CD74)
-par(mfrow = c(2,1))
+par(mfrow = c(1,2))
 plot(NA, NA, xlim = c(1,30), ylim = c(0,2), xlab = "Cycle", 
-     ylab = "MFI", main = "VideoScan HCU - Raw Data")
+     ylab = "MFI", main = "VideoScan HCU\nRaw Data")
 lim <- 1:30
 for (j in c(2:4)) {
   for (i in seq(j,19,6)) {
@@ -101,8 +101,8 @@ for (j in c(5:7)) {
   }
 }
 
-plot(NA, NA, xlim = c(1,30), ylim = c(0,0.8), xlab = "Cycle", 
-     ylab = "MFI", main = "VideoScan HCU - Smoothed Data")
+plot(NA, NA, xlim = c(1,30), ylim = c(0,1.8), xlab = "Cycle", 
+     ylab = "MFI", main = "VideoScan HCU\nSmoothed Data")
 lim <- 1:30
 for (j in c(2:4)) {
   for (i in seq(j,19,6)) {
