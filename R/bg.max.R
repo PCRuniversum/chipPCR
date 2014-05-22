@@ -62,7 +62,7 @@ setGeneric("bg.max")
 
 
 setMethod("bg.max", signature(x = "data.frame", y="missing"), 
-          function(x, y, bg.corr = 1.3, bg.start = 1, 
+          function(x, y, bg.corr = 1.3, bg.start = 2, 
                    inder.approx = TRUE) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
@@ -70,7 +70,7 @@ setMethod("bg.max", signature(x = "data.frame", y="missing"),
           })
 
 setMethod("bg.max", signature(x = "matrix", y = "missing"), 
-          function(x, y, bg.corr = 1.3, bg.start = 1, 
+          function(x, y, bg.corr = 1.3, bg.start = 2, 
                    inder.approx = TRUE) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")

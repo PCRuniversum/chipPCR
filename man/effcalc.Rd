@@ -115,11 +115,32 @@ Ruhland, I. Schimke, D. Roggenbuck, W. Lehmann and C. Schroeder.
 \emph{Advances in Biochemical Bioengineering/Biotechnology}. 133:33--74, 
 2013. \url{http://www.ncbi.nlm.nih.gov/pubmed/22437246}
 
-Nucleic acid detection based on the use of microbeads: a review. S. 
-Roediger, C. Liebsch, C. Schmidt, W. Lehmann, U. Resch-Genger, U. Schedler, 
-P. Schierack. \emph{Microchim Acta} 2014:1--18. DOI: 
-10.1007/s00604-014-1243-4
+S. Mehra and W.-S. Hu. A kinetic model of quantitative real-time polymerase 
+chain reaction. \emph{Biotechnology and bioengineering}, 91(7):848--860, 
+Sept. 2005. ISSN 0006-3592. doi: 10.1002/bit.20555. PMID: 15986490.
 
+M. Guescini, D. Sisti, M. B. Rocchi, L. Stocchi, and V. Stocchi. A new 
+real-time PCR method to overcome significant quantitative inaccuracy due to 
+slight amplification inhibition. \emph{BMC Bioinformatics}, 9(1):326, July 
+2008. ISSN 1471-2105. doi: 10.1186/1471-2105-9-326. \url{http: 
+//www.biomedcentral.com/1471-2105/9/326/abstract}. PMID: 18667053.
+
+A. Tichopad, M. Dilger, G. Schwarz, and M. W. Pfaffl. Standardized 
+determination of real-time PCR efficiency from a single reaction set-up. 
+\emph{Nucleic Acids Research}, 31(20):e122, Oct. 2003. ISSN 1362-4962. 
+PMID: 14530455 PMCID: PMC219490.
+
+A. Staalberg, P. Aman, B. Ridell, P. Mostad, and M. Kubista. Quantitative 
+real-time PCR method for detection of b-lymphocyte monoclonality by 
+comparison of kappa and lambda immunoglobulin light chain expression. 
+\emph{Clinical Chemistry}, 49(1):51--59, Jan. 2003. ISSN 0009-9147. PMID: 
+12507960.
+
+W. Liu and D. A. Saint. A new quantitative method of real time reverse 
+transcription polymerase chain reaction assay based on simulation of 
+polymerase chain reaction kinetics. \emph{Analytical Biochemistry}, 
+302(1):52--59, Mar. 2002. ISSN 0003-2697. doi: 10.1006/abio.2001.5530. 
+PMID: 11846375.
 
 }
 \examples{

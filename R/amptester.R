@@ -58,7 +58,7 @@ amptester <-
       # signal increase it is likely that nothing happened during the reaction.
       noisebackground <- median(head(y, n = nh)) + 2 * mad(head(y, n = nh))
       signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
-      if (signal <= noisebackground || signal/noisebackground <= 1.3) {
+      if (signal <= noisebackground || signal/noisebackground <= 1.25) {
 	  y <- abs(rnorm(length(y), 0, 0.1^30))
 	  decision <- "negative"
       } else {

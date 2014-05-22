@@ -54,23 +54,22 @@ Background range herein refers to a level of fluorescence measured before
 any specific amplification is detectable. The raw data (e.g., fluorescence 
 intensity) measured after each step (cycle or time point) follow a 
 non-linear progress. The background is assumed to be constant for the 
-entire measurement. The algorithm of \code{\link[chipPCR]{bg.max}} is 
-based 
+entire measurement. The algorithm of \code{\link[chipPCR]{bg.max}} is based 
 on the assumption that the signal difference of successive cycles in the 
 linear ground phase is approximately constant. After transition in the 
 early exponential phase the signal changes drastically. First data are 
 smoothed by Friedman's 'super smoother' (as found in 
 \code{\link[stats]{supsmu}}. Thereof the approximate first and second 
-derivative are calculated by a five-point stencil \code{link{inder}}. 
+derivative are calculated by a five-point stencil 
+\code{link[chipPCR]{inder}}. 
 
-The Difference Of Cycles At The Maxima Of The 1st And Second Approximate 
-Derivative And A Correction Factor Are Used To Estimate The Range Before 
-The Exponential Phase. This Simple Function Finds The Background Range 
-Without Modeling The Function. The Start Of The Background Range Is Defined 
-Be A Fixed Value. Since Many Signals Tend To Overshot In The First Cycles A 
-Default Value Of 3 Is Chosen. \Code{\Link[Chippcr]{bg.max}} Tries Also To 
-Estimate The End Of An Amplification Reaction. This Feature However Is 
-Experimental.
+The difference of cycles at the maxima of the first and second approximate 
+derivative and a correction factor are used to estimate the range before 
+the exponential phase. This simple function finds the background range 
+without modeling the function. the start of the background range is defined 
+be a fixed value. since many signals tend to overshot in the first cycles a 
+default value of 3 is chosen. \code{\link[chipPCR]{bg.max}} tries also to 
+estimate the end of an amplification reaction.
 
 --
 The following paragraphs describe methods to detect the background range 
@@ -136,7 +135,7 @@ calculate theoretical the start of the amplification process. The end of
 amplification process is detected by calculating the third derivative of 
 implemented S-shaped model. The second approach does not require 
 theoretical values. A very intuitive solution, designated take-off point, 
-by \citet{tichopad_2003} describes the lag phase using a linear function. 
+by Tichopad et al. (2003) describes the lag phase using a linear function. 
 Random deviations are taken into account as standardized residuals. The 
 method starts with a fitting of a linear function to first three 
 measurement points. If none of residuals is considered an outlier with a 
@@ -168,6 +167,11 @@ biology: a journal of computational molecular cell biology},
 20(9):703--711, Sept. 2013. ISSN 1557-8666. doi: 10.1089/cmb.2012.0279. 
 PMID: 23841653 PMCID: PMC3762066.
 
+A. Tichopad, M. Dilger, G. Schwarz, and M. W. Pfaffl. Standardized 
+determination of real-time PCR efficiency from a single reaction set-up. 
+\emph{Nucleic Acids Research}, 31(20):e122, Oct. 2003. ISSN 1362-4962. 
+PMID: 14530455 PMCID: PMC219490.
+
 J. Wilhelm, A. Pingoud, and M. Hahn. Real-time PCR-based method for the 
 estimation of genome sizes. \emph{Nucleic Acids Research}, 31(10):e56, May 
 2003. ISSN 0305-1048. \url{http://www.ncbi.nlm. 
@@ -176,7 +180,7 @@ nih.gov/pmc/articles/PMC156059/}. PMID: 12736322 PMCID: PMC156059.
 S. Zhao and R. D. Fernald. Comprehensive algorithm for quantitative 
 real-time polymerase chain reaction. \emph{Journal of computational 
 biology: a journal of computational molecular cell biology}, 12(8): 
-1047–1064, Oct. 2005. ISSN 1066-5277. doi: 10.1089/cmb.2005.12.1047. PMID: 
+1047--1064, Oct. 2005. ISSN 1066-5277. doi: 10.1089/cmb.2005.12.1047. PMID: 
 16241897 PMCID: PMC2716216.
 
 }
