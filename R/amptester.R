@@ -30,7 +30,7 @@ amptester <-
       if (signal <= noiselevel) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
       }
-      if ((median(y[-(background)]) + 1.5 * mad(y[-(background)])) <= noiselevel) {
+      if ((median(y[-(background)]) + 2 * mad(y[-(background)])) <= noiselevel) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
       }
       decision <- "positive"
@@ -47,7 +47,6 @@ amptester <-
 		  alternative = "less")$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
         decision <- "negative"
-        
       } else {
         decision <- "positive"
       }
@@ -60,6 +59,7 @@ amptester <-
       noisebackground <- median(head(y, n = nh)) + 2 * mad(head(y, n = nh))
       signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
       if (signal <= noisebackground || signal/noisebackground <= 1.3) {
+	  y <- abs(rnorm(length(y), 0, 0.1^30))
 	  decision <- "negative"
       } else {
 	  decision <- "positive"
