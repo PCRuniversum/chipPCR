@@ -17,7 +17,8 @@ amptester(y, manual = FALSE, noiselevel = 0.08, background = NULL)
         is a vector containing the fluorescence values.
 }
   \item{manual}{
-	switches between a statistical test (based on a Student's t-test) or 
+	switches between a statistical test (based on a t-test 
+	(\code{\link[stats]{t.test}})) or 
 	manual test for a positive amplification signal.
 }
   \item{noiselevel}{
@@ -32,13 +33,13 @@ amptester(y, manual = FALSE, noiselevel = 0.08, background = NULL)
 }
 \details{
   The function tries to estimate if a amplification process is taking 
-place. To do so a several instances of tests are includes. The first 
+place. Several instances of tests are included. The first 
 involves a semiautomatic test if the range of the background is lower than 
 the range of the assumed signal. To differ between the ranges an instance 
 of \code{\link[chipPCR]{bg.max}} is used. Herein, the function assumes that 
 an amplification takes place in case the signal of the amplification is 
 larger than the \code{\link[stats]{median}} + 5 * \code{\link[stats]{mad}} 
-than the background. The automatic test uses a Student's t-Test 
+than the background. The automatic test uses a t-Test 
 \code{\link[stats]{t.test}} to compare the the beginning and the end of the 
 data. The input values are delivered by \code{\link[utils]{head}} and 
 \code{\link[utils]{tail}}, respectively. For other methods please refer to 
@@ -90,6 +91,56 @@ Stefan Roediger, Michal Burdukiewicz
 }
 
 \examples{
+# First example
+# Arrange graphs in orthogonal matrix and set parameter for the plot.
+par(las = 0, bty = "n", cex.axis = 1.5, cex.lab = 1.5, 
+    font = 2, cex.main = 1.8, oma = c(1,1,1,1))
+    
+# Simulation of an amplification curve with 40 cycles and a Cq of
+# circa 28. The amplification curve of "pos" (positive) has low 
+# noise and the amplification curve of "neg" (negative) has high 
+# noise.
+
+pos <- AmpSim(cyc = 1:40, Cq = 28, noise = TRUE, nnl = 0.03)
+neg <- AmpSim(cyc = 1:40, Cq = 28, noise = TRUE, nnl = 0.8)
+
+# Plot the raw data of the simulations
+par(fig = c(0,0.5,0.5,1))
+plot(NA, NA, xlim = c(1, 40), ylim = c(0, 2.1), xlab = "Cycles", 
+     ylab = "Fluorescence", main = "qPCR - Raw data", type = "b")
+mtext("A", cex = 2, side = 3, adj = 0, font = 2)
+points(pos, col = 1, typ = "b", pch = 19)
+points(neg, col = 2, typ = "b", pch = 20)
+legend(1, 2, c("Positive", "Negative Control (noise)"), 
+	       pch = c(19,20), col = c(1,2), lwd = 2, bty = "n")
+
+# Plot data again after an analysis by ampteser. "neg" is set to small 
+# random numbers, while "pos" remains unchanged.
+par(fig = c(0,0.5,0,0.5), new = TRUE)
+plot(NA, NA, xlim = c(1, 40), ylim = c(0, 2.1), xlab = "Cycles", 
+     ylab = "Fluorescence", main = "qPCR - amptester", type = "b")
+points(amptester(pos[, 2]), col = 1, type = "b", pch = 19)
+points(amptester(neg[, 2]), col = 2, type = "b", pch = 20)
+legend(1, 2, c("Positive", "Negative Control (noise)"), 
+	       pch = c(19,20), col = c(1,2), lwd = 2, bty = "n")
+
+# Use of amptester for time-dependent measurements. Amplification curves 
+# from the capillaryPCR data set were processed in a loop. The results of 
+# amptester are added to the raw data. 
+
+par(fig = c(0.5,1,0,1), new = TRUE)
+colors <- rainbow(8)
+plot(NA, NA, xlim = c(0,80), ylim = c(0,1300), xlab = "Time [min]", 
+     ylab = "Voltage (micro V)", main = "ccPCR")
+mtext("B", cex = 2, side = 3, adj = 0, font = 2)
+for (i in c(1,3,5,7)) {
+  xy.tmp <- cbind(capillaryPCR[1:750, i], capillaryPCR[1:750, i+1])
+  lines(xy.tmp[, 1], xy.tmp[, 2], type = "b", pch = 20, col = colors[i])
+  text(75, max(na.omit(xy.tmp[, 2])), amptester(xy.tmp[, 2])@decision, 
+	cex = 1.3, col = colors[i])
+}
+
+# Second Example
 # Example to test an amplification reaction.
 # Simulate first a positive amplification curve with 35 cycles and than a 
 # negative amplification curve with 35 cycles. The negative amplification
