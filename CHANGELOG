@@ -4,7 +4,10 @@ Changes from Version 0.0.6 to 0.0.7 [XX XX 2014]
 * improved some examples
 * new function MFIaggr and class refMFI
 * new function effcalc
-* amptester has flexible head and tail now
+* amptester 
+    - flexible head and tail now
+    - nonlinearity test
+    - test for noise (based on shapiro test)
 * smoother has now support for weighted Whittaker smoother
 * CPP has further normalize methods
 * CPP has new regression methods (rank-based estimation models, 
