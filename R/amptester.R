@@ -7,7 +7,8 @@ amptester <-
 		to set the range for the background correction")
     if (is.null(background) && manual)
       stop("Manual test requires specified background.") 
-    
+    if (!is.null(background) && manual)
+      stop("Manual test needs to be confirmed (manual = TRUE).") 
     #if background is NULL, sorting it is pointless and invokes warning
     if (!is.null(background))
       background <- as.integer(sort(background))
@@ -18,7 +19,7 @@ amptester <-
     # Simple test if data come from noise or presumably a melting curve
     noisy <- FALSE
     res.shapiro <- shapiro.test(y)[["p.value"]]
-    if (res.shapiro >= 0.001) {
+    if (res.shapiro >= 0.0005) {
 	    message("The distribution of the curve data indicates noise.
 		     \nThe data should be visually inspected.")
 	    noisy <- TRUE
@@ -26,7 +27,56 @@ amptester <-
     } else {
 	    mess.shapiro <- "Appears to be an amplification curve"
     }
-    
+        
+      # Linear Regression test (LRt)
+      # This test determines the R^2 by a robust linear regression which are
+      # determined from a run of circa 15 percent range of the data
+      # If the median of the R^2s is larger than 0.7 it is likely a nonlinear
+      # signal. This is a bit counterintuitive because R^2 of nonlinear data 
+      # should be low.
+      
+      ws <- ceiling((15 * length(y)) / 100)
+      if (ws < 5) ws <- 5
+      if (ws > 15) ws <- 15
+      y.tmp <- na.omit(y[-c(1:5)])
+      x <- 1:length(y.tmp)
+      suppressWarnings(
+	res.reg <- sapply(1L:(length(y.tmp) - ws), function (i)  {
+		  round(summary(
+		    lm(y.tmp[i:c(i + ws)] ~ x[i:c(i + ws)]))$r.squared,
+		    4)
+		}
+	    )
+      )
+      
+      # Binarize R^2 values. Everything larger than 0.85 is positve
+      res.LRt <- res.reg
+      # Define the limits for the R^2 test
+      res.LRt[res.LRt < 0.8] <- 0
+      res.LRt[res.LRt >= 0.8] <- 1
+      # Seek for a sequence of at least six positve values
+      res.out <- sapply(5L:(length(res.LRt) - 6), function(i) {
+					      if(res.LRt[i] == 1 && 
+						 res.LRt[i + 1] == 1 && 
+						 res.LRt[i + 2] == 1 && 
+						 res.LRt[i + 3] == 1 && 
+						 res.LRt[i + 4] == 1) 
+						 { TRUE
+						 } else {
+							FALSE
+						   }
+					    }
+		      )
+      
+      # Test if more than one sequence of positive values was found (will be
+      # the case in most situation due to an overlap of the positive sequences.)
+      nonlinearity <- FALSE
+      if (sum(res.out) >= 1) {
+			  nonlinearity <- TRUE 
+			}
+			
+    # Manual test for positve amplification based on a fixed threshold
+    # vlaue.
     if (manual) {
       signal  <- median(y[-(background)])
       if (signal <= noiselevel) {
@@ -52,7 +102,7 @@ amptester <-
       } else {
         decision <- "positive"
       }
-      
+            
       # Final test
       # The meaninfulness can be tested by comparison of the signals
       # 1) A robust "sigma" rule by median + 2 * mad 
@@ -60,7 +110,7 @@ amptester <-
       # signal increase it is likely that nothing happened during the reaction.
       noisebackground <- median(head(y, n = nh)) + 2 * mad(head(y, n = nh))
       signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
-      if (signal <= noisebackground || signal/noisebackground <= 1.25) {
+      if (signal <= noisebackground || signal / noisebackground <= 1.25) {
 	  y <- abs(rnorm(length(y), 0, 0.1^30))
 	  decision <- "negative"
       } else {
@@ -72,5 +122,6 @@ amptester <-
         decision = decision, 
         noiselevel = noiselevel,
         noise = noisy,
+        nonlinearity = nonlinearity,
         background = background)
   }
