@@ -83,14 +83,17 @@ amptester <-
     # Manual test for positve amplification based on a fixed threshold
     # vlaue.
     if (manual) {
-      signal  <- median(y[-(background)])
+#      signal  <- median(y[-(background)])
 #       if (signal <= noiselevel) {
 #         y <- abs(rnorm(length(y), 0, 0.1^30))
 #       }
-      if ((median(y[-(background)]) - 0.5 * mad(y[-(background)])) <= noiselevel) {
+      signal <- median(y[-(background)]) - mad(y[-(background)])
+      if (signal < noiselevel && (signal / noiselevel) < 1.25) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
-      }
-      decision <- "positive"
+        decision <- "negative"
+      } else {
+	  decision <- "positive"
+	}
     } else {
       # Apply a simple rule to take the first 20 percent and the last 15 percent
       # of any input data set to calculate the number of elements for the head 
