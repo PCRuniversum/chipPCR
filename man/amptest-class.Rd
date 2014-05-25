@@ -47,7 +47,9 @@ Stefan Roediger, Michal Burdukiewicz
 cyc <- seq(1, cycno <- 35, 1)
 b <- -14.29; c <- 0.18; d <- 39.18; e <- 19.14
 fluo.pos <- c + (d - c)/(1 + exp(b * (log(cyc) - log(e))))
-ampt <- amptester(fluo.pos, background = c(0, 2))
+ampt <- amptester(fluo.pos, manual = TRUE, background = c(0, 10))
+plot(ampt, xlab = "Cycles", ylab = "RFU")
+abline(v = c(0,10), col = 2)
 summary(ampt)
 }
 
