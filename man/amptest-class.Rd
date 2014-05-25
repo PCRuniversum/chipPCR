@@ -44,13 +44,21 @@ Stefan Roediger, Michal Burdukiewicz
 \code{\link[chipPCR]{amptester}}
 }
 \examples{
-cyc <- seq(1, cycno <- 35, 1)
-b <- -14.29; c <- 0.18; d <- 39.18; e <- 19.14
-fluo.pos <- c + (d - c)/(1 + exp(b * (log(cyc) - log(e))))
-ampt <- amptester(fluo.pos, manual = TRUE, background = c(0, 10))
-plot(ampt, xlab = "Cycles", ylab = "RFU")
-abline(v = c(0,10), col = 2)
-summary(ampt)
+# Compare a positive and a negative amplification reaction.
+# First simulate positive reaction (fluo.pos) and than the 
+# negative reaction (fluo.neg).
+fluo.pos <- AmpSim(cyc = 1:40)[, 2]
+ampt.pos <- amptester(fluo.pos, manual = TRUE, background = c(0, 15))
+plot(ampt.pos, xlab = "Cycles", ylab = "RFU")
+abline(v = c(0,15), col = 2)
+summary(ampt.pos)
+
+fluo.neg <- AmpSim(cyc = 1:40, noise = TRUE, nnl = 1, ampl = 0.1)[, 2]
+ampt.neg <- amptester(fluo.neg, manual = TRUE, background = c(0, 15), 
+		      noiselevel = 0.3)
+plot(ampt.neg, xlab = "Cycles", ylab = "RFU")
+abline(v = c(0,15), col = 2)
+summary(ampt.neg)
 }
 
 \keyword{classes}

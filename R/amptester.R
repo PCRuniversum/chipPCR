@@ -84,10 +84,10 @@ amptester <-
     # vlaue.
     if (manual) {
       signal  <- median(y[-(background)])
-      if (signal <= noiselevel) {
-        y <- abs(rnorm(length(y), 0, 0.1^30))
-      }
-      if ((median(y[-(background)]) + 2 * mad(y[-(background)])) <= noiselevel) {
+#       if (signal <= noiselevel) {
+#         y <- abs(rnorm(length(y), 0, 0.1^30))
+#       }
+      if ((median(y[-(background)]) - 0.5 * mad(y[-(background)])) <= noiselevel) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
       }
       decision <- "positive"
