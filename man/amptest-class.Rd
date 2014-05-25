@@ -21,7 +21,8 @@ function.
     \item{\code{noiselevel}:}{ \code{"numeric"} user-defined threshold for a 
 			      significant amplification signal.}
     \item{\code{noise}:}{ \code{"logical"} \code{TRUE} if noise was detected.}
-    \item{\code{nonlinearity}:}{ \code{"logical"} \code{TRUE} if data are likely nonlinearity.}
+    \item{\code{linearity}:}{ \code{"logical"} \code{TRUE} if data are 
+				likely from a amplification curve.}
     \item{\code{background}:}{range of the background signal in the 
 			      amplification curve.}
 }

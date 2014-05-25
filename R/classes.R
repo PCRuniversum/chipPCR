@@ -9,7 +9,7 @@ setClass("amptest", contains = "numeric", representation(.Data = "numeric",
                                                          decision = "character",
                                                          noiselevel = "numeric",
                                                          noise = "logical",
-                                                         nonlinearity = "logical",
+                                                         linearity = "logical",
                                                          background = "numericOrNULL"))
 
 setMethod("show", signature(object = "amptest"), function(object) {
@@ -21,7 +21,7 @@ setMethod("summary", signature(object = "amptest"), function(object) {
   cat(paste0("\nAmplification significance (decision): ", slot(object, "decision")))  
   cat(paste0("\nNoise detected: ", slot(object, "noise")))
   cat(paste0("\nNoise level: ", slot(object, "noiselevel")))
-  cat(paste0("\nNonlinearity: ", slot(object, "nonlinearity")))
+  cat(paste0("\nLinearity: ", slot(object, "linearity")))
   bcg <- slot(object, "background")
   if (is.null(bcg)) {
     cat(paste0("\nBackground: not defined")) 

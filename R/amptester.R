@@ -29,11 +29,11 @@ amptester <-
     }
         
       # Linear Regression test (LRt)
-      # This test determines the R^2 by a robust linear regression which are
-      # determined from a run of circa 15 percent range of the data
-      # If the median of the R^2s is larger than 0.7 it is likely a nonlinear
-      # signal. This is a bit counterintuitive because R^2 of nonlinear data 
-      # should be low.
+      # This test determines the R^2 by a linear regression. The R^2 are
+      # determined from a run of circa 15 percent range of the data.
+      # If a sequence of more than six R^2s is larger than 0.8 is found 
+      # thant is likely a nonlinear signal. This is a bit counterintuitive 
+      # because R^2 of nonlinear data should be low.
       
       ws <- ceiling((15 * length(y)) / 100)
       if (ws < 5) ws <- 5
@@ -49,12 +49,15 @@ amptester <-
 	    )
       )
       
-      # Binarize R^2 values. Everything larger than 0.85 is positve
+      # Binarize R^2 values. Everything larger than 0.8 is positve
       res.LRt <- res.reg
       # Define the limits for the R^2 test
       res.LRt[res.LRt < 0.8] <- 0
       res.LRt[res.LRt >= 0.8] <- 1
-      # Seek for a sequence of at least six positve values
+      # Seek for a sequence of at least six positve values (R^2 >= 0.8)
+      # The first five measurepoitns of the amplification curve are skipped
+      # beacuse most technologies and probetechnologies tend to overshot
+      # in the start (background) region.
       res.out <- sapply(5L:(length(res.LRt) - 6), function(i) {
 					      if(res.LRt[i] == 1 && 
 						 res.LRt[i + 1] == 1 && 
@@ -68,11 +71,12 @@ amptester <-
 					    }
 		      )
       
-      # Test if more than one sequence of positive values was found (will be
-      # the case in most situation due to an overlap of the positive sequences.)
-      nonlinearity <- FALSE
+      # Test if more than one sequence of positive values was found (will 
+      # be the case in most situation due to an overlap of the positive 
+      # sequences.)
+      linearity <- FALSE
       if (sum(res.out) >= 1) {
-			  nonlinearity <- TRUE 
+			  linearity <- TRUE 
 			}
 			
     # Manual test for positve amplification based on a fixed threshold
@@ -122,6 +126,6 @@ amptester <-
         decision = decision, 
         noiselevel = noiselevel,
         noise = noisy,
-        nonlinearity = nonlinearity,
+        linearity = linearity,
         background = background)
   }
