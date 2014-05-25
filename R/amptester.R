@@ -42,7 +42,7 @@ amptester <-
     y.tmp <- na.omit(y[-c(1:5)])
     x <- 1:length(y.tmp)
     suppressWarnings(
-      res.reg <- sapply(1L:(length(y.tmp) - ws), function (i)  {
+      res.reg <- sapply(1L:(length(y.tmp)), function (i)  {
         round(summary(
           lm(y.tmp[i:c(i + ws)] ~ x[i:c(i + ws)]))[["r.squared"]],
           4)
