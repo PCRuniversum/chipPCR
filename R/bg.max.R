@@ -34,6 +34,10 @@ bg.max <- function(x, y, bg.corr = 1.3, bg.start = 2, inder.approx = TRUE) {
   
   amp.stop <- trunc(vals[["SDm"]] + bg.corr * (vals[["SDm"]] - vals[["SDM"]]), 0) 
   
+  #handle unrealistic values of bg.stop
+  bg.stop <- ifelse(bg.stop < bg.start, NA, bg.stop)
+  
+  
   # Perform error handling on the the estimated start and end 
   # of the amplification process. Used hard coded values to prevent
   # to early or to late bg.start or bg.stop values.
@@ -43,6 +47,11 @@ bg.max <- function(x, y, bg.corr = 1.3, bg.start = 2, inder.approx = TRUE) {
     bg.stop <- 10
   if ((bg.stop >= length(y) * 0.6) || (is.na(bg.stop))) 
     bg.stop <- round(length(y) * 0.6)
+  
+  #handle unrealistic values of amp.stop
+  amp.stop <- ifelse(amp.stop < bg.stop, NA, amp.stop)
+  if(is.na(amp.stop))
+     amp.stop <- length(y)
   
   #threshold bg.max
   th.bg <- median(y[c(bg.stop - 1, bg.stop, bg.stop + 1)])  

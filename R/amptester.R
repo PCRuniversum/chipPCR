@@ -50,6 +50,11 @@ amptester <-
       )
     )
     
+    #test if function is monotonic and growing during first few cycles    
+    nh <- trunc(length(y) * 0.2)
+    resids <- residuals(lm(i ~ cyc))
+    decision <- ifelse(abs(cor(cyc[1:nh], resids[1:nh])) > 0.9, "positive", "negative")
+    
     # Binarize R^2 values. Everything larger than 0.8 is positve
     res.LRt <- res.reg
     # Define the limits for the R^2 test
