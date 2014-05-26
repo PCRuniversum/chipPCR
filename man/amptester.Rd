@@ -27,7 +27,7 @@ amptester(y, manual = FALSE, noiselevel = 0.08, background = NULL)
 }
   \item{background}{
 	is the range of the background signal in the amplification curve. The 
-	values can be added by 	the used or taken from the 
+	values can be added by the user or taken from the 
 	\code{\link[chipPCR]{bg.max}} function.
 }
 }
@@ -39,8 +39,8 @@ the range of the assumed signal. To differ between the ranges an instance
 of \code{\link[chipPCR]{bg.max}} is used. Herein, the function assumes that 
 an amplification takes place in case the signal of the amplification is 
 larger than the \code{\link[stats]{median}} + 5 * \code{\link[stats]{mad}} 
-than the background. The automatic test uses a t-Test 
-\code{\link[stats]{t.test}} to compare the the beginning and the end of the 
+than the background. The automatic test uses a t-test 
+\code{\link[stats]{t.test}} to compare the first and the last elements of the 
 data. The input values are delivered by \code{\link[utils]{head}} and 
 \code{\link[utils]{tail}}, respectively. For other methods please refer to 
 the references listed below. Instead of assigning a zero to negative 
