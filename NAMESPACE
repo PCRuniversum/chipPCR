@@ -25,6 +25,7 @@ export(
   "AmpSim",
 	"AmpSim.gui",
 	"amptester",
+  "amptester2",
 	"bg.max",
 	"CPP",
 	"effcalc",

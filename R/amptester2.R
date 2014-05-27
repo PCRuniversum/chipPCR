@@ -1,4 +1,4 @@
-amptester <-
+amptester2 <-
   function(y, manual = FALSE, noiselevel = 0.08, background = NULL) {
     testxy(x = y, y, both = FALSE)
     # Test if background has only two values
@@ -34,7 +34,7 @@ amptester <-
     nh <- trunc(length(y) * 0.2)
     cyc <- 1:nh
     resids <- residuals(lm(y[cyc] ~ cyc))
-    decision <- ifelse(abs(cor(cyc, resids)) > 0.9, "positive", "negative")
+    rgt.dec <- ifelse(abs(cor(cyc, resids)) > 0.9, "positive", "negative")
     
     # THIRD TEST
     # Linear Regression test (LRt)
@@ -87,9 +87,9 @@ amptester <-
       signal <- median(y[-(background)]) - mad(y[-(background)])
       if (signal < noiselevel && (signal / noiselevel) < 1.25) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
-        decision <- "negative"
+        tht.dec <- "negative"
       } else {
-        decision <- "positive"
+        tht.dec <- "positive"
       }
     } else {
       # FOURTH TEST (AUTOMATIC)
@@ -106,9 +106,9 @@ amptester <-
       if (t.test(head(y, n = nh), tail(y, n = nt), 
                  alternative = "less")$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
-        decision <- "negative"
+        tht.dec <- "negative"
       } else {
-        decision <- "positive"
+        tht.dec <- "positive"
       }
       
       # FIFTH TEST
@@ -121,16 +121,24 @@ amptester <-
       signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
       if (signal <= noisebackground || signal / noisebackground <= 1.25) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
-        decision <- "negative"
+        slt.dec <- "negative"
       } else {
-        decision <- "positive"
+        slt.dec <- "positive"
       }
     }
-    new("amptest", 
+    
+    rgt.dec <- ifelse(rgt.dec == "positive", TRUE, FALSE)
+    tht.dec <- ifelse(tht.dec == "positive", TRUE, FALSE)
+    slt.dec <- ifelse(slt.dec == "positive", TRUE, FALSE)
+    list(new("amptest", 
         .Data = y, 
-        decision = decision, 
+        decision = "Unknown", 
         noiselevel = noiselevel,
         noise = noisy,
         linearity = linearity,
-        background = background)
+        background = background), decs = c(shap.noisy = noisy,
+                                           rgt.dec = rgt.dec,
+                                           lrt.test = linearity,
+                                           tht.dec = tht.dec,
+                                           slt.dec = slt.dec))
   }
