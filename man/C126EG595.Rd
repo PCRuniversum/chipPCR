@@ -2,12 +2,12 @@
 \alias{C126EG595}
 \docType{data}
 \title{
-qPCR Experiment for the Amplification of HPRT1 Using the Roche Bio-Rad iQ5
+qPCR Experiment for the Amplification of HPRT1 Using the Roche Ligth Cycler 1.5
 }
 \description{
 A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 2007) 
-was performed in the iQ5 (Bio-Rad) thermo cycler. The cycle-dependent increase 
-of the fluorescence was quantified at the annealing step (58.5 deg Celsius).
+was performed in the Roche Ligth Cycler 1.5 thermo cycler. The cycle-dependent increase 
+of the fluorescence was quantified at the annealing step (59.5 deg Celsius).
 }
 \usage{data(C126EG595)}
 \format{
@@ -50,6 +50,6 @@ plot(NA,NA, xlim = c(1,40), ylim = c(min(tmp[, 2:ncol(tmp)]),
 apply(tmp[, 2:ncol(tmp)], 2, 
       function(x) lines(tmp[1:nrow(tmp),1],x))
 }
-\keyword{datasets}
+\keyword{ hydrolysis }
 \keyword{ EvaGreen }
 \keyword{ HPRT1 }

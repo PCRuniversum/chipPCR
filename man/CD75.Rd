@@ -5,8 +5,8 @@
 Helicase Dependent Amplification in the VideoScan HCU
 }
 \description{
-Helicase Dependent Amplification in the VideoScan HCU of HRPT1 (Homo sapiens h
-ypoxanthine phosphoribosyltransferase 1)
+Helicase Dependent Amplification in the VideoScan HCU of HRPT1 (Homo 
+sapiens hypoxanthine phosphoribosyltransferase 1)
 }
 \usage{data(CD75)}
 \format{

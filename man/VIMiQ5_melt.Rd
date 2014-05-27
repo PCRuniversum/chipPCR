@@ -5,7 +5,7 @@
 Melting Curve Measured with the Bio-Rad iQ5
 }
 \description{
-Data set of a melting curve using the Bio-Rad CFX96 thermo cycler. The 
+Data set of a melting curve using the Bio-Rad iQ5 thermo cycler. The 
 samples of Vimentin were measured in the CFX96 as replicates according to 
 Roediger et al. (2013). The qunatitiation was performed during the gradient 
 from 55 to 95 deg Celsius with a resolution of 0.5 deg Celsius per step.

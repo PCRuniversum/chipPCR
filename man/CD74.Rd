@@ -50,9 +50,9 @@ The aim was to amplify MLC-2v in the VideoScan platform while the
 intercalating dye EvaGreen and a hydrolysis probe for MLC-2v were used 
 simultaneously. The primer sequences for MLC-2v were taken from Roediger et 
 al. (2013). The amplification was detected in solution of the 1 HCU (see 
-Roediger et al. 2013 for details). A 20 micro l PCR reaction was composed of 
+Roediger et al. 2013 for details). A 20 micro L PCR reaction was composed of 
 500 nM primer (forward and reverse), 1x Maxima Probe qPCR Master Mix 
-(Fermentas), 1 micro l template (MLC-2v amplification product in different 
+(Fermentas), 1 micro L template (MLC-2v amplification product in different 
 dilutions), 50 nM hydorlysis probe probe for MLC-2v, 0.5x EvaGreen and A. 
 bidest. During the amplification, fluorescence was measured at 3 different 
 temperatures, at 59.5 degree Celsius the annealing temperature, at 68.5 degree 
