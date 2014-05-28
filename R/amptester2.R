@@ -5,7 +5,7 @@ amptester2 <-
     if (!is.null(background) && length(background) != 2)
       stop("Use only two values (e.g., background = c(1,10)) \n\t to set the range for the background correction")
     if (is.null(background) && manual == TRUE)
-      stop("Manual test requires specified background.") 
+      stop("Manual test requires specified background.")
     if (!is.null(background) && manual == FALSE)
       stop("Background is not empty. Manual test needs to be confirmed \n\t (manual = TRUE) to be performed.")
     #if background is NULL, sorting it is pointless and invokes warning
@@ -69,8 +69,7 @@ amptester2 <-
     # in the start (background) region.
     res.out <- sapply(5L:(length(res.LRt) - 6), function(i) {
       ifelse(sum(res.LRt[i:(i + 4)]) == 5, TRUE, FALSE)
-    }
-    )
+    })
     
     # Test if more than one sequence of positive values was found (will 
     # be the case in most situation due to an overlap of the positive 
@@ -126,7 +125,6 @@ amptester2 <-
         slt.dec <- "positive"
       }
     }
-    
     rgt.dec <- ifelse(rgt.dec == "positive", TRUE, FALSE)
     tht.dec <- ifelse(tht.dec == "positive", TRUE, FALSE)
     slt.dec <- ifelse(slt.dec == "positive", TRUE, FALSE)
@@ -137,8 +135,8 @@ amptester2 <-
         noise = noisy,
         linearity = linearity,
         background = background), decs = c(shap.noisy = noisy,
-                                           rgt.dec = rgt.dec,
                                            lrt.test = linearity,
+                                           rgt.dec = rgt.dec,
                                            tht.dec = tht.dec,
                                            slt.dec = slt.dec))
   }
