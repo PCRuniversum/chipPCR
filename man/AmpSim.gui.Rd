@@ -29,7 +29,7 @@ Any ad-blocking software may be cause of malfunctions.
 require(shiny)
 
 # Invoke the shiny AmpSim app in the default browser
-runApp(paste(find.package("chipPCR"),"/AmpSim.gui", sep = ""))
+runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
 }
 }
 

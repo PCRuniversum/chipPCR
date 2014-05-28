@@ -78,6 +78,16 @@ dev.off()
 ###########################################################################
 # Figure 2
 #################
+# Load the shiny package (chipPCR should already be loaded)
+# Run from a R console following commands
+require(shiny)
+
+#Invoke the shiny AmpSim app in the default browser
+runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
+
+###########################################################################
+# Figure 3
+#################
 pdf(file = "AmpSim_random.pdf", width = 12, height = 6)
 # Draw an empty plot for 50 cycles
 par(las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
@@ -103,7 +113,7 @@ dev.off()
 
 
 ###########################################################################
-# Figure 3
+# Figure 4
 #################
 pdf(file = "SDM.pdf", width = 12, height = 8)
 # Use AmpSim to generate an amplification curve with 40 cycles

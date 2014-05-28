@@ -1,9 +1,9 @@
 effcalc <- function(x, y, logx = TRUE, CV = FALSE, 
 		    xlab = "log10(Concentration)", ylab = "Cq", 
 		    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
-		    trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
-		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
-		    col = "black"){
+		    trend = TRUE, res.fit = TRUE, CI = FALSE, 
+		    level = 0.95, show.res = TRUE, type = "p", 
+		    pch = 19, length = 0.05, col = "black") {
 		    
   testxy(x, y, txt.x = "Enter Concentration", txt.y = "Enter Cq data", 
 	  length = FALSE)
@@ -13,7 +13,7 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
     x.tmp <- log10(x)
   } else {
      x.tmp <- x
-     }
+    }
   
   if (rob) {
     loc.fct <- median
@@ -99,7 +99,7 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
 
   # Calculate correlation between the concentration and 
   # the Cq values along with the significance level
-  cortest <- cor.test(res[, 1], res[, 2])
+  cortest <- cor.test(res[, 1], res[, 2], conf.level = level)
   if (cortest$p.value < 0.001) {
       sign.out <- "; p < 0.001"
   }
@@ -144,8 +144,8 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
   }
   # Add error bar to the location parameters
   arrows(res[, 1], res[, 2] + res[, 3], res[, 1], 
-	  res[, 2] - res[, 3], angle = 90, code = 3, 
-	  length = length, col = col)
+	 res[, 2] - res[, 3], angle = 90, code = 3, length = length, 
+	 col = col)
   
   # Add trend line of linear regression to plot
   if (trend) {
