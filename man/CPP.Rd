@@ -56,7 +56,7 @@ in the background range and to test if an amplification is significant.
 		a vector of names defining which smoothing method 
 should be used. The Savitzky-Golay smoothing filter is the default 
 smoother. Use "lowess" for LOWESS smoother (locally-weighted polynomial 
-regression, "mova" for moving average, "savgol" for Savitzky-Golay 
+regression), "mova" for moving average, "savgol" for Savitzky-Golay 
 smoothing filter, "smooth" for cubic spline smooth, "spline" for standard 
 cubic spline smooth, "supsmu" for Friedman's SuperSmoother, "whit1" for 
 weighted Whittaker smoothing with a first order finite difference penalty, 

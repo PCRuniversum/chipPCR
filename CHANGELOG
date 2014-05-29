@@ -17,7 +17,8 @@ Changes from Version 0.0.6 to 0.0.7 [XX XX 2014]
 * smoother argument "spline" as paramter for internal fixNA depracted. Uses
   splines in fixNA exclusively
 * added methods to fixNA
-* bg.max now used inder method by default
+* NOTE: new naming convention in inder
+* bg.max now uses inder method by default
 * added rounder function for rounding results of inder
 * new data set added
 * testxy function added for uniformized testing of x and y values

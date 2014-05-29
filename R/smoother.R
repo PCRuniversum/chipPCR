@@ -7,14 +7,15 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   # data is uniform. If not give a warning.
   # TODO: add res.x to output of the functions
   d.x <- vector()
-  for (i in 1L:(length(x) - 1)){
-    tmp <- abs(x[i] - x[i + 1])
-    d.x <- c(d.x, tmp)
-  }
+  d.x <- sapply(1L:(length(x) - 1), function(i) {
+		    tmp <- abs(x[i] - x[i + 1])
+		    d.x <- c(d.x, tmp)
+		  }
+		)
   
   res.x <- list(d.x = d.x, 
-	   d.x.m = mean(d.x), 
-	   d.x.s = sd(d.x)
+		d.x.m = mean(d.x), 
+		d.x.s = sd(d.x)
 	   )
 
   if ((res.x$d.x.m + res.x$d.x.s) != res.x$d.x.m) {

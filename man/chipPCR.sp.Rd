@@ -78,11 +78,11 @@ dev.off()
 ###########################################################################
 # Figure 2
 #################
-# Load the shiny package (chipPCR should already be loaded)
-# Run from a R console following commands
+# Load the shiny package (chipPCR should already be loaded).
+# Run from a R console following commands.
 require(shiny)
 
-#Invoke the shiny AmpSim app in the default browser
+# Invoke the shiny AmpSim app in the default browser.
 runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
 
 ###########################################################################
