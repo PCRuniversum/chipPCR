@@ -45,8 +45,8 @@ is also a vector.
 }
   \item{inder.approx}{
     a \code{logical} value defining if data should be numerically derived 
-by \code{\link[chipPCR]{inder}} function. If \code{FALSE}, derivative is 
-calculated by the finite difference method.
+by \code{\link[chipPCR]{inder}} function. If \code{FALSE}, derivatives are calculated by the
+\code{\link[stats]{predict.smooth.spline}}.
 }
 }
 \details{

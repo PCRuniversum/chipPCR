@@ -23,8 +23,15 @@ bg.max <- function(x, y, bg.corr = 1.3, bg.start = 2, inder.approx = TRUE) {
   
   if (inder.approx) {
     der <- inder(x, y, smooth.method = "supsmu")
+    
   } else {
-    #Now what?
+    sp <- smooth.spline(x, y)
+    
+    d1 <- predict(sp, x, 1)
+    d2 <- predict(sp, x, 2)
+    dat <- cbind(x, y, d1[["y"]], d2[["y"]])
+    colnames(dat) <- c("x", "y", "d1y", "d2y")
+    der <- new("der", '.Data' = dat, 'method' = "smooth.spline")
   }
   
   vals <- summary(der, print = FALSE)
