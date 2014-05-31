@@ -1,25 +1,21 @@
 smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, 
-		     method = "savgol", CPP = TRUE, ...) {
+                     method = "savgol", CPP = TRUE, ...) {
   # Determine the time/cycle resolution of the data
   testxy(x, y)
   
   # Determine the time or cycle resolution of the amplifification curve 
   # data is uniform. If not give a warning.
   # TODO: add res.x to output of the functions
-  d.x <- vector()
-  d.x <- sapply(1L:(length(x) - 1), function(i) {
-		    tmp <- abs(x[i] - x[i + 1])
-		    d.x <- c(d.x, tmp)
-		  }
-		)
+  d.x <- sapply(1L:(length(x) - 1), function(i) 
+    abs(x[i] - x[i + 1]))
   
   res.x <- list(d.x = d.x, 
-		d.x.m = mean(d.x), 
-		d.x.s = sd(d.x)
-	   )
-
-  if ((res.x$d.x.m + res.x$d.x.s) != res.x$d.x.m) {
-      warning("x is not uniform/equidistant (different inter cycle or time intervals.
+                d.x.m = mean(d.x), 
+                d.x.s = sd(d.x)
+  )
+  
+  if ((res.x[["d.x.m"]] + res.x[["d.x.s"]]) != res.x[["d.x.m"]]) {
+    warning("x is not uniform/equidistant (different inter cycle or time intervals.
 	       This may cause artifacts during the pre-processing.")
   }
   
@@ -54,7 +50,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   #     # The test of movaww should be dependent on the number of
   #     # of elements. For example, movaww of 10 and 35 elements will 
   #     # be a bad smoother, but movaww of 10 and 350 elements will be 
-  #     # ok. Proposels: either make it emerical (define ranges) or test
+  #     # ok. Proposals: either make it empirical (define ranges) or test
   #     # the shift of the first derivative maximumvalue
   ######/TODO##############################################
   
@@ -102,14 +98,14 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
     # bg.max function which is used by CPP
     if (CPP) {
       tmp.CPP  <- CPP(x = x, y = y.tmp, trans = trans, 
-		      bg.outliers = bg.outliers)
+                      bg.outliers = bg.outliers)
       
       # Do output of the smoothed data
-      tmp.CPP$y.norm
+      tmp.CPP[["y.norm"]]
     } else {
-	y.tmp
-      }
-   y.tmp
+      y.tmp
+    }
+    y.tmp
   })
   
   #attr(y.norm, "method") <- method
