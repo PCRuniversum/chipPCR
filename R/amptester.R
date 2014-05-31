@@ -68,8 +68,8 @@ amptester <-
     # beacuse most technologies and probetechnologies tend to overshot
     # in the start (background) region.
     res.out <- sapply(5L:(length(res.LRt) - 6), function(i) {
-      ifelse(sum(res.LRt[i:(i + 4)]) == 5, TRUE, FALSE)
-    }
+	ifelse(sum(res.LRt[i:(i + 4)]) == 5, TRUE, FALSE)
+      }
     )
     
     # Test if more than one sequence of positive values was found (will 
