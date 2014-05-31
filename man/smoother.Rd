@@ -46,14 +46,16 @@ a vector.
   }
     \item{method}{
 		    a vector of names defining which smoothing method 
-should be used. The Savitzky-Golay smoothing filter is the default 
+should be used or list. The Savitzky-Golay smoothing filter is the default 
 smoother. Use "lowess" for LOWESS smoother (locally-weighted polynomial 
 regression, "mova" for moving average, "savgol" for Savitzky-Golay 
 smoothing filter, "smooth" for cubic spline smooth, "spline" for standard 
 cubic spline smooth, "supsmu" for Friedman's SuperSmoother, "whit1" for 
 weighted Whittaker smoothing with a first order finite difference penalty, 
 "whit2" for weighted Whittaker smoothing with a second order finite 
-difference penalty or "all" for all implemented smoothing algorithms. 
+difference penalty or "all" for all implemented smoothing algorithms. Both upper and
+lower case is accepted. If \code{method} is a list, name of each element represents a
+smoothing method. Each element can contain additional arguments for choosen smoothing method.
   }
   \item{CPP}{
 		  logical parameter which indicates if CPP (curve 
@@ -61,7 +63,7 @@ pre-procssor) should be used.
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 
-		  details).
+		  details). Ignored if \code{method} is a list.
   }
 }
 \details{
@@ -192,6 +194,10 @@ par(fig = c(0,1,0.55,1), new = TRUE)
 
 plot(tmp, type = "b", col = 1, pch = 20, xlab = "", ylab = "RFU", 
       main = "Raw data")
+
+#if method is a list, multiple smoothing algorithms with multiple arguments can be used
+different.movas <- smoother(tmp[, 1], tmp[, 2], method = list(mova = list(movaww = 3),
+                                                         mova = list(movaww = 5)))
 
 }
 

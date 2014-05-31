@@ -23,25 +23,30 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   #possible methods
   pos.meth <- c("lowess", "mova", "savgol", "smooth", 
                 "spline", "supsmu", "whit1", "whit2")
-  method <- unname(sapply(method, tolower))
+  if(is.list(method)) 
+    method.names <- unname(sapply(names(method), tolower))
+  if(is.vector(method) && !is.list(method))
+    method.names <- unname(sapply(method, tolower))
+
+    
   
   #uniformize names
-  if (length(method) != 1 || method != "all") {
+  if (length(method.names) != 1 || method.names != "all") {
     for (i in pos.meth) 
-      for (j in 1L:length(method))
-        if (any(grepl(method[j], i)))
-          method[j] <- i
+      for (j in 1L:length(method.names))
+        if (any(grepl(method.names[j], i)))
+          method.names[j] <- i
     
     #check for presence of invalid names
-    invalids <- !(method %in% pos.meth)
+    invalids <- !(method.names %in% pos.meth)
     if (sum(invalids) > 0)
-      stop(paste0("Invalid method(s) chosen: ", paste0(method[invalids], 
+      stop(paste0("Invalid method(s) chosen: ", paste0(method.names[invalids], 
                                                        collapse = ", ")))
   } else {
-    method <- pos.meth
+    method.names <- pos.meth
   }
   
-  names(method) <- method
+  names(method.names) <- method.names
   ######TODO##############################################
   # 	ADD checks fro proper use of the filters and the smoother!
   #     # Test if window size of moving average is correct
@@ -62,55 +67,105 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
     y.tmp <- y
   }
   
-  all.smooths <- lapply(1L:length(method), function(i) {
-    y.tmp <- switch(method[i],
-                    lowess = do.call(function(x, y, f = 0.01, iter = 3)
-                      lowess(x = x, y = y, f = f, iter = iter)
-                      , c(list(x = x, y = y.tmp), ...))[["y"]],
-                    mova = do.call(function(x, movaww = 3)
-                      as.vector(stats::filter(x, filter = rep(1/movaww, movaww), 
-                                              method = "convolution", sides = 2)), 
-                      c(list(x = y.tmp), ...)),
-                    savgol = do.call(function(y, p = 3)
-                      sgolayfilt(x = y, p = p)
-                      , c(list(y = y.tmp), ...)),
-                    smooth = do.call(function(x, y, df.fact = 0.95) {
-                      df.tmp <- data.frame(smooth.spline(x, y)[10])
-                      smooth.spline(x, y, df =  (df.tmp * df.fact))[["y"]]
-                    }, c(list(x = x, y = y.tmp), ...)),
-                    spline = do.call(function(x, y, n = length(y.tmp)) {
-                      spline(x, y, n = n)[["y"]]
-                    }, c(list(x = x, y = y.tmp), ...)),
-                    supsmu = do.call(function(x, y, span = 0.01)
-                      supsmu(x = x, y = y, span = span)
-                      , c(list(x = x, y = y.tmp), ...))[["y"]],
-                    whit1 = do.call(function(y, lambda = 0.01)
-                      whit1(y = y, lambda = lambda)
-                      , c(list(y = y.tmp), ...)),
-                    whit2 = do.call(function(y, lambda = 0.01)
-                      whit2(y = y, lambda = lambda)
-                      , c(list(y = y.tmp), ...))
-    )
-    
-    # Invoke the CPP function to perform a preprocessing of the 
-    # smoothed data
-    # TODO: check if there are potential problems related to the
-    # bg.max function which is used by CPP
-    if (CPP) {
-      tmp.CPP  <- CPP(x = x, y = y.tmp, trans = trans, 
-                      bg.outliers = bg.outliers)
+  if(is.vector(method)) {
+    all.smooths <- lapply(1L:length(method.names), function(i) {
+      y.tmp <- switch(method.names[i],
+                      lowess = do.call(function(x, y, f = 0.01, iter = 3)
+                        lowess(x = x, y = y, f = f, iter = iter)
+                        , c(list(x = x, y = y.tmp), ...))[["y"]],
+                      mova = do.call(function(x, movaww = 3)
+                        as.vector(stats::filter(x, filter = rep(1/movaww, movaww), 
+                                                method = "convolution", sides = 2)), 
+                        c(list(x = y.tmp), ...)),
+                      savgol = do.call(function(y, p = 3)
+                        sgolayfilt(x = y, p = p)
+                        , c(list(y = y.tmp), ...)),
+                      smooth = do.call(function(x, y, df.fact = 0.95) {
+                        df.tmp <- data.frame(smooth.spline(x, y)[10])
+                        smooth.spline(x, y, df =  (df.tmp * df.fact))[["y"]]
+                      }, c(list(x = x, y = y.tmp), ...)),
+                      spline = do.call(function(x, y, n = length(y.tmp)) {
+                        spline(x, y, n = n)[["y"]]
+                      }, c(list(x = x, y = y.tmp), ...)),
+                      supsmu = do.call(function(x, y, span = 0.01)
+                        supsmu(x = x, y = y, span = span)
+                        , c(list(x = x, y = y.tmp), ...))[["y"]],
+                      whit1 = do.call(function(y, lambda = 0.01)
+                        whit1(y = y, lambda = lambda)
+                        , c(list(y = y.tmp), ...)),
+                      whit2 = do.call(function(y, lambda = 0.01)
+                        whit2(y = y, lambda = lambda)
+                        , c(list(y = y.tmp), ...))
+      )
       
-      # Do output of the smoothed data
-      tmp.CPP[["y.norm"]]
-    } else {
+      # Invoke the CPP function to perform a preprocessing of the 
+      # smoothed data
+      # TODO: check if there are potential problems related to the
+      # bg.max function which is used by CPP
+      if (CPP) {
+        tmp.CPP  <- CPP(x = x, y = y.tmp, trans = trans, 
+                        bg.outliers = bg.outliers)
+        
+        # Do output of the smoothed data
+        tmp.CPP[["y.norm"]]
+      } else {
+        y.tmp
+      }
       y.tmp
-    }
-    y.tmp
-  })
+    })
+  }
+  
+  if(is.list(method)) {
+    all.smooths <- lapply(1L:length(method.names), function(i) {
+      y.tmp <- switch(method.names[i],
+                      lowess = do.call(function(x, y, f = 0.01, iter = 3)
+                        lowess(x = x, y = y, f = f, iter = iter)
+                        , c(list(x = x, y = y.tmp), method[[i]]))[["y"]],
+                      mova = do.call(function(x, movaww = 3)
+                        as.vector(stats::filter(x, filter = rep(1/movaww, movaww), 
+                                                method = "convolution", sides = 2)), 
+                        c(list(x = y.tmp), method[[i]])),
+                      savgol = do.call(function(y, p = 3)
+                        sgolayfilt(x = y, p = p)
+                        , c(list(y = y.tmp), method[[i]])),
+                      smooth = do.call(function(x, y, df.fact = 0.95) {
+                        df.tmp <- data.frame(smooth.spline(x, y)[10])
+                        smooth.spline(x, y, df =  (df.tmp * df.fact))[["y"]]
+                      }, c(list(x = x, y = y.tmp), method[[i]])),
+                      spline = do.call(function(x, y, n = length(y.tmp)) {
+                        spline(x, y, n = n)[["y"]]
+                      }, c(list(x = x, y = y.tmp), method[[i]])),
+                      supsmu = do.call(function(x, y, span = 0.01)
+                        supsmu(x = x, y = y, span = span)
+                        , c(list(x = x, y = y.tmp), method[[i]]))[["y"]],
+                      whit1 = do.call(function(y, lambda = 0.01)
+                        whit1(y = y, lambda = lambda)
+                        , c(list(y = y.tmp), method[[i]])),
+                      whit2 = do.call(function(y, lambda = 0.01)
+                        whit2(y = y, lambda = lambda)
+                        , c(list(y = y.tmp), method[[i]]))
+      )
+      
+      # Invoke the CPP function to perform a preprocessing of the 
+      # smoothed data
+      # TODO: check if there are potential problems related to the
+      # bg.max function which is used by CPP
+      if (CPP) {
+        tmp.CPP  <- CPP(x = x, y = y.tmp, trans = trans, 
+                        bg.outliers = bg.outliers)
+        
+        # Do output of the smoothed data
+        tmp.CPP[["y.norm"]]
+      } else {
+        y.tmp
+      }
+      y.tmp
+    })
+  }
   
   #attr(y.norm, "method") <- method
   res <- do.call(cbind, all.smooths)
-  colnames(res) <- method
+  colnames(res) <- method.names
   res
 }
 
