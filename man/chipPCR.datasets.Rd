@@ -26,6 +26,14 @@ system proposed by Chou et al. 2013.
 
 \strong{standard qPCR - commercial thermo cyclers}
 
+\code{\link[chipPCR]{C60.amp}}:
+qPCR Experiment for the Amplification of MLC-2v and Vimentin (as decadic 
+dilutions) Using the Roche Light Cycler 1.5.
+
+\code{\link[chipPCR]{C60.melt}}:
+Melt Curves MLC-2v and Vimentin for the qPCR experiment 
+\code{\link[chipPCR]{C60.amp}} using the Roche Light Cycler 1.5
+
 \code{\link[chipPCR]{C126EG595}}:
 A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
 2007) was performed in the Bio-Rad iQ5 thermo cycler. The 
