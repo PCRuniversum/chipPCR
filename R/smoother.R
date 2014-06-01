@@ -13,22 +13,33 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
                 d.x.m = mean(d.x), 
                 d.x.s = sd(d.x)
   )
-  
   if ((res.x[["d.x.m"]] + res.x[["d.x.s"]]) != res.x[["d.x.m"]]) {
     warning("x is not uniform/equidistant (different inter cycle or time intervals.
 	       This may cause artifacts during the pre-processing.")
   }
-  
   #recognize method
   #possible methods
   pos.meth <- c("lowess", "mova", "savgol", "smooth", 
                 "spline", "supsmu", "whit1", "whit2")
-  if(is.list(method)) 
+  class(method)
+  if(is.list(method)) {
+    if(!all(sapply(method, function(i) is.list(i) || is.character(i))))
+      stop("If 'method' is a list, each element of 'method' must be also a list or character.")
+    char.names <- sapply(method, is.character)
+    names(method)[char.names] <- as.character(unlist(method[char.names]))
+    method <- lapply(method, function(i) {
+      if(class(i) =="character") {
+        list()
+      } else {
+        i
+      }
+    })
     method.names <- unname(sapply(names(method), tolower))
-  if(is.vector(method) && !is.list(method))
+  }
+  if(is.character(method)) {
     method.names <- unname(sapply(method, tolower))
-
-    
+  }
+  
   
   #uniformize names
   if (length(method.names) != 1 || method.names != "all") {
@@ -67,7 +78,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
     y.tmp <- y
   }
   
-  if(is.vector(method)) {
+  if(is.character(method)) {
     all.smooths <- lapply(1L:length(method.names), function(i) {
       y.tmp <- switch(method.names[i],
                       lowess = do.call(function(x, y, f = 0.01, iter = 3)
@@ -178,7 +189,7 @@ setMethod("smoother", signature(x = "data.frame", y="missing"),
                    method = "savgol", CPP = TRUE, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            smoother(x[,1], x[,2], trans, bg.outliers, spline, method, ...)
+            smoother(x[,1], x[,2], trans, bg.outliers, method, CPP, ...)
           })
 
 setMethod("smoother", signature(x = "matrix", y = "missing"), 
@@ -186,5 +197,5 @@ setMethod("smoother", signature(x = "matrix", y = "missing"),
                    method = "savgol", CPP = TRUE, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            smoother(x[,1], x[,2], trans, bg.outliers, spline, method, ...)
+            smoother(x[,1], x[,2], trans, bg.outliers, method, CPP, ...)
           })

@@ -54,8 +54,9 @@ cubic spline smooth, "supsmu" for Friedman's SuperSmoother, "whit1" for
 weighted Whittaker smoothing with a first order finite difference penalty, 
 "whit2" for weighted Whittaker smoothing with a second order finite 
 difference penalty or "all" for all implemented smoothing algorithms. Both upper and
-lower case is accepted. If \code{method} is a list, name of each element represents a
-smoothing method. Each element can contain additional arguments for choosen smoothing method.
+lower case is accepted. If \code{method} is a list, each element represents a
+smoothing method. If additional arguments are used, the element must be a named list. If not,
+the element must be a character. See Examples section.
   }
   \item{CPP}{
 		  logical parameter which indicates if CPP (curve 
@@ -127,45 +128,25 @@ legend(25, 0.8, c("Raw data", "savgol", "lowess", "mova 3", "mova 5",
 		  "smooth", "spline", "supsmu"), pch = 20, lwd = 2, 
 		  col = c(1:8))
 
-tmp.savgol <- smoother(tmp[, 1], tmp[, 2], method = "savgol")
-tmp.lowess <- smoother(tmp[, 1], tmp[, 2], method = "lowess")
-tmp.mova.3 <- smoother(tmp[, 1], tmp[, 2], method = "mova", 
-			movaww = 3)
-tmp.mova.5 <- smoother(tmp[, 1], tmp[, 2], method = "mova", 
-			movaww = 5)
-tmp.smooth <- smoother(tmp[, 1], tmp[, 2], method = "smooth")
-tmp.spline <- smoother(tmp[, 1], tmp[, 2], method = "spline")
-tmp.supsmu <- smoother(tmp[, 1], tmp[, 2], method = "supsmu")
+tmp.smooths <- smoother(tmp, method = list("savgol",
+                                           "lowess",
+                                           mova = list(movaww = 3),
+                                           mova = list(movaww = 5),
+                                           "smooth",
+                                           "spline",
+                                           "supsmu"))
 
-lines(tmp[, 1], tmp.savgol, type = "b", pch = 20, lwd = 2, col = 2)
-lines(tmp[, 1], tmp.lowess, type = "b", pch = 20, lwd = 2, col = 3)
-lines(tmp[, 1], tmp.mova.3, type = "b", pch = 20, lwd = 2, col = 4)
-lines(tmp[, 1], tmp.mova.5, type = "b", pch = 20, lwd = 2, col = 5)
-lines(tmp[, 1], tmp.smooth, type = "b", pch = 20, lwd = 2, col = 6)
-lines(tmp[, 1], tmp.spline, type = "b", pch = 20, lwd = 2, col = 7)
-lines(tmp[, 1], tmp.supsmu, type = "b", pch = 20, lwd = 2, col = 8)
+
+for (i in 1:ncol(tmp.smooths))
+  lines(tmp[, 1], tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i + 1)
+
 
 par(fig = c(0.15,0.6,0.45,0.99), new = TRUE)
 plot(tmp, main = "", xlab = "Cycles", ylab ="refMFI", 
      pch = 20, xlim = c(14,20), ylim = c(0,0.45))
 
-tmp.savgol <- smoother(tmp[, 1], tmp[, 2], method = "savgol")
-tmp.lowess <- smoother(tmp[, 1], tmp[, 2], method = "lowess")
-tmp.mova.3 <- smoother(tmp[, 1], tmp[, 2], method = "mova", 
-			movaww = 3)
-tmp.mova.5 <- smoother(tmp[, 1], tmp[, 2], method = "mova", 
-			movaww = 5)
-tmp.smooth <- smoother(tmp[, 1], tmp[, 2], method = "smooth")
-tmp.spline <- smoother(tmp[, 1], tmp[, 2], method = "spline")
-tmp.supsmu <- smoother(tmp[, 1], tmp[, 2], method = "supsmu")
-
-lines(tmp[, 1], tmp.savgol, type = "b", pch = 20, lwd = 2, col = 2)
-lines(tmp[, 1], tmp.lowess, type = "b", pch = 20, lwd = 2, col = 3)
-lines(tmp[, 1], tmp.mova.3, type = "b", pch = 20, lwd = 2, col = 4)
-lines(tmp[, 1], tmp.mova.5, type = "b", pch = 20, lwd = 2, col = 5)
-lines(tmp[, 1], tmp.smooth, type = "b", pch = 20, lwd = 2, col = 6)
-lines(tmp[, 1], tmp.spline, type = "b", pch = 20, lwd = 2, col = 7)
-lines(tmp[, 1], tmp.supsmu, type = "b", pch = 20, lwd = 2, col = 8)
+for (i in 1:ncol(tmp.smooths))
+  lines(tmp[, 1], tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i + 1)
 
 
 # Plot the difference of the smoothed / filtered data
@@ -182,23 +163,25 @@ legend(1.5, 0.1, ncol = 2, c("savgol", "lowess", "mova 3", "mova 5",
 	"smooth", "spline", "supsmu"), pch = 20, lwd = 2, 
 	col = c(2:8))
 
-lines(tmp[, 1], tmp[, 2] - tmp.savgol, type = "b", col = 2, pch = 20)
-lines(tmp[, 1], tmp[, 2] - tmp.lowess, type = "b", col = 3, pch = 20) 
-lines(tmp[, 1], tmp[, 2] - tmp.mova.3, type = "b", col = 4, pch = 20) 
-lines(tmp[, 1], tmp[, 2] - tmp.mova.5, type = "b", col = 5, pch = 20)
-lines(tmp[, 1], tmp[, 2] - tmp.smooth, type = "b", col = 6, pch = 20)
-lines(tmp[, 1], tmp[, 2] - tmp.spline, type = "b", col = 7, pch = 20)
-lines(tmp[, 1], tmp[, 2] - tmp.supsmu, type = "b", col = 8, pch = 20)
+for (i in 1:ncol(tmp.smooths))
+  lines(tmp[, 1], tmp[, 2] - tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i + 1)
 
 par(fig = c(0,1,0.55,1), new = TRUE)
 
 plot(tmp, type = "b", col = 1, pch = 20, xlab = "", ylab = "RFU", 
       main = "Raw data")
 
-#if method is a list, multiple smoothing algorithms with multiple arguments can be used
-different.movas <- smoother(tmp[, 1], tmp[, 2], method = list(mova = list(movaww = 3),
-                                                         mova = list(movaww = 5)))
-
+#different ways of using smoother
+#1. single method
+single.smooth <- smoother(tmp, method = "mova")
+#single smooth, additional argument specified
+single.smooth.add <- smoother(tmp, method = "mova", movaww = 3)
+#3. more than one smoothing method, no additional arguments specified
+double.smooth <- smoother(tmp, method = c("savgol", "mova"))
+#4. more than one smoothing method, additional arguments specified
+double.smooth.add <- smoother(tmp, method = list("savgol", mova = list(movaww = 3)))
+#5. all smoothing methods, , no additional arguments specified
+all.smooth <- smoother(tmp, method = "all")
 }
 
 \keyword{ smooth }
