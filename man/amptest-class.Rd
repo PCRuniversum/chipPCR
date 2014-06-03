@@ -1,5 +1,6 @@
 \name{amptest}
 \docType{class}
+\alias{amptest}
 \alias{amptest-class}
 \alias{summary.amptest}
 \alias{summary,amptest-method}
