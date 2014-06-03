@@ -6,10 +6,8 @@ setClassUnion("numericOrNULL",c("numeric","NULL"))
 
 #amptest class, amptester function -------------------------------
 setClass("amptest", contains = "numeric", representation(.Data = "numeric", 
-                                                         decision = "character",
+                                                         decisions = "logical",
                                                          noiselevel = "numeric",
-                                                         noise = "logical",
-                                                         linearity = "logical",
                                                          background = "numericOrNULL"))
 
 setMethod("show", signature(object = "amptest"), function(object) {
@@ -18,16 +16,17 @@ setMethod("show", signature(object = "amptest"), function(object) {
 
 setMethod("summary", signature(object = "amptest"), function(object) {
   print(slot(object, ".Data"))
-  cat(paste0("\nAmplification significance (decision): ", slot(object, "decision")))  
-  cat(paste0("\nNoise detected: ", slot(object, "noise")))
+  cat(paste0("\nAmplification significance (threshold test): ", slot(object, "decisions")[["tht.dec"]]))
+  cat(paste0("\nAmplification significance (signal level test): ", slot(object, "decisions")[["slt.dec"]]))
+  cat(paste0("\nNoise detected: ", slot(object, "decisions")[["shap.noisy"]]))
   cat(paste0("\nNoise level: ", slot(object, "noiselevel")))
-  cat(paste0("\nLinearity: ", slot(object, "linearity")))
+  cat(paste0("\nLinearity: ", slot(object, "decisions")[["lrt.test"]]))
   bcg <- slot(object, "background")
   if (is.null(bcg)) {
     cat(paste0("\nBackground: not defined")) 
   } else {
     bcg <- paste0(bcg, collapse = ", ")
-    cat(paste0("\nBackground: (", bcg, ")")) 
+    cat(paste0("\nBackground: (", bcg, ")"))
   }
 })
 

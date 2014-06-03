@@ -16,13 +16,12 @@ function.
   \describe{
     \item{\code{.Data}:}{\code{"numeric"} is a vector containing the 
 			 fluorescence values.}
-    \item{\code{decision}:}{\code{"integer"} states if the amplification 
-			    is "positive" or "negative"}
+    \item{\code{decisions}:}{\code{"logical"} contains outcomes of various tests.
+    \code{shap.noisy} is presence of noise, \code{lrt.test} states if data are 
+  			likely from a amplification curve and both \code{tht.dec} and \code{tht.dec}
+        defines if the amplification is "positive" or "negative".}
     \item{\code{noiselevel}:}{ \code{"numeric"} user-defined threshold for a 
 			      significant amplification signal.}
-    \item{\code{noise}:}{ \code{"logical"} \code{TRUE} if noise was detected.}
-    \item{\code{linearity}:}{ \code{"logical"} \code{TRUE} if data are 
-				likely from a amplification curve.}
     \item{\code{background}:}{range of the background signal in the 
 			      amplification curve.}
 }

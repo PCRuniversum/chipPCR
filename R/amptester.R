@@ -5,7 +5,7 @@ amptester <-
     if (!is.null(background) && length(background) != 2)
       stop("Use only two values (e.g., background = c(1,10)) \n\t to set the range for the background correction")
     if (is.null(background) && manual == TRUE)
-      stop("Manual test requires specified background.") 
+      stop("Manual test requires specified background.")
     if (!is.null(background) && manual == FALSE)
       stop("Background is not empty. Manual test needs to be confirmed \n\t (manual = TRUE) to be performed.")
     #if background is NULL, sorting it is pointless and invokes warning
@@ -34,7 +34,7 @@ amptester <-
     nh <- trunc(length(y) * 0.2)
     cyc <- 1:nh
     resids <- residuals(lm(y[cyc] ~ cyc))
-    decision <- ifelse(abs(cor(cyc, resids)) > 0.9, "positive", "negative")
+    rgt.dec <- ifelse(abs(cor(cyc, resids)) > 0.9, "positive", "negative")
     
     # THIRD TEST
     # Linear Regression test (LRt)
@@ -68,9 +68,8 @@ amptester <-
     # beacuse most technologies and probetechnologies tend to overshot
     # in the start (background) region.
     res.out <- sapply(5L:(length(res.LRt) - 6), function(i) {
-	ifelse(sum(res.LRt[i:(i + 4)]) == 5, TRUE, FALSE)
-      }
-    )
+      ifelse(sum(res.LRt[i:(i + 4)]) == 5, TRUE, FALSE)
+    })
     
     # Test if more than one sequence of positive values was found (will 
     # be the case in most situation due to an overlap of the positive 
@@ -87,9 +86,9 @@ amptester <-
       signal <- median(y[-(background)]) - mad(y[-(background)])
       if (signal < noiselevel && (signal / noiselevel) < 1.25) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
-        decision <- "negative"
+        tht.dec <- "negative"
       } else {
-        decision <- "positive"
+        tht.dec <- "positive"
       }
     } else {
       # FOURTH TEST (AUTOMATIC)
@@ -106,9 +105,9 @@ amptester <-
       if (t.test(head(y, n = nh), tail(y, n = nt), 
                  alternative = "less")$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
-        decision <- "negative"
+        tht.dec <- "negative"
       } else {
-        decision <- "positive"
+        tht.dec <- "positive"
       }
       
       # FIFTH TEST
@@ -121,16 +120,21 @@ amptester <-
       signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
       if (signal <= noisebackground || signal / noisebackground <= 1.25) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
-        decision <- "negative"
+        slt.dec <- "negative"
       } else {
-        decision <- "positive"
+        slt.dec <- "positive"
       }
     }
+    rgt.dec <- ifelse(rgt.dec == "positive", TRUE, FALSE)
+    tht.dec <- ifelse(tht.dec == "positive", TRUE, FALSE)
+    slt.dec <- ifelse(slt.dec == "positive", TRUE, FALSE)
     new("amptest", 
-        .Data = y, 
-        decision = decision, 
-        noiselevel = noiselevel,
-        noise = noisy,
-        linearity = linearity,
-        background = background)
+             .Data = y, 
+             decisions = c(shap.noisy = noisy,
+                           lrt.test = linearity,
+                           rgt.dec = rgt.dec,
+                           tht.dec = tht.dec,
+                           slt.dec = slt.dec), 
+             noiselevel = noiselevel,
+             background = background)
   }
