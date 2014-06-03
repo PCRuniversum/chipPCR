@@ -28,10 +28,13 @@ amptester <-
       mess.shapiro <- "Appears to be an amplification curve"
     }
     
+    # Determine the head and tail region for the next tests.
+    nh <- trunc(length(y) * 0.2)
+    nt <- trunc(length(y) * 0.15)
+    
     # SECOND TEST
     # Resids growth test (RGt)
     #test if function is monotonic and growing during first few cycles
-    nh <- trunc(length(y) * 0.2)
     cyc <- 1:nh
     resids <- residuals(lm(y[cyc] ~ cyc))
     rgt.dec <- ifelse(abs(cor(cyc, resids)) > 0.9, "positive", "negative")
@@ -97,11 +100,8 @@ amptester <-
       # of any input data set to calculate the number of elements for the head 
       # (nh) and tail (nt), to deal with other data types like isothermal
       # amplifications
-      
-      #nh <- trunc(length(y) * 0.2)
-      # nh calculated @ THIRD TEST
-      nt <- trunc(length(y) * 0.15)
-      
+
+
       if (t.test(head(y, n = nh), tail(y, n = nt), 
                  alternative = "less")$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
@@ -116,6 +116,7 @@ amptester <-
       # 1) A robust "sigma" rule by median + 2 * mad 
       # 2) comparison of the signal/noise ratio. If less than 1.3 (30 percent) 
       # signal increase it is likely that nothing happened during the reaction.
+      
       noisebackground <- median(head(y, n = nh)) + 2 * mad(head(y, n = nh))
       signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
       if (signal <= noisebackground || signal / noisebackground <= 1.25) {

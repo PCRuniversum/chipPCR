@@ -12,8 +12,25 @@ fixNA <- function(x, y, spline = TRUE, verbose = FALSE) {
   if (sum(is.na(head(y))) > 2) 
     warning("More than 2 missing values in first 6 elements.\nApproximation may not be correct.")
   
+  # Test if at least one sequence of four missing elements in a data sequence is
+  # present. Give a warning in such cases.
+  na.seq <- y
+  na.seq[is.na(na.seq) == FALSE] <- 0
+  na.seq[is.na(na.seq) == TRUE] <- 1
+        
+  res.na.out <- sapply(1L:(length(na.seq) - 4), function(i) {
+	ifelse(sum(na.seq[i:(i + 4)]) == 4, TRUE, FALSE)
+     }
+  )
+    
+  na.fail <- FALSE
+  if (sum(res.na.out) >= 2) {
+      na.fail <- TRUE 
+  }
   
-  
+  if (na.fail) {
+    warning("Sequence of more than 4 missing values in data.\nApproximation may not be correct.")
+  }
   # Test if y contains somethings else than NAs
   #if(complete.cases(y) != is.na(y))
   #  warnings("Use ordinate contain non-number elements (e.g., strings)")

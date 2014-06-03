@@ -13,7 +13,9 @@ Wrapper for Several Smoothers of Amplification Data
 \description{
 Smoother is a wrapper for several smoothing functions including LOWESS, 
 Moving Average, Friedman's SuperSmoother, Cubic Spline and Savitzky-Golay 
-smoothing filter for amplification curve data.
+smoothing filter, Friedman's SuperSmoother, and Whittaker smoother for 
+amplification curve 
+data.
 }
 \usage{
 \S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, 
