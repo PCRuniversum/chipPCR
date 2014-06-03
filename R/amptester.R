@@ -109,23 +109,23 @@ amptester <-
       } else {
         tht.dec <- "positive"
       }
-      
-      # FIFTH TEST
-      # Signal level test (SLt)
-      # The meaninfulness can be tested by comparison of the signals
-      # 1) A robust "sigma" rule by median + 2 * mad 
-      # 2) comparison of the signal/noise ratio. If less than 1.3 (30 percent) 
-      # signal increase it is likely that nothing happened during the reaction.
-      
-      noisebackground <- median(head(y, n = nh)) + 2 * mad(head(y, n = nh))
-      signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
-      if (signal <= noisebackground || signal / noisebackground <= 1.25) {
-        y <- abs(rnorm(length(y), 0, 0.1^30))
-        slt.dec <- "negative"
-      } else {
-        slt.dec <- "positive"
-      }
     }
+    
+    # FIFTH TEST
+    # Signal level test (SLt)
+    # The meaninfulness can be tested by comparison of the signals
+    # 1) A robust "sigma" rule by median + 2 * mad 
+    # 2) comparison of the signal/noise ratio. If less than 1.3 (30 percent) 
+    # signal increase it is likely that nothing happened during the reaction.
+    noisebackground <- median(head(y, n = nh)) + 2 * mad(head(y, n = nh))
+    signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
+    if (signal <= noisebackground || signal / noisebackground <= 1.25) {
+      y <- abs(rnorm(length(y), 0, 0.1^30))
+      slt.dec <- "negative"
+    } else {
+      slt.dec <- "positive"
+    }
+    
     rgt.dec <- ifelse(rgt.dec == "positive", TRUE, FALSE)
     tht.dec <- ifelse(tht.dec == "positive", TRUE, FALSE)
     slt.dec <- ifelse(slt.dec == "positive", TRUE, FALSE)
