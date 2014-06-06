@@ -45,7 +45,7 @@ amptester <-
     #test if function is monotonic and growing during first few cycles
     cyc <- 1:nh
     resids <- residuals(rlm(y[cyc] ~ cyc))
-    rgt.dec <- ifelse(cor(resids, y[cyc])) > 0.9, "positive", "negative")
+    rgt.dec <- ifelse(cor(resids, y[cyc]) > 0.9, "positive", "negative")
     
     # THIRD TEST
     # Linear Regression test (LRt)

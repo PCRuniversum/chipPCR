@@ -6,6 +6,7 @@ importFrom(ptw, whit1, whit2)
 importFrom(Rfit, rfit)
 importFrom(quantreg, rq)
 importFrom(shiny, runApp)
+importFrom(MASS, rlm)
 
 exportClasses(
     "amptest",
