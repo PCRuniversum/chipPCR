@@ -33,7 +33,7 @@ amptester <-
     # of any input data set to calculate the number of elements for the head 
     # (nh) and tail (nt), to deal with other data types like isothermal
     # amplifications
-
+    
     nh <- trunc(length(y) * 0.2)
     if (nh < 5) nh <- 5
     
@@ -44,8 +44,8 @@ amptester <-
     # Resids growth test (RGt)
     #test if function is monotonic and growing during first few cycles
     cyc <- 1:nh
-    resids <- residuals(lm(y[cyc] ~ cyc))
-    rgt.dec <- ifelse(abs(cor(cyc, resids)) > 0.9, "positive", "negative")
+    resids <- residuals(rlm(y[cyc] ~ cyc))
+    rgt.dec <- ifelse(cor(resids, y[cyc])) > 0.9, "positive", "negative")
     
     # THIRD TEST
     # Linear Regression test (LRt)
@@ -85,10 +85,8 @@ amptester <-
     # Test if more than one sequence of positive values was found (will 
     # be the case in most situation due to an overlap of the positive 
     # sequences.)
-    linearity <- FALSE
-    if (sum(res.out) >= 1) {
-      linearity <- TRUE 
-    }
+    linearity <- ifelse(sum(res.out) >= 1, TRUE, FALSE)
+    
     # FOURTH TEST (MANUAL)
     # Threshold test (THt)
     # Manual test for positve amplification based on a fixed threshold
@@ -102,14 +100,14 @@ amptester <-
         tht.dec <- "positive"
       }
     } else {
-    # FOURTH TEST (AUTOMATIC)
-    # Threshold test (THt)
-    # Apply a simple rule to take the first 20 percent and the last 15 percent
-    # of any input data set and perform a Wilcoxon rank sum tests for the head 
-    # (nh) and tail (nt).
-
+      # FOURTH TEST (AUTOMATIC)
+      # Threshold test (THt)
+      # Apply a simple rule to take the first 20 percent and the last 15 percent
+      # of any input data set and perform a Wilcoxon rank sum tests for the head 
+      # (nh) and tail (nt).
+      
       if (wilcox.test(head(y, n = nh), tail(y, n = nt), 
-                 alternative = "less")$p.value > 0.01) {
+                      alternative = "less")$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
         tht.dec <- "negative"
       } else {
@@ -136,12 +134,12 @@ amptester <-
     tht.dec <- ifelse(tht.dec == "positive", TRUE, FALSE)
     slt.dec <- ifelse(slt.dec == "positive", TRUE, FALSE)
     new("amptest", 
-             .Data = y, 
-             decisions = c(shap.noisy = noisy,
-                           lrt.test = linearity,
-                           rgt.dec = rgt.dec,
-                           tht.dec = tht.dec,
-                           slt.dec = slt.dec), 
-             noiselevel = noiselevel,
-             background = background)
+        .Data = y, 
+        decisions = c(shap.noisy = noisy,
+                      lrt.test = linearity,
+                      rgt.dec = rgt.dec,
+                      tht.dec = tht.dec,
+                      slt.dec = slt.dec), 
+        noiselevel = noiselevel,
+        background = background)
   }

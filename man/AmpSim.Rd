@@ -82,7 +82,7 @@ plot(NA, NA, xlim = c(1,40), ylim = c(0.01,2), xlab = "Cycles",
      ylab = "Fluorescence", main = "In-silco Dilution Experiment")
 cycle.dilution <- seq(18, 35, 3.32)
 for (i in 1:6) {
-  lines(AmpSim(cyc = c(1:40), b.eff = -25, bl = 0.01, ampl = 2, 
+  lines(AmpSim(cyc = 1:40, b.eff = -25, bl = 0.01, ampl = 2, 
 	      Cq = cycle.dilution[i]), type = "b", col = i, pch = 20)
 }
 
@@ -93,7 +93,7 @@ plot(NA, NA, xlim = c(1,40), ylim = c(0.01,2.2), xlab = "Cycles",
      main = "In-silco Dilution Experiment with Some Noise")
 cycle.dilution <- seq(18, 35, 3.32)
 for (i in 1:6) {
-  lines(AmpSim(cyc = c(1:40), b.eff = -25, bl = 0.01, ampl = 2, 
+  lines(AmpSim(cyc = 1:40, b.eff = -25, bl = 0.01, ampl = 2, 
 	      Cq = cycle.dilution[i], noise = TRUE, nnl = 0.05), 
 	      type = "b", col = i, pch = 20)
 }
@@ -112,7 +112,7 @@ for (j in 1:3){
 					    method[j]))
     cycle.dilution <- seq(18, 35, 3.32)
     for (i in 1:6) {
-      lines(AmpSim(cyc = c(1:40), b.eff = -25, bl = 0.02, ampl = 2, 
+      lines(AmpSim(cyc = 1:40, b.eff = -25, bl = 0.02, ampl = 2, 
 		   Cq = cycle.dilution[i], noise = TRUE, nnl = 0.08, 
 		   nnl.method = method[j]), type = "b", col = i, pch = 20)
    }
