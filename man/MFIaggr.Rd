@@ -53,22 +53,9 @@ An object of the class \code{\linkS4class{refMFI}}.
 }
 
 \author{
-Stefan Roediger
+Stefan Roediger, Michal Burdukiewicz
 }
 
-\references{
-A Highly Versatile Microscope Imaging Technology Platform for the Multiplex 
-Real-Time Detection of Biomolecules and Autoimmune Antibodies. S. Roediger, 
-P. Schierack, A. Boehm, J. Nitschke, I. Berger, U. Froemmel, C. Schmidt, M. 
-Ruhland, I. Schimke, D. Roggenbuck, W. Lehmann and C. Schroeder. 
-\emph{Advances in Biochemical Bioengineering/Biotechnology}. 133:33--74, 
-2013. \url{http://www.ncbi.nlm.nih.gov/pubmed/22437246}
-
-Nucleic acid detection based on the use of microbeads: a review. S. 
-Roediger, C. Liebsch, C. Schmidt, W. Lehmann, U. Resch-Genger, U. Schedler, 
-P. Schierack. \emph{Microchim Acta} 2014:1--18. DOI: 
-10.1007/s00604-014-1243-4
-}
 \examples{
 # First Example
 # Cycle dependent variance of the refMFI using standard measures 
