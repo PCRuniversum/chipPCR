@@ -8,11 +8,12 @@
 \alias{MFIaggr,data.frame,missing-method}
 
 \title{
-Multiple comparison of the cycle dependent variance of the refMFI
+Multiple comparison of the cycle dependent variance of the fluorescence
 }
 \description{
  MFIaggr is used for a fast multiple comparison of the cycle dependent 
-variance of the refMFI.
+variance of the fluorescence. A similar tool with different scope is 
+interated in the \code{\link[MBmca]{MFIerror}} function (Roediger et al. 2013).
 }
 \usage{
 \S4method{MFIaggr}{numeric,numeric}(x, y, cyc = 1, fluo = 2:ncol(x), 
@@ -27,7 +28,7 @@ variance of the refMFI.
   \item{x}{ is the column of a data frame for the cycle. }
   
   \item{y}{ are multiple columns of fluorescence values from a 
-	    \code{data.frame} (e.g., [, c(1:n)]). Ommited if \code{x} is 
+	    \code{data.frame} (e.g., [, c(1:n)]). Omitted if \code{x} is 
 	    matrix or data frame.}
 
   \item{cyc}{ is the index of column containing the cycle data. 
@@ -54,6 +55,11 @@ An object of the class \code{\linkS4class{refMFI}}.
 
 \author{
 Stefan Roediger, Michal Burdukiewicz
+}
+
+\references{
+Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R. 
+\emph{The R Journal} 2013;5:37–53.
 }
 
 \examples{
