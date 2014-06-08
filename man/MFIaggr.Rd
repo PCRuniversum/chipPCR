@@ -59,7 +59,7 @@ Stefan Roediger, Michal Burdukiewicz
 
 \references{
 Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R. 
-\emph{The R Journal} 2013;5:37–53.
+\emph{The R Journal} 2013;5:37--53.
 }
 
 \examples{
