@@ -1,6 +1,6 @@
 CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = TRUE, 
 		rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
-		norm = "none", qnL = 0.1, amptest = FALSE, manual = FALSE, 
+		norm = "none", qnL = 0.03, amptest = FALSE, manual = FALSE, 
 		nl = 0.08, ...) {
   
   testxy(x, y)
@@ -168,7 +168,7 @@ setGeneric("CPP")
 setMethod("CPP", signature(x = "data.frame", y="missing"), 
           function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
-                   norm = "none", qnL = 0.1, 
+                   norm = "none", qnL = 0.03, 
                    amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
@@ -180,7 +180,7 @@ setMethod("CPP", signature(x = "data.frame", y="missing"),
 setMethod("CPP", signature(x = "matrix", y="missing"), 
           function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
-                   norm = "none", qnL = 0.1, 
+                   norm = "none", qnL = 0.03, 
                    amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")

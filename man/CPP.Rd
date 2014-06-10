@@ -21,20 +21,20 @@ in the background range and to test if an amplification is significant.
 \S4method{CPP}{numeric,numeric}(x, y, smoother = TRUE, method = "savgol", 
 				trans = TRUE, rob.reg = "lmrob", 
 				bg.outliers = FALSE, median = FALSE, 
-				norm = "none", qnL = 0.1, amptest = FALSE, 
+				norm = "none", qnL = 0.03, amptest = FALSE, 
 				manual = FALSE, nl = 0.08, ...)
 
 \S4method{CPP}{matrix,missing}(x, y, smoother = TRUE, method = "savgol", 
 			       trans = TRUE, rob.reg = "lmrob", 
 			       bg.outliers = FALSE, median = FALSE, 
-			       norm = "none", qnL = 0.1, amptest = FALSE, 
+			       norm = "none", qnL = 0.03, amptest = FALSE, 
 			       manual = FALSE, nl = 0.08, ...)
 
 \S4method{CPP}{data.frame,missing}(x, y, smoother = TRUE, 
 				   method = "savgol", trans = TRUE, 
 				   rob.reg = "lmrob", bg.outliers = FALSE, 
 				   median = FALSE, norm = "none", 
-				   qnL = 0.1, amptest = FALSE, 
+				   qnL = 0.03, amptest = FALSE, 
 				   manual = FALSE, nl = 0.08, ...)
 }
 
