@@ -122,6 +122,12 @@ by computing MM-type regression estimators, a nonparametric rank-based
 estimator  or a standard linear regression model. Care is needed when 
 using 
 \code{trans} with time series (see \code{\link[stats]{lm}} for details).
+
+The dB (decibel) as measure of the ratio between the fluorescence of the 
+lowest and highest signal. The dB is defined as ten times the decadic 
+logarithm of the their ratio. An example application is shown below.
+
+\deqn{L_{dB} = 10 * \log_{10}(abs(\frac{quantile(RFU, 1 - p)}{quantile(RFU, p)}))}
 }
 
 \author{
