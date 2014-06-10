@@ -1,3 +1,4 @@
+# Calculate the 5-point stencil
 # point f'(x.i)
 first.midpoint <- function(y, h)
   1/12/h * (y[1] - 8 * y[2] + 8 * y[4] - y[5])
@@ -38,16 +39,20 @@ sec.endpoint1 <- function(y, h)
 sec.endpoint0 <- function(y, h)
   sec.beginpoint0(rev(y), h)
 
-
+# Defintion of the inder function
 inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
-  
+  # Test validity ot the input data
   testxy(x, y)
   
+  # Test meaningfulness of the spline interpolation and give a warning in case
+  # any violation
   if (Nip < 1) 
     stop("Use Nip equal or larger to 1")
   
   if (Nip > 10) 
     warning("Nip larger than 10 may case over-fitting")
+  
+  # Set the smooth method for inder
   
   if(is.null(smooth.method)) {
     x.tmp <- x
