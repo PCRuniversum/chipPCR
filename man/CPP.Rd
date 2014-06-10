@@ -207,7 +207,7 @@ boxplot(res, ylab = "dB", ylim = c(1.45, 3.5))
 mtext("B", cex = 2, side = 3, adj = 0, font = 2) 
 
 wcx <- wilcox.test(T60, T69)
-lines(c(1,2), c(3.2,2.2))
+lines(c(1,2), c(3.2,3.2))
 text(1.5, 3.3, paste("p :", wcx$p.value))
 
 IQR(T60)
