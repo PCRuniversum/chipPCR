@@ -17,9 +17,11 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = TRUE,
     method.norm <- "luqn"
   if (grepl(method.norm, "minmax"))
     method.norm <- "minmax"
+  if (grepl(method.norm, "max"))
+    method.norm <- "max"
   if (grepl(method.norm, "zscore"))
     method.norm <- "zscore"
-  if (!(method.norm %in% c("none", "luqn", "minmax", "zscore")))
+  if (!(method.norm %in% c("none", "luqn", "minmax", "max", "zscore")))
     stop("Invalid method chosen.")
     
   # Define the method for the linear regression
@@ -132,6 +134,8 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = TRUE,
     switch(method,
            none = do.call(function(y) y, c(list(y = y))),
            minmax = do.call(function(y) (y - min(y)) / (max(y) - min(y)), 
+			    c(list(y = y))),
+	   max = do.call(function(y) (y / max(y)), 
 			    c(list(y = y))),
            luqn = do.call(function(y, qnL) (y - quantile(y, qnL)) / 
 			  (quantile(y, 1  - qnL) - quantile(y, qnL)), 
