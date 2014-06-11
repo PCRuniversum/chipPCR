@@ -213,7 +213,7 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     )
     
     # Add a range for the ROI
-    abline(v = llul, col = "lightgrey")
+    abline(v = llul, col = "lightgrey", lwd = 1.25)
     #Plot the location with error bars.
     
     # "Calculate" the Quantile-Quantile plots and density plots
