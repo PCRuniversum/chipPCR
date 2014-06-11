@@ -125,7 +125,7 @@ isPCR <- AmpSim(cyc = 1:40, Cq = 20)
 # the derivatives of the simulated data as object res. The Nip 
 # parameter was set to 5. This leads to smoother curves. res is
 # an object of the class "der".
-res <- inder(isPCR, Nip = 5)
+res <- inder(isPCR, smooth.method = "spline", Nip = 5)
 
 # Plot the the object res and add description to the elements.
 par(las = 0, bty = "n", cex.axis = 1.5, cex.lab = 1.5, 

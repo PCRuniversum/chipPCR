@@ -199,10 +199,11 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   llul <- rownames(slot(x, "qqnorm.data"))
   stats <- slot(x, "stats")
   ncol_y <- ncol(slot(x, "qqnorm.data"))
+  
   #Plot the Coefficient of Variance
+  layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
   
   if (CV) {
-    par(fig = c(0,0.6,0,1))
     plot(res[, 1], res[, 4], xlab = "Cycle", ylab = "CV", 
          type = type, pch = pch, col = col,
          main = paste("ROI samples: ", ncol_y, "\n",
@@ -217,7 +218,6 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     
     # "Calculate" the Quantile-Quantile plots and density plots
     # and plot the results
-    par(fig = c(0.65,1,0.5,1), new = TRUE)
     
     plot(res.dens, xlab = "RFU", main = paste("Cycle ", 
                                               llul[1], " to ", llul[2], 
@@ -227,7 +227,6 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
                                               sep = ""))
     
   } else {
-    par(fig = c(0,0.6,0,1))
     plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
                                       max(res[, 2] + res[, 3])), 
                                       xlab = "Cycle", ylab = "MFI", 
@@ -245,7 +244,6 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     deviation.measure <- substr(deviation.measure, 1, nchar(deviation.measure) - 1)
     mtext(paste0("Deviation: ", deviation.measure), 4)
     
-    par(fig = c(0.65,1,0.5,1), new = TRUE)
     
     plot(res.dens, xlab = "RFU", main = paste("ROI cycle ", 
                                               llul[1], " to ", llul[2], 
@@ -255,7 +253,7 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
                                               sep = ""))
     
   }
-  par(fig = c(0.65,1,0,0.5), new = TRUE)
+  # Analysis of the quantiles
   qqnorm(x)
   qqline(x)
   
