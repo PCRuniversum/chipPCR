@@ -119,7 +119,7 @@ amptester <-
     # Signal level test (SLt)
     # The meaninfulness can be tested by comparison of the signals
     # 1) A robust "sigma" rule by median + 2 * mad 
-    # 2) comparison of the signal/noise ratio. If less than 1.3 (30 percent) 
+    # 2) comparison of the signal/noise ratio. If less than 1.25 (25 percent) 
     # signal increase it is likely that nothing happened during the reaction.
     noisebackground <- median(head(y, n = nh)) + 2 * mad(head(y, n = nh))
     signal  <- median(tail(y, n = nt)) - 2 * mad(tail(y, n = nt))
