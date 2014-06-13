@@ -55,8 +55,8 @@ inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
   # Set the smooth method for inder
   
   if(is.null(smooth.method)) {
-    x.tmp <- x
-    y.tmp <- y
+    tmp.xy <- data.frame(x = x, y = y)
+    smooth.method <- "no smoothing"
   } else {
     if (smooth.method == "spline") {
       tmp.xy <- spline(x, y, n = Nip * length(x))
