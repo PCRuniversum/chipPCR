@@ -80,6 +80,7 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
              median = round(median(unlist(y[llul, ]), na.rm = TRUE), 3), 
              sd = round(sd(unlist(y[llul, ]), na.rm = TRUE), 2),
              mad = round(mad(unlist(y[llul, ]), na.rm = TRUE), 2),
+             IQR = round(IQR(unlist(y[llul, ]), na.rm = TRUE), 2),
              medcouple = round(mc(unlist(y[llul, ]), na.rm = TRUE), 3)
   )
 
