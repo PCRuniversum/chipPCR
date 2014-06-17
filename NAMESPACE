@@ -5,6 +5,7 @@ importFrom(ptw, whit1, whit2)
 importFrom(quantreg, rq)
 importFrom(Rfit, rfit)
 importFrom(robustbase, lmrob)
+importFrom(robustbase, mc)
 importFrom(shiny, runApp)
 importFrom(signal, sgolayfilt)
 

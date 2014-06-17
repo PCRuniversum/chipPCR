@@ -125,7 +125,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
       y.tmp
     })
   }
-  
+  # List of filter and smoother methods of the smoother function. 
   if(is.list(method)) {
     all.smooths <- lapply(1L:length(method.names), function(i) {
       y.tmp <- switch(method.names[i],
@@ -189,7 +189,7 @@ setMethod("smoother", signature(x = "data.frame", y="missing"),
                    method = "savgol", CPP = TRUE, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            smoother(x[,1], x[,2], trans, bg.outliers, method, CPP, ...)
+            smoother(x[, 1], x[, 2], trans, bg.outliers, method, CPP, ...)
           })
 
 setMethod("smoother", signature(x = "matrix", y = "missing"), 
@@ -197,5 +197,5 @@ setMethod("smoother", signature(x = "matrix", y = "missing"),
                    method = "savgol", CPP = TRUE, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            smoother(x[,1], x[,2], trans, bg.outliers, method, CPP, ...)
+            smoother(x[, 1], x[, 2], trans, bg.outliers, method, CPP, ...)
           })

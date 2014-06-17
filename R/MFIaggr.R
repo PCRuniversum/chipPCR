@@ -76,12 +76,13 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
   # Calcuate robust und non-robust location and dispersion
   # parameters of the ROI and apply the results to stats
   
-  stats <- c(round(mean(unlist(y[llul, ]), na.rm = TRUE), 3),
-             round(median(unlist(y[llul, ]), na.rm = TRUE), 3), 
-             round(sd(unlist(y[llul, ]), na.rm = TRUE), 2),
-             round(mad(unlist(y[llul, ]), na.rm = TRUE), 2)
+  stats <- c(mean = round(mean(unlist(y[llul, ]), na.rm = TRUE), 3),
+             median = round(median(unlist(y[llul, ]), na.rm = TRUE), 3), 
+             sd = round(sd(unlist(y[llul, ]), na.rm = TRUE), 2),
+             mad = round(mad(unlist(y[llul, ]), na.rm = TRUE), 2),
+             medcouple = round(mc(unlist(y[llul, ]), na.rm = TRUE), 3)
   )
-  
+
   res.dens <- density(unlist(y[llul, ]))
   res.qq <- qqnorm(unlist(y[llul, ]), plot.it = FALSE)
   #res is the an object of the type data.frame containing the 
