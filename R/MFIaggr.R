@@ -76,16 +76,20 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
   # Calcuate robust und non-robust location and dispersion
   # parameters of the ROI and apply the results to stats
   
-  stats <- c(mean = round(mean(unlist(y[llul, ]), na.rm = TRUE), 3),
-             median = round(median(unlist(y[llul, ]), na.rm = TRUE), 3), 
-             sd = round(sd(unlist(y[llul, ]), na.rm = TRUE), 2),
-             mad = round(mad(unlist(y[llul, ]), na.rm = TRUE), 2),
-             IQR = round(IQR(unlist(y[llul, ]), na.rm = TRUE), 2),
-             medcouple = round(mc(unlist(y[llul, ]), na.rm = TRUE), 3)
+  y.roi <- na.omit(unlist(y[llul, ]))
+  
+  stats <- c(mean = mean(y.roi),
+	     median = median(y.roi), 
+	     sd = sd(y.roi), 
+	     mad = mad(y.roi), 
+	     IQR = IQR(y.roi), 
+	     medcouple = mc(y.roi), 
+	     SNR = mean(y.roi) / sd(y.roi), 
+	     VRM = var(y.roi) / mean(y.roi)
   )
-
-  res.dens <- density(unlist(y[llul, ]))
-  res.qq <- qqnorm(unlist(y[llul, ]), plot.it = FALSE)
+  
+  res.dens <- density(y.roi)
+  res.qq <- qqnorm(y.roi, plot.it = FALSE)
   #res is the an object of the type data.frame containing the 
   #temperature, location, deviation and coefficient of variance.
   new("refMFI", .Data = res, density = res.dens, 
