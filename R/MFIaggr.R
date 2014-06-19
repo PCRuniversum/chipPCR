@@ -73,6 +73,16 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
     }
   }
   
+  # Trend of the ROI
+  # Calculate the trend of the ROI by a linear function. The
+  # inputvalues are for the y values are calculated from the
+  # mean or median depending on the setting of rob.
+  
+  fluo <- res[c(llul[1]:llul[2]), 2]
+  cycles <- res[c(llul[1]:llul[2]), 1]
+  
+  lm.roi <- summary(lm(fluo ~ cycles))
+
   # Calcuate robust und non-robust location and dispersion
   # parameters of the ROI and apply the results to stats
   
@@ -85,7 +95,11 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
 	     IQR = IQR(y.roi), 
 	     medcouple = mc(y.roi), 
 	     SNR = mean(y.roi) / sd(y.roi), 
-	     VRM = var(y.roi) / mean(y.roi)
+	     VRM = var(y.roi) / mean(y.roi),
+	     NAs = sum(is.na(y.roi)),
+	     intercept = lm.roi[["coefficients"]][1],
+	     slope = lm.roi[["coefficients"]][2],
+	     r.squared = lm.roi[["r.squared"]]
   )
   
   res.dens <- density(y.roi)
@@ -93,7 +107,7 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
   #res is the an object of the type data.frame containing the 
   #temperature, location, deviation and coefficient of variance.
   new("refMFI", .Data = res, density = res.dens, 
-      qqnorm.data = y[llul, ], stats = stats)  
+      qqnorm.data = y[llul, ], stats = stats, lm.roi = lm.roi)  
 }
 
 setGeneric("MFIaggr")
