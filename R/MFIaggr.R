@@ -88,14 +88,19 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
   
   y.roi <- na.omit(unlist(y[llul, ]))
   
-  stats <- c(mean = mean(y.roi),
-	     median = median(y.roi), 
-	     sd = sd(y.roi), 
+  mean.roi <- mean(y.roi)
+  median.roi <- median(y.roi)
+  sd.roi <- sd(y.roi)
+  
+  stats <- c(mean = mean.roi,
+	     median = median.roi, 
+	     sd = sd.roi, 
 	     mad = mad(y.roi), 
 	     IQR = IQR(y.roi), 
 	     medcouple = mc(y.roi), 
-	     SNR = mean(y.roi) / sd(y.roi), 
-	     VRM = var(y.roi) / mean(y.roi),
+	     skewness = 3* (mean.roi - median.roi) / sd.roi,
+	     SNR = mean.roi / sd.roi, 
+	     VRM = var(y.roi) / mean.roi,
 	     NAs = sum(is.na(y.roi)),
 	     intercept = lm.roi[["coefficients"]][1],
 	     slope = lm.roi[["coefficients"]][2],
