@@ -75,7 +75,7 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
   
   # Trend of the ROI
   # Calculate the trend of the ROI by a linear function. The
-  # inputvalues are for the y values are calculated from the
+  # input values for the y values are calculated from the
   # mean or median depending on the setting of rob.
   
   fluo <- res[c(llul[1]:llul[2]), 2]
