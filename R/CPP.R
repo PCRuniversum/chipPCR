@@ -98,8 +98,11 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = TRUE,
     y <- smoother(x, y, trans = FALSE, bg.outliers = FALSE, 
 			method = method.smooth, CPP = FALSE, ...)
     #some smoothing methods (for example mova) can introduce missing values
-    if(any(is.na(y)))
+    if(any(is.na(y))) {
       y <- fixNA(x, y, spline = TRUE)
+      message(paste0("NA values introduced by smoothing method ", 
+                     method.smooth, ". fixNA() used."))
+    }
   } else {
       y
   }
