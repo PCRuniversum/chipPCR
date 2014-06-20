@@ -206,10 +206,10 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   if (CV) {
     plot(res[, 1], res[, 4], xlab = "Cycle", ylab = "CV", 
          type = type, pch = pch, col = col,
-         main = paste("ROI samples: ", ncol_y, "\n",
+         main = paste0("ROI samples: ", ncol_y, "\n",
                       "ROI mean: ", stats[1], " +- ", stats[3], "\n",
-                      "ROI median: ", stats[2], " +- ", stats[4],
-                      sep = "")
+                      "ROI median: ", stats[2], " +- ", stats[4]
+		)
     )
     
     # Add a range for the ROI
@@ -219,22 +219,24 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     # "Calculate" the Quantile-Quantile plots and density plots
     # and plot the results
     
-    plot(res.dens, xlab = "RFU", main = paste("Cycle ", 
+    plot(res.dens, xlab = "RFU", main = paste0("Cycle ", 
                                               llul[1], " to ", llul[2], 
                                               "\n", "bw ", 
                                               round(res.dens$bw, 3), 
-                                              "\n", "N ", res.dens$n, 
-                                              sep = ""))
+                                              "\n", "N ", res.dens$n
+                                        )
+    )
     
   } else {
     plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
                                       max(res[, 2] + res[, 3])), 
                                       xlab = "Cycle", ylab = "MFI", 
                                       type = type, pch = pch, col = col,
-         main = paste("ROI samples: ", ncol_y, "\n",
+         main = paste0("ROI samples: ", ncol_y, "\n",
                       "ROI mean: ", stats[1], " +- ", stats[3], "\n",
-                      "ROI median: ", stats[2], " +- ", stats[4],
-                      sep = ""))
+                      "ROI median: ", stats[2], " +- ", stats[4]
+                      )
+    )
     abline(v = llul, col = "lightgrey")
     
     arrows(res[, 1], res[, 2] + res[, 3], res[, 1], 
@@ -249,8 +251,9 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
                                               llul[1], " to ", llul[2], 
                                               "\n", "bw ", 
                                               round(res.dens[["bw"]], 3), 
-                                              "\n", "N ", res.dens[["n"]], 
-                                              sep = ""))
+                                              "\n", "N ", res.dens[["n"]]
+                                        )
+    )
     
   }
   # Analysis of the quantiles

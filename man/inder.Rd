@@ -113,11 +113,11 @@ plot(isPCR, xlab = "Cycle", ylab = "RFU", ylim = c(-0.15,1),
   lines(res[, "x"], res[, "d2y"], col = "red")
   summ <- summary(res, print = FALSE)
   abline(v = c(summ["SDM"], summ["SDm"], summ["SDC"]), col = c(3,4,5))
-  text(summ["SDM"], 0.5, paste("SDM ~ ", round(summ["SDM"], 2)), 
+  text(summ["SDM"], 0.5, paste0("SDM ~ ", round(summ["SDM"], 2)), 
        cex = 1.5, col = 3)
-  text(summ["SDC"], 0.7, paste("SDC ~ ", round(summ["SDC"], 2)), 
+  text(summ["SDC"], 0.7, paste0("SDC ~ ", round(summ["SDC"], 2)), 
        cex = 1.5, col = 5)
-  text(summ["SDm"], 0.9, paste("SDm ~ ", round(summ["SDm"], 2)), 
+  text(summ["SDm"], 0.9, paste0("SDm ~ ", round(summ["SDm"], 2)), 
        cex = 1.5, col = 4)
   text(summ["FDM"] + 10, 0.65, paste("FDM ~ ", round(summ["FDM"], 2)), 
        cex = 1.5, col = 1)

@@ -116,10 +116,10 @@ effcalc <- function(x, y, logx = TRUE, CV = FALSE,
   # Add "legend" with amplification efficiency, goodness of fit to plot
   # ToDo: expression(italic(R)^2 == Rsqured) for ... "R^2 = ", Rsqured ...?
   if (res.fit) {
-      main <- paste("Efficiency = ", AE, " %", "\n",
+      main <- paste0("Efficiency = ", AE, " %", "\n",
 		    "R^2 = ", Rsqured, "\n",
-		    "r = ", round(cortest$estimate, 3), sign.out, "\n",
-		    sep = "")
+		    "r = ", round(cortest$estimate, 3), sign.out, "\n"
+		    )
   }
   # Plot the Coefficient of Variance
   plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 

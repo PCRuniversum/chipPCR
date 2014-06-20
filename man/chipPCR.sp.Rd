@@ -83,7 +83,7 @@ dev.off()
 require(shiny)
 
 # Invoke the shiny AmpSim app in the default browser.
-runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
+runApp(paste0(find.package("chipPCR")[1],"/AmpSim.gui"))
 
 ###########################################################################
 # Figure 3
