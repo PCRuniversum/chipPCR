@@ -63,7 +63,7 @@ inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
     } 
     
     if (smooth.method == "supsmu") {
-      tmp.xy <- supsmu(x, y, span = 0.09)
+      tmp.xy <- supsmu(x, y, span = "cv")
     } 
   }
   

@@ -8,30 +8,30 @@
 \alias{CPP,data.frame,missing-method}
 
 \title{
-Curve Pre-Processor
+Curve Preprocessor
 }
 
 \description{
 The function \code{\link[chipPCR]{CPP}} encompasses a set of functions to 
-pre-process an amplification curve. The pre-processing includes options to 
+preprocess an amplification curve. The preprocessing includes options to 
 normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
 }
 \usage{
 \S4method{CPP}{numeric,numeric}(x, y, smoother = TRUE, method = "savgol", 
-				trans = TRUE, rob.reg = "lmrob", 
+				trans = FALSE, rob.reg = "lmrob", 
 				bg.outliers = FALSE, median = FALSE, 
 				norm = "none", qnL = 0.03, amptest = FALSE, 
 				manual = FALSE, nl = 0.08, ...)
 
 \S4method{CPP}{matrix,missing}(x, y, smoother = TRUE, method = "savgol", 
-			       trans = TRUE, rob.reg = "lmrob", 
+			       trans = FALSE, rob.reg = "lmrob", 
 			       bg.outliers = FALSE, median = FALSE, 
 			       norm = "none", qnL = 0.03, amptest = FALSE, 
 			       manual = FALSE, nl = 0.08, ...)
 
 \S4method{CPP}{data.frame,missing}(x, y, smoother = TRUE, 
-				   method = "savgol", trans = TRUE, 
+				   method = "savgol", trans = FALSE, 
 				   rob.reg = "lmrob", bg.outliers = FALSE, 
 				   median = FALSE, norm = "none", 
 				   qnL = 0.03, amptest = FALSE, 
@@ -139,7 +139,7 @@ Stefan Roediger, Michal Burdukiewicz
 \code{\link[stats]{lm}}}
 
 \examples{
-# Function to pre-process an amplification curve.
+# Function to preprocess an amplification curve.
 # Take a subset of the C17 data frame.
 data(C17)
 par(mfrow = c(2,1))
@@ -157,7 +157,7 @@ legend(50, 0.5, c("55 deg Celsius", "60 deg Celsius", "65 deg Celsius"),
 # Use CPP to preprocess the data by removing the missing value and 
 # normalization of the data
 plot(NA, NA, xlab = "Time [sec]", ylab = "refMFI", 
-     main = "Curve Pre-Processor Applied to HDA Data", 
+     main = "Curve Preprocessor Applied to HDA Data", 
      xlim = c(0, 2500), ylim = c(0,1.1), pch = 20)
 for (i in 3:5) {
   y.cpp <- CPP(C17[2:50, 1], C17[2:50, i], norm = "minmax", 

@@ -190,13 +190,12 @@ biology: a journal of computational molecular cell biology}, 12(8):
 par(mfrow = c(2,1))
 res <- AmpSim(cyc = 1:40, Cq = 25)
 background <- bg.max(res)
-plot(background, main = "Estimation of the Background Range\n in Absence 
-of 
-			 Noise")
+plot(background, main = "Estimation of the Background Range\n
+in Absence of Noise")
 res.noise <- AmpSim(cyc = 1:40, Cq = 25, noise = TRUE)
 background.noise <- bg.max(res.noise)
-plot(background.noise, main = "Estimation of the Background Range\n in 
-			       Presence of Noise")
+plot(background.noise, main = "Estimation of the Background Range\n
+in Presence of Noise")
 par(mfrow = c(1,1))
 
 

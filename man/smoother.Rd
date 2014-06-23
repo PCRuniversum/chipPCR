@@ -62,7 +62,7 @@ the element must be a character. See Examples section.
   }
   \item{CPP}{
 		  logical parameter which indicates if CPP (curve 
-pre-procssor) should be used.
+preprocssor) should be used.
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 
@@ -74,7 +74,7 @@ Amplification curve data of experimental thermo-cyclers may deliver results
 which are hard to interpret due to noise and scatter. For data presentation 
 it is often useful to smooth or filter the data prior to presentation. 
 Smoothing and filtering are different approaches with a similar outcome to 
-pre-process an input signal in order to make it available for an analysis 
+preprocess an input signal in order to make it available for an analysis 
 step. Filtering uses methods of signal processing. They take a data input 
 and apply a function to form an output. There are linear and non-linear 
 filters. The most common example of a linear filter is the the moving 

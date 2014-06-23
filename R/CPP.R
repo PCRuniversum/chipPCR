@@ -1,4 +1,4 @@
-CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = TRUE, 
+CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = FALSE, 
 		rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
 		norm = "none", qnL = 0.03, amptest = FALSE, manual = FALSE, 
 		nl = 0.08, ...) {
@@ -146,7 +146,7 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = TRUE,
            luqn = do.call(function(y, qnL) (y - quantile(y, qnL)) / 
 			  (quantile(y, 1  - qnL) - quantile(y, qnL)), 
 			  c(list(y = y, qnL = qnL))),
-           zscore = do.call(function(y) 1 + ((y - mean(y)) / sd(y)), 
+           zscore = do.call(function(y) (y - mean(y)) / sd(y), 
 			    c(list(y = y)))
     )	
   }
@@ -172,7 +172,7 @@ setGeneric("CPP")
 
   
 setMethod("CPP", signature(x = "data.frame", y="missing"), 
-          function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
+          function(x, y, smoother = TRUE, trans = FALSE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
                    norm = "none", qnL = 0.03, 
                    amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
@@ -184,7 +184,7 @@ setMethod("CPP", signature(x = "data.frame", y="missing"),
           })
 
 setMethod("CPP", signature(x = "matrix", y="missing"), 
-          function(x, y, smoother = TRUE, trans = TRUE, rob.reg = "lmrob", 
+          function(x, y, smoother = TRUE, trans = FALSE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
                    norm = "none", qnL = 0.03, 
                    amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 

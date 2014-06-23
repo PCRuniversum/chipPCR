@@ -15,7 +15,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   )
   if ((res.x[["d.x.m"]] + res.x[["d.x.s"]]) != res.x[["d.x.m"]]) {
     warning("x is not uniform/equidistant (different inter cycle or time intervals.
-	       This may cause artifacts during the pre-processing.")
+	       This may cause artifacts during the preprocessing.")
   }
   #recognize method
   #possible methods
