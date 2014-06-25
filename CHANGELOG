@@ -1,6 +1,9 @@
 Changes from Version 0.0.6 to 0.0.7 [June 26 2014]
 * From S3 to S4
+* Dependency to qpcR package removed
+* New "Depends"/"Imports" to/from MASS, ptw, quantreg and shiny
 * Many bug fixes
+* Better sanity check of input variables
 * Code optimized for speed and less memory usage
 * Improved some examples
 * New function MFIaggr and class refMFI
@@ -11,15 +14,16 @@ Changes from Version 0.0.6 to 0.0.7 [June 26 2014]
     - t.test exchanged by wilcox.test to compare levels of head and tail 
       region
     - tests for noise (based on Shapiro-Wilk test) and linearity
-* smoother has now support for weighted Whittaker smoother
-* CPP has further normalization methods
-* CPP has new regression methods (rank-based estimation models, 
-  quantile regression)
-* CPP argument "minmax" detracted and substituted by more powerful
-  method "norm"
-* Smoother argument "spline" as parameter for internal fixNA detracted. 
-  Uses
-  splines in fixNA exclusively
+* smoother
+    - Support for weighted Whittaker smoother
+    - Argument "spline" as parameter for internal fixNA detracted
+    - Uses splines in fixNA exclusively
+* CPP
+    - has further normalization methods
+    - new regression methods (rank-based estimation models, quantile 
+      regression)
+    - argument "minmax" detracted and substituted by more powerful
+      method "norm"
 * Added methods to fixNA
 * NOTE: new naming convention in inder
 * bg.max
