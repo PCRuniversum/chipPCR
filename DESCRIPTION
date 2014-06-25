@@ -11,7 +11,7 @@ License: GPL-3
 Depends: R (>= 3.0.0), methods
 Suggests: MBmca (>= 0.0.2)
 Imports: MASS, outliers, ptw, quantreg, Rfit, robustbase, shiny, signal
-Packaged: 2014-04-29 14:57:25 UTC; tux
+Packaged: 2014-06-25 14:57:25 UTC; tux
 NeedsCompilation: no
 Repository: CRAN
 Date/Publication: 2014-04-24 15:23:52

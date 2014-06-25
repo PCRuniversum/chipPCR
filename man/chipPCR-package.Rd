@@ -32,7 +32,7 @@ The latest source code is available via:
 Package: \tab chipPCR\cr
 Type: \tab Package\cr
 Version: \tab 0.0.7\cr
-Date: \tab 2014-04-28\cr
+Date: \tab 2014-06-25\cr
 License: \tab GPL-3\cr
 }
 The function \code{\link[chipPCR]{bg.max}} can be used to remove missing 
