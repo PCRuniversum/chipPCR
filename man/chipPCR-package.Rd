@@ -63,6 +63,9 @@ Nucleic acid detection based on the use of microbeads: a review. S.
 Roediger, C. Liebsch, C. Schmidt, W. Lehmann, U. Resch-Genger, U. Schedler, 
 P. Schierack. \emph{Microchim Acta} 2014:1--18. DOI: 
 10.1007/s00604-014-1243-4
+
+Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R. 
+\emph{The R Journal} 2013;5:37--53.
 }
 \keyword{ chipPCR }
 \seealso{

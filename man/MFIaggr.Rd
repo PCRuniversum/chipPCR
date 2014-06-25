@@ -13,7 +13,8 @@ Multiple comparison of the cycle dependent variance of the fluorescence
 \description{
  MFIaggr is used for a fast multiple comparison of the cycle dependent 
 variance of the fluorescence. A similar tool with different scope is 
-interated in the \code{\link[MBmca]{MFIerror}} function (Roediger et al. 2013).
+interated in the \code{\link[MBmca]{MFIerror}} function (Roediger et al. 
+2013).
 }
 \usage{
 \S4method{MFIaggr}{numeric,numeric}(x, y, cyc = 1, fluo = 2:ncol(x), 
@@ -40,7 +41,8 @@ interated in the \code{\link[MBmca]{MFIerror}} function (Roediger et al. 2013).
   \item{RSD}{ Setting the option \code{RSD = TRUE} shows the relative 
 standard deviation (RSD) in percent. }
   
-  \item{rob}{ Using the option \code{rob} as TRUE the median and the median 
+  \item{rob}{ Using the option \code{rob} as TRUE the median and the 
+median 
 absolute deviation (MAD) are calculated instead of the mean and standard 
 deviation. }
   
@@ -50,7 +52,8 @@ deviation. }
 }
 
 \value{
-An object of the class \code{\linkS4class{refMFI}}.
+An object of the class \code{\linkS4class{refMFI}}. refMFI means referenced 
+Mean Fluorescence Intensity (Roediger et al. 2013).
 }
 
 \author{

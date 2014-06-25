@@ -111,7 +111,7 @@ makes it harder to determine a meaningful background value. Therefore
 \code{\link[chipPCR]{CPP}} can optionally remove outliers by finding the 
 value with largest difference from the mean as provided by the 
 \code{\link[outliers]{rm.outlier}} function. The functions also tries to 
-prevent calculations on non amplified signals. The parameter \code{qnL} is 
+prevent calculations of non amplified signals. The parameter \code{qnL} is 
 a user defined quantile which is used for the quantile normalization. A 
 quantile normalization herein refers to an approach which is less prone to 
 outliers than a normalization based on the minimum and the maximum of an 

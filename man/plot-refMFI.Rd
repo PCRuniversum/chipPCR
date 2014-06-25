@@ -15,7 +15,7 @@ col = "black")
 
 \arguments{
   \item{x}{
-is a \code{\linkS4class{refMFI}} object.
+is a \code{\linkS4class{refMFI}} object. refMFI means referenced Mean Fluorescence Intensity (Roediger et al. 2013)
 }
 \item{CV}{ If \code{CV} is true the coefficient of variation (RSD, CV) is 
 plotted. If set to \code{FALSE} the deviation as Standard Deviation or 
@@ -38,6 +38,11 @@ The plot being a result of this function is built from three subplots.
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz
+}
+
+\references{
+Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R. 
+\emph{The R Journal} 2013;5:37--53.
 }
 
 \seealso{

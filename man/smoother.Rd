@@ -116,10 +116,17 @@ Weighted Whittaker smoothing.
 Stefan Roediger, Michal Burdukiewicz
 }
 
+\references{
+Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R. 
+\emph{The R Journal} 2013;5:37--53.
+}
+
 \examples{
 # Results of different smoothers. A in-silico amplification was performed
 # using the AmpSim function and different smoothers were applied. Optimally
 # all smoothers should give the same result (which is not the case)).
+# refMFI means referenced Mean Fluorescence Intensity 
+# (Roediger et al. 2013)
 tmp <- AmpSim(cyc = 1:35, bl = 0)
 
 plot(tmp, main = "In-silico real-time PCR\n Effect of Smoother", 

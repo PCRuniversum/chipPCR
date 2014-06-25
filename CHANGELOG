@@ -1,34 +1,44 @@
-Changes from Version 0.0.6 to 0.0.7 [XX XX 2014]
-* from S3 to S4
-* many bug fixes
-* improved some examples
-* new function MFIaggr and class refMFI
-* new function effcalc
+Changes from Version 0.0.6 to 0.0.7 [June 26 2014]
+* From S3 to S4
+* Many bug fixes
+* Code optimized for speed and less memory usage
+* Improved some examples
+* New function MFIaggr and class refMFI
+* New function effcalc
 * amptester 
     - flexible head and tail now
-    - nonlinearity test
-    - tests for noise (based on shapiro test) and linearity
+    - nonlinearity test to detect positive amplifications
+    - t.test exchanged by wilcox.test to compare levels of head and tail 
+      region
+    - tests for noise (based on Shapiro-Wilk test) and linearity
 * smoother has now support for weighted Whittaker smoother
-* CPP has further normalize methods
+* CPP has further normalization methods
 * CPP has new regression methods (rank-based estimation models, 
-  quantile regressio)
-* CPP argument "minmax" depracted and substitued by more powerful
+  quantile regression)
+* CPP argument "minmax" detracted and substituted by more powerful
   method "norm"
-* smoother argument "spline" as paramter for internal fixNA depracted. Uses
+* Smoother argument "spline" as parameter for internal fixNA detracted. 
+  Uses
   splines in fixNA exclusively
-* added methods to fixNA
+* Added methods to fixNA
 * NOTE: new naming convention in inder
-* bg.max now uses inder method by default
-* added rounder function for rounding results of inder
-* new data set added
-* testxy function added for uniformized testing of x and y values
-* added methods for CPP, inder, bg.max and effcalc
-* added amptest, der and bg classes.
-* added AmpSim.gui
+* bg.max
+      - uses inder method by default now
+      - better tests for estimated start and end of exponential 
+	amplification region	
+* Added rounder function for rounding results of inder
+* New data set added
+* testxy function added for unformalized testing of x and y values
+* Added methods for CPP, inder, bg.max and effcalc
+* Added amptest, der and bg classes.
+* Assorted improvements to AmpSim
+* Added AmpSim.gui
+* Many updates and correction to descriptions in manual
+* New data sets
 
 Changes from Version 0.0.5 to 0.0.6 [April 24 2014] 
 
-* several bug fixes
-* imporved some examples
-* minor code improvements
-* new data sets added
+* Several bug fixes
+* Improved some examples
+* Minor code improvements
+* New data sets added

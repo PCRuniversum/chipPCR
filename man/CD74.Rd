@@ -12,7 +12,8 @@ temperatures in order to estimate temperature dependent effects.
 }
 \usage{data(CD74)}
 \format{
-  A data frame with 60 observations on the following 19 variables. refMFI, 
+  A data frame with 60 observations on the following 19 variables. refMFI 
+  (referenced Mean Fluorescence Intensity), 
   fluorescence. Dilution A, 1x; Dilution B, 1:10; Dilution B, 1:100.
   \describe{
       \item{\code{Cycle}}{PCR cycles}

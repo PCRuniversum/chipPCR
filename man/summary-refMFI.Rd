@@ -7,8 +7,8 @@ Summary \code{refMFI} objects
 }
 \description{
 Summarize \code{\linkS4class{refMFI}} objects and access general statistics 
-of amplification
-reaction.
+of amplification reaction. refMFI means referenced Mean Fluorescence 
+Intensity (Roediger et al. 2013).
 }
 \usage{
 \S4method{summary}{refMFI}(object, print = TRUE)
@@ -28,6 +28,11 @@ should be printed.
 
 \author{
 Stefan Roediger, Michal Burdukiewicz
+}
+
+\references{
+Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R. 
+\emph{The R Journal} 2013;5:37--53.
 }
 
 \seealso{
