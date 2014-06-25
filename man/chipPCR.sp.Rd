@@ -66,7 +66,7 @@ text(20, mean(res.neg[, 2]) *0.9, "No amplification", cex=1.2, col =
 
 
 plot(NA, NA, xlim = c(1,40), ylim = c(0, 1.5), xlab = "Cycle", 
-     ylab = "Preprocessed fluorescence")
+     ylab = "Pre-processed fluorescence")
 mtext("B", cex = 2, side = 3, adj = 0, font = 2)
 
 lines(res.pos.CPP)

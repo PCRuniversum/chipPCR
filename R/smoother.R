@@ -15,7 +15,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   )
   if ((res.x[["d.x.m"]] + res.x[["d.x.s"]]) != res.x[["d.x.m"]]) {
     warning("x is not uniform/equidistant (different inter cycle or time intervals.
-	       This may cause artifacts during the preprocessing.")
+	       This may cause artifacts during the pre-processing.")
   }
   #recognize method
   #possible methods
@@ -109,7 +109,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
                         , c(list(y = y.tmp), ...))
       )
       
-      # Invoke the CPP function to perform a preprocessing of the 
+      # Invoke the CPP function to perform a pre-processing of the 
       # smoothed data
       # TODO: check if there are potential problems related to the
       # bg.max function which is used by CPP
@@ -157,7 +157,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
                         , c(list(y = y.tmp), method[[i]]))
       )
       
-      # Invoke the CPP function to perform a preprocessing of the 
+      # Invoke the CPP function to perform a pre-processing of the 
       # smoothed data
       # TODO: check if there are potential problems related to the
       # bg.max function which is used by CPP

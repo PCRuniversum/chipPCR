@@ -8,12 +8,12 @@
 \alias{CPP,data.frame,missing-method}
 
 \title{
-Curve Preprocessor
+Curve Pre-processor
 }
 
 \description{
 The function \code{\link[chipPCR]{CPP}} encompasses a set of functions to 
-preprocess an amplification curve. The preprocessing includes options to 
+pre-process an amplification curve. The pre-processing includes options to 
 normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
 }
@@ -139,7 +139,7 @@ Stefan Roediger, Michal Burdukiewicz
 \code{\link[stats]{lm}}}
 
 \examples{
-# Function to preprocess an amplification curve.
+# Function to pre-process an amplification curve.
 # Take a subset of the C17 data frame.
 data(C17)
 par(mfrow = c(2,1))
@@ -154,10 +154,10 @@ for (i in 3:5) {
 legend(50, 0.5, c("55 deg Celsius", "60 deg Celsius", "65 deg Celsius"), 
 	col = c(1,2,3), pch = rep(20,3))
 
-# Use CPP to preprocess the data by removing the missing value and 
+# Use CPP to pre-process the data by removing the missing value and 
 # normalization of the data
 plot(NA, NA, xlab = "Time [sec]", ylab = "refMFI", 
-     main = "Curve Preprocessor Applied to HDA Data", 
+     main = "Curve Pre-processor Applied to HDA Data", 
      xlim = c(0, 2500), ylim = c(0,1.1), pch = 20)
 for (i in 3:5) {
   y.cpp <- CPP(C17[2:50, 1], C17[2:50, i], norm = "minmax", 

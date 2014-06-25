@@ -43,7 +43,8 @@ a vector.
 	      background range.
   }
     \item{bg.outliers}{
-			logical parameter which indicates of outliers should 
+			logical parameter which indicates of outliers 
+should 
 			be removed from background range.
   }
     \item{method}{
@@ -55,18 +56,19 @@ smoothing filter, "smooth" for cubic spline smooth, "spline" for standard
 cubic spline smooth, "supsmu" for Friedman's SuperSmoother, "whit1" for 
 weighted Whittaker smoothing with a first order finite difference penalty, 
 "whit2" for weighted Whittaker smoothing with a second order finite 
-difference penalty or "all" for all implemented smoothing algorithms. Both upper and
-lower case is accepted. If \code{method} is a list, each element represents a
-smoothing method. If additional arguments are used, the element must be a named list. If not,
-the element must be a character. See Examples section.
+difference penalty or "all" for all implemented smoothing algorithms. Both 
+upper and lower case is accepted. If \code{method} is a list, each element 
+represents a smoothing method. If additional arguments are used, the 
+element must be a named list. If not, the element must be a character. See 
+Examples section.
   }
   \item{CPP}{
 		  logical parameter which indicates if CPP (curve 
-preprocssor) should be used.
+pre-procssor) should be used.
   }
     \item{...}{
 		  dot operator for diverse arguments of the smoothers (see 
-		  details). Ignored if \code{method} is a list.
+details). Ignored if \code{method} is a list.
   }
 }
 \details{
@@ -147,7 +149,8 @@ tmp.smooths <- smoother(tmp, method = list("savgol",
 
 
 for (i in 1:ncol(tmp.smooths))
-  lines(tmp[, 1], tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i + 1)
+  lines(tmp[, 1], tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i 
++ 1)
 
 
 par(fig = c(0.15,0.6,0.45,0.99), new = TRUE)
@@ -155,7 +158,8 @@ plot(tmp, main = "", xlab = "Cycles", ylab ="refMFI",
      pch = 20, xlim = c(14,20), ylim = c(0,0.45))
 
 for (i in 1:ncol(tmp.smooths))
-  lines(tmp[, 1], tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i + 1)
+  lines(tmp[, 1], tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i 
++ 1)
 
 
 # Plot the difference of the smoothed / filtered data
@@ -173,7 +177,8 @@ legend(1.5, 0.1, ncol = 2, c("savgol", "lowess", "mova 3", "mova 5",
 	col = c(2:8))
 
 for (i in 1:ncol(tmp.smooths))
-  lines(tmp[, 1], tmp[, 2] - tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i + 1)
+  lines(tmp[, 1], tmp[, 2] - tmp.smooths[, i], type = "b", pch = 20, lwd = 
+2, col = i + 1)
 
 par(fig = c(0,1,0.55,1), new = TRUE)
 
@@ -188,7 +193,8 @@ single.smooth.add <- smoother(tmp, method = "mova", movaww = 3)
 #3. more than one smoothing method, no additional arguments specified
 double.smooth <- smoother(tmp, method = c("savgol", "mova"))
 #4. more than one smoothing method, additional arguments specified
-double.smooth.add <- smoother(tmp, method = list("savgol", mova = list(movaww = 3)))
+double.smooth.add <- smoother(tmp, method = list("savgol", mova = 
+list(movaww = 3)))
 #5. all smoothing methods, , no additional arguments specified
 all.smooth <- smoother(tmp, method = "all")
 }

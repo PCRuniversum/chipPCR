@@ -3,10 +3,10 @@
 \alias{chipPCR}
 \docType{package}
 \title{
-Toolkit of functions to preprocess amplification data
+Toolkit of functions to pre-process amplification data
 }
 \description{
-The \code{chipPCR} package is a toolkit of functions to preprocess 
+The \code{chipPCR} package is a toolkit of functions to pre-process 
 amplification curve data. Amplification data can be obtained from 
 conventional PCR reactions or isothermal amplification reactions. The 
 package contains functions to normalize and baseline amplification curves, 
