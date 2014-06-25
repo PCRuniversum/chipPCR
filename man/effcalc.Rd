@@ -144,6 +144,7 @@ PMID: 11846375.
 
 }
 \examples{
+## Not run: 
 # First Example
 # Amplification efficiency plot 
 
@@ -189,7 +190,7 @@ for (i in 1:18) {
 				nnl = 0.02)[, 2]
   lines(1:cyc.no, ma.out[, i])
   tmpP <- mcaSmoother(1:cyc.no, ma.out[, i])
-  #TURNED OFF INDER - NEED ADD NEW COMPATIBILITY TO MBmca
+  #TURNED OFF INDER - NEW COMPATIBILITY TO MBmca STILL PENDING
   Cq.tmp <- diffQ2(tmpP, inder = FALSE)$xTm1.2.D2[1]
   abline(v = Cq.tmp)
   Cq.out <- c(Cq.out, Cq.tmp)
@@ -205,6 +206,7 @@ tmp <- data.frame(dilution[1:6],
 effcalc(tmp[, 1], tmp[, 2:4], CI = TRUE)
 mtext("B", cex = 2, side = 3, adj = 0, font = 2) 
 par(mfrow = c(1,1))
+## End(Not run)
 }
 
 \keyword{ efficiency }

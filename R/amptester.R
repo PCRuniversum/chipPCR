@@ -106,8 +106,10 @@ amptester <-
       # of any input data set and perform a Wilcoxon rank sum tests for the head 
       # (nh) and tail (nt).
       
-      if (wilcox.test(head(y, n = nh), tail(y, n = nt), 
-                      alternative = "less")$p.value > 0.01) {
+      res.wt <- suppressWarnings(wilcox.test(head(y, n = nh), tail(y, n = nt), 
+                      alternative = "less"))
+      
+      if (res.wt$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
         tht.dec <- "negative"
       } else {
