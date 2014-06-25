@@ -1,7 +1,7 @@
 Changes from Version 0.0.6 to 0.0.7 [June 26 2014]
 * From S3 to S4
-* Dependency to qpcR package removed
-* New "Depends"/"Imports" to/from MASS, ptw, quantreg and shiny
+* Dependency to qpcR and MBmca packages removed
+* New "Depends"/"Imports" to/from MASS, ptw, quantreg and shiny, methods
 * Many bug fixes
 * Better sanity check of input variables
 * Code optimized for speed and less memory usage
