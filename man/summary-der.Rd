@@ -1,5 +1,6 @@
 \name{summary-der}
 \alias{summary.der}
+\alias{summary-der}
 \alias{summary,der-method}
 
 \title{

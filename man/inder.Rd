@@ -56,7 +56,7 @@ is used.
 }
 
   \item{smooth.method}{
-a character vector of length 1 or \code{NNULL} defining smoothing method used. Currently 
+a character vector of length 1 or \code{NULL} defining smoothing method used. Currently 
 accepted character values: "spline", "supsmu". If \code{NULL}, smoothing is not performed.
 }
 }
