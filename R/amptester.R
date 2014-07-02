@@ -44,11 +44,13 @@ amptester <-
     # Resids growth test (RGt)
     # test if fluorescence values in linear phase are stable. Whenever no amplification 
     # occurs, fluorescence values quickly deviate from linear model. Their standarized
-    # residuals will be strongly correlated with the cycle number. The decision is based
-    # on the threshold value (here 0.5). 
+    # residuals will be strongly correlated with their value. For real amplification curves,
+    # situation is much more stable. Noise (that means deviations from linear model) 
+    # in  background do not correlate strongly with the changes in fluorescence. 
+    # The decision is based on the threshold value (here 0.5). 
     cyc <- 1:nh
     resids <- rstandard(rlm(y[cyc] ~ cyc))
-    rgt.dec <- ifelse(abs(cor(resids, y[cyc])) < 0.5, "positive", "negative")
+    rgt.dec <- ifelse(cor(resids, y[cyc]) < 0.5, "positive", "negative")
     
     # THIRD TEST
     # Linear Regression test (LRt)
