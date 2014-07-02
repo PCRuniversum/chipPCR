@@ -42,10 +42,13 @@ amptester <-
     
     # SECOND TEST
     # Resids growth test (RGt)
-    #test if function is monotonic and growing during first few cycles
+    # test if fluorescence values in linear phase are stable. Whenever no amplification 
+    # occurs, fluorescence values quickly deviate from linear model. Their standarized
+    # residuals will be strongly correlated with the cycle number. The decision is based
+    # on the threshold value (here 0.5). 
     cyc <- 1:nh
-    resids <- residuals(rlm(y[cyc] ~ cyc))
-    rgt.dec <- ifelse(cor(resids, y[cyc]) > 0.9, "positive", "negative")
+    resids <- rstandard(rlm(y[cyc] ~ cyc))
+    rgt.dec <- ifelse(abs(cor(resids, y[cyc])) < 0.5, "positive", "negative")
     
     # THIRD TEST
     # Linear Regression test (LRt)
@@ -107,7 +110,7 @@ amptester <-
       # (nh) and tail (nt).
       
       res.wt <- suppressWarnings(wilcox.test(head(y, n = nh), tail(y, n = nt), 
-                      alternative = "less"))
+                                             alternative = "less"))
       
       if (res.wt$p.value > 0.01) {
         y <- abs(rnorm(length(y), 0, 0.1^30))
@@ -139,12 +142,11 @@ amptester <-
     # From experience is noise positive and "true" amplification curves "highly" negative.
     # This test depends on the definition of a threshold.
     pco <- function(y) {
-	xy <- data.frame(predict(smooth.spline(1L:length(y), y)))
-	sum(
-	    sapply(1L:(length(xy[, 1]) -1), function (i) {
-		xy[i + 1, 1] - xy[i, 1] * xy[i + 1, 2] + xy[i, 2]
-	    }
-	)
+      xy <- data.frame(predict(smooth.spline(1L:length(y), y)))
+      sum(sapply(1L:(nrow(xy) - 1), 
+                 function (i) {
+                   xy[i + 1, 1] - xy[i, 1] * xy[i + 1, 2] + xy[i, 2]
+                 })
       )
     }
     

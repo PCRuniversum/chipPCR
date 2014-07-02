@@ -19,6 +19,7 @@ setMethod("summary", signature(object = "amptest"), function(object) {
   print(slot(object, ".Data"))
   cat(paste0("\nAmplification significance (threshold test): ", slot(object, "decisions")[["tht.dec"]]))
   cat(paste0("\nAmplification significance (signal level test): ", slot(object, "decisions")[["slt.dec"]]))
+  cat(paste0("\nAmplification significance (resids growth test): ", slot(object, "decisions")[["rtg.dec"]]))
   cat(paste0("\nNoise detected: ", slot(object, "decisions")[["shap.noisy"]]))
   cat(paste0("\nNoise level: ", slot(object, "noiselevel")))
   cat(paste0("\nLinearity: ", slot(object, "decisions")[["lrt.test"]]))
