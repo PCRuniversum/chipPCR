@@ -1,5 +1,6 @@
 Changes from Version 0.0.7 to 0.0.7-1 [XXXX XX 2014]
-* Maintenance release
+* New pco test for amptester
+* Maintenance
   - preprocess -> pre-process in docs
   - inclusion of more examples
   - documentation fixes

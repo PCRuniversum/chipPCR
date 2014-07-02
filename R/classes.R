@@ -8,7 +8,8 @@ setClassUnion("numericOrNULL",c("numeric","NULL"))
 setClass("amptest", contains = "numeric", representation(.Data = "numeric", 
                                                          decisions = "logical",
                                                          noiselevel = "numeric",
-                                                         background = "numericOrNULL"))
+                                                         background = "numericOrNULL",
+                                                         polygon = "numeric"))
 
 setMethod("show", signature(object = "amptest"), function(object) {
   print(slot(object, ".Data"))
@@ -21,6 +22,7 @@ setMethod("summary", signature(object = "amptest"), function(object) {
   cat(paste0("\nNoise detected: ", slot(object, "decisions")[["shap.noisy"]]))
   cat(paste0("\nNoise level: ", slot(object, "noiselevel")))
   cat(paste0("\nLinearity: ", slot(object, "decisions")[["lrt.test"]]))
+  cat(paste0("\nPolygon: ", slot(object, "polygon")))
   bcg <- slot(object, "background")
   if (is.null(bcg)) {
     cat(paste0("\nBackground: not defined")) 

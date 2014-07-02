@@ -132,6 +132,25 @@ amptester <-
       slt.dec <- "positive"
     }
     
+    # SIXTH TEST
+    # The pco test determines if the points in an amplification curve (like a polygon)
+    # are in a "clockwise" order. The sum over the edges result in a positive value if the
+    # amplification curve is "clockwise" and is negative if the curve is counter-clockwise.
+    # From experience is noise positive and "true" amplification curves "highly" negative.
+    # This test depends on the definition of a threshold.
+    pco <- function(y) {
+	xy <- data.frame(predict(smooth.spline(1L:length(y), y)))
+	sum(
+	    sapply(1L:(length(xy[, 1]) -1), function (i) {
+		xy[i + 1, 1] - xy[i, 1] * xy[i + 1, 2] + xy[i, 2]
+	    }
+	)
+      )
+    }
+    
+    res.pco <- pco(y)
+    
+    # Output of the different tests
     rgt.dec <- ifelse(rgt.dec == "positive", TRUE, FALSE)
     tht.dec <- ifelse(tht.dec == "positive", TRUE, FALSE)
     slt.dec <- ifelse(slt.dec == "positive", TRUE, FALSE)
@@ -143,5 +162,6 @@ amptester <-
                       tht.dec = tht.dec,
                       slt.dec = slt.dec), 
         noiselevel = noiselevel,
-        background = background)
+        background = background,
+        polygon = res.pco)
   }
