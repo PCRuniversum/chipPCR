@@ -49,7 +49,7 @@ amptester <-
     # in  background do not correlate strongly with the changes in fluorescence. 
     # The decision is based on the threshold value (here 0.5). 
     cyc <- 1:nh
-    resids <- rstandard(lm(cyc ~ y[cyc]))
+    resids <- rstandard(lm(y[cyc] ~ cyc))
     rgt.dec <- ifelse(cor(resids, y[cyc]) < 0.5, "positive", "negative")
     
     # THIRD TEST
