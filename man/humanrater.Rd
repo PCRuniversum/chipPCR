@@ -22,15 +22,16 @@ humanrater(x, repeats = 1, designations = c("y", "a", "n"))
   \item{repeats}{
 number of repeats to rate the samples
 }
-  \item{designation}{
+  \item{designations}{
 a character vector of length 3. See Details.
 }
 }
 
 \details{
-A user can specify the vector of designations characterising the curve. Defaults are \code{y}
-for "yes", \code{a} for "ambiguous" and \code{n} for "no". New designations should be always 
-supplied in the same sequence: "yes", "ambiguous", "no".
+A user can specify the vector of designations characterizing the curve. 
+Defaults are \code{y} for "yes", \code{a} for "ambiguous" and \code{n} for 
+"no". New designations should be always supplied in the same sequence: 
+"yes", "ambiguous", "no".
 }
 
 \author{
