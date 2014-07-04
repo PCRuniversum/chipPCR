@@ -27,9 +27,6 @@ An S4 class containing the output \code{\link[chipPCR]{inder}} function.
    }
 }
 
-\details{
-Blabla
-}
 \author{
 Stefan Roediger, Michal Burdukiewicz
 }
