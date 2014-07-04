@@ -48,9 +48,12 @@ amptester <-
     # situation is much more stable. Noise (that means deviations from linear model) 
     # in  background do not correlate strongly with the changes in fluorescence. 
     # The decision is based on the threshold value (here 0.5). 
-    cyc <- 1:nh
-    resids <- rstandard(lm(y[cyc] ~ cyc))
-    rgt.dec <- ifelse(cor(resids, y[cyc]) < 0.5, "positive", "negative")
+    rgts <-sapply(0L:round(length(y)/8, 0), function (j) {
+      cyc <- 1:nh + j
+      reg <- lm(y[cyc] ~ cyc)
+      cor(rstudent(reg), y[cyc])  
+    })
+    rgt.dec <- ifelse(sum(rgts < 0.8) > round(length(y)/16, 0), "positive", "negative")
     
     # THIRD TEST
     # Linear Regression test (LRt)
