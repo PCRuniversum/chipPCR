@@ -40,10 +40,13 @@ Michal Burdukiewicz, Stefan Roediger
 
 \examples{
 \dontrun{
-testdata <- data.frame(1:35, AmpSim(Cq = 15, noise = TRUE), 
-  		     AmpSim(Cq = 25, noise = TRUE), 
-			     AmpSim(Cq = 35, noise = TRUE), 
-			     AmpSim(Cq = 45, noise = TRUE))
+testdata <- data.frame(1:35,
+		       AmpSim(Cq = 15, noise = TRUE)[, 2], 
+		       AmpSim(Cq = 25, noise = TRUE)[, 2],
+		       rnorm(35),
+		       AmpSim(Cq = 35, noise = TRUE)[, 2],
+		       rnorm(35),
+		       AmpSim(Cq = 45, noise = TRUE)[, 2])
 
 #check testdata for significance of amplification in two repeats
 human.test1 <- humanrater(testdata, repeats = 2)
