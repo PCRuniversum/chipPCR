@@ -49,6 +49,11 @@ amplification reaction uses the current implementation of
 some post function might fail in case all values are set to zero.
 }
 
+\value{
+An object of \code{\linkS4class{amptest}} class containing result of the test as well as
+the original data.
+}
+
 \references{
 
 Frank, D. N. BARCRAWL and BARTAB: software tools for the design and 

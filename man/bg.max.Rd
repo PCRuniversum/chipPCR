@@ -145,7 +145,10 @@ designated as outliers. The first of aforementioned outliers is considered
 the end of lag phase. It is worth noting that this algorithm is versatile 
 enough to also detect the beginning of the plateau phase.
 }
-
+\value{
+An object of \code{\linkS4class{bg}} class containing predicted background range as well
+as other parameters.
+}
 \author{
 Stefan Roediger, Michal Burdukiewicz
 }
