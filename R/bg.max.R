@@ -65,7 +65,11 @@ bg.max <- function(x, y, bg.corr = 1.3, bg.start = 2, inder.approx = TRUE) {
   # Handle unrealistic values of amp.stop
   amp.stop <- ifelse(amp.stop < bg.stop, NA, amp.stop)
   if(is.na(amp.stop))
-     amp.stop <- length(y)
+    amp.stop <- length(y)
+  
+  if(amp.stop > length(y))
+    amp.stop <- length(y)
+  
   
   # Threshold bg.max
   # Test if the fluorescence at the "bg.stop cycle" exceeds a defined threshold

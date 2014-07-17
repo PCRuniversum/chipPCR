@@ -155,6 +155,12 @@ amptester <-
       )
     }
     
+    der.res <- summary(inder(1L:length(y), y), print = FALSE)
+    
+    lm.dat <- data.frame(x = c(round(der.res[["SDM"]], 0), round(der.res[["SDm"]], 0)))
+    lm.dat <- cbind(lm.dat, y = y[lm.dat[, 1]])      
+    lm.dat[["y"]] <- lm.dat[["y"]]/max(lm.dat[["y"]])
+    slope.ratio <- coef(lm(y ~ x, lm.dat))
     res.pco <- pco(y)
     
     # Output of the different tests
@@ -170,5 +176,6 @@ amptester <-
                       slt.dec = slt.dec), 
         noiselevel = noiselevel,
         background = background,
-        polygon = res.pco)
+        polygon = res.pco,
+        slope.ratio = slope.ratio[["x"]])
   }

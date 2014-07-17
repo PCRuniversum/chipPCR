@@ -9,7 +9,8 @@ setClass("amptest", contains = "numeric", representation(.Data = "numeric",
                                                          decisions = "logical",
                                                          noiselevel = "numeric",
                                                          background = "numericOrNULL",
-                                                         polygon = "numeric"))
+                                                         polygon = "numeric",
+                                                         fluo.ratio = "numeric"))
 
 setMethod("show", signature(object = "amptest"), function(object) {
   print(slot(object, ".Data"))
