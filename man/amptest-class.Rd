@@ -29,6 +29,8 @@ function.
 			  (like a polygon) are in a "clockwise" order. The sum over the edges 
 			  result in a positive value if the amplification curve is "clockwise" 
 			  and is negative if the curve is counter-clockwise.}
+    \item{\code{slope.ratio}:}{ratio of the slopes at the start and the end of 
+    exponential phase..}
 }
 }
 \section{Methods}{
