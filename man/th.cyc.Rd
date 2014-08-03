@@ -36,6 +36,10 @@ and defined threshold in a particular samples. Thus the Ct is the cycle
 when sufficient numbers of amplicons have accumulated. The \code{th.cyc} 
 calculates the intersection of the user defined Ct value (\code{r}) and a 
 quadratic polynom in the range of the user defined Ct value.
+In contrast to other methods is does \code{th.cyc} have no requirement to 
+fit a "complex" non linear model to the entire data set but rather focuses
+on the specific area. The polynom is calculated from four neighbour values 
+at the fluorescence threshold.
 }
 
 \references{
