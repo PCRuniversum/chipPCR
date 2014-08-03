@@ -1,11 +1,11 @@
 Changes from Version 0.0.7 to 0.0.7-1 [XXXX XX 2014]
+* New function th.cyc
 * New pco test for amptester
 * New function humanrater
 * Maintenance
   - preprocess -> pre-process in docs
   - inclusion of more examples
   - documentation fixes
-
 
 Changes from Version 0.0.6 to 0.0.7 [June 26 2014]
 * From S3 to S4
