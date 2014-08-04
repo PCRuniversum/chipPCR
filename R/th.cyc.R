@@ -32,16 +32,17 @@ th.cyc <-
       # Use either the linear or quadratic model.
       
       sign <- inder(xy.sum[["values"]])
-      switch.sign <- which(sign[, "d1y"] == max(sign[, "d1y"]))
+      switch.sign <- which.max(sign[, "d1y"])
+      sqrt.delta <- sqrt(b^2 - 4*a*(c - r))
       if (sign[switch.sign, "y"] < r) {
-        x.cal <- (-b/a)/2 - sqrt(((-b/a)/2)^2 - (c - r)/a)
+        x.cal <- (-b - sqrt.delta)/(2*a)
       } else {
-        x.cal <- (-b/a)/2 + sqrt(((-b/a)/2)^2 - (c - r)/a)
+        x.cal <- (-b + sqrt.delta)/(2*a)
       }
     } else {
       m <- xy.sum[[1]][["coefficients"]][1, 1]
       n <- xy.sum[[1]][["coefficients"]][2, 1]
-      x.cal <- (r - n) / m
+      x.cal <- (r - m) / n
     }
     
     # Create the output fot the exact Ct value, the regression and the neighbours 
