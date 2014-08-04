@@ -28,6 +28,10 @@ th.cyc(x, y, r = 2500, auto = FALSE)
     is logical parameter which indicates if an automatic estimation of the 
 threshold should be used (Note: Experimental, not save to use).
 }
+  \item{linear}{
+    is logical parameter which indicates if a linear of quadratic regression 
+    should be used for the calculation. (Note: Experimental, not save to use).
+}
 }
 \details{
 The Threshold Cycle (Ct) (Cq according to MIQE) is the cycle number at 
@@ -35,7 +39,7 @@ which the fluorescence excceds significantly a point above the baseline
 and defined threshold in a particular samples. Thus the Ct is the cycle 
 when sufficient numbers of amplicons have accumulated. The \code{th.cyc} 
 calculates the intersection of the user defined Ct value (\code{r}) and a 
-quadratic polynom in the range of the user defined Ct value.
+linear regression or quadratic polynom in the range of the user defined Ct value.
 In contrast to other methods is does \code{th.cyc} have no requirement to 
 fit a "complex" non linear model to the entire data set but rather focuses
 on the specific area. The polynom is calculated from four neighbour values 
