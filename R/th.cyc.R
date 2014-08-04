@@ -64,9 +64,9 @@ th.est <- function(xy, r = r, n, linear = linear) {
     } else {
 	m <- xy.sum[[1]][["coefficients"]][1,1]
 	n <- xy.sum[[1]][["coefficients"]][2,1]
-    	x.cal <- (r - m) / n
+    	x.cal <- (r - n) / m
     }
-    
+
 # Create the output fot the exact Ct value, the regression and the neighbours 
 # of the cycle and fluorescence values at the threshold fluorescence.
 
