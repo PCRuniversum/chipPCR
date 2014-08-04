@@ -6,8 +6,7 @@ th.cyc <-
     xy <- data.frame(x = x, y = y)
     
     # Determin type of threshold calculation
-    if (auto) r <- quantile(y[1:10], 0.1) + 3 * mad(y[1:10]) else r <- r
-    
+    r <- ifelse(auto, quantile(y[1:10], 0.1) + 3 * mad(y[1:10]), r)
     
     # Actually used number of neighbours
     n <- seq(2, 8, 1)
@@ -32,7 +31,7 @@ th.cyc <-
       # Calculate the exact Ct value at the user defined fluorescence threshold.
       # Use either the linear or quadratic model.
       
-      sign <- inder(xy.sum$values[, 1], xy.sum$values[, 2])
+      sign <- inder(xy.sum[["values"]])
       switch.sign <- which(sign[, "d1y"] == max(sign[, "d1y"]))
       if (sign[switch.sign, "y"] < r) {
         x.cal <- (-b/a)/2 - sqrt(((-b/a)/2)^2 - (c - r)/a)
@@ -40,22 +39,23 @@ th.cyc <-
         x.cal <- (-b/a)/2 + sqrt(((-b/a)/2)^2 - (c - r)/a)
       }
     } else {
-      m <- xy.sum[[1]][["coefficients"]][1,1]
-      n <- xy.sum[[1]][["coefficients"]][2,1]
+      m <- xy.sum[[1]][["coefficients"]][1, 1]
+      n <- xy.sum[[1]][["coefficients"]][2, 1]
       x.cal <- (r - n) / m
     }
     
     # Create the output fot the exact Ct value, the regression and the neighbours 
     # of the cycle and fluorescence values at the threshold fluorescence.
     
-    out <- list(Results = rbind(cyc.th = x.cal, atFluo = r), stats = xy.sum, 
-                Input = xy.sum$values)
+    out <- list(Results = rbind(cyc.th = x.cal, atFluo = r), 
+                stats = xy.sum[["summary"]], 
+                Input = xy.sum[["values"]])
     out
   }
 
 
 # Helper function to determine the number of neighbours for the regression
-th.est <- function(xy, r = r, n, linear = linear) {
+th.est <- function(xy, r, n, linear) {
   # Fetch the neighbours of the cycle and fluorescence values at the threshold
   # fluorescence.
   
