@@ -1,7 +1,7 @@
 th.cyc <-
 function(x, y, r = 2500, auto = FALSE, linear = TRUE) {
 # Sanity test for input values
-#testxy(x, y, length = FALSE)
+testxy(x, y, length = FALSE)
 # Rearrange data for further processing
 xy <- data.frame(x = x, y = y)
 
@@ -62,8 +62,8 @@ th.est <- function(xy, r = r, n, linear = linear) {
 	      x.cal <- (-b/a)/2 + sqrt(((-b/a)/2)^2 - (c - r)/a)
 	  }
     } else {
-	m <- xy.sum[[1]][["coefficients"]][1,1]
-	n <- xy.sum[[1]][["coefficients"]][2,1]
+	n <- xy.sum[[1]][["coefficients"]][1,1]
+	m <- xy.sum[[1]][["coefficients"]][2,1]
     	x.cal <- (r - n) / m
     }
 
