@@ -24,7 +24,7 @@ Any ad-blocking software may be cause of malfunctions.
 }
 
 \examples{
-\dontrun{
+\donttest{
 # Run from a R console following commands
 require(shiny)
 
