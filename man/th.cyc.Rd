@@ -10,7 +10,7 @@ the fluorescence exceeds a defined threshold, called the threshold cycle
 quantification cycle (Cq).
 }
 \usage{
-th.cyc(x, y, r = 2500, auto = FALSE)
+th.cyc(x, y, r = 2500, auto = FALSE, linear = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
