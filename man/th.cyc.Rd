@@ -69,11 +69,11 @@ y <- VIMCFX96_69[, 2]
 plot(x, y, xlab = "Cycle", ylab = "Fluo")
 # Calculate the the Ct value
 res <- th.cyc(x, y, r = 2300)
-lines(res[["Input"]], col = 2, lwd = 2)
+lines(res@input, col = 2, lwd = 2)
 # Threshold fluorescence value
-abline(h = res[["Results"]][2], col = 3)
+abline(h = res@.Data[2], col = 3)
 # Calculated Ct value
-abline(v = res[["Results"]][1], col = 4)
+abline(v = res@.Data[1], col = 4)
 }
 \keyword{ MIQE }
 \keyword{ threshold }
