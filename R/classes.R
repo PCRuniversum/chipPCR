@@ -53,29 +53,34 @@ setMethod("plot", signature(x = "amptest"),
   
   res.shapiro.pos <- shapiro.test(y.pos)
   
-  res.wt.pos <- wilcox.test(head(y.pos, n = nh), tail(y.pos, n = nt), alternative = "less")
+  res.wt.pos <- wilcox.test(head(y.pos, n = nh), tail(y.pos, n = nt), 
+			    alternative = "less")
   
-  #par(mfrow = c(2,2))
-  layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE), respect = TRUE)
-  plot(abscissa, y.pos, xlim = c(abscissa[1], abscissa[length(abscissa)]*1.3), ylim = c(-0.1, max(y.pos)*1.3), 
-       xlab = "Cycle", ylab = "RFU", main = "Input data", type = "b", pch = 19)
+  layout(matrix(c(1,1,1,2,3,4), ncol = 3, byrow = TRUE), respect = TRUE)
+  plot(abscissa, y.pos, xlim = c(abscissa[1], 
+       abscissa[length(abscissa)] * 1.3), ylim = c(min(y.pos) * 0.8, 
+       ub.pos * 1.2), xlab = "Cycle", ylab = "RFU", 
+       main = "Input data", type = "b", pch = 19)
   
   abline(v = c(nh, length(abscissa) - nt), lty = 3)
   
   abline(h = lb.pos, lty = 2, col = "red")
-  text(abscissa[9], lb.pos * 2, "Noise\nmedian + 2 * mad", col = "red", cex = 1.3)
+  text(abscissa[9], lb.pos * 1.2, "Noise\nmedian + 2 * mad", col = "red", 
+       cex = 1.3)
   
   abline(h = ub.pos, lty = 2, col = "green")
-  text(abscissa[length(abscissa)]*1.1, ub.pos * 0.90, 
+  text(abscissa[length(abscissa)] * 1.1, ub.pos * 0.90, 
        "Signal\nmedian - 2 * mad", col = "green", cex = 1.3)
   
   arrows(4.5, 12.5, 42.5, 12.5, length = 0.1, angle = 90, code = 3)
-  text(25, 14.5, paste("W = ", res.wt.pos$statistic, "\np-value = ", res.wt.pos$p.value))
+  text(25, 14.5, paste("W = ", res.wt.pos$statistic, "\np-value = ", 
+       res.wt.pos$p.value))
   text(5,5, paste("Fold change: \n", round(ub.pos/lb.pos, 2)))
   
   res.pos <- rtg.test(y.pos)
-  plot(1L:ncol(res.pos), res.pos[nrow(res.pos), ], xaxt='n', xlab = "Cycle interval", 
-       ylab = "", ylim = c(0, 1), main = "RGt", pch = 19)
+  plot(1L:ncol(res.pos), res.pos[nrow(res.pos), ], xaxt='n', 
+       xlab = "Cycle interval", ylab = "", ylim = c(0, 1), main = "RGt", 
+       pch = 19)
   mtext("Correlation coeffcient", 2, 3)
   mtext("(studentized residuals and RFU)", 2, 2)
   nice_labs <- sapply(1L:ncol(res.pos), function(i) 
@@ -84,12 +89,14 @@ setMethod("plot", signature(x = "amptest"),
   abline(h = 0.8, lty = "66")
   
   qqnorm(y.pos, pch = 19, main = paste("W = ", 
-                                       format(res.shapiro.pos[["statistic"]], digits = 6), 
-                                       "\np-value = ", 
-                                       format(res.shapiro.pos[["p.value"]], digits = 6)))
+                                       format(res.shapiro.pos[["statistic"]], 
+                                       digits = 6), "\np-value = ", 
+                                       format(res.shapiro.pos[["p.value"]], 
+				       digits = 6)))
   qqline(y.pos, col = "orange", lwd = 2)
   
-  plot(RGt(y.pos), xlab = "Cycle", ylab = expression(R^2), main = "LRt", pch = 19, type = "b")
+  plot(RGt(y.pos), xlab = "Cycle", ylab = expression(R^2), main = "LRt", 
+       pch = 19, type = "b")
   abline(h = 0.8, col = "black", lty = 2)
 })
 
