@@ -6,6 +6,8 @@
 \alias{summary,amptest-method}
 \alias{show.amptest}
 \alias{show,amptest-method}
+\alias{plot.amptest}
+\alias{plot,amptest-method}
 
 \title{Class \code{"amptest"}}
 \description{
@@ -92,6 +94,8 @@ abline(h = 0.15, col = 3, lty = 2)
 text(5, 0.18, "Noise threshold")
 # Summary of amptester results
 summary(ampt.neg)
+#plot amptester results
+plot(ampt.neg)
 }
 
 \keyword{classes}
