@@ -39,6 +39,8 @@ function.
 		   of the object.}
     \item{show}{\code{signature(object = "amptest")}: prints only 
 		\code{.Data} slot of the object.}
+    \item{plot}{\code{signature(object = "amptest")}: plots input data and graphical
+    interpretation of \code{link{amptester}} tests' results.}
    }
 }
 \author{
