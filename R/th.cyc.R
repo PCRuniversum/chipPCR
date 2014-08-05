@@ -48,10 +48,12 @@ th.cyc <-
     # Create the output fot the exact Ct value, the regression and the neighbours 
     # of the cycle and fluorescence values at the threshold fluorescence.
     
-    out <- list(Results = rbind(cyc.th = x.cal, atFluo = r), 
-                stats = xy.sum[["summary"]], 
-                Input = xy.sum[["values"]])
-    out
+    res <-matrix(c(x.cal, r), ncol = 2)
+    colnames(res) <- c("cyc.th", "atFluo")
+    
+    new("th", .Data = res, 
+        stats = xy.sum[["summary"]], 
+        input = data.matrix(xy.sum[["values"]]))
   }
 
 
