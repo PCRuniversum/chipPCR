@@ -5,8 +5,11 @@
 Amplification Test Graphical User Interface
 }
 \description{
-Something
-}
+\code{\link[chipPCR]{amptester.gui}} is a graphical user interface for the 
+\code{\link[chipPCR]{amptester}} function. This function can be used for a 
+fast and convenient analysis of amplification curve data. In addition it is 
+possible to analyze the Cq (quantification cycle) and to perform a report 
+generation of the analyzed data. }
 \usage{
 amptester.gui()
 }
@@ -33,7 +36,11 @@ runApp(paste0(find.package("chipPCR")[1],"/amptester.gui"))
 }
 
 \keyword{ hplot }
-\keyword{ simulation }
+\keyword{ amplification }
 \keyword{ shiny }
+\keyword{ report }
+\keyword{ analysis }
 \keyword{ GUI }
 \keyword{ browser }
+\keyword{ Cq }
+
