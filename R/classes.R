@@ -18,7 +18,7 @@ setMethod("show", signature(object = "amptest"), function(object) {
 })
 
 setMethod("summary", signature(object = "amptest"), function(object) {
-  print(slot(object, ".Data"))
+  #print(slot(object, ".Data")) I think it's too much and repeats show method
   cat(paste0("\nAmplification significance (threshold test): ", 
              slot(object, "decisions")[["tht.dec"]]))
   cat(paste0("\nAmplification significance (signal level test): ", 

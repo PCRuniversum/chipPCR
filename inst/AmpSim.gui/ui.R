@@ -11,7 +11,7 @@ shinyUI(pageWithSidebar(
   numericInput("ampl", "Amplitude", 1), 
   numericInput("Cq", "Cq value", 20),
   checkboxInput("noise", "Use noise in simulation", FALSE),
-  numericInput("nnl", "Noise level", 0.025, min = 0, max = 10),
+  numericInput("nnl", "Noise level", 0.025, min = 0, max = 10, step = 0.025),
   selectInput("nnl.method", "Variable:",
                 list("Constant" = "constant", 
                      "Decreasing" = "decrease", 
