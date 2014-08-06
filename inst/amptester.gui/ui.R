@@ -8,7 +8,8 @@ shinyUI(pageWithSidebar(
     checkboxInput("header", "Header", TRUE),
     radioButtons("csv.type", "Type of csv file",
                  c("Dec: dot (.), Sep: comma (;)" = "csv1",
-                   "Dec: comma (.), Sep: semicolon (;)" = "csv2"))
+                   "Dec: comma (.), Sep: semicolon (;)" = "csv2")),
+    downloadButton("download.result", "Download amptester results")
   ),
   mainPanel(
     tabsetPanel(

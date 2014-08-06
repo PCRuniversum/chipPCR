@@ -1,0 +1,9 @@
+amptester - report
+========================================================
+
+```{r, echo=FALSE,message=FALSE,warning=FALSE,results='markup'}
+for (i in res.amptest()) {
+  summary(i)
+  plot(i)
+}
+```

@@ -47,5 +47,15 @@ shinyServer(function(input, output) {
       uiOutput("amptester.summs.plots")
   })
   
+  output[["download.result"]] <- downloadHandler(
+    filename  = "amptester_report.html",
+    content <- function(file) {
+      knitr:::knit(input = "amptester_report.Rmd", 
+                   output = "amptester_report.md", quiet = TRUE)
+      markdown:::markdownToHTML("amptester_report.md", file)
+    }
+  )
 })
+  
+
 
