@@ -41,64 +41,76 @@ setMethod("summary", signature(object = "amptest"), function(object) {
 
 setMethod("plot", signature(x = "amptest"), 
           function(x, abscissa = 1L:length(slot(x, ".Data")), ...) {
-  y.pos <- slot(x, ".Data")
-  nh <- trunc(length(abscissa) * 0.20)
-  nt <- trunc(length(abscissa) * 0.15)
-  
-  y.pos.head <- head(y.pos, n = nh)
-  y.pos.tail <- tail(y.pos, n = nt)
-  
-  lb.pos <- median(y.pos.head) + 2 * mad(y.pos.head)
-  ub.pos <- median(y.pos.tail) - 2 * mad(y.pos.tail)
-  
-  res.shapiro.pos <- shapiro.test(y.pos)
-  
-  res.wt.pos <- wilcox.test(head(y.pos, n = nh), tail(y.pos, n = nt), 
-			    alternative = "less")
-  
-  layout(matrix(c(1,1,1,2,3,4), ncol = 3, byrow = TRUE), respect = TRUE)
-  plot(abscissa, y.pos, xlim = c(abscissa[1], 
-       abscissa[length(abscissa)] * 1.3), ylim = c(min(y.pos) * 0.8, 
-       ub.pos * 1.2), xlab = "Cycle", ylab = "RFU", 
-       main = "Input data", type = "b", pch = 19)
-  
-  abline(v = c(nh, length(abscissa) - nt), lty = 3)
-  
-  abline(h = lb.pos, lty = 2, col = "red")
-  text(abscissa[9], lb.pos * 1.2, "Noise\nmedian + 2 * mad", col = "red", 
-       cex = 1.3)
-  
-  abline(h = ub.pos, lty = 2, col = "green")
-  text(abscissa[length(abscissa)] * 1.1, ub.pos * 0.90, 
-       "Signal\nmedian - 2 * mad", col = "green", cex = 1.3)
-  
-  arrows(4.5, 12.5, 42.5, 12.5, length = 0.1, angle = 90, code = 3)
-  text(25, 14.5, paste("W = ", res.wt.pos$statistic, "\np-value = ", 
-       res.wt.pos$p.value))
-  text(5,5, paste("Fold change: \n", round(ub.pos/lb.pos, 2)))
-  
-  res.pos <- rtg.test(y.pos)
-  plot(1L:ncol(res.pos), res.pos[nrow(res.pos), ], xaxt='n', 
-       xlab = "Cycle interval", ylab = "", ylim = c(0, 1), main = "RGt", 
-       pch = 19)
-  mtext("Correlation coeffcient", 2, 3)
-  mtext("(studentized residuals and RFU)", 2, 2)
-  nice_labs <- sapply(1L:ncol(res.pos), function(i) 
-    paste0(res.pos[c(1, nrow(res.pos) - 1), i], collapse = "-"))
-  axis(1, 1L:ncol(res.pos), labels = nice_labs)
-  abline(h = 0.8, lty = "66")
-  
-  qqnorm(y.pos, pch = 19, main = paste("W = ", 
-                                       format(res.shapiro.pos[["statistic"]], 
-                                       digits = 6), "\np-value = ", 
-                                       format(res.shapiro.pos[["p.value"]], 
-				       digits = 6)))
-  qqline(y.pos, col = "orange", lwd = 2)
-  
-  plot(RGt(y.pos), xlab = "Cycle", ylab = expression(R^2), main = "LRt", 
-       pch = 19, type = "b")
-  abline(h = 0.8, col = "black", lty = 2)
-})
+            y.pos <- slot(x, ".Data")
+            nh <- trunc(length(abscissa) * 0.20)
+            nt <- trunc(length(abscissa) * 0.15)
+            
+            y.pos.head <- head(y.pos, n = nh)
+            y.pos.tail <- tail(y.pos, n = nt)
+            
+            lb.pos <- median(y.pos.head) + 2 * mad(y.pos.head)
+            ub.pos <- median(y.pos.tail) - 2 * mad(y.pos.tail)
+            
+            res.shapiro.pos <- shapiro.test(y.pos)
+            
+            res.wt.pos <- wilcox.test(head(y.pos, n = nh), tail(y.pos, n = nt), 
+                                      alternative = "less")
+            
+            layout(matrix(c(1,1,1,2,3,4), ncol = 3, byrow = TRUE), respect = TRUE)
+            
+            y.lims <- range(y.pos)
+            print(y.lims)
+            y.lims[1] <- ifelse(abs(y.lims[1]) > abs(lb.pos),
+                                lb.pos, y.lims[1])
+            y.lims[1] <- ifelse(y.lims[1] > 0, y.lims[1] * 1.2, y.lims[1] * 0.8)
+            
+            y.lims[2] <- ifelse(abs(y.lims[2]) > abs(ub.pos),
+                                ub.pos, y.lims[2])
+            y.lims[2] <- ifelse(y.lims[2] > 0, y.lims[2] * 1.2, y.lims[2] * 0.8)
+            
+            print(y.lims)
+            plot(abscissa, y.pos, xlim = c(abscissa[1], 
+                                           abscissa[length(abscissa)] * 1.3), 
+                 ylim = y.lims, xlab = "Cycle", ylab = "RFU", 
+                 main = "Input data", type = "b", pch = 19)
+            
+            abline(v = c(nh, length(abscissa) - nt), lty = 3)
+            
+            abline(h = lb.pos, lty = 2, col = "red")
+            text(abscissa[9], lb.pos * 1.2, "Noise\nmedian + 2 * mad", col = "red", 
+                 cex = 1.3)
+            
+            abline(h = ub.pos, lty = 2, col = "green")
+            text(abscissa[length(abscissa)] * 1.1, ub.pos * 0.90, 
+                 "Signal\nmedian - 2 * mad", col = "green", cex = 1.3)
+            
+            arrows(4.5, 12.5, 42.5, 12.5, length = 0.1, angle = 90, code = 3)
+            text(25, 14.5, paste("W = ", res.wt.pos$statistic, "\np-value = ", 
+                                 res.wt.pos$p.value))
+            text(5,5, paste("Fold change: \n", round(ub.pos/lb.pos, 2)))
+            
+            res.pos <- rtg.test(y.pos)
+            plot(1L:ncol(res.pos), res.pos[nrow(res.pos), ], xaxt='n', 
+                 xlab = "Cycle interval", ylab = "", ylim = c(0, 1), main = "RGt", 
+                 pch = 19)
+            mtext("Correlation coeffcient", 2, 3)
+            mtext("(studentized residuals and RFU)", 2, 2)
+            nice_labs <- sapply(1L:ncol(res.pos), function(i) 
+              paste0(res.pos[c(1, nrow(res.pos) - 1), i], collapse = "-"))
+            axis(1, 1L:ncol(res.pos), labels = nice_labs)
+            abline(h = 0.8, lty = "66")
+            
+            qqnorm(y.pos, pch = 19, main = paste("W = ", 
+                                                 format(res.shapiro.pos[["statistic"]], 
+                                                        digits = 6), "\np-value = ", 
+                                                 format(res.shapiro.pos[["p.value"]], 
+                                                        digits = 6)))
+            qqline(y.pos, col = "orange", lwd = 2)
+            
+            plot(RGt(y.pos), xlab = "Cycle", ylab = expression(R^2), main = "LRt", 
+                 pch = 19, type = "b")
+            abline(h = 0.8, col = "black", lty = 2)
+          })
 
 ###
 
@@ -324,9 +336,9 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     plot(res[, 1], res[, 4], xlab = "Cycle", ylab = "CV", 
          type = type, pch = pch, col = col,
          main = paste0("ROI samples: ", ncol_y, "\n",
-                      "ROI mean: ", stats[1], " +- ", stats[3], "\n",
-                      "ROI median: ", stats[2], " +- ", stats[4]
-		)
+                       "ROI mean: ", stats[1], " +- ", stats[3], "\n",
+                       "ROI median: ", stats[2], " +- ", stats[4]
+         )
     )
     
     # Add a range for the ROI
@@ -337,22 +349,22 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
     # and plot the results
     
     plot(res.dens, xlab = "RFU", main = paste0("Cycle ", 
-                                              llul[1], " to ", llul[2], 
-                                              "\n", "bw ", 
-                                              round(res.dens$bw, 3), 
-                                              "\n", "N ", res.dens$n
-                                        )
+                                               llul[1], " to ", llul[2], 
+                                               "\n", "bw ", 
+                                               round(res.dens$bw, 3), 
+                                               "\n", "N ", res.dens$n
+    )
     )
     
   } else {
     plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
                                       max(res[, 2] + res[, 3])), 
-                                      xlab = "Cycle", ylab = "MFI", 
-                                      type = type, pch = pch, col = col,
+         xlab = "Cycle", ylab = "MFI", 
+         type = type, pch = pch, col = col,
          main = paste0("ROI samples: ", ncol_y, "\n",
-                      "ROI mean: ", stats[1], " +- ", stats[3], "\n",
-                      "ROI median: ", stats[2], " +- ", stats[4]
-                      )
+                       "ROI mean: ", stats[1], " +- ", stats[3], "\n",
+                       "ROI median: ", stats[2], " +- ", stats[4]
+         )
     )
     abline(v = llul, col = "lightgrey")
     
@@ -369,7 +381,7 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
                                               "\n", "bw ", 
                                               round(res.dens[["bw"]], 3), 
                                               "\n", "N ", res.dens[["n"]]
-                                        )
+    )
     )
     
   }
@@ -385,8 +397,8 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
 
 #th class, th.cyc function -------------------------------
 setClass("th", contains = "matrix", representation(.Data = "matrix", 
-                                                       stats = "summary.lm", 
-                                                       input = "matrix"))
+                                                   stats = "summary.lm", 
+                                                   input = "matrix"))
 
 setMethod("show", signature(object = "th"), function(object) {
   print(slot(object, ".Data"))

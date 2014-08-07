@@ -1,9 +1,10 @@
 amptester - report
 ========================================================
 
-```{r, echo=FALSE,message=FALSE,warning=FALSE,results='markup'}
-for (i in res.amptest()) {
-  summary(i)
-  plot(i)
+```{r, echo=FALSE,message=FALSE,warning=FALSE}
+for (i in 1L:length(res.amptest())) {
+  cat(colnames(processed.data())[i], "\n")
+  summary(res.amptest()[[i]])
+  plot(res.amptest()[[i]])
 }
 ```

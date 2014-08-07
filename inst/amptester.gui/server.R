@@ -10,6 +10,8 @@ shinyServer(function(input, output) {
                            header = input[["header"]]),
            csv2 = read.csv2(input[["input.file"]][["datapath"]], 
                             header = input[["header"]]))
+    if(!input[["header"]])
+      colnames(dat) <- paste0("Column", 1L:ncol(dat))
     dat
   })
   
@@ -38,7 +40,10 @@ shinyServer(function(input, output) {
       my_i <- i
       
       output[[paste0("plot", my_i)]] <- renderPlot(plot(res.amptest()[[my_i]]))
-      output[[paste0("summ", my_i)]] <- renderPrint(summary(res.amptest()[[my_i]]))
+      output[[paste0("summ", my_i)]] <- renderPrint({
+        cat(colnames(processed.data())[my_i], "\n")  
+        summary(res.amptest()[[my_i]])                                          
+        })
     })
   }
   
