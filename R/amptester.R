@@ -6,8 +6,6 @@ amptester <-
       stop("Use only two values (e.g., background = c(1,10)) \n\t to set the range for the background correction")
     if (is.null(background) && manual == TRUE)
       stop("Manual test requires specified background.")
-    if (!is.null(background) && manual == FALSE)
-      stop("Background is not empty. Manual test needs to be confirmed \n\t (manual = TRUE) to be performed.")
     #if background is NULL, sorting it is pointless and invokes warning
     if (!is.null(background))
       background <- as.integer(sort(background))

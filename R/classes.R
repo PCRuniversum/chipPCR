@@ -36,6 +36,13 @@ setMethod("summary", signature(object = "amptest"), function(object) {
     bcg <- paste0(bcg, collapse = ", ")
     cat(paste0("\nBackground: (", bcg, ")"))
   }
+  invisible(c(tht.dec = slot(object, "decisions")[["tht.dec"]],
+              slt.dec = slot(object, "decisions")[["slt.dec"]],
+              rgt.dec = slot(object, "decisions")[["rgt.dec"]],
+              shap.noisy = slot(object, "decisions")[["shap.noisy"]],
+              noiselevel = slot(object, "noiselevel"),
+              lrt.test = slot(object, "decisions")[["lrt.test"]], 
+              polygon = slot(object, "polygon")))
 })
 
 
@@ -59,15 +66,11 @@ setMethod("plot", signature(x = "amptest"),
             layout(matrix(c(1,1,1,2,3,4), ncol = 3, byrow = TRUE), respect = TRUE)
             
             y.lims <- range(y.pos)
-            print(y.lims)
-            y.lims[1] <- ifelse(abs(y.lims[1]) > abs(lb.pos),
-                                lb.pos, y.lims[1])
-            y.lims[1] <- ifelse(y.lims[1] > 0, y.lims[1] * 1.2, y.lims[1] * 0.8)
+            y.lims[1] <- min(y.lims[1], lb.pos)
+            y.lims[2] <- max(y.lims[1], ub.pos)
             
-            y.lims[2] <- ifelse(abs(y.lims[2]) > abs(ub.pos),
-                                ub.pos, y.lims[2])
-            y.lims[2] <- ifelse(y.lims[2] > 0, y.lims[2] * 1.2, y.lims[2] * 0.8)
-            
+            y.lims[1] <- y.lims[1] - 0.4*(lb.pos + abs(ub.pos))
+            y.lims[2] <- y.lims[2] + 0.4*(lb.pos + abs(ub.pos))
             print(y.lims)
             plot(abscissa, y.pos, xlim = c(abscissa[1], 
                                            abscissa[length(abscissa)] * 1.3), 

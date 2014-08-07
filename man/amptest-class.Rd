@@ -38,7 +38,7 @@ function.
 \section{Methods}{
   \describe{
     \item{summary}{\code{signature(object = "amptest")}: prints summary 
-		   of the object.}
+		   of the object. Silently returns \code{vector} of all calculated parameters.}
     \item{show}{\code{signature(object = "amptest")}: prints only 
 		\code{.Data} slot of the object.}
     \item{plot}{\code{signature(object = "amptest")}: plots input data and graphical

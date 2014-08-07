@@ -6,10 +6,10 @@ shinyServer(function(input, output) {
   
   processed.data <- reactive({
     dat <- switch(input[["csv.type"]], 
-           csv1 = read.csv(input[["input.file"]][["datapath"]], 
-                           header = input[["header"]]),
-           csv2 = read.csv2(input[["input.file"]][["datapath"]], 
-                            header = input[["header"]]))
+                  csv1 = read.csv(input[["input.file"]][["datapath"]], 
+                                  header = input[["header"]]),
+                  csv2 = read.csv2(input[["input.file"]][["datapath"]], 
+                                   header = input[["header"]]))
     if(!input[["header"]])
       colnames(dat) <- paste0("Column", 1L:ncol(dat))
     dat
@@ -19,7 +19,10 @@ shinyServer(function(input, output) {
   res.amptest <- reactive({
     dat <- processed.data()
     res <- lapply(1L:ncol(dat), function(i)
-      amptester(y = dat[, i]))
+      amptester(y = dat[, i], 
+                manual = input[["amptester.manual"]]  == "manual",
+                noiselevel = input[["amptester.noiselevel"]],
+                background = c(input[["amptester.bcg1"]], input[["amptester.bcg2"]])))
     res
   })
   
@@ -43,14 +46,32 @@ shinyServer(function(input, output) {
       output[[paste0("summ", my_i)]] <- renderPrint({
         cat(colnames(processed.data())[my_i], "\n")  
         summary(res.amptest()[[my_i]])                                          
-        })
+      })
     })
   }
   
   
   output[["amptest.summary"]] <- renderUI({
-      uiOutput("amptester.summs.plots")
+    uiOutput("amptester.summs.plots")
   })
+  
+  output[["amptest.table"]] <- renderTable({
+    dat <- data.frame(t(sapply(res.amptest(), function(i) summary(i))))
+    for (i in c("tht.dec", "slt.dec", "rgt.dec", "shap.noisy", "lrt.test"))
+      dat[, i] <- as.logical(dat[, i])
+    dat
+  })
+  
+  output[["download.table"]] <- downloadHandler(
+    filename = "amptester_report.csv",
+    content <- function(file) {
+      dat <- data.frame(t(sapply(res.amptest(), function(i) summary(i))))
+      for (i in c("tht.dec", "slt.dec", "rgt.dec", "shap.noisy", "lrt.test"))
+        dat[, i] <- as.logical(dat[, i])
+      #improve it
+      write.csv(dat, file)
+    }
+  )
   
   output[["download.result"]] <- downloadHandler(
     filename  = "amptester_report.html",
@@ -61,6 +82,6 @@ shinyServer(function(input, output) {
     }
   )
 })
-  
+
 
 

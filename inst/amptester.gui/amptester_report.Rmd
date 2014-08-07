@@ -1,7 +1,12 @@
 amptester - report
 ========================================================
 
+Date: `r Sys.time()`
+
+
 ```{r, echo=FALSE,message=FALSE,warning=FALSE}
+
+
 for (i in 1L:length(res.amptest())) {
   cat(colnames(processed.data())[i], "\n")
   summary(res.amptest()[[i]])

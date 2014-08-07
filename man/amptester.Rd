@@ -28,7 +28,8 @@ amplification signal.
   \item{background}{
 	is the range of the background signal in the amplification curve. 
 The values can be added by the user or taken from the 
-\code{\link[chipPCR]{bg.max}} function.
+\code{\link[chipPCR]{bg.max}} function. Ignored if \code{manual} is
+\code{TRUE}.
 }
 }
 \details{
