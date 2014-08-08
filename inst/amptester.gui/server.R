@@ -22,7 +22,8 @@ shinyServer(function(input, output) {
       amptester(y = dat[, i], 
                 manual = input[["amptester.manual"]]  == "manual",
                 noiselevel = input[["amptester.noiselevel"]],
-                background = c(input[["amptester.bcg1"]], input[["amptester.bcg2"]])))
+                background = summary(bg.max(1L:length(dat[, i]), 
+                                            dat[, i]), print = FALSE)[1:2]))
     res
   })
   

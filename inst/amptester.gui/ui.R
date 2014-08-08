@@ -14,10 +14,6 @@ shinyUI(pageWithSidebar(
                 selected = "statistical"),
     numericInput("amptester.noiselevel", "Noise level:", 0.08,
                  min = 0, max = 2, step = 0.04),
-    numericInput("amptester.bcg1", "Background start:", 1,
-                 min = 1, max = 20, step = 1),
-    numericInput("amptester.bcg2", "Background end:", 6,
-                 min = 1, max = 20, step = 1),
     downloadButton("download.result", "Download amptester results (with graphics)"),
     downloadButton("download.table", "Download amptester results (.csv)"),
     downloadButton("download.data", "Download amptester processed data (.csv)")

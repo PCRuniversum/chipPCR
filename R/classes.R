@@ -88,8 +88,9 @@ setMethod("plot", signature(x = "amptest"),
                  "Signal\nmedian - 2 * mad", col = "green", cex = 1.3)
             
             arrows(4.5, 12.5, 42.5, 12.5, length = 0.1, angle = 90, code = 3)
-            text(25, 14.5, paste("W = ", res.wt.pos$statistic, "\np-value = ", 
-                                 res.wt.pos$p.value))
+            text(25, 14.5, paste("W = ", format(res.wt.pos[["statistic"]], digits = 4), 
+                                 "\np-value = ", 
+                                 format(res.wt.pos[["p.value"]], digits = 6)))
             text(5,5, paste("Fold change: \n", round(ub.pos/lb.pos, 2)))
             
             res.pos <- rtg.test(y.pos)
