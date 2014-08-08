@@ -19,13 +19,15 @@ shinyUI(pageWithSidebar(
     numericInput("amptester.bcg2", "Background end:", 6,
                  min = 1, max = 20, step = 1),
     downloadButton("download.result", "Download amptester results (with graphics)"),
-    downloadButton("download.table", "Download amptester results (table)")
+    downloadButton("download.table", "Download amptester results (.csv)"),
+    downloadButton("download.data", "Download amptester processed data (.csv)")
   ),
   mainPanel(
     tabsetPanel(
       tabPanel("Input data", tableOutput("input.data")),
       tabPanel("Results with graphics", uiOutput("amptest.summary")),
-      tabPanel("Results - table", tableOutput("amptest.table"))
+      tabPanel("Results - table", tableOutput("amptest.table")),
+      tabPanel("Results - data table", tableOutput("amptest.data"))
     )
   )
 )

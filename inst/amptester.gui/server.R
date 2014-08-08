@@ -62,12 +62,28 @@ shinyServer(function(input, output) {
     dat
   })
   
+  output[["amptest.data"]] <- renderTable({
+    dat <- data.frame(sapply(res.amptest(), function(i) i))
+    colnames(dat) <- colnames(processed.data())
+    dat
+  })
+  
   output[["download.table"]] <- downloadHandler(
     filename = "amptester_report.csv",
     content <- function(file) {
       dat <- data.frame(t(sapply(res.amptest(), function(i) summary(i))))
       for (i in c("tht.dec", "slt.dec", "rgt.dec", "shap.noisy", "lrt.test"))
         dat[, i] <- as.logical(dat[, i])
+      #improve it
+      write.csv(dat, file)
+    }
+  )
+  
+  output[["download.data"]] <- downloadHandler(
+    filename = "amptester_data.csv",
+    content <- function(file) {
+      dat <- data.frame(sapply(res.amptest(), function(i) i))
+      colnames(dat) <- colnames(processed.data())
       #improve it
       write.csv(dat, file)
     }
