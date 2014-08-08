@@ -17,24 +17,26 @@ setMethod("show", signature(object = "amptest"), function(object) {
   print(slot(object, ".Data"))
 })
 
-setMethod("summary", signature(object = "amptest"), function(object) {
+setMethod("summary", signature(object = "amptest"), function(object, print = TRUE) {
   #print(slot(object, ".Data")) I think it's too much and repeats show method
-  cat(paste0("\nAmplification significance (threshold test): ", 
-             slot(object, "decisions")[["tht.dec"]]))
-  cat(paste0("\nAmplification significance (signal level test): ", 
-             slot(object, "decisions")[["slt.dec"]]))
-  cat(paste0("\nAmplification significance (resids growth test): ", 
-             slot(object, "decisions")[["rgt.dec"]]))
-  cat(paste0("\nNoise detected: ", slot(object, "decisions")[["shap.noisy"]]))
-  cat(paste0("\nNoise level: ", slot(object, "noiselevel")))
-  cat(paste0("\nLinearity: ", slot(object, "decisions")[["lrt.test"]]))
-  cat(paste0("\nPolygon: ", slot(object, "polygon")))
-  bcg <- slot(object, "background")
-  if (is.null(bcg)) {
-    cat(paste0("\nBackground: not defined")) 
-  } else {
-    bcg <- paste0(bcg, collapse = ", ")
-    cat(paste0("\nBackground: (", bcg, ")"))
+  if(print) {
+    cat(paste0("\nAmplification significance (threshold test): ", 
+               slot(object, "decisions")[["tht.dec"]]))
+    cat(paste0("\nAmplification significance (signal level test): ", 
+               slot(object, "decisions")[["slt.dec"]]))
+    cat(paste0("\nAmplification significance (resids growth test): ", 
+               slot(object, "decisions")[["rgt.dec"]]))
+    cat(paste0("\nNoise detected: ", slot(object, "decisions")[["shap.noisy"]]))
+    cat(paste0("\nNoise level: ", slot(object, "noiselevel")))
+    cat(paste0("\nLinearity: ", slot(object, "decisions")[["lrt.test"]]))
+    cat(paste0("\nPolygon: ", slot(object, "polygon")))
+    bcg <- slot(object, "background")
+    if (is.null(bcg)) {
+      cat(paste0("\nBackground: not defined")) 
+    } else {
+      bcg <- paste0(bcg, collapse = ", ")
+      cat(paste0("\nBackground: (", bcg, ")"))
+    }
   }
   invisible(c(tht.dec = slot(object, "decisions")[["tht.dec"]],
               slt.dec = slot(object, "decisions")[["slt.dec"]],
