@@ -2,6 +2,9 @@ Changes from Version 0.0.7 to 0.0.7-1 [XXXX XX 2014]
 * New function th.cyc
 * New pco test for amptester
 * New function humanrater
+* Considerably enhanced shiny GUIs
+* New function amptester.gui
+* smoother has parallelization option now
 * Maintenance
   - preprocess -> pre-process in docs
   - inclusion of more examples
