@@ -1,6 +1,7 @@
 importFrom(MASS, rlm)
 import("methods")
 importFrom(outliers, rm.outlier)
+importFrom(parallel, parLapplyLB)
 importFrom(ptw, whit1, whit2)
 importFrom(quantreg, rq)
 importFrom(Rfit, rfit)

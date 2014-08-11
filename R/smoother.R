@@ -1,5 +1,12 @@
 smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, 
-                     method = "savgol", CPP = TRUE, ...) {
+                     method = "savgol", CPP = TRUE, paralell = NULL, ...) {
+  if(is.null(paralell)) {
+    used_lapply <- lapply
+  } else {
+    used_lapply <- function(X, fun) parLapplyLB(cl = paralell, X, fun)
+  }
+  
+  
   # Determine the time/cycle resolution of the data
   testxy(x, y)
   
@@ -78,8 +85,10 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
     y.tmp <- y
   }
   
+  
+  
   if(is.character(method)) {
-    all.smooths <- lapply(1L:length(method.names), function(i) {
+    all.smooths <- used_lapply(1L:length(method.names), function(i) {
       y.tmp <- switch(method.names[i],
                       lowess = do.call(function(x, y, f = 0.01, iter = 3)
                         lowess(x = x, y = y, f = f, iter = iter)
@@ -186,16 +195,16 @@ setGeneric("smoother")
 
 setMethod("smoother", signature(x = "data.frame", y="missing"), 
           function(x, y, trans = FALSE, bg.outliers = FALSE, 
-                   method = "savgol", CPP = TRUE, ...) { 
+                   method = "savgol", CPP = TRUE, paralell = NULL, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            smoother(x[, 1], x[, 2], trans, bg.outliers, method, CPP, ...)
+            smoother(x[, 1], x[, 2], trans, bg.outliers, method, CPP, paralell = NULL, ...)
           })
 
 setMethod("smoother", signature(x = "matrix", y = "missing"), 
           function(x, y, trans = FALSE, bg.outliers = FALSE, 
-                   method = "savgol", CPP = TRUE, ...) { 
+                   method = "savgol", CPP = TRUE, paralell = NULL, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
-            smoother(x[, 1], x[, 2], trans, bg.outliers, method, CPP, ...)
+            smoother(x[, 1], x[, 2], trans, bg.outliers, method, CPP, paralell = NULL, ...)
           })
