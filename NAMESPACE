@@ -36,6 +36,7 @@ export(
 	"humanrater",
 	"inder",
 	"MFIaggr",
+  "normalizer",
 	"rounder",
 	"smoother",
 	"th.cyc"

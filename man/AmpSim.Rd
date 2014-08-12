@@ -13,8 +13,8 @@ addressed in the literature. First, they have to take ``all'' random
 effects of noise into consideration and second, they need to be generic 
 enough to cover all amplification processes. More sophisticated mechanistic 
 models and simulations have been proposed elsewhere \cite{mehra_2005, 
-cobbs_2012}. This approach of \textsl{AmpSim} is similar to the 
-\textsl{pcrsim} function from the \emph{qpcR} package, which offers 
+cobbs_2012}. This approach of \code{AmpSim} is similar to the 
+\code{pcrsim} function from the \emph{qpcR} package, which offers 
 simulations of sigmoidal qPCR data with goodness-of-fit analysis by 
 Ritz and Spiess 2008.
 }

@@ -1,28 +1,11 @@
 CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = FALSE, 
 		rob.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
-		norm = "none", qnL = 0.03, amptest = FALSE, manual = FALSE, 
+		method.norm = "none", qnL = 0.03, amptest = FALSE, manual = FALSE, 
 		nl = 0.08, ...) {
   
   testxy(x, y)
-  # Test meaningfulness of qnL
-  if (qnL <= 0.001 || qnL >= 0.999) 
-    stop("qnL must be within 0.001 and 0.999.")
   
-  # Select a method for the smoothing
-  
-  method.norm <- tolower(norm)
-  if (grepl(method.norm, "none"))
-    method.norm <- "none"
-  if (grepl(method.norm, "luqn")) 
-    method.norm <- "luqn"
-  if (grepl(method.norm, "minmax"))
-    method.norm <- "minmax"
-  if (grepl(method.norm, "max"))
-    method.norm <- "max"
-  if (grepl(method.norm, "zscore"))
-    method.norm <- "zscore"
-  if (!(method.norm %in% c("none", "luqn", "minmax", "max", "zscore")))
-    stop("Invalid method chosen.")
+
     
   # Define the method for the linear regression
   # lmrob (robustbase) uses MM-type estimators, rfit (Rfit)
@@ -136,22 +119,7 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = FALSE,
   } else {y.norm <- y - median(y[c(BG)])}
   
   # Perform a normalization to a specified quantile value
-  normalizer <- function(y, method, qnL = qnL) {
-    switch(method,
-           none = do.call(function(y) y, c(list(y = y))),
-           minmax = do.call(function(y) (y - min(y)) / (max(y) - min(y)), 
-			    c(list(y = y))),
-	   max = do.call(function(y) (y / max(y)), 
-			    c(list(y = y))),
-           luqn = do.call(function(y, qnL) (y - quantile(y, qnL)) / 
-			  (quantile(y, 1  - qnL) - quantile(y, qnL)), 
-			  c(list(y = y, qnL = qnL))),
-           zscore = do.call(function(y) (y - mean(y)) / sd(y), 
-			    c(list(y = y)))
-    )	
-  }
-  
-  y.norm <- normalizer(y = y.norm, method = method.norm, qnL = qnL)
+  y.norm <- normalizer(y = y.norm, method.norm = method.norm, qnL = qnL)
   
   # Test do give some output of the signal difference (backround vs. plateau)
   dB.y <- abs(quantile(y, 1 - qnL) / quantile(y, qnL))
@@ -174,24 +142,24 @@ setGeneric("CPP")
 setMethod("CPP", signature(x = "data.frame", y="missing"), 
           function(x, y, smoother = TRUE, trans = FALSE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
-                   norm = "none", qnL = 0.03, 
+                   method.norm = "none", qnL = 0.03, 
                    amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             CPP(x[, 1], x[, 2], trans = trans, bg.outliers = bg.outliers, 
-                median = median, norm = norm, qnL = qnL,
+                median = median, method.norm = method.norm, qnL = qnL,
                 amptest = amptest, manual = manual, nl = nl, ...)
           })
 
 setMethod("CPP", signature(x = "matrix", y="missing"), 
           function(x, y, smoother = TRUE, trans = FALSE, rob.reg = "lmrob", 
 		   bg.outliers = FALSE, median = FALSE, 
-                   norm = "none", qnL = 0.03, 
+                   method.norm = "none", qnL = 0.03, 
                    amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             CPP(x[, 1], x[, 2], smoother = TRUE, trans = trans, 
 		rob.reg = "lmrob", bg.outliers = bg.outliers, 
-                median = median, norm = norm, qnL = qnL,
+                median = median, method.norm = method.norm, qnL = qnL,
                 amptest = amptest, manual = manual, nl = nl, ...)
           })
