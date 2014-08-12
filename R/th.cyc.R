@@ -6,9 +6,9 @@ th.cyc <-
     xy <- data.frame(x = x, y = y)
     
     # Determin type of threshold calculation
-    r <- ifelse(auto, quantile(y[1:10], 0.1) + 3 * mad(y[1:10]), r)
+    r <- ifelse(auto, quantile(y[1L:10], 0.1) + 3 * mad(y[1L:10]), r)
     
-    # Actually used number of neighbours
+    # Actually used number of neighbours around the threshold value
     n <- seq(2, 8, 1)
     
     # List of all regression results for all tested regressions with different 
