@@ -102,18 +102,20 @@ abline(h = res@.Data[2], col = 3)
 abline(v = res@.Data[1], col = 4)
 
 # Second example
+# Appplication of the th.cyc method to determine the Cq from an isothermal
+# amplification reaction.
 plot(NA, NA, xlim = c(0,80), ylim = c(0,1200), xlab = "Time [min]", 
      ylab = "Voltage [micro V]", main = "ccPCR - Raw Data")
 
+# Threshold level "r" (50 micro Volts)
 for (i in c(1,3,5,7)) {
   y.tmp <- capillaryPCR[1L:750, i + 1] - mean(capillaryPCR[1L:150, i + 1])
-  Ct.tmp <- th.cyc(capillaryPCR[1L:750, i], y.tmp, 50, linear = TRUE)
+  Ct.tmp <- th.cyc(capillaryPCR[1L:750, i], y.tmp, r = 50, linear = FALSE)
   abline(v = Ct.tmp[1])
   text(Ct.tmp[1] * 1.1, 1200, paste(round(Ct.tmp[1], 1), "\nmin"))
   lines(capillaryPCR[1L:750, i], y.tmp, type = "b", pch = 20 - i) 
   points(Ct.tmp@input, col = "red", pch = 19)
 }
-# Threshold level (50 micro Volts)
 abline(h = 50)
 legend(5,800, c("Run 1", "Run 2", "Run 3", "Control"), pch = c(19, 17, 15, 13), 
       lwd = 1.5)
