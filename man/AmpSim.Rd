@@ -6,7 +6,17 @@ Amplification curve simulator
 }
 \description{
 This function is a simple simulator of an amplification reaction based on a 
-5-parameter Richards function.
+5-parameter Richards function. This simple approach was chosen because it 
+is not possible to model the shape of any amplification curve. An 
+implementation of realistic models is ambitious and not conclusively 
+addressed in the literature. First, they have to take ``all'' random 
+effects of noise into consideration and second, they need to be generic 
+enough to cover all amplification processes. More sophisticated mechanistic 
+models and simulations have been proposed elsewhere \cite{mehra_2005, 
+cobbs_2012}. This approach of \textsl{AmpSim} is similar to the 
+\textsl{pcrsim} function from the \emph{qpcR} package, which offers 
+simulations of sigmoidal qPCR data with goodness-of-fit analysis by 
+Ritz and Spiess 2008.
 }
 \usage{
 AmpSim(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1, Cq = 20, 
@@ -64,6 +74,11 @@ P. Schierack, A. Boehm, J. Nitschke, I. Berger, U. Froemmel, C. Schmidt, M.
 Ruhland, I. Schimke, D. Roggenbuck, W. Lehmann and C. Schroeder. 
 \emph{Advances in Biochemical Bioengineering/Biotechnology}. 133:33--74, 2013.
 \url{http://www.ncbi.nlm.nih.gov/pubmed/22437246}
+
+Ritz, C., Spiess, A.-N.: qpcR: an R package for sigmoidal model
+selection in quantitative real-time polymerase chain reaction analysis.
+\emph{Bioinformatics} 24(13), 1549--1551 (2008).
+doi:10.1093/bioinformatics/btn227. PMID: 18482995. 
 
 See also{\link[qpcR]{qpcR.news}}
 }
