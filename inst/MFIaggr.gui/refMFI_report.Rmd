@@ -1,0 +1,11 @@
+MFIaggr - report
+========================================================
+
+Date: `r Sys.time()`
+
+
+```{r, echo=FALSE,message=FALSE,warning=FALSE}
+x <- res.mfi
+summary(x)
+plot(x)
+```

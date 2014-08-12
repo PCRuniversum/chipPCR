@@ -36,6 +36,7 @@ export(
 	"humanrater",
 	"inder",
 	"MFIaggr",
+  "MFIaggr.gui",
   "normalizer",
 	"rounder",
 	"smoother",

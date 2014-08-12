@@ -9,7 +9,8 @@ Date: `r Sys.time()`
 
 for (i in 1L:length(res.amptest())) {
   cat(colnames(processed.data())[i], "\n")
-  summary(res.amptest()[[i]])
-  plot(res.amptest()[[i]])
+  x <- res.amptest()[[i]]
+  summary(x)
+  plot(x)
 }
 ```
