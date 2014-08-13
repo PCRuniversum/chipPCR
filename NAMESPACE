@@ -35,6 +35,7 @@ export(
 	"fixNA",
 	"humanrater",
 	"inder",
+  "lm.coefs",
 	"MFIaggr",
   "MFIaggr.gui",
   "normalizer",

@@ -19,20 +19,20 @@ in the background range and to test if an amplification is significant.
 }
 \usage{
 \S4method{CPP}{numeric,numeric}(x, y, smoother = TRUE, method = "savgol", 
-				trans = FALSE, rob.reg = "lmrob", 
+				trans = FALSE, method.reg = "lmrob", 
 				bg.outliers = FALSE, median = FALSE, 
 				method.norm = "none", qnL = 0.03, amptest = FALSE, 
 				manual = FALSE, nl = 0.08, ...)
 
 \S4method{CPP}{matrix,missing}(x, y, smoother = TRUE, method = "savgol", 
-			       trans = FALSE, rob.reg = "lmrob", 
+			       trans = FALSE, method.reg = "lmrob", 
 			       bg.outliers = FALSE, median = FALSE, 
 			       method.norm = "none", qnL = 0.03, amptest = FALSE, 
 			       manual = FALSE, nl = 0.08, ...)
 
 \S4method{CPP}{data.frame,missing}(x, y, smoother = TRUE, 
 				   method = "savgol", trans = FALSE, 
-				   rob.reg = "lmrob", bg.outliers = FALSE, 
+				   method.reg = "lmrob", bg.outliers = FALSE, 
 				   median = FALSE, method.norm = "none", 
 				   qnL = 0.03, amptest = FALSE, 
 				   manual = FALSE, nl = 0.08, ...)
@@ -68,9 +68,9 @@ difference penalty or "all" for all implemented smoothing algorithms.
 	defines if the slope of the background range in a curve should be 
 	corrected by a linear regression.
 }
-  \item{rob.reg}{
+  \item{method.reg}{
 	defines the method ("rfit", "lmrob", "rq") for the robust linear 
-regression.
+regression. If equal to "least", \code{CPP} uses linear regression.
 }
   \item{bg.outliers}{
 	is a logical argument which to remove outliers in the background 
@@ -117,7 +117,7 @@ The slope of the background range is often unequal to
 zero. By setting the parameter \code{trans} it is possible to apply a 
 simple correction of the slope. Thereby either a robust linear regression 
 by computing MM-type regression estimators, a nonparametric rank-based 
-estimator  or a standard linear regression model. Care is needed when 
+estimator or a standard linear regression model. Care is needed when 
 using 
 \code{trans} with time series (see \code{\link[stats]{lm}} for details).
 
@@ -129,10 +129,10 @@ Stefan Roediger, Michal Burdukiewicz
 
 \seealso{ 
 Normalization: \code{\link{normalizer}}
-Smoothing: \code{\link{smoother}}
-\code{\link[quantreg]{rq}}, \code{\link[Rfit]{rfit}}, 
-\code{\link[stats]{lm}}
 
+Smoothing: \code{\link{smoother}}
+
+Robut linear regression: \code{\link{lm.coefs}}
 }
 
 \examples{
