@@ -28,7 +28,7 @@ lm.coefs <- function(x, y, method.reg) {
   
   tried.fit <- try(lm.fit(y, x, method = method.reg), 
                    silent = TRUE)
-  if(is.null(tried.fit[["converged"]]))
+  if(class(tried.fit) != "try-error" && is.null(tried.fit[["converged"]]))
      tried.fit[["converged"]] <- TRUE
   if (class(tried.fit) != "try-error" && tried.fit[["converged"]] == TRUE) { 
     coefficients <- data.frame(tried.fit[1])
