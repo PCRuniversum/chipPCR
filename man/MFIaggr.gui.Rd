@@ -37,7 +37,6 @@ runApp(paste0(find.package("chipPCR")[1],"/MFIaggr.gui"))
 }
 
 \keyword{ hplot }
-\keyword{ simulation }
 \keyword{ shiny }
 \keyword{ GUI }
 \keyword{ browser }

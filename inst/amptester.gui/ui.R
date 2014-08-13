@@ -3,7 +3,7 @@ library(shiny)
 shinyUI(pageWithSidebar(
   headerPanel("amptester"),
   sidebarPanel(
-    fileInput("input.file", "Choose CSV File",
+    fileInput("input.file", "Choose CSV File (input should not contain cycle data)",
               accept=c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
     checkboxInput("header", "Header", TRUE),
     radioButtons("csv.type", "Type of csv file",
