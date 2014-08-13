@@ -5,6 +5,7 @@ Changes from Version 0.0.7 to 0.0.7-1 [XXXX XX 2014]
 * Considerably enhanced shiny GUIs
 * New function amptester.gui
 * New function MFIaggr.gui
+* New function lm.coefs (moved from CPP as independent function)
 * smoother has parallelization option now
 * normalization moved from CPP as independent function normalizer
 * Maintenance

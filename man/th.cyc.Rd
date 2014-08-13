@@ -109,11 +109,11 @@ plot(NA, NA, xlim = c(0,80), ylim = c(0,1200), xlab = "Time [min]",
 
 # Threshold level "r" (50 micro Volts)
 for (i in c(1,3,5,7)) {
-  y.tmp <- capillaryPCR[1L:750, i + 1] - mean(capillaryPCR[1L:150, i + 1])
-  Ct.tmp <- th.cyc(capillaryPCR[1L:750, i], y.tmp, r = 50, linear = FALSE)
+  y.tmp <- capillaryPCR[, i + 1] - mean(capillaryPCR[1L:150, i + 1])
+  Ct.tmp <- th.cyc(capillaryPCR[, i], y.tmp, r = 50, linear = FALSE)
   abline(v = Ct.tmp[1])
   text(Ct.tmp[1] * 1.1, 1200, paste(round(Ct.tmp[1], 1), "\nmin"))
-  lines(capillaryPCR[1L:750, i], y.tmp, type = "b", pch = 20 - i) 
+  lines(capillaryPCR[, i], y.tmp, type = "b", pch = 20 - i) 
   points(Ct.tmp@input, col = "red", pch = 19)
 }
 abline(h = 50)
