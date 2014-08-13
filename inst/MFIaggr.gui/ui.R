@@ -11,8 +11,8 @@ shinyUI(pageWithSidebar(
                    "Dec: comma (.), Sep: semicolon (;)" = "csv2")),
     numericInput("cyc.col", "Column containing the cycle data:", 1,
                  min = 1, step = 1),
-    checkboxInput("RSD", "Relative standard deviation", TRUE),
-    checkboxInput("rob", "Median and MAD", TRUE),
+    checkboxInput("RSD", "Relative standard deviation:", FALSE),
+    checkboxInput("rob", "Median and MAD:", FALSE),
     numericInput("llul.low", "Region of interest - lower border:", 1,
                  min = 1, step = 1),
     numericInput("llul.up", "Region of interest - lower border:", 10,
@@ -26,8 +26,7 @@ shinyUI(pageWithSidebar(
       tabPanel("Input data", tableOutput("input.data")),
       tabPanel("Results with graphics", plotOutput("refMFI.plot"), 
                verbatimTextOutput("refMFI.summary")),
-      tabPanel("Results - table", tableOutput("refMFI.table")),
-      tabPanel("Results - data table", tableOutput("refMFI.data"))
+      tabPanel("Results - table", tableOutput("refMFI.table"))
     )
   )
 )
