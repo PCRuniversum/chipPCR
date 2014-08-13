@@ -9,6 +9,7 @@ Changes from Version 0.0.7 to 0.0.8 [XXXX XX 2014]
 * smoother function has parallelization option now
   - normalization moved from CPP as independent function normalizer
   - parameter nrom of CPP renamed to method.norm
+  - parameter rob.reg of CPP renamed to method.reg
 * Documentation
   - preprocess -> pre-process in docs
   - inclusion of more examples
