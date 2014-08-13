@@ -1,15 +1,15 @@
 Changes from Version 0.0.7 to 0.0.8 [XXXX XX 2014]
 * New function th.cyc (threshold cycle method)
-* New pco test for amptester
 * New function humanrater
+* New pco test for amptester
 * Considerably enhanced shiny GUIs
-* New function amptester.gui
-* parameter nrom of CPP renamed to method.norm
-* New function MFIaggr.gui
-* New function lm.coefs (moved from CPP as independent function)
-* smoother has parallelization option now
-* normalization moved from CPP as independent function normalizer
-* Maintenance
+  - New function amptester.gui
+  - New function MFIaggr.gui
+  - New function lm.coefs (moved from CPP as independent function)
+* smoother function has parallelization option now
+  - normalization moved from CPP as independent function normalizer
+  - parameter nrom of CPP renamed to method.norm
+* Documentation
   - preprocess -> pre-process in docs
   - inclusion of more examples
   - documentation fixes
