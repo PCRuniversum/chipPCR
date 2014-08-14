@@ -12,16 +12,21 @@ function can be used to compare the human rating and the rating of a
 machine.
 }
 \usage{
-humanrater(x, repeats = 1, designations = list(y = "yes", a = "ambiguous", n = "not"), 
-shuffle = TRUE)
+humanrater(x, cyc = 1, repeats = 1, 
+           designations = list(y = "yes", a = "ambiguous", n = "not"), 
+           shuffle = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
- is the input data.
+ is the input data (matrix or data.frame).
+}
+
+  \item{cyc}{
+is the index of column containing the cycle data.
 }
   \item{repeats}{
-number of repeats to rate the samples
+number of repeats to rate the samples.
 }
   \item{designations}{
 a list of length 3. See Details.

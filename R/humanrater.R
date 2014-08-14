@@ -1,5 +1,6 @@
 humanrater <-
-  function(x, repeats = 1, designations = list(y = "yes", a = "ambiguous", n = "not"), 
+  function(x, cyc = 1, repeats = 1, 
+           designations = list(y = "yes", a = "ambiguous", n = "not"), 
            shuffle = TRUE) {
     if (!is.numeric(repeats) || length(repeats) > 1)
       stop("'repeats' must be a numeric vector of length 1.")

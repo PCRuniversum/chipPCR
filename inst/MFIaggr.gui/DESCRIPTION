@@ -1,6 +1,6 @@
-Title: Toolbox for amplification curve analysis 
+Title: Multiple comparison of the cycle dependent variance of the fluorescence
 Author: Stefan Roediger & Michal Burdukiewicz <stefan.roediger@hs-lausitz.de> 
 License: GPL-3
 DisplayMode: Showcase
-Tags: amptester
+Tags: MFIaggr
 Type: Shiny
