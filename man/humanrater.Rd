@@ -12,7 +12,8 @@ function can be used to compare the human rating and the rating of a
 machine.
 }
 \usage{
-humanrater(x, repeats = 1, designations = c("y", "a", "n"), shuffle = TRUE)
+humanrater(x, repeats = 1, designations = list(y = "yes", a = "ambiguous", n = "not"), 
+shuffle = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,7 +24,7 @@ humanrater(x, repeats = 1, designations = c("y", "a", "n"), shuffle = TRUE)
 number of repeats to rate the samples
 }
   \item{designations}{
-a character vector of length 3. See Details.
+a list of length 3. See Details.
 }
   \item{shuffle}{
 logical, if \code{TRUE} sequence of curves is shuffled for purpose of rating.
@@ -31,10 +32,10 @@ logical, if \code{TRUE} sequence of curves is shuffled for purpose of rating.
 }
 
 \details{
-A user can specify the vector of designations characterizing the curve. 
-Defaults are \code{y} for "yes", \code{a} for "ambiguous" and \code{n} for 
-"no". New designations should be always supplied in the same sequence: 
-"yes", "ambiguous", "no".
+A user can specify the list of designations characterizing the curve, where the names of
+elements specify short designations used during rating. Defaults are \code{y} for "yes", \code{a} for "ambiguous" and \code{n} for "no".
+
+It is possible to supply longer or shorter designations lists. 
 }
 
 \author{
@@ -56,7 +57,7 @@ human.test1 <- humanrater(testdata, repeats = 2)
 
 #check testdata for significance of amplification in one repeat and declare more
 #finger friendly (but less obvious) designations
-human.test2 <- humanrater(testdata, repeats = 1, c("q", "w", "e"))
+human.test2 <- humanrater(testdata, repeats = 1, list(q = "yes", w = "no"))
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

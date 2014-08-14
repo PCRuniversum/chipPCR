@@ -1,15 +1,21 @@
 humanrater <-
-  function(x, repeats = 1, designations = c("y", "a", "n"), shuffle = TRUE) {
+  function(x, repeats = 1, designations = list(y = "yes", a = "ambiguous", n = "not"), 
+           shuffle = TRUE) {
     if (!is.numeric(repeats) || length(repeats) > 1)
       stop("'repeats' must be a numeric vector of length 1.")
     if (repeats < 1)
       stop("'repeats' must be have value 1 or bigger")
-    if (!is.character(designations) || length(designations) != 3)
-      stop("'designations' must be a character vector of length 3.")
-    prompt.line <- paste0("[", designations[1], 
-                          "] if yes, [", designations[2],
-                          "] if ambiguous, an [", designations[3],
-                          "] if not: ")
+    #     if (!is.character(designations) || length(designations) != 3)
+    #       stop("'designations' must be a character vector of length 3.")
+    allowed_symbols <- names(designations)
+    
+    if (any(table(allowed_symbols) > 1))
+      stop("Do not use repeated names.")
+    if ("" %in% allowed_symbols)
+      stop("All elements of 'designations' list must be named.")
+    prompt.line <- paste(sapply(1L:length(designations), function(i)
+      paste0("[", allowed_symbols[i], "] if ", designations[[i]])), collapse = ", ")
+    
     all.ratings <- sapply(1L:repeats, function(j) {
       if(repeats > 1)
         cat(paste0("Repeat:", j, "\n"))
@@ -22,10 +28,10 @@ humanrater <-
         #declare dummy variable - without it while loop does not work
         #the dummy cannot belong to the set of designations
         res <- "dummy which surely would not be a designation"
-        while((!(res %in% designations))) {
+        while((!(res %in% allowed_symbols))) {
           res <- readline(prompt = prompt.line)
           #check correctness
-          if (!res %in% designations)
+          if (!res %in% allowed_symbols)
             cat("Wrong input. Try again.\n")
         }
         res
