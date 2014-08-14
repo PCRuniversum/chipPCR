@@ -1,5 +1,5 @@
 humanrater <-
-  function(x, repeats = 1, designations = c("y", "a", "n")) {
+  function(x, repeats = 1, designations = c("y", "a", "n"), shuffle = TRUE) {
     if (!is.numeric(repeats) || length(repeats) > 1)
       stop("'repeats' must be a numeric vector of length 1.")
     if (repeats < 1)
@@ -13,7 +13,10 @@ humanrater <-
     all.ratings <- sapply(1L:repeats, function(j) {
       if(repeats > 1)
         cat(paste0("Repeat:", j, "\n"))
-      sapply(2L:ncol(x), function(i) {
+      rating_order <- 2L:ncol(x)
+      if(shuffle)
+        rating_order <- sample(rating_order)
+      all_ratings <- sapply(rating_order, function(i) {
         plot(x[, 1], x[, i], main = paste0("Experiment ", i), type = "b", pch = 19, lwd = 2, 
              xlab = "Cycle", ylab = "Fluorescence")
         #declare dummy variable - without it while loop does not work
@@ -27,6 +30,7 @@ humanrater <-
         }
         res
       })
+      all_ratings[order(rating_order)]
     })
     if (repeats > 1) {
       #check conformity of a human assessment

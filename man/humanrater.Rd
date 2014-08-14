@@ -12,7 +12,7 @@ function can be used to compare the human rating and the rating of a
 machine.
 }
 \usage{
-humanrater(x, repeats = 1, designations = c("y", "a", "n"))
+humanrater(x, repeats = 1, designations = c("y", "a", "n"), shuffle = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,6 +24,9 @@ number of repeats to rate the samples
 }
   \item{designations}{
 a character vector of length 3. See Details.
+}
+  \item{shuffle}{
+logical, if \code{TRUE} sequence of curves is shuffled for purpose of rating.
 }
 }
 
@@ -39,7 +42,7 @@ Michal Burdukiewicz, Stefan Roediger
 }
 
 \examples{
-\dontrun{
+\donttest{
 testdata <- data.frame(1:35,
 		       AmpSim(Cq = 15, noise = TRUE)[, 2], 
 		       AmpSim(Cq = 25, noise = TRUE)[, 2],
