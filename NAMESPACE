@@ -39,7 +39,7 @@ export(
 	"MFIaggr",
   "MFIaggr.gui",
   "normalizer",
-  "plot.curves",
+  "plotCurves",
 	"rounder",
 	"smoother",
 	"th.cyc"

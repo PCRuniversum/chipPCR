@@ -1,5 +1,5 @@
-\name{plot.curves}
-\alias{plot.curves}
+\name{plotCurves}
+\alias{plotCurves}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Plot many curves
@@ -8,7 +8,7 @@ Plot many curves
 Plots many curves on one plot in separate cells allowing quick assessment.
 }
 \usage{
-plot.curves(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...)
+plotCurves(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -42,7 +42,7 @@ Stefan Roediger, Michal Burdukiewicz
 }
 
 \examples{
-plot.curves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], nrow = 4, type = "l")
+plotCurves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], nrow = 4, type = "l")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

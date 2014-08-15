@@ -23,7 +23,7 @@ lm.coefs <- function(x, y, method.reg) {
            rfit = do.call(function(x, y) {
              op_warn <- options("warn")[[1]]
              options(warn=2)
-             rfit.res <- Rfit:::rfit.default(y ~ x)
+             rfit.res <- Rfit::rfit.default(y ~ x)
              options(warn=op_warn)
              rfit.res
            }, c(list(x = x, y = y))),

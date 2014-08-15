@@ -1,4 +1,4 @@
-plot.curves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...) {
+plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...) {
   testxy(x, y, length = FALSE)
   
   if(ncol(y) %% nrow != 0) {
