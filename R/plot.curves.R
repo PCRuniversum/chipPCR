@@ -38,4 +38,4 @@ plot.curves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...) {
 }
 
 #example
-#plot.curves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], nrow = 2, type = "l")
+#plot.curves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], nrow = 4, type = "l")
