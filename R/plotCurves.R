@@ -1,5 +1,5 @@
 plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...) {
-  #testxy(x, y, length = FALSE)
+  testxy(x, y, length = FALSE)
   
   if(!is.null(ncol(y))) {
     if(ncol(y) %% nrow != 0) {
