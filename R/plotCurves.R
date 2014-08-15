@@ -1,6 +1,11 @@
 plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, ...) {
   testxy(x, y, length = FALSE)
   
+  if(!(class(y) %in% c("matrix", "data.frame"))) {
+    stop("'y' must be matrix or data.frame.")
+  }
+  
+  
   if(CPP) {
     cpp.res <- apply(y, 2, function(i) CPP(x, i)[["y.norm"]])
     y <- apply(y, 2, normalizer)

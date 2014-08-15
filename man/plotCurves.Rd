@@ -7,7 +7,7 @@ Plot Curves in an Orthogonal Matrix
 Plots many curves on one plot in separate cells allowing quick assessment.
 }
 \usage{
-plotCurves(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...)
+plotCurves(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
