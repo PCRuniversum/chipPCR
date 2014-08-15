@@ -26,6 +26,9 @@ plotCurves(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...)
   \item{nrow}{
 number of rows in plot.
 }
+  \item{CPP}{
+logical, if \code{TRUE} CPP analysis is added to a plot.
+}
   \item{\dots}{
 additional arguments to \code{plot} function.
 }
