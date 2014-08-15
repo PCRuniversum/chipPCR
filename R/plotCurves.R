@@ -15,7 +15,6 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, .
       cpp.res <- cbind(y, matrix(rep(NA, new.columns*nrow(y)), 
                                  ncol = new.columns))
   }
-
   
   lay.matrix <- matrix(1L:ncol(y), nrow = nrow)
   
@@ -55,7 +54,6 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, .
   
   par(oma = old.oma)
   par(mar = old.mar)
-  } else {
-	  warning("Only one column.")
-  }
+  
+  invisible()
 }
