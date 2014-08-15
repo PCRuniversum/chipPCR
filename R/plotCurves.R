@@ -1,12 +1,13 @@
 plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...) {
-  testxy(x, y, length = FALSE)
+  #testxy(x, y, length = FALSE)
   
-  if(ncol(y) %% nrow != 0) {
-    new.columns <- nrow - (ncol(y) %% nrow)
-    y <- cbind(y, matrix(rep(NA, new.columns*nrow(y)), 
-                         ncol = new.columns))
-    colnames(y)[(ncol(y) - new.columns + 1):ncol(y)] <- rep(NA, new.columns)
-  }
+  if(!is.null(ncol(y))) {
+    if(ncol(y) %% nrow != 0) {
+      new.columns <- nrow - (ncol(y) %% nrow)
+      y <- cbind(y, matrix(rep(NA, new.columns*nrow(y)), 
+			  ncol = new.columns))
+      colnames(y)[(ncol(y) - new.columns + 1):ncol(y)] <- rep(NA, new.columns)
+    }
   
   lay.matrix <- matrix(1L:ncol(y), nrow = nrow)
   
@@ -26,7 +27,10 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...) {
   sapply(1L:ncol(y), function(i) {
     plot(x, y[, i], xlim = range(x), ylim = range(y, na.rm = TRUE),  
          xaxt = "n", yaxt = "n", ylab = "", xlab = "", ...)
-    legend("topleft", curve.names[i], bty = "n")
+    res.NA <- which(is.na(y[, i]))
+    rug(res.NA, col = 2, lwd = 1.5)
+    ifelse(sum(res.NA) > 0, bg <- 2, bg <- 3)
+    legend("topleft", curve.names[i], bg = bg)
     if(i %in% lefts)
       axis(2)
     if(i %in% bottoms)
@@ -35,7 +39,7 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...) {
   
   par(oma = old.oma)
   par(mar = old.mar)
+  } else {
+	  warning("Onyl one y column.")
+  }
 }
-
-#example
-#plot.curves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], nrow = 4, type = "l")
