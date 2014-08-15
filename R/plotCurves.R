@@ -1,7 +1,6 @@
 plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, ...) {
   testxy(x, y, length = FALSE)
   
-  
   if(CPP) {
     cpp.res <- apply(y, 2, function(i) CPP(x, i)[["y.norm"]])
     y <- apply(y, 2, normalizer)
@@ -16,6 +15,7 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, .
       cpp.res <- cbind(y, matrix(rep(NA, new.columns*nrow(y)), 
                                  ncol = new.columns))
   }
+
   
   lay.matrix <- matrix(1L:ncol(y), nrow = nrow)
   
@@ -41,7 +41,10 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, .
   sapply(1L:ncol(y), function(i) {
     plot(x, y[, i], xlim = x.lim, ylim = y.lim,  
          xaxt = "n", yaxt = "n", ylab = "", xlab = "", ...)
-    legend("topleft", curve.names[i], bty = "n")
+    res.NA <- which(is.na(y[, i]))
+    rug(res.NA, col = 2, lwd = 1.5)
+    ifelse(sum(res.NA) > 0, bg <- 2, bg <- 3)
+    legend("topleft", curve.names[i], bg = bg)
     if(i %in% lefts)
       axis(2)
     if(i %in% bottoms)
@@ -52,7 +55,7 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, .
   
   par(oma = old.oma)
   par(mar = old.mar)
+  } else {
+	  warning("Only one column.")
+  }
 }
-
-#example
-#plot.curves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], nrow = 4, type = "l")

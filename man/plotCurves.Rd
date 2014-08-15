@@ -1,8 +1,7 @@
 \name{plotCurves}
 \alias{plotCurves}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Plot many curves
+Plot Curves in an Orthogonal Matrix
 }
 \description{
 Plots many curves on one plot in separate cells allowing quick assessment.
@@ -34,7 +33,8 @@ additional arguments to \code{plot} function.
 }
 }
 \details{
-Blabla
+\code{plotCurves} is a function for the quick assessment of amplification 
+curve raw data in an orthogonal matrix.
 }
 \value{
 None.
@@ -45,8 +45,14 @@ Stefan Roediger, Michal Burdukiewicz
 }
 
 \examples{
+# First example
 plotCurves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], nrow = 4, type = "l")
+
+# Second example
+y <- VIMCFX96_60[, 2L:16]
+# Introduce some missing values.
+y[c(1,4,5,6,23,34), c(2,4,9,15)] <- NA
+plotCurves(VIMCFX96_60[, 1], y, nrow = 4, type = "l")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ hplot }
