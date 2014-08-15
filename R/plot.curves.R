@@ -1,9 +1,15 @@
-plot.curves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow, ...) {
-  #testxy(x, y, length = FALSE)
+plot.curves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, ...) {
+  testxy(x, y, length = FALSE)
   
-  if(!ncol(y) %% 2 == 0) {y <- data.frame(y, Empty = rep(0, length(x)))}
   
+  if(ncol(y) %% nrow != 0) {
+    new.columns <- nrow - (ncol(y) %% nrow)
+    y <- cbind(y, matrix(rep(NA, new.columns*nrow(y)), 
+                         ncol = new.columns))
+  }
   lay.matrix <- matrix(1L:ncol(y), nrow = nrow)
+  
+  print(lay.matrix)
   
   layout(lay.matrix)
   
@@ -27,11 +33,12 @@ plot.curves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow, ...) {
   mar.list[[lay.matrix[nrow(lay.matrix), 1]]] <- c(5, 4, 0, 0)
   mar.list[[lay.matrix[1, ncol(lay.matrix)]]] <- c(0, 0, 4, 2)
   mar.list[[lay.matrix[nrow(lay.matrix), ncol(lay.matrix)]]] <- c(5, 0, 0, 2)
-
+  
   sapply(1L:ncol(y), function(i) {
     old.mar <- par("mar")
     par(mar = mar.list[[i]])
-    plot(x, y[, i], ylim = range(y), xaxt = "n", yaxt = "n", ylab = "", xlab = "", ...)
+    plot(x, y[, i], xlim = range(x), ylim = range(y, na.rm = TRUE),  
+         xaxt = "n", yaxt = "n", ylab = "", xlab = "", ...)
     if(i %in% lefts)
       axis(2)
     if(i %in% bottoms)
