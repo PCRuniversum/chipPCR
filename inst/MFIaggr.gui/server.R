@@ -33,6 +33,14 @@ shinyServer(function(input, output) {
     plot(res.mfi())
   })
   
+  output[["allp.plot"]] <- renderPlot({
+    dat <- processed.data()
+    m <- ncol(dat) - 1
+    best.rows <- which.min(abs(m - (1L:(m/2))^2))
+    plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], 
+               nrow = best.rows, CPP = TRUE, type = "l")
+  })
+  
   
   output[["refMFI.summary"]] <- renderPrint({
     summary(res.mfi())

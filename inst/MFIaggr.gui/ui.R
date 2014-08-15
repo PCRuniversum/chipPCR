@@ -26,7 +26,8 @@ shinyUI(pageWithSidebar(
       tabPanel("Input data", tableOutput("input.data")),
       tabPanel("Results with graphics", plotOutput("refMFI.plot"), 
                verbatimTextOutput("refMFI.summary")),
-      tabPanel("Results - table", tableOutput("refMFI.table"))
+      tabPanel("Results - table", tableOutput("refMFI.table")),
+      tabPanel("All curves plot", plotOutput("allp.plot"))
     )
   )
 )
