@@ -17,7 +17,7 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, .
                          ncol = new.columns))
     colnames(y)[(ncol(y) - new.columns + 1):ncol(y)] <- rep("Empty", new.columns)
     if(CPP)
-      cpp.res <- cbind(y, matrix(rep(NA, new.columns*nrow(y)), 
+      cpp.res <- cbind(y, matrix(rep(NA, new.columns * nrow(y)), 
                                  ncol = new.columns))
   }
   
