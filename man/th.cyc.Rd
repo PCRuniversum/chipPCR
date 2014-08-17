@@ -102,7 +102,7 @@ abline(h = res@.Data[2], col = 3)
 abline(v = res@.Data[1], col = 4)
 
 # Second example
-# Appplication of the th.cyc method to determine the Cq from an isothermal
+# Application of the th.cyc method to determine the Cq from a continous
 # amplification reaction.
 plot(NA, NA, xlim = c(0,80), ylim = c(0,1200), xlab = "Time [min]", 
      ylab = "Voltage [micro V]", main = "ccPCR - Raw Data")
