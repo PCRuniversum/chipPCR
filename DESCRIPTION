@@ -11,6 +11,7 @@ License: GPL-3
 URL: https://github.com/michbur/chipPCR
 Depends: R (>= 3.0.0), methods
 Suggests: knitr, markdown, MBmca (>= 0.0.3-3)
+VignetteBuilder: knitr
 Imports: MASS, outliers, ptw, quantreg, Rfit, robustbase, shiny, signal
 Packaged: 2014-06-25 14:57:25 UTC; tux
 NeedsCompilation: no
