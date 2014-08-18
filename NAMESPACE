@@ -26,7 +26,7 @@ exportMethods(
 
 export(
   "AmpSim",
-	"AmpSim.gui",
+  "AmpSim.gui",
 	"amptester",
   "amptester.gui",
 	"bg.max",

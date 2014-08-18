@@ -3,19 +3,25 @@
 \usepackage[utf8]{inputenc} %unicode support
 \renewcommand{\thefigure}{S\arabic{figure}}
 
-\begin{document}
 \title{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve 
 Data"}
 \author{Stefan R\"{o}diger* and Micha\l{} Burdukiewicz and Peter Schierack}
 
-\maketitle
+\begin{document}
 
 
+<!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve  Data"}
 %\VignetteDepends{chipPCR}
 %\VignetteKeywords{amplification curve pro-processing chipPCR R}
 %\VignettePackage{chipPCR}
+-->
+
+
+
+
+\maketitle
 
 
 \begin{abstract} % abstract
@@ -69,6 +75,7 @@ data(testdat, package = "qpcR")
 
 
 <<see_data,echo=FALSE,results='asis',message=FALSE>>=
+library(knitr)
 opts_chunk$set(fig.lp="figure:",tidy=TRUE, tidy.opts=list(width.cutoff=40))
 
 require(xtable)
@@ -856,8 +863,7 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 
       
       \begin{figure}
-  \caption{\label{figure:bgmax} \csentence{An amplification curves was generated 
-with the \textsl{AmpSim} function and a Cq of circa 25 cycles.} \textsl{bg.max} 
+  \caption{\label{figure:bgmax} \textsl{bg.max} 
 tries to estimate the range between the background and the plateau phase of an 
 amplification reaction. \emph{(A)} in absence and \emph{(B)} presence of noise. 
 }
@@ -868,9 +874,6 @@ amplification reaction. \emph{(A)} in absence and \emph{(B)} presence of noise.
 After introductory steps, more in-depth analysis of experiments is required. Let's make a
 close-up of the experiment F1.2.
 
-<<indepth_bg,results='markup'>>=
-summary(F1.2[["res.bg"]])
-@
 
 \textsl{bg.max} function provides the user with different information. Firstly, it estimates 
 the beginning and the end of amplification reaction. Secondly, it defines range of the 
@@ -880,31 +883,11 @@ background which could be helpful for example in calculation of the background c
 
   Part of this work was funded by the BMBF InnoProfile-Projekt 03 IPT 611X. 
 Grateful thanks belong to all authors of the cited R packages, the R community 
-and \pkg{RKWard} developers.
+and RKWard developers.
 
 % if your bibliography is in bibtex format, use those commands:
 \bibliographystyle{plain} % Style BST file
 \bibliography{roediger-burdukiewicz}      % Bibliography file (usually '*.bib' )
 
-\address{Stefan R\"odiger (corresponding author)\\
-  Faculty of Natural Sciences\\
-  Brandenburg University of Technology Cottbus--Senftenberg\\
-  Senftenberg\\
-  Germany}
-\email{stefan.roediger@hs-lausitz.de}
-
-\address{Micha\l{} Burdukiewicz\\
-  University of Wroclaw\\
-  Department of Biotechnoloy\\
-  Wroclaw\\
-  Poland}
-\email{michalburdukiewicz@gmail.com}
-
-\address{Peter Schierack\\
-  Faculty of Natural Sciences\\
-  Brandenburg University of Technology Cottbus--Senftenberg\\
-  Senftenberg\\
-  Germany}
-\email{Peter.Schierack@hs-lausitz.de}
 
 \end{document}
