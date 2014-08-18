@@ -7,7 +7,8 @@ Plot Curves in an Orthogonal Matrix
 Plots many curves on one plot in separate cells allowing quick assessment.
 }
 \usage{
-plotCurves(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, ...)
+plotCurves(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol(y))), 
+           CPP = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -47,7 +48,7 @@ Stefan Roediger, Michal Burdukiewicz
 
 \examples{
 # First example
-plotCurves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], nrow = 4, type = "l")
+plotCurves(VIMCFX96_60[, 1], VIMCFX96_60[, 2L:16], type = "l")
 
 # Second example
 y <- VIMCFX96_60[, 2L:16]

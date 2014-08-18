@@ -1,4 +1,5 @@
-plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(x), nrow = 4, CPP = FALSE, ...) {
+plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol(y))), 
+                       CPP = FALSE, ...) {
   testxy(x, y, length = FALSE)
   
   if(!(class(y) %in% c("matrix", "data.frame"))) {

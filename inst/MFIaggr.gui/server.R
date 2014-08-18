@@ -35,10 +35,7 @@ shinyServer(function(input, output) {
   
   output[["allp.plot"]] <- renderPlot({
     dat <- processed.data()
-    m <- ncol(dat) - 1
-    best.rows <- which.min(abs(m - (1L:(m/2))^2))
-    plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], 
-               nrow = best.rows, CPP = TRUE, type = "l")
+    plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], CPP = TRUE, type = "l")
   })
   
   
