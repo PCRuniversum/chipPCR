@@ -2,6 +2,7 @@ Changes from Version 0.0.7 to 0.0.8 [XXXX XX 2014]
 * New function th.cyc (threshold cycle method)
 * New function humanrater
 * New pco test for amptester
+* New function plotCurves
 * Considerably enhanced shiny GUIs
   - New function amptester.gui
   - New function MFIaggr.gui
