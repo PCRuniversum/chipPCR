@@ -51,7 +51,7 @@ regression ($trans = TRUE$). \\emph{(B)} baselined raw data, \\emph{(C)}
 \\emph{Min-Max normalization}, \\emph{(D)} \\emph{Max normalization}, \\emph{(E)} 
 \\emph{lugn-normalization} with a cut off 3\\% and \\emph{(F)} 
 \\emph{zscore-normalization}."
-fig6_cap <- "\\emph{(A)} AmpSim was used with the parameters XX, YY, ZZ to 
+fig6_cap <- "\\emph{(A)} AmpSim was used to 
 synthesize a qPCR experiment of six dilutions (three replicates per dilution) 
 standard samples. The Cqs were determined by the $SDM$ method (solid black 
 vertical lines). \\emph{(B)} effcalc was used to automatically perform a 
@@ -111,6 +111,7 @@ plate cycler (Bio-Rad CFX96)). All cycles (ROI: 1 -- 40) were analyzed by the
 MFIaggr function. The density plot (right upper panel) and 
 quantile-quantile analysis (right lower panel) show no normal distribution. Due 
 to the sigmoidal curve structure is the density function bimodal."
+fig13_cap <- "HDA"
 @
 
 \maketitle
@@ -182,6 +183,46 @@ experiments (Table~S\ref{tdhead}).
 <<MFIaggr_all,fig.show='hold',fig.cap=fig12_cap>>=
 plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
      llul = c(1,40)), CV = FALSE)
+@
+
+\subsection{Isothermal amplification -  Helicase Dependent Amplification of Vimentin}
+
+A Helicase Dependent Amplification (HDA) of Vimentin (Vim) was performed. 
+The VideoScan Platform (Roediger et al. (2013)) was used to monitor the 
+amplification. The HDA was performed at 65 degree Celsius. 
+Three concentrations of input DNA (D1, D2, D3) were used.
+
+<<HDA,fig.show='hold',fig.cap=fig13_cap>>=
+par(mfrow = c(1,2), bty = "n")
+plot(NA, NA, xlim = c(0,5000), ylim = c(0,1), xlab = "Time [sec]", 
+     ylab = "Fluorescence", main = "HDA amplification\nRaw data")
+mtext("A", cex = 2, side = 3, adj = 0)
+  lines(C85[, 2], C85[, 3], type = "b", col = 1, pch = 20)
+  lines(C85[, 4], C85[, 5], type = "b", col = 2, pch = 20)
+  lines(C85[, 6], C85[, 7], type = "b", col = 3, pch = 20)
+  legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(1:3), 
+        pch = rep(20,3))
+
+plot(NA, NA, xlim = c(0,2000), ylim = c(0,0.4), xlab = "Time [sec]", 
+     ylab = "Fluorescence", main = "HDA amplification\nRaw data")
+mtext("B", cex = 2, side = 3, adj = 0)
+legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(1:3), 
+	  pch = rep(20,3))
+
+# sm <- "mova"
+# br <- c(2,10)
+# xr <- 3L:200
+# lrg <- "least"
+# for (i in c(2,4,6)) {
+#   y.tmp <- CPP(C85[xr, i], C85[xr, i + 1], method = sm, bg.range = br, trans = TRUE)$y.norm
+#   Ct.tmp <- th.cyc(C85[xr, i], y.tmp, r = 0.05, linear = FALSE)
+#   #abline(v = Ct.tmp[1])
+#   #text(Ct.tmp[1] * 1.1, 1200, paste(round(Ct.tmp[1], 1), "\nmin"))
+#   lines(C85[xr, i], y.tmp, col = i, lwd = 2)
+#   #points(Ct.tmp@input, col = "red", pch = 19)
+# }
+# 
+# abline(h = 0.05, lty = 2)
 @
 
 \subsection*{AmpSim - a function to simulate amplification curves}
