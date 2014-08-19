@@ -14,12 +14,15 @@ An S4 class containing the output \code{\link{effcalc}} function.
 
 \section{Slots}{
   \describe{
-    \item{\code{.Data}:}{\code{"matrix"} }
+    \item{\code{.Data}:}{\code{"matrix"} containing the "Concentration", "Location" 
+      (mean, median), "Deviation" (standard deviation, median absolute 
+      deviation), "Coefficient of Variance" (CV, RSD) sequential in the 
+      columns.}
     \item{\code{amplification.efficiency}:}{ \code{"numeric"} value representing 
     amplification efficiency.}
-    \item{\code{eff.stop}:}{ \code{"numeric"} .}
-    \item{\code{regression}:}{ \code{"lm"} .}
-    \item{\code{correlation.test}:}{ \code{"htest"}.}
+    \item{\code{regression}:}{ \code{"lm"} the results of the linear regression and .}
+    \item{\code{correlation.test}:}{ \code{"htest"}. the correlation test 
+      (Pearson) results.}
 }
 }
 \section{Methods}{

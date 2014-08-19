@@ -46,13 +46,7 @@ Analysis of the amplification efficiency
 }
 
 \value{
-  \item{res}{
-      returns a \code{list} containing the "Concentration", "Location" 
-      (mean, median), "Deviation" (standard deviation, median absolute 
-      deviation), "Coefficient of Variance" (CV, RSD) sequential in the 
-      columns, the results of the amplification efficiency calculation,
-      the results of the linear regression and the correlation test 
-      (Pearson) results.}
+  \code{\linkS4class{eff}} object.
 }
 
 \author{
