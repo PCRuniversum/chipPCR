@@ -14,7 +14,7 @@ th.cyc <-
     # Before runing the analysis, test if signal is indeed larger than the 
     # threshold.
     
-    if (quantile(xy[["y"]], 0.9) <= r) {
+    if (quantile(xy[, 2], 0.9) <= r) {
     	  # TODO: FIX OUTPUT
 	  warning("Maximum of signal lower than threshold (r).")
     } else {

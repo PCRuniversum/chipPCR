@@ -58,7 +58,7 @@ approach is useful but may be problematic on the phases other then background
 or plateau phases of an amplification reaction. The parameter 
 \code{\link[stats]{spline}} on \code{\link[chipPCR]{fixNA}} enables a trend 
 estimation on splines and may be more appropriate in most scenarios. Other 
-smooting functions such as the Savitzky-Golay smoothing filter have the 
+smoothing functions such as the Savitzky-Golay smoothing filter have the 
 intrinsic capability to remove missing values [Savitzky and Golay 1964, 
 Eilers 2003].
 }
