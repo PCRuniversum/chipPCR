@@ -341,9 +341,11 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   if (CV) {
     plot(res[, 1], res[, 4], xlab = "Cycle", ylab = "CV", 
          type = type, pch = pch, col = col,
-         main = paste0("ROI samples: ", ncol_y, "\n",
-                       "ROI mean: ", stats[1], " +- ", stats[3], "\n",
-                       "ROI median: ", stats[2], " +- ", stats[4]
+         main = paste0("ROI samples: ", format(ncol_y, nsmall = 3), "\n",
+                       "ROI mean: ", format(stats[1], nsmall = 3), " +- ", 
+                       format(stats[4], nsmall = 2), "\n",
+                       "ROI median: ", format(stats[2], nsmall = 3), " +- ", 
+                       format(stats[4], nsmall = 2)
          )
     )
     
@@ -367,9 +369,11 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
                                       max(res[, 2] + res[, 3])), 
          xlab = "Cycle", ylab = "MFI", 
          type = type, pch = pch, col = col,
-         main = paste0("ROI samples: ", ncol_y, "\n",
-                       "ROI mean: ", stats[1], " +- ", stats[3], "\n",
-                       "ROI median: ", stats[2], " +- ", stats[4]
+         main = paste0("ROI samples: ", format(ncol_y, nsmall = 3), "\n",
+                       "ROI mean: ", format(stats[1], nsmall = 3), " +- ", 
+                       format(stats[4], nsmall = 2), "\n",
+                       "ROI median: ", format(stats[2], nsmall = 3), " +- ", 
+                       format(stats[4], nsmall = 2)
          )
     )
     abline(v = llul, col = "lightgrey")
