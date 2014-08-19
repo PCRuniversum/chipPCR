@@ -53,6 +53,12 @@ Analysis of the amplification efficiency
 Stefan Roediger
 }
 
+\seealso{ 
+\code{\linkS4class{eff}}
+
+\code{\link{plot.eff}}
+}
+
 \references{
 A Highly Versatile Microscope Imaging Technology Platform for the Multiplex 
 Real-Time Detection of Biomolecules and Autoimmune Antibodies. S. Roediger, 

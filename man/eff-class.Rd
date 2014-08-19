@@ -27,8 +27,8 @@ An S4 class containing the output \code{\link{effcalc}} function.
 }
 \section{Methods}{
   \describe{
-  \item{plot}{\code{signature(x = "eff")}: plots information. 
-    See \code{\link[chipPCR]{plot.eff}}}
+  \item{plot}{\code{signature(x = "eff")}: plots calculated efficiency. 
+    See \code{\link{plot.eff}}}
   \item{show}{\code{signature(object = "eff")}: prints only \code{.Data} slot of the
     object.}
     \item{summary}{\code{signature(object = "eff")}: prints information about object 
