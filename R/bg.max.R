@@ -79,7 +79,7 @@ bg.max <- function(x, y, bg.corr = 1.3, bg.start = 2, inder.approx = TRUE) {
   
   y.tail <- tail(y)
   th <- median(y.tail) - 2 * mad(y.tail)  #threshold qPCR background
-  if (th.bg >= th) {bg.stop <- 10}
+  if (th.bg >= th) {bg.stop <- 5}
   fluo <- y[bg.stop]
   
   # Test if background range is meaningful.

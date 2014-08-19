@@ -107,7 +107,7 @@ differentiation all inter sample baseline and plateau shifts are similar.
 mainly at circa 15.7 (N = 80) while some amplification curves had a Cq less than 
 15.5 (N = 16)."
 fig12_cap <- "Signal analysis using the \textsl{VIMCFX96\\_60} data set (96-well 
-plate cycler (Bio-Rad CFX96)).} All cycles (ROI: 1 -- 40) were analyzed by the 
+plate cycler (Bio-Rad CFX96)). All cycles (ROI: 1 -- 40) were analyzed by the 
 \textsl{MFIaggr} function. The density plot (right upper panel) and 
 quantile-quantile analysis (right lower panel) show no normal distribution. Due 
 to the sigmoidal curve structure is the density function bimodal."
