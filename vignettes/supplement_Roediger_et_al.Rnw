@@ -106,9 +106,6 @@ differentiation all inter sample baseline and plateau shifts are similar.
 \\emph{(C)} Histogram (class width = 0.05 Cq) of the Cq values ($SDM$). Cqs were 
 mainly at circa 15.7 (N = 80) while some amplification curves had a Cq less than 
 15.5 (N = 16)."
-fig12_cap <- "Signal analysis using the \textsl{VIMCFX96\\_60} data set (96-well 
-plate cycler (Bio-Rad CFX96)). All cycles (ROI: 1 -- 40) were analyzed by the 
-\textsl{MFIaggr} function. The density plot (right upper panel) and 
 fig12_cap <- "Signal analysis using the VIMCFX96\\_60 data set (96-well 
 plate cycler (Bio-Rad CFX96)). All cycles (ROI: 1 -- 40) were analyzed by the 
 MFIaggr function. The density plot (right upper panel) and 
@@ -669,6 +666,37 @@ effcalc(res[, 1], res[, 2])
       
 \subsection{fixNA}
 
+\begin{table}[ht]
+\centering
+\begin{tabular}{rllll}
+  \hline
+ & Background - raw data & Background - fixed NA & cpD2 - raw data & cpD2 - fixed NA \\ 
+  \hline
+Linear phase - 1 NA & $4606.43 \pm 186$ & $4606.53 \pm 186$ & $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
+  Exponential phase - 1 NA & $7555.31 \pm 468$ & $7555.28 \pm 468$ & $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
+  Plateau phase  - 1 NA & $11736.60 \pm 1032$ & $11736.82 \pm 1032$ & $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
+  Linear phase - 3 NA & $4606.43 \pm 186$ & $4607.05 \pm 186$ & $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
+  Exponential phase - 3 NA & $7555.31 \pm 468$ & $7555.15 \pm 468$ & $18.20 \pm 0.145$ & $18.19 \pm 0.148$ \\ 
+  Plateau phase  - 3 NA & $11736.60 \pm 1032$ & $11736.86 \pm 1033$ & $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlll}
+  \hline
+ & Cy0 - raw data & Cy0 - fixed NA & NRMSE \\ 
+  \hline
+Linear phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00012 \pm 0.000133$ \\ 
+  Exponential phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00018 \pm 0.000176$ \\ 
+  Plateau phase  - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00026 \pm 0.000237$ \\ 
+  Linear phase - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00033 \pm 0.00031$ \\ 
+  Exponential phase - 3 NA & $11.73 \pm 1.06$ & $11.71 \pm 1.06$ & $0.00078 \pm 0.000601$ \\ 
+  Plateau phase  - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00072 \pm 0.000475$ \\ 
+   \hline
+\end{tabular}
+\end{table}
 
 <<fixNA,fig.show='hold',fig.cap=fig8_cap>>=
 # Simulation of an ideal amplification curve with 40 cycles
