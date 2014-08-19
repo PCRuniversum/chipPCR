@@ -9,7 +9,7 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
   
   if(CPP) {
     cpp.res <- apply(y, 2, function(i) CPP(x, i)[["y.norm"]])
-    y <- apply(y, 2, normalizer)
+    #y <- apply(y, 2, normalizer)
   }
   
   if(ncol(y) %% nrow != 0) {
@@ -18,7 +18,7 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
                          ncol = new.columns))
     colnames(y)[(ncol(y) - new.columns + 1):ncol(y)] <- rep("Empty", new.columns)
     if(CPP)
-      cpp.res <- cbind(y, matrix(rep(NA, new.columns * nrow(y)), 
+      cpp.res <- cbind(cpp.res, matrix(rep(NA, new.columns * nrow(y)), 
                                  ncol = new.columns))
   }
   
