@@ -22,20 +22,20 @@ in the background range and to test if an amplification is significant.
 				trans = FALSE, method.reg = "lmrob", 
 				bg.outliers = FALSE, median = FALSE, 
 				method.norm = "none", qnL = 0.03, amptest = FALSE, 
-				manual = FALSE, nl = 0.08, ...)
+				manual = FALSE, nl = 0.08, bg.range = NULL, ...)
 
 \S4method{CPP}{matrix,missing}(x, y, smoother = TRUE, method = "savgol", 
 			       trans = FALSE, method.reg = "lmrob", 
 			       bg.outliers = FALSE, median = FALSE, 
 			       method.norm = "none", qnL = 0.03, amptest = FALSE, 
-			       manual = FALSE, nl = 0.08, ...)
+			       manual = FALSE, nl = 0.08, bg.range = NULL, ...)
 
 \S4method{CPP}{data.frame,missing}(x, y, smoother = TRUE, 
 				   method = "savgol", trans = FALSE, 
 				   method.reg = "lmrob", bg.outliers = FALSE, 
 				   median = FALSE, method.norm = "none", 
 				   qnL = 0.03, amptest = FALSE, 
-				   manual = FALSE, nl = 0.08, ...)
+				   manual = FALSE, nl = 0.08, bg.range = NULL, ...)
 }
 
 \arguments{
@@ -96,6 +96,10 @@ replacement.  The mean is used by default.
 }
   \item{nl}{
 	is a value used as fixed threshold value for the background.
+}
+  \item{bg.range}{
+  is a \code{numeric} vector of length 2 pointing the background range.
+  If \code{NULL}, the background range is calculated by \code{\link{bg.max}} function.
 }
     \item{...}{
 	dot operator for diverse arguments of 

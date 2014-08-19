@@ -1,7 +1,7 @@
 CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = FALSE, 
                 method.reg = "lmrob", bg.outliers = FALSE, median = FALSE, 
                 method.norm = "none", qnL = 0.03, amptest = FALSE, manual = FALSE, 
-                nl = 0.08, ...) {
+                nl = 0.08, bg.range = NULL, ...) {
   
   testxy(x, y)
   
@@ -35,9 +35,14 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = FALSE,
     y <- fixNA(x, y, spline = TRUE)
   
   #Try to detect background range automatically or manually
-  bg <- bg.max(x, y)
-  BG <- slot(bg, "bg.start"):slot(bg, "bg.stop")
-  
+  if (is.null(bg.range)){
+    bg <- bg.max(x, y)
+    BG <- slot(bg, "bg.start"):slot(bg, "bg.stop")
+  } else {
+    if(length(bg.range) != 2)
+      stop("bg.range must have two values - start and end of the background.")
+    BG <- min(bg.range):max(bg.range)
+  }
   # Remove outliers (high and low) from the background range and 
   # substitute with the median
   if (bg.outliers) { 
@@ -102,24 +107,24 @@ setMethod("CPP", signature(x = "data.frame", y="missing"),
           function(x, y, smoother = TRUE, trans = FALSE, method.reg = "lmrob", 
                    bg.outliers = FALSE, median = FALSE, 
                    method.norm = "none", qnL = 0.03, 
-                   amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
+                   amptest = FALSE, manual = FALSE, nl = 0.08, bg.range = NULL, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             CPP(x[, 1], x[, 2], trans = trans, method.reg = "lmrob", ,
                 bg.outliers = bg.outliers, 
                 median = median, method.norm = method.norm, qnL = qnL,
-                amptest = amptest, manual = manual, nl = nl, ...)
+                amptest = amptest, manual = manual, nl = nl, bg.range = NULL, ...)
           })
 
 setMethod("CPP", signature(x = "matrix", y="missing"), 
           function(x, y, smoother = TRUE, trans = FALSE, method.reg = "lmrob", 
                    bg.outliers = FALSE, median = FALSE, 
                    method.norm = "none", qnL = 0.03, 
-                   amptest = FALSE, manual = FALSE, nl = 0.08, ...) { 
+                   amptest = FALSE, manual = FALSE, nl = 0.08, bg.range = NULL, ...) { 
             if (ncol(x) != 2) 
               stop("'x' must have two columns.")
             CPP(x[, 1], x[, 2], smoother = TRUE, trans = trans, 
                 method.reg = "lmrob", bg.outliers = bg.outliers, 
                 median = median, method.norm = method.norm, qnL = qnL,
-                amptest = amptest, manual = manual, nl = nl, ...)
+                amptest = amptest, manual = manual, nl = nl, bg.range = NULL, ...)
           })
