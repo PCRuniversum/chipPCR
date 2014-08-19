@@ -8,7 +8,7 @@
 \alias{effcalc,data.frame,missing-method}
 
 \title{
-Analysis of the emplification efficiency
+Analysis of the amplification efficiency
 }
 \description{
  effcalc is used for a fast calculation of the amplification efficiency of
@@ -16,24 +16,12 @@ Analysis of the emplification efficiency
  list.
 }
 \usage{
-\S4method{effcalc}{numeric,numeric}(x, y, logx = TRUE, CV = FALSE, 
-  	    xlab = "log10(Concentration)", ylab = "Cq", 
-		    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
-		    trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
-		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
-		    col = "black")
-\S4method{effcalc}{matrix,missing}(x, y, logx = TRUE, CV = FALSE, 
-        xlab = "log10(Concentration)", ylab = "Cq", 
-		    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
-		    trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
-		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
-		    col = "black")
-\S4method{effcalc}{matrix,missing}(x, y, logx = TRUE, CV = FALSE, 
-        xlab = "log10(Concentration)", ylab = "Cq", 
-  	    main = "Efficiency Plot", RSD = FALSE, rob = FALSE, 
-		    trend = TRUE, res.fit = TRUE, CI = FALSE, level = 0.95,
-		    show.res = TRUE, type = "p", pch = 19, length = 0.05, 
-		    col = "black")        
+\S4method{effcalc}{numeric,numeric}(x, y, logx = TRUE, RSD = FALSE, rob = FALSE,
+                                    level = 0.95)
+\S4method{effcalc}{matrix,missing}(x, y, logx = TRUE, RSD = FALSE, rob = FALSE,
+                                   level = 0.95)
+\S4method{effcalc}{matrix,missing}(x, y, logx = TRUE, RSD = FALSE, rob = FALSE,
+                                   level = 0.95)        
 }
 
 \arguments{
@@ -41,21 +29,10 @@ Analysis of the emplification efficiency
 	    (dilution). }
   
   \item{y}{ are multiple columns of fluorescence values from a 
-  
   \code{data.frame} (e.g., [, c(1:n)]). }
   
   \item{logx}{ is a logical parameter used to convert the concentration 
 	      into a decadic logarithm. }
-  
-  \item{CV}{ If \code{CV} is true the coefficient of variation (RSD, CV) is 
-  plotted. If set to FLASE the deviation as Standard Deviation or Median 
-  Absolute Deviation is plotted. }
-
-  \item{xlab}{ a title for the x axis. }
-  
-  \item{ylab}{ a title for the y axis. }
-  
-  \item{main}{ an overall title for the plot. }
   
   \item{RSD}{ Setting the option \code{RSD = TRUE} shows the relative 
   standard deviation (RSD) in percent. }
@@ -63,33 +40,8 @@ Analysis of the emplification efficiency
   \item{rob}{ Using the option \code{rob} as TRUE the median and the median 
   absolute deviation (MAD) is plotted instead of the mean and standard 
   deviation. }
-
-  \item{trend}{ Setting the option \code{trend = TRUE} shows the linear 
-   regression line in the plot. }
   
-  \item{res.fit}{ Setting the option \code{res.fit = TRUE} shows the 
-    results (goodness of fit, amplification efficiency, correlation ) 
-    of the linear regression line in the plot. }
-    
-  \item{CI}{ Setting the option \code{CI = TRUE} shows the confidence
-   interval lines in the plot. }
-
   \item{level}{ Tolerance/confidence level. }
-
-  \item{show.res}{ Setting the option \code{res.fit = TRUE} shows the 
-  standard output. }
-
-  \item{type}{ is a graphical parameter setting the plot use lines, points 
-  or both (see \code{\link{plot}}). }
-  
-  \item{pch}{ is a graphical parameter used to define the symbol used in 
-  the plot. }
-  
-  \item{length}{ \code{length} is a graphical parameter used to define the 
-  length of the error bar used in the plot. }
-
-  \item{col}{ \code{col} is a graphical parameter used to define the length 
-  of the error bar used in the plot. }
   
 }
 
@@ -203,7 +155,7 @@ tmp <- data.frame(dilution[1:6],
 		  Cq.out[13:18])
 		  
 # Determine the amplification efficiency by using the effcalc function
-effcalc(tmp[, 1], tmp[, 2:4], CI = TRUE)
+plot(effcalc(tmp[, 1], tmp[, 2:4]), CI = TRUE)
 mtext("B", cex = 2, side = 3, adj = 0, font = 2) 
 par(mfrow = c(1,1))
 ## End(Not run)

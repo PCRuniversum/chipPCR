@@ -4,6 +4,7 @@ setGeneric("plot")
 #just for writing comfort, self explanatory
 setClassUnion("numericOrNULL",c("numeric","NULL"))
 setOldClass("summary.lm")
+setOldClass("htest")
 
 #amptest class, amptester function -------------------------------
 setClass("amptest", contains = "numeric", representation(.Data = "numeric", 
@@ -413,4 +414,101 @@ setMethod("summary", signature(object = "th"), function(object) {
   cat("Cycle threshold: ", slot(object, ".Data")[, "cyc.th"], "\n")
   cat("Fluorescence threshold: ", slot(object, ".Data")[, "atFluo"], "\n")
   print(slot(object, "stats"))
+})
+
+#eff class, effcalc function -------------------------------
+
+setClass("eff", contains = "matrix", representation(.Data = "matrix", 
+                                                    amplification.efficiency = "numeric", 
+                                                    regression = "lm",
+                                                    correlation.test = "htest"))
+
+setMethod("show", signature(object = "eff"), function(object) {
+  print(slot(object, ".Data"))
+})
+
+setMethod("summary", signature(object = "eff"), function(object) {
+  cat("Amplification efficiency: ", slot(object, "amplification.efficiency"), "\n")
+  summary(slot(object, "regression"))
+})
+
+setMethod("plot", signature(x = "eff"), function(x, xlab = "log10(Concentration)", 
+                                                 ylab = "Cq", 
+                                                 main = "Efficiency Plot", 
+                                                 trend = TRUE, res.fit = TRUE, CI = FALSE, 
+                                                 level = 0.95, type = "p", 
+                                                 pch = 19, er.length = 0.05, 
+                                                 col = "black") {
+  res <- slot(x, ".Data")
+  lm.res <- slot(x, "regression")
+  cortest <- slot(x, "correlation.test")
+  AE <- slot(x, "amplification.efficiency")
+  
+  #get significance level
+  if (cortest[["p.value"]] < 0.001) {
+    sign.out <- "; p < 0.001"
+  }
+  if (0.001 <= cortest[["p.value"]] && cortest[["p.value"]] < 0.01) {
+    sign.out <- "; p < 0.01"
+  }
+  if (0.01 <= cortest[["p.value"]] && cortest[["p.value"]] < 0.05) {
+    sign.out <- "; p < 0.05"
+  }
+  if (cortest[["p.value"]] >= 0.05) {
+    sign.out <- "; p > 0.05"
+  }
+  
+  # Extract coordinates from data matrix
+  coords <- c(range(res[, 1]), 
+              range(res[, 2]))
+  # Store default graphic parameters
+  default.par <- par()
+  
+  # Perform a linear regression based on the values of the 
+  # calculated mean/median
+  # Calculate goodness of fit
+  Rsquared <- round(summary(lm.res)[["r.squared"]], 3)
+  
+  
+  # Add "legend" with amplification efficiency, goodness of fit to plot
+  # ToDo: expression(italic(R)^2 == Rsquared) for ... "R^2 = ", Rsquared ...?
+  if (res.fit) {
+    main <- paste0("Efficiency = ", AE, " %", "\n",
+                   "R^2 = ", Rsquared, "\n",
+                   "r = ", round(cortest$estimate, 3), sign.out, "\n"
+    )
+  }
+  # Plot the Coefficient of Variance
+  plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
+                                    max(res[, 2] + res[, 3])), xlab = xlab, 
+       ylab = ylab, type = type, pch = pch, col = col,
+       main = main)
+  
+  if (CI) {
+    # add area and border lines of confidence interval
+    # fix, does not yet work properly
+    #polygon(c(rev(x.ci), x.ci),
+    #  c(predict.ci[, 3], rev(predict.ci[, 2])),
+    #  col = "lightgrey", border = NA)
+    # prediction and parameters for confidence interval
+    x.ci <- seq(coords[1], coords[2], length.out= nrow(res))
+    predict.ci <- predict.lm(lm.res, newdata = data.frame(x.ci), 
+                             interval = "confidence", level = level)
+    polygon(c(x.ci, rev(x.ci)), c(rev(predict.ci[, 3]), predict.ci[, 2]),
+            border = NA, col = adjustcolor("lightblue", alpha.f = 0.4))
+#     lines(rev(x.ci), predict.ci[ ,2], col = "lightblue")
+#     lines(rev(x.ci), predict.ci[ ,3], col = "lightblue")
+  }
+  # Add error bar to the location parameters
+  arrows(res[, 1], res[, 2] + res[, 3], res[, 1], 
+         res[, 2] - res[, 3], angle = 90, code = 3, length = er.length, 
+         col = col)
+  
+  # Add trend line of linear regression to plot
+  if (trend) {
+    abline(lm.res)
+  }
+  
+  # Restore default graphic parameters
+  par(default.par)
 })

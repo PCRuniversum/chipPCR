@@ -583,7 +583,7 @@ Cq.D3 <- diffQ2(D3, inder = TRUE)[["xTm1.2.D2"]][1]
 
 res.dil <- data.frame(dilution, rbind(Cq.D1, Cq.D2, Cq.D3))
 par(fig = c(0.5,1,0,0.5), new = TRUE)
-effcalc(res.dil[, 1], res.dil[, 2])
+plot(effcalc(res.dil[, 1], res.dil[, 2]))
 @
 
 
@@ -637,7 +637,7 @@ for (i in 1L:18) {
 tmp <- data.frame(dilution[1:6], Cq.out[1:6], Cq.out[7:12],  Cq.out[13:18])
 		  
 # Determine the amplification efficiency by using the effcalc function.
-effcalc(tmp[, 1], tmp[, 2:4], CI = TRUE)
+plot(effcalc(tmp[, 1], tmp[, 2:4]), CI = TRUE)
 mtext("B", cex = 1.1, side = 3, adj = 0, font = 2) 
 @
 
@@ -698,7 +698,7 @@ res <- data.frame(dilution,
 # Finally the object res is used in effcalc to show the results  in the
 # amplification efficiency plot.
 
-effcalc(res[, 1], res[, 2])
+plot(effcalc(res[, 1], res[, 2]))
 @
 
 
