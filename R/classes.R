@@ -237,7 +237,7 @@ setMethod("summary", signature(object = "bg"), function(object, print = TRUE) {
   if (print) {
     cat(paste0("Background start: ", slot(object, "bg.start")))
     cat(paste0("\nBackground stop: ", slot(object, "bg.stop")))
-    cat(paste0("\nBackground correlation: ", slot(object, "bg.corr")))
+    cat(paste0("\nBackground correction: ", slot(object, "bg.corr")))
     cat(paste0("\nEnd of the amplification reaction: ", slot(object, "amp.stop")))
     cat(paste0("\nFluorescence at the end of the amplification reaction: ", 
                round(slot(object, "fluo"), options("digits")[["digits"]])))
