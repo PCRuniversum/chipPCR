@@ -102,9 +102,9 @@ setMethod("plot", signature(x = "amptest"),
                  pch = 19)
             mtext("Correlation coeffcient", 2, 3)
             mtext("(studentized residuals and RFU)", 2, 2)
-            nice_labs <- sapply(1L:ncol(res.pos), function(i) 
+            nice.labs <- sapply(1L:ncol(res.pos), function(i) 
               paste0(res.pos[c(1, nrow(res.pos) - 1), i], collapse = "-"))
-            axis(1, 1L:ncol(res.pos), labels = nice_labs)
+            axis(1, 1L:ncol(res.pos), labels = nice.labs)
             abline(h = 0.8, lty = "66")
             
             qqnorm(y.pos, pch = 19, main = paste("W = ", 
@@ -334,12 +334,12 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   qqnorm.data <- unlist(slot(x, "qqnorm.data"))
   llul <- rownames(slot(x, "qqnorm.data"))
   stats <- slot(x, "stats")
-  ncol_y <- ncol(slot(x, "qqnorm.data"))
+  ncol.y <- ncol(slot(x, "qqnorm.data"))
   
   #Plot the Coefficient of Variance
   layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
   
-  main.title <- paste0("ROI samples: ", format(ncol_y, nsmall = 3), "\n",
+  main.title <- paste0("ROI samples: ", format(ncol.y, nsmall = 3), "\n",
                        "ROI mean: ", format(stats[1], nsmall = 3), " +- ", 
                        format(stats[4], nsmall = 2), "\n",
                        "ROI median: ", format(stats[2], nsmall = 3), " +- ", 

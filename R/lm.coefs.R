@@ -21,10 +21,10 @@ lm.coefs <- function(x, y, method.reg) {
     switch(method,
            lmrob = do.call(function(x, y) lmrob(y ~ x), c(list(x = x, y = y))),
            rfit = do.call(function(x, y) {
-             op_warn <- options("warn")[[1]]
+             op.warn <- options("warn")[[1]]
              options(warn=2)
              rfit.res <- Rfit::rfit.default(y ~ x)
-             options(warn=op_warn)
+             options(warn=op.warn)
              rfit.res
            }, c(list(x = x, y = y))),
            least = do.call(function(x, y) lm(y ~ x), c(list(x = x, y = y))),

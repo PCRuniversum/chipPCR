@@ -8,36 +8,36 @@ humanrater <-
       stop("'repeats' must be have value 1 or bigger")
     #     if (!is.character(designations) || length(designations) != 3)
     #       stop("'designations' must be a character vector of length 3.")
-    allowed_symbols <- names(designations)
+    allowed.symbols <- names(designations)
     
-    if (any(table(allowed_symbols) > 1))
+    if (any(table(allowed.symbols) > 1))
       stop("Do not use repeated names.")
-    if ("" %in% allowed_symbols)
+    if ("" %in% allowed.symbols)
       stop("All elements of 'designations' list must be named.")
     prompt.line <- paste(sapply(1L:length(designations), function(i)
-      paste0("[", allowed_symbols[i], "] if ", designations[[i]])), collapse = ", ")
+      paste0("[", allowed.symbols[i], "] if ", designations[[i]])), collapse = ", ")
     
     all.ratings <- sapply(1L:repeats, function(j) {
       if(repeats > 1)
         cat(paste0("Repeat:", j, "\n"))
-      rating_order <- 2L:ncol(x)
+      rating.order <- 2L:ncol(x)
       if(shuffle)
-        rating_order <- sample(rating_order)
-      all_ratings <- sapply(rating_order, function(i) {
+        rating.order <- sample(rating.order)
+      all.ratings <- sapply(rating.order, function(i) {
         plot(x[, 1], x[, i], main = paste0("Experiment ", i), type = "b", pch = 19, lwd = 2, 
              xlab = "Cycle", ylab = "Fluorescence")
         #declare dummy variable - without it while loop does not work
         #the dummy cannot belong to the set of designations
         res <- "dummy which surely would not be a designation"
-        while((!(res %in% allowed_symbols))) {
+        while((!(res %in% allowed.symbols))) {
           res <- readline(prompt = prompt.line)
           #check correctness
-          if (!res %in% allowed_symbols)
+          if (!res %in% allowed.symbols)
             cat("Wrong input. Try again.\n")
         }
         res
       })
-      all_ratings[order(rating_order)]
+      all.ratings[order(rating.order)]
     })
     if (repeats > 1) {
       #check conformity of a human assessment

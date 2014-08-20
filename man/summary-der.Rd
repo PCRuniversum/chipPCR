@@ -65,14 +65,14 @@ Stefan Roediger, Michal Burdukiewicz
 \examples{
 
 res <- AmpSim(cyc = 1:40, Cq = 25)
-test_der <- inder(res)
+test.der <- inder(res)
 #just print summary
-summary(test_der)
+summary(test.der)
 #print without rounding
-summary(test_der, digits = 6)
+summary(test.der, digits = 6)
 
 #assign summary to variable without printing and 
-vals <- summary(test_der, print = FALSE)
+vals <- summary(test.der, print = FALSE)
 print(vals)
 
 #easily access different values

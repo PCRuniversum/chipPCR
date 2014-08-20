@@ -231,10 +231,9 @@ figures
 used in publication is freely available.
 \end{abstract}
 
-\section{Preface}
+\section{Setting up a work environment}
 The vignette can be viewed from R using command: vignette("chipPCR").
 
-\section{Setting up a work environment}
 Although the numbers already contain all accessible information, data 
 visualization greatly simplifies further analysis. For example, outputs of 
 the 
@@ -251,8 +250,6 @@ require(drc)
 # loading the entire package.
 data(testdat, package = "qpcR")
 @
-
-
 
 <<see_data,echo=FALSE,results='asis',message=FALSE>>=
 require(xtable)

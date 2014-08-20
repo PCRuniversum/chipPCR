@@ -1,9 +1,9 @@
 smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, 
                      method = "savgol", CPP = TRUE, paralell = NULL, ...) {
   if(is.null(paralell)) {
-    used_lapply <- lapply
+    used.lapply <- lapply
   } else {
-    used_lapply <- function(X, fun) parLapplyLB(cl = paralell, X, fun)
+    used.lapply <- function(X, fun) parLapplyLB(cl = paralell, X, fun)
   }
   
   
@@ -88,7 +88,7 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   
   
   if(is.character(method)) {
-    all.smooths <- used_lapply(1L:length(method.names), function(i) {
+    all.smooths <- used.lapply(1L:length(method.names), function(i) {
       y.tmp <- switch(method.names[i],
                       lowess = do.call(function(x, y, f = 0.01, iter = 3)
                         lowess(x = x, y = y, f = f, iter = iter)
