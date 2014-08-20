@@ -10,22 +10,22 @@
 
 \renewcommand{\thefigure}{S\arabic{figure}}
 
-\title{Supplement to: "chipPCR: an R Package to Pre-Process Amplification 
-Curve 
-Data"}
+\title{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve Data"}
 \author{Stefan R\"{o}diger* and Micha\l{} Burdukiewicz and Peter Schierack}
 \date{}
 
 \begin{document}
 
+\begin{center}
+\maketitle
+\end{center}
 
-<!--
+%\usepackage{Sweave}
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve  Data"}
+%\VignetteIndexEntry{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve Data"}
 %\VignetteDepends{chipPCR}
 %\VignetteKeywords{amplification curve pro-processing chipPCR R}
 %\VignettePackage{chipPCR}
--->
 
 <<captures,echo=FALSE>>=
 library(knitr)
@@ -185,10 +185,8 @@ fig15_cap <- "Plot curves plot."
 @
 
 
-
-\begin{center}
-\maketitle
-\end{center}
+%create TOC
+\tableofcontents
 
 \pagebreak
 
@@ -233,8 +231,7 @@ figures
 used in publication is freely available.
 \end{abstract}
 
-%create TOC
-\tableofcontents
+
 
 \section{Setting up a work environment}
 Although the numbers already contain all accessible information, data 
