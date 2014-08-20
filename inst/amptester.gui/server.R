@@ -32,21 +32,21 @@ shinyServer(function(input, output) {
   })
   
   output[["amptester.summs.plots"]] <- renderUI({
-    anal_list <- lapply(1L:length(res.amptest()), function(i) {
+    anal.list <- lapply(1L:length(res.amptest()), function(i) {
       list(plotOutput(paste0("plot", i)), verbatimTextOutput(paste0("summ", i)))
     })
-    do.call(tagList, unlist(anal_list, recursive = FALSE))
+    do.call(tagList, unlist(anal.list, recursive = FALSE))
   })
   
   
   for (i in 1L:300) {
     local({
-      my_i <- i
+      my.i <- i
       
-      output[[paste0("plot", my_i)]] <- renderPlot(plot(res.amptest()[[my_i]]))
-      output[[paste0("summ", my_i)]] <- renderPrint({
-        cat(colnames(processed.data())[my_i], "\n")  
-        summary(res.amptest()[[my_i]])                                          
+      output[[paste0("plot", my.i)]] <- renderPlot(plot(res.amptest()[[my.i]]))
+      output[[paste0("summ", my.i)]] <- renderPrint({
+        cat(colnames(processed.data())[my.i], "\n")  
+        summary(res.amptest()[[my.i]])                                          
       })
     })
   }
