@@ -3,9 +3,7 @@ amptester - report
 
 Date: `r Sys.time()`
 
-
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
-
+```{r, echo=FALSE}
 
 for (i in 1L:length(res.amptest())) {
   cat(colnames(processed.data())[i], "\n")
@@ -13,4 +11,12 @@ for (i in 1L:length(res.amptest())) {
   summary(x)
   plot(x)
 }
+```
+
+amptester settings
+-------------------------------------------------------
+```{r,results='asis',echo=FALSE}
+cat("Input file name: ", input[["input.file"]][["name"]], "\n")
+cat("Test chosen: ", input[["amptester.manual"]], "\n")
+cat("Noise level: ", input[["amptester.noiselevel"]], "\n")
 ```
