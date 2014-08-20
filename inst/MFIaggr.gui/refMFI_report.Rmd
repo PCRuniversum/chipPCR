@@ -4,8 +4,40 @@ MFIaggr - report
 Date: `r Sys.time()`
 
 
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
-x <- res.mfi
+MFIaggr analysis
+-------------------------
+
+```{r, echo=FALSE}
+x <- res.mfi()
 summary(x)
 plot(x)
+```
+
+Table
+-------------------------
+```{r, echo=FALSE,results='asis'}
+library(knitr)
+tab.dat <- slot(x, ".Data")
+tab.dat <- data.frame(tab.dat)
+tab.dat[["Cycle"]] <- as.factor(tab.dat[["Cycle"]])
+kable(tab.dat, format = "markdown", align = c("r", "c", "c", "c"), padding = 2)
+```
+
+All curves plot
+-------------------------
+```{r, echo=FALSE}
+dat <- processed.data()
+plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], CPP = TRUE, type = "l")
+```
+
+
+Settings used during analysis
+-------------------------
+```{r,results='asis',echo=FALSE}
+cat("Input file name: ", input[["input.file"]][["name"]], "\n")
+cat("Column containing the cycle data: ", input[["cyc.col"]], "\n")
+cat("Relative standard deviation: ", input[["RSD"]], "\n")
+cat("Median and MAD: ", input[["rob"]], "\n")
+cat("Region of interest - lower border: ", input[["llul.low"]], "\n")
+cat("Region of interest - upper border: ", input[["llul.up"]], "\n")
 ```
