@@ -2,13 +2,19 @@
 %\usepackage{hyperref}
 \usepackage[utf8]{inputenc} %unicode support
 \usepackage[margin=0.6in]{geometry}
-\renewcommand{\thefigure}{S\arabic{figure}}
+\usepackage{titlesec}
 
+\newcommand\sectionbreak{\ifnum\value{section}>1\clearpage\fi}
+\newcommand\subsectionbreak{\ifnum\value{subsection}>1\clearpage\fi}
+\newcommand\subsubsectionbreak{\ifnum\value{subsubsection}>1\clearpage\fi}
+
+\renewcommand{\thefigure}{S\arabic{figure}}
 
 \title{Supplement to: "chipPCR: an R Package to Pre-Process Amplification 
 Curve 
 Data"}
 \author{Stefan R\"{o}diger* and Micha\l{} Burdukiewicz and Peter Schierack}
+\date{}
 
 \begin{document}
 
@@ -21,7 +27,10 @@ Data"}
 %\VignettePackage{chipPCR}
 -->
 
-<<captures,warning=FALSE,message=FALSE,echo=FALSE>>=
+<<captures,echo=FALSE>>=
+library(knitr)
+opts_chunk$set(fig.lp="figure:",tidy=TRUE, tidy.opts=list(width.cutoff=60))
+
 fig1_cap <- "The amplification curves were generated with the 
 \\textsl{AmpSim} function. All Cqs are unique due to the use of random 
 value, which were added to the starting Cq of 25. The parameter $noise = 
@@ -174,8 +183,13 @@ amplification
 curve after unsupervised pre-processesing (using an instance of CPP)."
 @
 
-\maketitle
 
+
+\begin{center}
+\maketitle
+\end{center}
+
+\pagebreak
 
 \begin{abstract} % abstract
 \textbf{Background: } %if any
@@ -242,9 +256,6 @@ data(testdat, package = "qpcR")
 
 
 <<see_data,echo=FALSE,results='asis',message=FALSE>>=
-library(knitr)
-opts_chunk$set(fig.lp="figure:",tidy=TRUE, tidy.opts=list(width.cutoff=50))
-
 require(xtable)
 print(xtable(head(testdat[, 1L:5]), caption = "First six cycles of data.", 
 label = "tdhead"))
