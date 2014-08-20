@@ -231,7 +231,8 @@ figures
 used in publication is freely available.
 \end{abstract}
 
-
+\section{Preface}
+The vignette can be viewed from R using command: vignette("chipPCR").
 
 \section{Setting up a work environment}
 Although the numbers already contain all accessible information, data 
@@ -1165,6 +1166,67 @@ percent quantiles).
 standard deviation of 1.
 \end{itemize}
 
+\section{Data sets}
+
+\begin{enumerate}
+<<summ.datasets,echo=FALSE,results='asis'>>=
+datdf <- structure(list(dat.names = c("capillaryPCR", "C60.amp", "C60.melt", 
+"C126EG595", "C126EG685", "C127EGHP", "VIMCFX96_60", "VIMCFX96_69", 
+"VIMCFX96_meltcurve", "VIMiQ5_595", "VIMiQ5_685", "VIMiQ5_melt", 
+"C54", "CD74", "Eff625", "Eff750", "Eff875", "Eff1000", "C67", 
+"CD75", "C81", "C85"), descrs = c("  The capillary convective PCR (ccPCR) is a modified device of the ccPCR system proposed by Chou et al. 2013.", 
+"  qPCR Experiment for the Amplification of MLC-2v and Vimentin (as decadic dilutions) Using the Roche Light Cycler 1.5.", 
+"  Melt Curves MLC-2v and Vimentin for the qPCR experiment C60.amp using the Roche Light Cycler 1.5", 
+"  A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 2007) was performed in the Bio-Rad iQ5 thermo cycler. The cycle-dependent increase of the fluorescence was quantified at the elongation step (59.5 deg Celsius).", 
+"  A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 2007) was performed in the Bio-Rad iQ5 thermo cycler. The cycle-dependent increase of the fluorescence was quantified at the elongation step (68.5 deg Celsius).", 
+"  Quantitive PCR (qPCR) with a hydrolysis probe (Cy5/BHQ2) and DNA binding dye (EvaGreen) (Mao et al. 2007) performed in the Roche Light Cycler 1.5 thermo cycler.", 
+"  Human vimentin amplifcation curve data (measured during annealing phase at 60 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.", 
+"  Human vimentin amplifcation curve data (measured during elongatio phase at 69 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.", 
+"  Human vimentin melting curve data for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.", 
+"  Human vimentin amplifcation curve data (measured during annealing phase at 59.5 deg Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.", 
+"  Human vimentin amplifcation curve data (measured during elongatio phase at 68.5 deg Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.", 
+"  Human vimentin melting curve data for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.", 
+"  qPCR Experiment in the VideoScan heating/cooling-unit for the amplification using different concentrations of MLC-2v input cDNA quantities. ", 
+"  Quantitive PCR with a hydrolysis probe and DNA binding dye (EvaGreen) for MLC-2v measured at 59.5 degree Celsius (annealing temperature), 68.5 degree Celsius (elongation temperature) and at 30 degree Celsius.", 
+"  Highly replicate number amplification curves with an approximate amplification efficiency of 62.5 percent at cycle number 18. The data were derived from a simulation such as the AmpSim function.", 
+"  Highly replicate number amplification curves with an approximate amplification efficiency of 75 percent at cycle number 18. The data were derived from a simulation such as the AmpSim function.", 
+"  Highly replicate number amplification curves with an approximate amplification efficiency of 87.5 percent at cycle number 18. The data were derived from a simulation such as the AmpSim function.", 
+"  Highly replicate number amplification curves with an approximate amplification efficiency of 100 percent at cycle number 18. The data were derived from a simulation such as the AmpSim function.", 
+"  A Helicase Dependent Amplification (HDA) of HRPT1 (Homo sapiens hypoxanthine phosphoribosyltransferase 1), performed at different input DNA quantities using the Bio-Rad iQ5 thermo cycler.", 
+"  Helicase Dependent Amplification in the VideoScan HCU of HRPT1 (Homo sapiens hypoxanthine phosphoribosyltransferase 1) measured at at 55, 60 or 65 degree Celsius.", 
+"  Helicase Dependent Amplification (HDA) of pCNG1 using the VideoScan Platform (Roediger et al. (2013)). The HDA was performed at 65 degree Celsius. Two concentrations of input DNA were used.", 
+"  Helicase Dependent Amplification (HDA) of Vimentin (Vim) in the VideoScan Platform (Roediger et al. (2013)). The HDA was performed at 65 degree Celsius with three dilutions of input DNA."
+), dat.types = c("capillary convective PCR (ccPCR)", "standard qPCR - commercial thermo cyclers", 
+"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial thermo cyclers", 
+"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial thermo cyclers", 
+"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial thermo cyclers", 
+"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial thermo cyclers", 
+"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial thermo cyclers", 
+"standard qPCR - experimental thermo cyclers", "standard qPCR - experimental thermo cyclers", 
+"simulations", "simulations", "simulations", "simulations", "Isothermal Amplifcation - Helicase Dependent Amplification", 
+"Isothermal Amplifcation - Helicase Dependent Amplification", 
+"Isothermal Amplifcation - Helicase Dependent Amplification", 
+"Isothermal Amplifcation - Helicase Dependent Amplification")), .Names = c("dat.names", 
+"descrs", "dat.types"), row.names = c(NA, -22L), class = "data.frame")
+
+datdf <- cbind(datdf, t(sapply(datdf[["dat.names"]], function(i) dim(get(i)))))
+tmp <- apply(datdf, 1, function(i) {
+  safe.name <- i[1]
+  if(grepl("_", i)) {
+    safe.name <- sub("_", ".", i)
+  }
+  cat("\\item Data set: ", safe.name, "\n")
+  cat("\\begin{itemize}\n")
+  cat("\\item Data set type: ", i[3], "\n")
+  cat("\\item Description: ", i[2], "\n")
+  cat("\\item Number of variables: ", i[4], "\n")
+  cat("\\item Number of measurements: ", i[5], "\n")
+  cat("\\end{itemize}\n")
+})
+@
+\end{enumerate}
+
+
 \section{Visualizing data}
 
 After introductory steps, more in-depth analysis of experiments is 
@@ -1186,6 +1248,8 @@ background correction.
 Grateful thanks belong to all authors of the cited R packages, the R 
 community 
 and RKWard developers.
+
+
 
 \listoffigures
 
