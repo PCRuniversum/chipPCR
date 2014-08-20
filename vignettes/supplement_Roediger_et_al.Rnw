@@ -10,9 +10,7 @@
 
 \renewcommand{\thefigure}{S\arabic{figure}}
 
-\title{Supplement to: "chipPCR: an R Package to Pre-Process Amplification 
-Curve 
-Data"}
+\title{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve Data"}
 \author{Stefan R\"{o}diger* and Micha\l{} Burdukiewicz and Peter Schierack}
 \date{}
 
