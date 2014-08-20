@@ -92,22 +92,22 @@ degree Celsius (elongation temperature) and at 30 degree Celsius.
 \code{\link[chipPCR]{Eff625}}:
 Highly replicate number amplification curves with an approximate 
 amplification efficiency of 62.5 percent at cycle number 18. The data were 
-derivd from a simulation such as the AmpSim function.
+derived from a simulation such as the AmpSim function.
 
 \code{\link[chipPCR]{Eff750}}:
 Highly replicate number amplification curves with an approximate 
 amplification efficiency of 75 percent at cycle number 18. The data were 
-derivd from a simulation such as the AmpSim function.
+derived from a simulation such as the AmpSim function.
 
 \code{\link[chipPCR]{Eff875}}:
 Highly replicate number amplification curves with an approximate 
 amplification efficiency of 87.5 percent at cycle number 18. The data were 
-derivd from a simulation such as the AmpSim function.
+derived from a simulation such as the AmpSim function.
 
 \code{\link[chipPCR]{Eff1000}}:
 Highly replicate number amplification curves with an approximate 
 amplification efficiency of 100 percent at cycle number 18. The data were 
-derivd from a simulation such as the AmpSim function.
+derived from a simulation such as the AmpSim function.
 
 \strong{Isothermal Amplifcation - Helicase Dependent Amplification}
 
