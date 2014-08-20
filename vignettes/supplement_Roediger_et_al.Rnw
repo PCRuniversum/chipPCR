@@ -181,6 +181,7 @@ black line. A colored box (topleft of each plot) indicates the sample name
 and if the data contain missing values. The red lined shows the 
 amplification 
 curve after unsupervised pre-processesing (using an instance of CPP)."
+fig15_cap <- "Plot curves plot."
 @
 
 
@@ -938,7 +939,7 @@ par(mfrow = c(1,1))
 @
 
 \section{UNSORTED}
-     
+      
 
 <<SDM,fig.show='hold',fig.cap=fig9_cap>>=
 # Use AmpSim to generate an amplification curve with 40 cycles
@@ -1108,6 +1109,65 @@ noise.
 }
       \end{figure} 
 
+\subsection{rounder}
+
+Function inder calculates numeric derivatives on 
+smoothed data which results in data points not observable in reality. The 
+rounder function averages such result to the real values of cycle 
+number.
+
+\subsection{plotCurves}
+
+Plots many curves on one plot in separate cells allowing quick assessment.
+
+<<plot_curves,fig.cap=fig15_cap,fig.show='hold'>>=
+y <- VIMCFX96_60[, 2L:16]
+y[c(1,4,5,6,23,34), c(2,4,9,15)] <- NA
+plotCurves(VIMCFX96_60[, 1], y, nrow = 4, CPP = TRUE, type = "l")
+@
+
+\subsection{humanrater}
+
+The function humanrater is an interactive function, which can be 
+used to rate a curve for a certain characteristic. humanrater draws
+individual graphs of a curve and prompts an input field for the user. This
+function can be used to compare the human rating and the rating of a 
+machine.
+
+\subsection{lm.coefs}
+
+lm.coefs is convinient wrapper around few functions performing 
+normal (least squares) and robust linear regression. If the robut linear 
+regression is not possible, lm.coefs will perform linear regression 
+using the least squares method.
+This function can be used to calculate the background of an amplification
+cruve. The coefficients of the analysis can be used for a trend based
+correction of the entire data set.
+
+
+\subsection{normalizer}
+
+normalizer is a function to normalize any data set. It is possible 
+to chose from different methods (see Details). The function is useful if
+the data from an experiment have considerable variation regarding the 
+background and plateau signal.
+
+The parameter qnL is a user defined quantile which is used for the quantile 
+normalization. 
+\begin{itemize}
+\item A quantile normalization herein refers to an approach which is less prone to 
+outliers than a normalization based on the minimum and the maximum of an 
+amplification curve.
+\item minmax does a normalization between 0 and 1 (see Roediger et al. 
+2013 for explanation).
+\item max does a normalization to the maximum value (MFI/max(MFI)).
+\item lugn does a quantile normalization based on a symmetric proportion 
+as defined by the qnL parameter (e.g., qnL = 0.03 equals 3 and 97 
+percent quantiles).
+\item zscore performs a z-score normalization with a mean of 0 and a 
+standard deviation of 1.
+\end{itemize}
+
 \section{Visualizing data}
 
 After introductory steps, more in-depth analysis of experiments is 
@@ -1129,6 +1189,8 @@ background correction.
 Grateful thanks belong to all authors of the cited R packages, the R 
 community 
 and RKWard developers.
+
+\listoffigures
 
 % if your bibliography is in bibtex format, use those commands:
 \bibliographystyle{plain} % Style BST file
