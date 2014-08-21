@@ -32,7 +32,7 @@ of reaction mix A)10 micro L A. bidest, 1.25 micro L 10xbuffer, 0.75 micro L
 primer(150nM final), 0.5 micro L template plasmid. Preincubation: This mixture 
 was incubated for 2 min at 95 degree. Celsius and immediately placed on ice. 
 Reaction mix B) 5 micro L A. bidest., 1.25 micro L 10x buffer, 2 micro L NaCl, 
-1.25 micro L MgSO4, 1,75 micro L dNTPs, 0.25 micro L EvaGreen, 1 micro L 
+1.25 micro L MgSO4, 1.75 micro L dNTPs, 0.25 micro L EvaGreen, 1 micro L 
 enzyme mix. The mix was covered with 50 micro L mineral oil. The fluorescence 
 measurement in VideoScan HCU started directly after adding buffer B at 65 
 degree Celsius. A 1x (D1), a 1:10 dilution (D2) and a 1:100 (D3) dilution were 
