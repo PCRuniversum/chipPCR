@@ -311,15 +311,17 @@ setMethod("qqline", signature(y = "refMFI"), function(y, datax = FALSE,
 setMethod("summary", signature(object = "refMFI"), function(object, print = TRUE) {
   stats <- slot(object, "stats")
   if (print) {
-    cat(paste0("Mean: ", stats[1]))
-    cat(paste0("\nMedian: ", stats[2]))
-    cat(paste0("\nStandard deviation: ", stats[3]))
-    cat(paste0("\nMedian absolute deviation: ", stats[4]))
+    cat(paste0("Mean: ", format(stats[1], digits = 6)))
+    cat(paste0("\nMedian: ", format(stats[2], digits = 6)))
+    cat(paste0("\nStandard deviation: ", format(stats[3], digits = 6)))
+    cat(paste0("\nMedian absolute deviation: ", format(stats[4], digits = 6)))
+    cat(paste0("\nBreusch-Pagan Test p-value: ", format(stats["heter.p"], digits = 6)))
   }
   invisible(c(mean = stats[1], 
               median = stats[2],
               sd = stats[3],
-              mad = stats[4]))
+              mad = stats[4],
+              heter.p = stats[["heter.p"]]))
 })
 
 
@@ -393,6 +395,8 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   }
   # Analysis of the quantiles
   qqnorm(x)
+  mtext(paste0("\nBreusch-Pagan Test p-value: ", format(stats["heter.p"], digits = 4)),
+        cex = 0.75)
   qqline(x)
   
   # Restore default graphic parameters

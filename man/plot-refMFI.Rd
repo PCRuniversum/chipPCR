@@ -10,7 +10,7 @@ Draw quick diagnostic plots of amplification reaction.
 }
 \usage{
 \S4method{plot}{refMFI}(x, CV = FALSE, type = "p", pch = 19, length = 0.05, 
-col = "black")
+                        col = "black")
 }
 
 \arguments{

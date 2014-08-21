@@ -31,9 +31,6 @@ statistics.}
 }
 \section{Methods}{
   \describe{
-    \item{plot}{\code{signature(x = "refMFI")}: plots background 
-information. 
-    See \code{\link[chipPCR]{plot.refMFI}}}
        \item{qqplot}{\code{signature(y = "refMFI")}: plots a normal QQ 
 plot. 
     See \code{\link[stats]{qqnorm}}}

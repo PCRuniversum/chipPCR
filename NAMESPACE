@@ -1,3 +1,4 @@
+importFrom(lmtest, bptest)
 importFrom(MASS, rlm)
 import("methods")
 importFrom(outliers, rm.outlier)
