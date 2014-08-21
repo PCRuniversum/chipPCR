@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc} %unicode support
 \usepackage[margin=0.6in]{geometry}
 \usepackage{titlesec}
+\usepackage{xr}
+\externaldocument{Roediger_et_al}
 
 \newcommand\sectionbreak{\ifnum\value{section}>1\clearpage\fi}
 \newcommand\subsectionbreak{\ifnum\value{subsection}>1\clearpage\fi}
