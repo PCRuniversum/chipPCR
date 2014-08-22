@@ -11,6 +11,16 @@
 \newcommand\subsubsectionbreak{\ifnum\value{subsubsection}>1\clearpage\fi}
 
 \renewcommand{\thefigure}{S\arabic{figure}}
+\makeatletter
+\renewcommand{\@maketitle}{
+\newpage
+ \null
+ \vskip 2em%
+ \begin{center}%
+  {\large \@author \par}%
+  {\LARGE \@title \par}%
+ \end{center}%
+ \par} \makeatother
 
 \title{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve Data"}
 \author{Stefan R\"{o}diger* and Micha\l{} Burdukiewicz and Peter Schierack}
@@ -18,9 +28,11 @@
 
 \begin{document}
 
-\begin{center}
+
 \maketitle
-\end{center}
+
+
+
 
 %\usepackage{Sweave}
 %\VignetteEngine{knitr::knitr}
@@ -212,8 +224,8 @@ Breusch-Pagan test."
 
 \pagebreak
 
-\begin{abstract} % abstract
-\textbf{Background: } %if any
+\begin{abstract} 
+\textbf{Background: } 
 The quantitative real-time polymerase chain reaction (qPCR) and isothermal 
 amplification are standard methods for quantification of nucleic acids. 
 Numerous real-time read-out technologies with different technical 
@@ -1401,19 +1413,6 @@ tmp <- apply(datdf, 1, function(i) {
 \end{enumerate}
 
 
-\section{Visualizing data}
-
-After introductory steps, more in-depth analysis of experiments is 
-required. Let's make a
-close-up of the experiment F1.2.
-
-
-\textsl{bg.max} function provides the user with different information. 
-Firstly, it estimates 
-the beginning and the end of amplification reaction. Secondly, it defines 
-range of the 
-background which could be helpful for example in calculation of the 
-background correction.
 
 \section{Acknowledgment}
 
@@ -1427,10 +1426,9 @@ and RKWard developers.
 
 \listoffigures
 
-% if your bibliography is in bibtex format, use those commands:
-\bibliographystyle{plain} % Style BST file
-\bibliography{roediger-burdukiewicz}      % Bibliography file (usually 
-'*.bib' )
+
+\bibliographystyle{plain} 
+\bibliography{roediger-burdukiewicz}      
 
 
 \end{document}

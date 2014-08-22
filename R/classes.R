@@ -243,7 +243,7 @@ setMethod("summary", signature(object = "bg"), function(object, print = TRUE) {
     cat(paste0("\nBackground correction: ", slot(object, "bg.corr")))
     cat(paste0("\nEnd of the amplification reaction: ", slot(object, "amp.stop")))
     cat(paste0("\nFluorescence at the end of the amplification reaction: ", 
-               round(slot(object, "fluo"), options("digits")[["digits"]])))
+               format(slot(object, "fluo"), options("digits")[["digits"]])))
   }
   invisible(c(bg.start = slot(object, "bg.start"), 
               bg.stop = slot(object, "bg.stop"),
@@ -311,21 +311,22 @@ setMethod("qqline", signature(y = "refMFI"), function(y, datax = FALSE,
 })
 
 
-setMethod("summary", signature(object = "refMFI"), function(object, print = TRUE) {
-  stats <- slot(object, "stats")
-  nice.names <- c("Mean", "Median", "Standard deviation", 
-                  "Median Absolute Deviation", "Interquartile Range", 
-                  "Medcouple", "Skewness", 
-                  "SNR", "VRM", "Number of NAs", "Intercept", "Slope", 
-                  "R squared", "Breusch-Pagan Test p-value"
-  )
-  if (print) {
-    for(i in 1L:length(stats))
-      cat(paste0(nice.names[i], ": ", 
-                 format(stats[i], digits = getOption("digits") - 3), "\n"))
-  }
-  invisible(stats)
-})
+setMethod("summary", signature(object = "refMFI"), 
+          function(object, digits = getOption("digits") - 3, print = TRUE) {
+            stats <- slot(object, "stats")
+            nice.names <- c("Mean", "Median", "Standard deviation", 
+                            "Median Absolute Deviation", "Interquartile Range", 
+                            "Medcouple", "Skewness", 
+                            "SNR", "VRM", "Number of NAs", "Intercept", "Slope", 
+                            "R squared", "Breusch-Pagan Test p-value"
+            )
+            if (print) {
+              for(i in 1L:length(stats))
+                cat(paste0(nice.names[i], ": ", 
+                           format(stats[i], digits = digits), "\n"))
+            }
+            invisible(stats)
+          })
 
 
 setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p", 
@@ -503,8 +504,8 @@ setMethod("plot", signature(x = "eff"), function(x, xlab = "log10(Concentration)
                              interval = "confidence", level = level)
     polygon(c(x.ci, rev(x.ci)), c(rev(predict.ci[, 3]), predict.ci[, 2]),
             border = NA, col = adjustcolor("lightblue", alpha.f = 0.4))
-#     lines(rev(x.ci), predict.ci[ ,2], col = "lightblue")
-#     lines(rev(x.ci), predict.ci[ ,3], col = "lightblue")
+    #     lines(rev(x.ci), predict.ci[ ,2], col = "lightblue")
+    #     lines(rev(x.ci), predict.ci[ ,3], col = "lightblue")
   }
   # Add error bar to the location parameters
   arrows(res[, 1], res[, 2] + res[, 3], res[, 1], 

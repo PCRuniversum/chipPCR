@@ -5,6 +5,11 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
   #Test if x and y exist.
   testxy(x, y, length = FALSE)
   
+  # Test if y has enough values
+  if (is.null(dim(y)))
+    warning("MFIaggr does not work properly with small number of fluorescence data columns.")
+  
+  
   # Test if llul has only two values
   if (!is.null(llul) && length(llul) != 2)
     stop("Use two cycle values (e.g., llul = c(1,10)) to set 
