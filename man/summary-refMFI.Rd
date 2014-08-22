@@ -11,12 +11,17 @@ of amplification reaction. refMFI means referenced Mean Fluorescence
 Intensity (Roediger et al. 2013).
 }
 \usage{
-\S4method{summary}{refMFI}(object, print = TRUE)
+\S4method{summary}{refMFI}(object, digits = getOption("digits") - 3, print = TRUE)
 }
 
 \arguments{
   \item{object}{
 is a \code{\linkS4class{refMFI}} object.
+}
+  \item{digits}{
+is a \code{numeric} value determining the number of decimal places. Used 
+only
+for printed values. See \link[base]{format}.
 }
   \item{print}{
 is a \code{logical} value determining if pretty summary of the object 
