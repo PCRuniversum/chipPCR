@@ -242,6 +242,7 @@ creation of figures used in publication is freely available.
 \end{abstract}
 
 \section{Setting up a work environment}
+\label{sec:work_environment}
 
 The vignette can be viewed from R using command: vignette("chipPCR").
 
@@ -277,6 +278,7 @@ functions \textsl{MFIaggr} and \textsl{plotCurves} were developed for a
 rapid and convenient inspection of raw data.
 
 \subsection*{MFIaggr}
+\label{sec:MFIaggr}
 
  \textsl{MFIaggr} is a powerful analytical and graphical tool for fast 
 multiple comparison of the cycle dependent signal dispersion and 
@@ -360,6 +362,7 @@ mtext("D", cex = 2, side = 3, adj = 0)
 @
 
 \subsection*{plotCurves}
+\label{sec:plotCurves}
 
 Plots can be used to visualize many curves on one plot in separate cells 
 allowing quick assessment (Figure~\ref{figure:plotCurves}). All 
@@ -381,6 +384,7 @@ plotCurves(VIMCFX96_60[, 1], y, nrow = 2, type = "l", CPP = TRUE)
 
 \subsection{Imputation of missing values in amplification curve data - 
 fixNA}
+\label{sec:fixNA}
 
 Amplification data of experimental systems may contain missing values 
 (NA). 
@@ -688,7 +692,6 @@ function was used to calculate the $SDM$ of the predicted models. for
 Figure~\ref{figure:inder_fit} 
 
 \subsection{Threshold cycle method}
-\label{sec:ccPCR}
 
 \textsl{th.cyc} function can also be used to calculate the quantification 
 cycle. This function was implemented primarily for the analysis of 
@@ -698,7 +701,8 @@ regression.
 
 \textsl{th.cyc} is a function to calculate the number of cycles at which 
 the 
-fluorescence exceeds a defined threshold, called the threshold cycle (Ct). 
+fluorescence exceeds a defined threshold, called the threshold cycle (Ct) 
+(Figure~\ref{figure:thcyc}). 
 According to the MIQE guidelines the Ct is referred to as quantification 
 cycle (Cq). The calculated Cq is a relative value, which depends on the 
 template copy number, instrument, reagents, amplification efficiency and 
@@ -759,6 +763,8 @@ legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
 @
 
 
+\subsubsection{Application of the th.cyc and CPP function on ccPCR data}
+\label{sec:ccPCR}
 
 	
 <<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap>>=
@@ -784,9 +790,8 @@ legend("topleft", c("Run 1", "Run 2", "Run 3", "Control"), pch = c(19, 17,
 @
 
 
-\subsection{Isothermal amplification -  Helicase Dependent Amplification 
-of Vimentin}
-
+\subsubsection{Application of the th.cyc and CPP function for Helicase Dependent Amplification}
+\label{sec:HDA}
 
 A Helicase Dependent Amplification (HDA) of Vimentin (Vim) was performed. 
 The VideoScan Platform \cite{roediger_highly_2013} was used to monitor the 
