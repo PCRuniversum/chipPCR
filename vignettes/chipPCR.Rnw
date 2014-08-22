@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 %\usepackage{hyperref}
 \usepackage[utf8]{inputenc} %unicode support
-\usepackage[margin=0.6in]{geometry}
+\usepackage[margin=0.75in]{geometry}
 \usepackage{titlesec}
 \usepackage{xr}
 \externaldocument{Roediger_et_al}
@@ -87,7 +87,8 @@ panel)} The CPP function was used to baseline, to remove the missing value
 The Cqs ($SDM$) of the pre-processed data were calculated by diffQ2 (see 
 main text) and analyzed with \\textsl{effcalc}. The amplification 
 efficiency approximately at 87.3~\\%."
-fig8_cap <- "\\emph{(A)} Raw data were generated using the AmpSim 
+fig8_cap <- "Imputation of missing values in amplification curve data. 
+\\emph{(A)} Raw data were generated using the AmpSim 
 simulation function. \\emph{(B)} A missing value was introduced in the 
 transition phase. The missing value was imputed either by \\emph{(C)} 
 linear approximation or \\emph{(D)} a cubic spline approximation. The 
@@ -133,19 +134,20 @@ quantile-quantile analysis (right lower panel) show no normal
 distribution. Due to the sigmoidal curve structure is the density function 
 bimodal."
 fig13_cap <- "Helicase Dependent Amplification (HDA) of Vimentin (Vim).
-The VideoScan Platform (Roediger et al. (2013)) was used to 
+The VideoScan Platform was used to 
 monitor the amplification. The HDA was performed at 65 degree Celsius. 
 Three concentrations of input DNA (D1, D2, D3) were used. The amplifcation 
 curves were smoothed by a moving average (windowsize 3) and baselined by a 
 a robust linear regression by computing MM-type regression estimator. The 
 th.cyc function was used to determine the time required to reach the 
 threshold level of 0.05 (--)."
-fig14_cap <- "Plots many curves on one plot in separate cells allowing 
-quick assessment. Curves with raw data (some with missing value) are shown 
-as solid black line. A colored box (topleft of each plot) indicates the 
-sample name and if the data contain missing values. The red lined shows 
-the amplification curve after unsupervised pre-processesing (using an 
-instance of CPP)."
+fig14_cap <- "The plotCurves function. Plots many curves on one plot in 
+separate cells allowing quick assessment. Missing values were artificially 
+introduced at random position to selected curves of the VIMCFX96\\_60 data 
+set (solid black line). A colored box (topleft of each plot) indicates the 
+sample name and if the data contain missing values. The red rug indicates 
+the position of the missing values. The red lined shows the amplification 
+curve after unsupervised pre-processesing (using an instance of CPP)."
 fig15_cap <- "Use of MFIaggr to test for heteroskedasticity using the 
 Breusch-Pagan test. The data were aggregated with the MFIaggr function and 
 assigned to the object res. The standard deviation was transformed to the 
@@ -194,6 +196,7 @@ creation of figures used in publication is freely available.
 \end{abstract}
 
 \section{Setting up a work environment}
+
 The vignette can be viewed from R using command: vignette("chipPCR").
 
 Although the numbers already contain all accessible information, data 
@@ -275,9 +278,10 @@ in the annealing phase (Figure~\ref{figure:MFIaggr_all}A and B). The
 heteroskedasticity was significant in during the 
 (Figure~\ref{figure:MFIaggr_all}A) first 15 cycles at 60 degree Celsius.
 
-<<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig14_cap>>=
+<<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig15_cap>>=
 par(mfrow = c(2,2), bty = "n")
-
+# Create a helper function "hsk.test" to analyze the heteroskedasticity
+# and the variance.
 hsk.test <- function(x, y, llul = c(1,15), main = "") {
     res <- MFIaggr(x, y, llul = llul)
     head(res)
@@ -288,28 +292,24 @@ hsk.test <- function(x, y, llul = c(1,15), main = "") {
 	pch = 19, type = "b")
     abline(v = llul, col = "grey", lty = 2, lwd = 2)
     legend("top", paste0("Breusch-Pagan test p-value: \n", 
-format(summary(res)[5], 
-	  digits = 2)), bty = "n")
+    format(summary(res)[5], digits = 2)), bty = "n")
 }
 
 hsk.test(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
 	 llul = c(1,15),
-	 main = "ROI from Cycle 1 to 15\nAnnealing phase") 
+	 main = "ROI Cycle 1 to 15\nAnnealing phase") 
 mtext("A", cex = 2, side = 3, adj = 0)
 
 hsk.test(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], llul = 
-c(1,40),
-	 main = "ROI from Cycle 1 to 40\nAnnealing phase") 
+c(1,40), main = "ROI Cycle 1 to 40\nAnnealing phase") 
 mtext("B", cex = 2, side = 3, adj = 0)
 
 hsk.test(VIMCFX96_69[, 1], VIMCFX96_69[, 2:ncol(VIMCFX96_69)], llul = 
-c(1,15),
-	 main = "ROI from Cycle 1 to 15\nElongation phase") 
+c(1,15), main = "ROI Cycle 1 to 15\nElongation phase") 
 mtext("C", cex = 2, side = 3, adj = 0)
 
 hsk.test(VIMCFX96_69[, 1], VIMCFX96_69[, 2:ncol(VIMCFX96_69)], llul = 
-c(1,40),
-	 main = "ROI from Cycle 1 to 40\nElongation phase") 
+c(1,40), main = "ROI Cycle 1 to 40\nElongation phase") 
 mtext("D", cex = 2, side = 3, adj = 0)
 @
 
@@ -333,266 +333,148 @@ y[unique(floor(runif(10,1,35))), unique(floor(runif(10,1,8)))] <- NA
 plotCurves(VIMCFX96_60[, 1], y, nrow = 2, type = "l", CPP = TRUE)
 @
 
-\section{Implemented methods to determine the quntification cycle}
+\subsection{Imputation of missing values in amplification curve data - 
+fixNA}
 
-\textsl{th.cyc} function can also be used to calculate the quantification 
-cycle. This function was implemented primarily for the analysis of 
-amplification from qIA but also for qPCR. We implement a symmetrically 
-approximation algorithm based on linear and quadratic least squares 
-regression.
+Amplification data of experimental systems may contain missing values 
+(NA). 
+The NAs may be caused by detector problems, acquisition error or other 
+assorted problems. There are different ways to handle missing values. One 
+approach is to ignore NAs which is generally acceptable. However, in case 
+of further calculation it is often necessary to handle cases of missing 
+values in a way that the next calculation steps can be performed. Missing 
+values can be eliminated by a imputation. Imputation encompasses various 
+approaches. This includes to calculate a location parameter (e.g., mean, 
+median) or other significant values (e.g., minimum, maximum, modus) of a 
+data column. However, in non-linear processes such as amplification 
+processes its is better to estimate the missing values from a trend. The 
+function fixNA was empirically tested and relies on a linear trend 
+estimation based on the approx function. This approach is useful but may 
+be 
+problematic on the phases other then background or plateau phases of an 
+amplification reaction. The parameter spline on fixNA enables a trend 
+estimation on splines and may be more appropriate in most scenarios. Other 
+smoothing functions such as the Savitzky-Golay smoothing filter have the 
+intrinsic capability to remove missing values [Savitzky and Golay 1964, 
+Eilers 2003]. The function fixNA imputes missing values in a single column 
+of data. The imputation is based on a linear approximation by default. 
+However, the data can also be estimated from an approximation by splines.
 
-\textsl{th.cyc} is a function to calculate the number of cycles at which 
-the 
-fluorescence exceeds a defined threshold, called the threshold cycle (Ct). 
-According to the MIQE guidelines the Ct is referred to as quantification 
-cycle (Cq). The calculated Cq is a relative value, which depends on the 
-template copy number, instrument, reagents, amplification efficiency and 
-probe technology. Low Cqs correlate with high quantities template copy 
-numbers. Real-time technologies enable the quantification of nucleic acids 
-by calculation of specific curve parameters like the quantification point 
-(Cq) and the amplification efficiency (AE) based on the kinetics of the 
-amplification curve. The Cq represents the number of cycles (time for qIA) 
-needed to reach a defined fluorescence signal level in the exponential 
-phase of the amplification curve. The Cq can be determined from a fixed 
-threshold value or by various analytical algorithm as described elsewhere 
-(Bustin et al. 2009, Ruijter et al. 2013, Tellinghuisen et al. 2014).
+\begin{table}[ht]
+\centering
+\begin{tabular}{rllll}
+  \hline
+ & Background - raw data & Background - fixed NA & cpD2 - raw data & cpD2 
+- fixed NA \\ 
+  \hline
+Linear phase - 1 NA & $4606.43 \pm 186$ & $4606.53 \pm 186$ & $18.20 \pm 
+0.145$ & $18.20 \pm 0.145$ \\ 
+  Exponential phase - 1 NA & $7555.31 \pm 468$ & $7555.28 \pm 468$ & 
+$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
+  Plateau phase  - 1 NA & $11736.60 \pm 1032$ & $11736.82 \pm 1032$ & 
+$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
+  Linear phase - 3 NA & $4606.43 \pm 186$ & $4607.05 \pm 186$ & $18.20 \pm 
+0.145$ & $18.20 \pm 0.145$ \\ 
+  Exponential phase - 3 NA & $7555.31 \pm 468$ & $7555.15 \pm 468$ & 
+$18.20 \pm 0.145$ & $18.19 \pm 0.148$ \\ 
+  Plateau phase  - 3 NA & $11736.60 \pm 1032$ & $11736.86 \pm 1033$ & 
+$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
+   \hline
+\end{tabular}
+\end{table}
 
-The Threshold Cycle (Ct) (Cq according to MIQE, see Bustin et al. 2009) is 
-the cycle number at which the fluorescence exceeds significantly a point 
-above the baseline and defined threshold in a particular samples. Thus the 
-Ct is the cycle when sufficient numbers of amplicons have accumulated. The 
-th.cyc calculates the intersection of the user defined Ct value (r) and a 
-linear regression or quadratic polynomial in the range of the user defined 
-Ct value. In contrast to other methods is does th.cyc have no requirement 
-to fit a "complex" non linear model to the entire data set but rather 
-focuses on the specific area. The polynomial is calculated from four 
-neighbor values at the fluorescence threshold.
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlll}
+  \hline
+ & Cy0 - raw data & Cy0 - fixed NA & NRMSE \\ 
+  \hline
+Linear phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00012 \pm 
+0.000133$ \\ 
+  Exponential phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & 
+$0.00018 \pm 0.000176$ \\ 
+  Plateau phase  - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00026 
+\pm 0.000237$ \\ 
+  Linear phase - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00033 \pm 
+0.00031$ \\ 
+  Exponential phase - 3 NA & $11.73 \pm 1.06$ & $11.71 \pm 1.06$ & 
+$0.00078 \pm 0.000601$ \\ 
+  Plateau phase  - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00072 
+\pm 0.000475$ \\ 
+   \hline
+\end{tabular}
+\end{table}
 
-\subsection{Isothermal amplification -  Helicase Dependent Amplification 
-of Vimentin}
+<<fixNA,fig.show='hold',fig.cap=fig8_cap>>=
+# Simulation of an ideal amplification curve with 40 cycles
+# The other parameter of the AmpSim function are identical to
+# the default.
 
-A Helicase Dependent Amplification (HDA) of Vimentin (Vim) was performed. 
-The VideoScan Platform (Roediger et al. (2013)) was used to monitor the 
-amplification. The HDA was performed at 65 degree Celsius. 
-Three concentrations of input DNA (D1, D2, D3) were used 
-(Figure~\ref{figure:HDA}).
+res <- AmpSim(cyc = 1:40)
 
-To perform an isothermal amplification in VideoScan, standard conditions 
-for the IsoAmp(R) III Universal tHDA Kit (Biohelix) were used. Primers and 
-templates are described in Roediger et al. (2013). The reaction was 
-composed of reaction mix A)10 micro L A. bidest, 1.25 micro L 10xbuffer, 
-0.75 micro L primer(150~nM final), 0.5 micro L template plasmid. 
-Preincubation: This mixture was incubated for 2 min at 95 degree. Celsius 
-and immediately placed on ice. Reaction mix B) 5 micro L A. bidest., 1.25 
-micro L 10x buffer, 2 micro L NaCl, 1.25 micro L MgSO4, 1.75 micro L 
-dNTPs, 
-0.25 micro L EvaGreen, 1 micro L enzyme mix. The mix was covered with 50 
-micro L mineral oil. The fluorescence measurement in VideoScan HCU started 
-directly after adding buffer B at 65 degree Celsius. A 1x (D1), a 1:10 
-dilution (D2) and a 1:100 (D3) dilution were tested. Temperature profile 
-(after Preincubation): 
-- 60 seconds at 65 degree Celsius 
-- 11 seconds at 55 degree Celsius \& Measurement
+# Introduce a missing value (cycle 18) in the transition between 
+# the background and the exponential phase.
+res.NA <- res
+res.NA[18, 2] <- NA
 
-<<HDA,fig.show='hold',fig.cap=fig13_cap>>=
-par(mfrow = c(2,1), bty = "n")
-plot(NA, NA, xlim = c(0,5000), ylim = c(0,1), xlab = "Time [sec]", 
-     ylab = "Fluorescence", main = "HDA amplification\nRaw data")
-mtext("A", cex = 2, side = 3, adj = 0)
-  lines(C85[, 2], C85[, 3], type = "b", col = 2, pch = 20)
-  lines(C85[, 4], C85[, 5], type = "b", col = 4, pch = 20)
-  lines(C85[, 6], C85[, 7], type = "b", col = 6, pch = 20)
-  legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
-        pch = rep(20,3))
+# Helper function to highlight the position of the missing value.
+abliner <- function(x1 = 17.5, x2 = 18.5, y1 = 0.09, y2 = 0.14) {
+		abline(v = c(x1, x2), col = "red")
+		abline(h = c(y1, y2), col = "red")
+	    }
 
-plot(NA, NA, xlim = c(0,2000), ylim = c(0,0.4), xlab = "Time [sec]", 
-     ylab = "Fluorescence", main = "HDA amplification\nPre-processed data")
-mtext("B", cex = 2, side = 3, adj = 0)
-legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
-	  pch = rep(20,3))
-
-# Define the parameters for the pre-processesing by CPP and the th.cyc 
-# function.
-sm <- "mova"
-br <- c(2,10)
-xr <- 3L:200
-lrg <- "least"
-r <- 0.05
-# Calculate in a loop the Cq values (Cycle threshold method) and add the
-# calculated time (in minutes) to the plot.
-for (i in c(2,4,6)) {
-  y.tmp <- CPP(C85[xr, i], C85[xr, i + 1], method = sm, bg.range = br, 
-	       trans = TRUE)$y.norm
-  Ct.tmp <- th.cyc(C85[xr, i], y.tmp, r = r, linear = FALSE)
-  abline(v = Ct.tmp[1], col = "grey")
-  text(Ct.tmp[1] * 1.1, 0.38, paste(round(Ct.tmp[1]/60, 1), "\nmin"))
-  lines(C85[xr, i], y.tmp, col = i, lwd = 2)
-  points(Ct.tmp@input, col = "red", pch = 19)
-}
-# Show the fluorescence value which defines the threshold.
-abline(h = r, lty = 2)
-@
-
-\subsection*{AmpSim - a function to simulate amplification curves}
-  The function \textsl{AmpSim} is a simulator for amplification reactions. 
-Use cases include teaching, algorithm testing or the comparison of an 
-experimental system to the predicted (''optimal``) model. \textsl{AmpSim} 
-uses a 5-parameter model (Equation~S\ref{eq:richards}).
-
-\begin{equation} \label{eq:richards}
-fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
-\end{equation}
-
-  \textsl{AmpSim} has several parameters, which can be used to simulate an 
-amplification curve. $b.eff$ and $Cq$ are most connected with another. 
-Thus changing one of them will change both values. $Cq$ can be used to 
-define an approximate Cq value. The expression ''approximate Cq value`` is 
-used because the calculated Cq value will vary depending on the preferred 
-Cq quantification method (e.g., Second Derivative Maximum ($SDM$) method, 
-threshold method). \textsl{AmpSim} can be used to simulate data with noise 
-(based on \textsl{rnorm}, \emph{stats}), signal-to-noise ratios, 
-photo-bleaching and other influences on a qPCR reaction. The following 
-example illustrates the use of \textsl{AmpSim} 
-(Figure~\ref{figure:AmpSim_random}).
-
-
-<<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold', fig.cap=fig1_cap>>=
-# Draw an empty plot for 40 cycles with user defined parameters.
-
-par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
-plot(NA, NA, xlim = c(1,40), ylim = c(0,1.1), xlab = "Cycle", ylab = "RFU")
-colors <- rainbow(8)
-
-# Create eight amplification curves. The approximate Cqs are synthesized 
-# as temporary Cqs by adding a random value to a starting Cq of 25. Note: 
-# ``noise'' is set TRUE with a level of nnl = 0.03. This adds some scatter 
-# to the amplification curves.
-
-sim <- sapply(1L:8, function(i) {
-  Cq.tmp <- 25 + rnorm(1) * 5
-  
-  tmp <- AmpSim(1:40, Cq = Cq.tmp, noise = TRUE, nnl = 0.03)
-  lines(tmp, col = colors[i], lwd = 2)
-  
-  # Add the approximate Cq values to the plot
-  text(3, 1 - i / 10, paste("Cq ", round(Cq.tmp, 2)), col = colors[i])
-})
-@
-
-
-
-
-<<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap>>=
-# Raw data from the VIMCFX96_69 data set.
-# Cycles
-x <- VIMCFX96_69[, 1]
-# Fluoresce values
-y <- VIMCFX96_69[, 2]
-
-par(mfrow = c(1,2), las = 0, bty = "n")
-# Plot the raw data
-plot(x, y, xlab = "Cycle", ylab = "Fluo", main = "Linear regression", 
-     pch = 19)
-mtext("A", cex = 1.3, side = 3, adj = 0) 
-# Calculate the the Cq (Ct) value
-res <- th.cyc(x, y, r = 2400, linear = TRUE)
-lines(res@input, col = 2, lwd = 2)
-# Threshold fluorescence value
-abline(h = res@.Data[2], col = 3)
-# Calculated Ct value
-abline(v = res@.Data[1], col = 4)
-legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
-
-plot(x, y, xlab = "Cycle", ylab = "Fluo", main = "Quadratic regression", 
-     pch = 19)
-mtext("B", cex = 1.3, side = 3, adj = 0) 
-# Calculate the the Ct value
-res <- th.cyc(x, y, r = 2400, linear = FALSE)
-lines(res@input, col = 2, lwd = 2)
-# Threshold fluorescence value
-abline(h = res@.Data[2], col = 3)
-# Calculated Ct value
-abline(v = res@.Data[1], col = 4)
-legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
-@
-
-
-
-	
-<<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap>>=
-# Application of the th.cyc method to determine the Cq from a continuous
-# amplification reaction.
-par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
-plot(NA, NA, xlim = c(0,80), ylim = c(0,1200), xlab = "Time [min]", 
-     ylab = "Voltage [micro V]", main = "ccPCR - Raw Data")
-
-# Threshold level "r" (50 micro Volts)
-for (i in c(1,3,5,7)) {
-  y.tmp <- capillaryPCR[, i + 1] - mean(capillaryPCR[1L:150, i + 1])
-  Ct.tmp <- th.cyc(capillaryPCR[, i], y.tmp, r = 50, linear = FALSE)
-  abline(v = Ct.tmp[1])
-  text(Ct.tmp[1] * 1.1, 1200, paste(round(Ct.tmp[1], 1), "\nmin"))
-  lines(capillaryPCR[, i], y.tmp, type = "b", pch = 20 - i) 
-  points(Ct.tmp@input, col = "red", pch = 19)
-}
-abline(h = 50)
-legend("topleft", c("Run 1", "Run 2", "Run 3", "Control"), pch = c(19, 17, 
-15, 
-13), lwd = 1.3, bty = "n")
-@
-
-
-
-<<workflow,fig.show='hold',fig.cap=fig4_cap,warning=FALSE>>=
-layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE), respect = TRUE)
-
-par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
-
-th.cyc.raw <- apply(VIMCFX96_60[, -1], 2, function(i) {
-		    th.cyc(VIMCFX96_60[, 1], i, r = 2575)[1,1]})
-
-res.CPP <- apply(VIMCFX96_60[, -1], 2, function(i) {
-		    CPP(VIMCFX96_60[, 1], i, trans = TRUE, 
-			method.norm = "minmax")[["y.norm"]]})
-		 
-th.cyc.CPP <- apply(res.CPP, 2, function(i) {
-		    th.cyc(VIMCFX96_60[, 1], i, r = 0.1)[1,1]})
-
-matplot(VIMCFX96_60[, -1], type = "l", pch = 19, col = 1, lty = 1, 
-	xlab = "Cycle", ylab = "Raw fluorescence", main = "Raw")
-abline(h = 2575, lty = 2)
+par(las = 0, mfrow = c(2,2), bty = "n")
+plot(res, xlab = "Cycles", ylab = "RFI", type = "b", pch = 20, 
+     main = "Without NA")
+abliner()
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2)
+res.NA.linear <- fixNA(res.NA[, 1], res.NA[, 2], spline = FALSE, 
+		       verbose = FALSE)
 
-matplot(res.CPP, type = "l", pch = 19, col = 1, lty = 1, xlab = "Cycle", 
-	ylab = "Fluorescence", main = "CPP")
-abline(h = 0.1, lty = 2)
+plot(res.NA, xlab = "Cycles", ylab = "RFI", type = "b", pch = 20, 
+     main = "With NA during transition")
+abliner()
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2)
 
-boxplot(data.frame(Raw = th.cyc.raw, CPP = th.cyc.CPP), ylab = "Cq (Ct)", 
-	notch = TRUE)
+res.NA.spline <- fixNA(res.NA[, 1], res.NA[, 2], spline = TRUE, 
+		       verbose = FALSE)
+	       
+plot(res.NA.linear, xlab = "Cycles", ylab = "RFI", type = "b", 
+     pch = 20, main = "Linear imputed\n NA")
+abliner()
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
+     
+plot(res.NA.spline, xlab = "Cycles", ylab = "RFI", type = "b", 
+      pch = 20, main = "Spline imputed\n NA")
+abliner()
+mtext("D", cex = 1.2, side = 3, adj = 0, font = 2)
+par(mfrow = c(1,1))
 @
 
 
-It is an intrinsic property of \textsl{AmpSim} to generate unique results 
-if 
-the $noise$ parameter is set $TRUE$. This is due the use of the 
-\textsl{rnorm} 
-(\emph{stats}) function to simulate noise. If data need to be replicated 
-identically use \textsl{set.seed(123)} to alter the random number 
-generator 
-(RNG) state. For example, the amplification curves of 
-Figure~\ref{fig:AmpSim_effcalc}~\emph{A} are generated with the same 
-starting 
-parameter of \textsl{AmpSim} but noise signals were added. 
-\textsl{AmpSim.gui} 
-is a \emph{shiny} GUI (graphical user interface) implementation for 
-\textsl{AmpSim}. Further details are described in section ``Graphical User 
-Interface \& data import and export''. \textsl{AmpSim} was also used to 
-illustrate the the \textsl{inder} function (Figure~\ref{figure:SDM}), the 
-\textsl{fixNA} function (Figure~\ref{figure:fixNA}) and the use of the 
-\textsl{smoother} (Figure~\ref{figure:smoother}) function.
+\section{Normalization of amplification curve data}
 
+\textsl{normalizer} is a function to normalize any data set. It is possible 
+to chose from different methods (see Details). The function is useful if
+the data from an experiment have considerable variation regarding the 
+background and plateau signal.
+
+The parameter qnL is a user defined quantile which is used for the 
+quantile 
+normalization. 
+\begin{itemize}
+\item A quantile normalization herein refers to an approach which is less 
+prone to 
+outliers than a normalization based on the minimum and the maximum of an 
+amplification curve.
+\item minmax does a normalization between 0 and 1 (see \cite{roediger_RJ_2013} for explanation).
+\item max does a normalization to the maximum value (MFI/max(MFI)).
+\item lugn does a quantile normalization based on a symmetric proportion 
+as defined by the qnL parameter (e.g., qnL = 0.03 equals 3 and 97 
+percent quantiles).
+\item zscore performs a z-score normalization with a mean of 0 and a 
+standard deviation of 1.
+\end{itemize}
 
 <<normalization,fig.show='hold',fig.cap=fig5_cap>>=
 par(mfrow = c(2,3), las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -636,10 +518,11 @@ lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x,
 	method.norm = "zscore")$y))
 @
 
+\section{Quantitative description of amplification reactions}
 
+\subsection{inder}
 
-\subsection*{Analysis of quantification Cycle and Amplification Efficiency 
-}
+\subsection*{Analysis of quantification Cycle and Amplification Efficiency}
 
 The output of \textsl{inder} includes the first derivative maximum ($FDM$) 
 and second derivative maximum ($SDM$), which are commonly used in qPCR 
@@ -758,7 +641,174 @@ log-logistic function to fit the S-shaped curves. The \textsl{inder}
 function was used to calculate the $SDM$ of the predicted models. for 
 Figure~\ref{figure:inder_fit} 
 
-\section{Amplification efficiency}
+\subsection{Threshold cycle method}
+
+\textsl{th.cyc} function can also be used to calculate the quantification 
+cycle. This function was implemented primarily for the analysis of 
+amplification from qIA but also for qPCR. We implement a symmetrically 
+approximation algorithm based on linear and quadratic least squares 
+regression.
+
+\textsl{th.cyc} is a function to calculate the number of cycles at which 
+the 
+fluorescence exceeds a defined threshold, called the threshold cycle (Ct). 
+According to the MIQE guidelines the Ct is referred to as quantification 
+cycle (Cq). The calculated Cq is a relative value, which depends on the 
+template copy number, instrument, reagents, amplification efficiency and 
+probe technology. Low Cqs correlate with high quantities template copy 
+numbers. Real-time technologies enable the quantification of nucleic acids 
+by calculation of specific curve parameters like the quantification point 
+(Cq) and the amplification efficiency (AE) based on the kinetics of the 
+amplification curve. The Cq represents the number of cycles (time for qIA) 
+needed to reach a defined fluorescence signal level in the exponential 
+phase of the amplification curve. The Cq can be determined from a fixed 
+threshold value or by various analytical algorithm as described elsewhere 
+\cite{ruijter_2009, ruijter_2013, tellinghuisen_2014}.
+
+The Threshold Cycle (Ct) (Cq according to MIQE, see 
+\cite{bustin_miqe_2009}) is 
+the cycle number at which the fluorescence exceeds significantly a point 
+above the baseline and defined threshold in a particular samples. Thus the 
+Ct is the cycle when sufficient numbers of amplicons have accumulated. The 
+th.cyc calculates the intersection of the user defined Ct value (r) and a 
+linear regression or quadratic polynomial in the range of the user defined 
+Ct value. In contrast to other methods is does th.cyc have no requirement 
+to fit a "complex" non linear model to the entire data set but rather 
+focuses on the specific area. The polynomial is calculated from four 
+neighbor values at the fluorescence threshold.
+
+<<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap>>=
+# Raw data from the VIMCFX96_69 data set.
+# Cycles
+x <- VIMCFX96_69[, 1]
+# Fluoresce values
+y <- VIMCFX96_69[, 2]
+
+par(mfrow = c(1,2), las = 0, bty = "n")
+# Plot the raw data
+plot(x, y, xlab = "Cycle", ylab = "Fluo", main = "Linear regression", 
+     pch = 19)
+mtext("A", cex = 1.3, side = 3, adj = 0) 
+# Calculate the the Cq (Ct) value
+res <- th.cyc(x, y, r = 2400, linear = TRUE)
+lines(res@input, col = 2, lwd = 2)
+# Threshold fluorescence value
+abline(h = res@.Data[2], col = 3)
+# Calculated Ct value
+abline(v = res@.Data[1], col = 4)
+legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
+
+plot(x, y, xlab = "Cycle", ylab = "Fluo", main = "Quadratic regression", 
+     pch = 19)
+mtext("B", cex = 1.3, side = 3, adj = 0) 
+# Calculate the the Ct value
+res <- th.cyc(x, y, r = 2400, linear = FALSE)
+lines(res@input, col = 2, lwd = 2)
+# Threshold fluorescence value
+abline(h = res@.Data[2], col = 3)
+# Calculated Ct value
+abline(v = res@.Data[1], col = 4)
+legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
+@
+
+
+
+	
+<<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap>>=
+# Application of the th.cyc method to determine the Cq from a continuous
+# amplification reaction.
+par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
+plot(NA, NA, xlim = c(0,80), ylim = c(0,1200), xlab = "Time [min]", 
+     ylab = "Voltage [micro V]", main = "ccPCR - Raw Data")
+
+# Threshold level "r" (50 micro Volts)
+for (i in c(1,3,5,7)) {
+  y.tmp <- capillaryPCR[, i + 1] - mean(capillaryPCR[1L:150, i + 1])
+  Ct.tmp <- th.cyc(capillaryPCR[, i], y.tmp, r = 50, linear = FALSE)
+  abline(v = Ct.tmp[1])
+  text(Ct.tmp[1] * 1.1, 1200, paste(round(Ct.tmp[1], 1), "\nmin"))
+  lines(capillaryPCR[, i], y.tmp, type = "b", pch = 20 - i) 
+  points(Ct.tmp@input, col = "red", pch = 19)
+}
+abline(h = 50)
+legend("topleft", c("Run 1", "Run 2", "Run 3", "Control"), pch = c(19, 17, 
+15, 
+13), lwd = 1.3, bty = "n")
+@
+
+
+\subsection{Isothermal amplification -  Helicase Dependent Amplification 
+of Vimentin}
+
+A Helicase Dependent Amplification (HDA) of Vimentin (Vim) was performed. 
+The VideoScan Platform \cite{roediger_highly_2013} was used to monitor the 
+amplification. The HDA was performed at 65 degree Celsius. 
+Three concentrations of input DNA (D1, D2, D3) were used 
+(Figure~\ref{figure:HDA}).
+
+To perform an isothermal amplification in VideoScan, standard conditions 
+for the IsoAmp(R) III Universal tHDA Kit (Biohelix) were used. Primers and 
+templates are described in \cite{roediger_highly_2013}. The reaction was 
+composed of reaction mix A) 10 $\mu$L A. bidest, 1.25 $\mu$L 10xbuffer, 
+0.75 $\mu$L primer(150~nM final), 0.5 $\mu$L template plasmid. 
+Preincubation: This mixture was incubated for 2 min at 95 degree. Celsius 
+and immediately placed on ice. Reaction mix B) 5 $\mu$L A. bidest., 1.25 
+$\mu$L 10x buffer, 2 $\mu$L NaCl, 1.25 $\mu$L MgSO4, 1.75 $\mu$L 
+dNTPs, 
+0.25 $\mu$L EvaGreen, 1 $\mu$L enzyme mix. The mix was covered with 50 
+$\mu$L mineral oil. The fluorescence measurement in VideoScan HCU started 
+directly after adding buffer B at 65 degree Celsius. A 1x (D1), a 1:10 
+dilution (D2) and a 1:100 (D3) dilution were tested. Temperature profile 
+(after Preincubation): 
+- 60 seconds at 65 degree Celsius 
+- 11 seconds at 55 degree Celsius \& Measurement
+
+<<HDA,fig.show='hold',fig.cap=fig13_cap>>=
+par(mfrow = c(2,1), bty = "n")
+plot(NA, NA, xlim = c(0,5000), ylim = c(0,1), xlab = "Time [sec]", 
+     ylab = "Fluorescence", main = "HDA amplification - Raw data")
+mtext("A", cex = 2, side = 3, adj = 0)
+  lines(C85[, 2], C85[, 3], type = "b", col = 2, pch = 20)
+  lines(C85[, 4], C85[, 5], type = "b", col = 4, pch = 20)
+  lines(C85[, 6], C85[, 7], type = "b", col = 6, pch = 20)
+  legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
+        pch = rep(20,3))
+
+plot(NA, NA, xlim = c(0,2000), ylim = c(0,0.4), xlab = "Time [sec]", 
+     ylab = "Fluorescence", main = "HDA amplification - Pre-processed data")
+mtext("B", cex = 2, side = 3, adj = 0)
+legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
+	  pch = rep(20,3))
+
+# Define the parameters for the pre-processesing by CPP and the th.cyc 
+# function.
+# smoothing method
+sm <- "mova"
+# manual range for background
+br <- c(2,10)
+# time range for analysis
+xr <- 3L:200
+# method for baseline normalization
+lrg <- "least"
+# threshold level for the th.cyc function
+r <- 0.05
+# Calculate in a loop the Cq values (Cycle threshold method) and add the
+# calculated time (in minutes) to the plot.
+for (i in c(2,4,6)) {
+  y.tmp <- CPP(C85[xr, i], C85[xr, i + 1], method = sm, bg.range = br, 
+	       trans = TRUE)$y.norm
+  Ct.tmp <- th.cyc(C85[xr, i], y.tmp, r = r, linear = FALSE)
+  abline(v = Ct.tmp[1], col = "grey")
+  text(Ct.tmp[1] * 1.1, 0.38, paste(round(Ct.tmp[1]/60, 1), "\nmin"))
+  lines(C85[xr, i], y.tmp, col = i, lwd = 2)
+  points(Ct.tmp@input, col = "red", pch = 19)
+}
+# Show the fluorescence value which defines the threshold.
+abline(h = r, lty = 2)
+@
+
+
+\subsection{Amplification efficiency}
 
   Various influences alter amplification reactions. A complex interaction 
 of the intrinsic and extrinsic factors like reaction conditions, substrate 
@@ -887,122 +937,104 @@ plot(effcalc(tmp[, 1], tmp[, 2:4]), CI = TRUE)
 mtext("B", cex = 1.1, side = 3, adj = 0, font = 2) 
 @
 
-\subsection{Imputation of missing values in amplification curve data - 
-fixNA}
 
-Amplification data of experimental systems may contain missing values 
-(NA). 
-The NAs may be caused by detector problems, acquisition error or other 
-assorted problems. There are different ways to handle missing values. One 
-approach is to ignore NAs which is generally acceptable. However, in case 
-of further calculation it is often necessary to handle cases of missing 
-values in a way that the next calculation steps can be performed. Missing 
-values can be eliminated by a imputation. Imputation encompasses various 
-approaches. This includes to calculate a location parameter (e.g., mean, 
-median) or other significant values (e.g., minimum, maximum, modus) of a 
-data column. However, in non-linear processes such as amplification 
-processes its is better to estimate the missing values from a trend. The 
-function fixNA was empirically tested and relies on a linear trend 
-estimation based on the approx function. This approach is useful but may 
-be 
-problematic on the phases other then background or plateau phases of an 
-amplification reaction. The parameter spline on fixNA enables a trend 
-estimation on splines and may be more appropriate in most scenarios. Other 
-smoothing functions such as the Savitzky-Golay smoothing filter have the 
-intrinsic capability to remove missing values [Savitzky and Golay 1964, 
-Eilers 2003]. The function fixNA imputes missing values in a single column 
-of data. The imputation is based on a linear approximation by default. 
-However, the data can also be estimated from an approximation by splines.
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{rllll}
-  \hline
- & Background - raw data & Background - fixed NA & cpD2 - raw data & cpD2 
-- fixed NA \\ 
-  \hline
-Linear phase - 1 NA & $4606.43 \pm 186$ & $4606.53 \pm 186$ & $18.20 \pm 
-0.145$ & $18.20 \pm 0.145$ \\ 
-  Exponential phase - 1 NA & $7555.31 \pm 468$ & $7555.28 \pm 468$ & 
-$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-  Plateau phase  - 1 NA & $11736.60 \pm 1032$ & $11736.82 \pm 1032$ & 
-$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-  Linear phase - 3 NA & $4606.43 \pm 186$ & $4607.05 \pm 186$ & $18.20 \pm 
-0.145$ & $18.20 \pm 0.145$ \\ 
-  Exponential phase - 3 NA & $7555.31 \pm 468$ & $7555.15 \pm 468$ & 
-$18.20 \pm 0.145$ & $18.19 \pm 0.148$ \\ 
-  Plateau phase  - 3 NA & $11736.60 \pm 1032$ & $11736.86 \pm 1033$ & 
-$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-   \hline
-\end{tabular}
-\end{table}
+\section{AmpSim - a function to simulate amplification curves}
+  The function \textsl{AmpSim} is a simulator for amplification reactions. 
+Use cases include teaching, algorithm testing or the comparison of an 
+experimental system to the predicted (''optimal``) model. \textsl{AmpSim} 
+uses a 5-parameter model (Equation~S\ref{eq:richards}).
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{rlll}
-  \hline
- & Cy0 - raw data & Cy0 - fixed NA & NRMSE \\ 
-  \hline
-Linear phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00012 \pm 
-0.000133$ \\ 
-  Exponential phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & 
-$0.00018 \pm 0.000176$ \\ 
-  Plateau phase  - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00026 
-\pm 0.000237$ \\ 
-  Linear phase - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00033 \pm 
-0.00031$ \\ 
-  Exponential phase - 3 NA & $11.73 \pm 1.06$ & $11.71 \pm 1.06$ & 
-$0.00078 \pm 0.000601$ \\ 
-  Plateau phase  - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00072 
-\pm 0.000475$ \\ 
-   \hline
-\end{tabular}
-\end{table}
+\begin{equation} \label{eq:richards}
+fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
+\end{equation}
 
-<<fixNA,fig.show='hold',fig.cap=fig8_cap>>=
-# Simulation of an ideal amplification curve with 40 cycles
-# The other parameter of the AmpSim function are identical to
-# the default.
+It is an intrinsic property of \textsl{AmpSim} to generate unique results 
+if 
+the $noise$ parameter is set $TRUE$. This is due the use of the 
+\textsl{rnorm} 
+(\emph{stats}) function to simulate noise. If data need to be replicated 
+identically use \textsl{set.seed(123)} to alter the random number 
+generator 
+(RNG) state. For example, the amplification curves of 
+Figure~\ref{fig:AmpSim_effcalc}~\emph{A} are generated with the same 
+starting 
+parameter of \textsl{AmpSim} but noise signals were added. 
+\textsl{AmpSim.gui} 
+is a \emph{shiny} GUI (graphical user interface) implementation for 
+\textsl{AmpSim}. Further details are described in section ``Graphical User 
+Interface \& data import and export''. \textsl{AmpSim} was also used to 
+illustrate the the \textsl{inder} function (Figure~\ref{figure:SDM}), the 
+\textsl{fixNA} function (Figure~\ref{figure:fixNA}) and the use of the 
+\textsl{smoother} (Figure~\ref{figure:smoother}) function.
 
-res <- AmpSim(cyc = 1:40)
+  \textsl{AmpSim} has several parameters, which can be used to simulate an 
+amplification curve. $b.eff$ and $Cq$ are most connected with another. 
+Thus changing one of them will change both values. $Cq$ can be used to 
+define an approximate Cq value. The expression ''approximate Cq value`` is 
+used because the calculated Cq value will vary depending on the preferred 
+Cq quantification method (e.g., Second Derivative Maximum ($SDM$) method, 
+threshold method). \textsl{AmpSim} can be used to simulate data with noise 
+(based on \textsl{rnorm}, \emph{stats}), signal-to-noise ratios, 
+photo-bleaching and other influences on a qPCR reaction. The following 
+example illustrates the use of \textsl{AmpSim} 
+(Figure~\ref{figure:AmpSim_random}).
 
-# Introduce a missing value (cycle 18) in the transition between 
-# the background and the exponential phase.
-res.NA <- res
-res.NA[18, 2] <- NA
 
-# Helper function to highlight the position of the missing value.
-abliner <- function(x1 = 17.5, x2 = 18.5, y1 = 0.09, y2 = 0.14) {
-		abline(v = c(x1, x2), col = "red")
-		abline(h = c(y1, y2), col = "red")
-	    }
+<<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold', fig.cap=fig1_cap>>=
+# Draw an empty plot for 40 cycles with user defined parameters.
 
-par(las = 0, mfrow = c(2,2), bty = "n")
-plot(res, xlab = "Cycles", ylab = "RFI", type = "b", pch = 20, 
-     main = "Without NA")
-abliner()
+par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
+plot(NA, NA, xlim = c(1,40), ylim = c(0,1.1), xlab = "Cycle", ylab = "RFU")
+colors <- rainbow(8)
+
+# Create eight amplification curves. The approximate Cqs are synthesized 
+# as temporary Cqs by adding a random value to a starting Cq of 25. Note: 
+# ``noise'' is set TRUE with a level of nnl = 0.03. This adds some scatter 
+# to the amplification curves.
+
+sim <- sapply(1L:8, function(i) {
+  Cq.tmp <- 25 + rnorm(1) * 5
+  
+  tmp <- AmpSim(1:40, Cq = Cq.tmp, noise = TRUE, nnl = 0.03)
+  lines(tmp, col = colors[i], lwd = 2)
+  
+  # Add the approximate Cq values to the plot
+  text(3, 1 - i / 10, paste("Cq ", round(Cq.tmp, 2)), col = colors[i])
+})
+@
+
+\section{Proposed workflow}
+
+
+<<workflow,fig.show='hold',fig.cap=fig4_cap,warning=FALSE>>=
+layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE), respect = TRUE)
+
+par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
+
+th.cyc.raw <- apply(VIMCFX96_60[, -1], 2, function(i) {
+		    th.cyc(VIMCFX96_60[, 1], i, r = 2575)[1,1]})
+
+res.CPP <- apply(VIMCFX96_60[, -1], 2, function(i) {
+		    CPP(VIMCFX96_60[, 1], i, trans = TRUE, 
+			method.norm = "minmax")[["y.norm"]]})
+		 
+th.cyc.CPP <- apply(res.CPP, 2, function(i) {
+		    th.cyc(VIMCFX96_60[, 1], i, r = 0.1)[1,1]})
+
+matplot(VIMCFX96_60[, -1], type = "l", pch = 19, col = 1, lty = 1, 
+	xlab = "Cycle", ylab = "Raw fluorescence", main = "Raw")
+abline(h = 2575, lty = 2)
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2)
-res.NA.linear <- fixNA(res.NA[, 1], res.NA[, 2], spline = FALSE, 
-		       verbose = FALSE)
 
-plot(res.NA, xlab = "Cycles", ylab = "RFI", type = "b", pch = 20, 
-     main = "With NA during transition")
-abliner()
+matplot(res.CPP, type = "l", pch = 19, col = 1, lty = 1, xlab = "Cycle", 
+	ylab = "Fluorescence", main = "CPP")
+abline(h = 0.1, lty = 2)
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2)
 
-res.NA.spline <- fixNA(res.NA[, 1], res.NA[, 2], spline = TRUE, 
-		       verbose = FALSE)
-	       
-plot(res.NA.linear, xlab = "Cycles", ylab = "RFI", type = "b", 
-     pch = 20, main = "Linear imputed\n NA")
-abliner()
+boxplot(data.frame(Raw = th.cyc.raw, CPP = th.cyc.CPP), ylab = "Cq (Ct)", 
+	notch = TRUE)
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
-     
-plot(res.NA.spline, xlab = "Cycles", ylab = "RFI", type = "b", 
-      pch = 20, main = "Spline imputed\n NA")
-abliner()
-mtext("D", cex = 1.2, side = 3, adj = 0, font = 2)
-par(mfrow = c(1,1))
 @
 
 \section{Auxillary functions}
@@ -1178,54 +1210,29 @@ noise.
 
 \subsection{rounder}
 
-Function inder calculates numeric derivatives on 
+Function \textsl{inder} calculates numeric derivatives on 
 smoothed data which results in data points not observable in reality. The 
 rounder function averages such result to the real values of cycle 
 number.
 
 \subsection{humanrater}
 
-The function humanrater is an interactive function, which can be 
-used to rate a curve for a certain characteristic. humanrater draws
+The function \textsl{humanrater} is an interactive function, which can be 
+used to rate a curve for a certain characteristic. \textsl{humanrater} draws
 individual graphs of a curve and prompts an input field for the user. This
 function can be used to compare the human rating and the rating of a 
 machine.
 
 \subsection{lm.coefs}
 
-lm.coefs is convinient wrapper around few functions performing 
-normal (least squares) and robust linear regression. If the robut linear 
-regression is not possible, lm.coefs will perform linear regression 
+\textsl{lm.coefs} is convenient wrapper around functions performing 
+normal (least squares) and robust linear regression. If the robust linear 
+regression is not possible, \textsl{lm.coefs} will perform linear regression 
 using the least squares method.
 This function can be used to calculate the background of an amplification
-cruve. The coefficients of the analysis can be used for a trend based
+curve. The coefficients of the analysis can be used for a trend based
 correction of the entire data set.
 
-
-\subsection{normalizer}
-
-normalizer is a function to normalize any data set. It is possible 
-to chose from different methods (see Details). The function is useful if
-the data from an experiment have considerable variation regarding the 
-background and plateau signal.
-
-The parameter qnL is a user defined quantile which is used for the 
-quantile 
-normalization. 
-\begin{itemize}
-\item A quantile normalization herein refers to an approach which is less 
-prone to 
-outliers than a normalization based on the minimum and the maximum of an 
-amplification curve.
-\item minmax does a normalization between 0 and 1 (see Roediger et al. 
-2013 for explanation).
-\item max does a normalization to the maximum value (MFI/max(MFI)).
-\item lugn does a quantile normalization based on a symmetric proportion 
-as defined by the qnL parameter (e.g., qnL = 0.03 equals 3 and 97 
-percent quantiles).
-\item zscore performs a z-score normalization with a mean of 0 and a 
-standard deviation of 1.
-\end{itemize}
 
 \section{Data sets}
 
@@ -1237,21 +1244,22 @@ datdf <- structure(list(dat.names = c("capillaryPCR", "C60.amp",
 "VIMCFX96_meltcurve", "VIMiQ5_595", "VIMiQ5_685", "VIMiQ5_melt", 
 "C54", "CD74", "Eff625", "Eff750", "Eff875", "Eff1000", "C67", 
 "CD75", "C81", "C85"), descrs = c("  The capillary convective PCR (ccPCR) 
-is a modified device of the ccPCR system proposed by Chou et al. 2013.", 
+is a modified device of the ccPCR system proposed by .", 
 "  qPCR Experiment for the Amplification of MLC-2v and Vimentin (as 
 decadic dilutions) Using the Roche Light Cycler 1.5.", 
 "  Melt Curves MLC-2v and Vimentin for the qPCR experiment C60.amp using 
 the Roche Light Cycler 1.5", 
-"  A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
-2007) was performed in the Bio-Rad iQ5 thermo cycler. The cycle-dependent 
+"  A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) 
+was performed in the Bio-Rad iQ5 thermo cycler. The cycle-dependent 
 increase of the fluorescence was quantified at the elongation step (59.5 
 deg Celsius).", 
-"  A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
-2007) was performed in the Bio-Rad iQ5 thermo cycler. The cycle-dependent 
+"  A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen)
+was performed in the Bio-Rad iQ5 thermo cycler. The 
+cycle-dependent 
 increase of the fluorescence was quantified at the elongation step (68.5 
 deg Celsius).", 
 "  Quantitive PCR (qPCR) with a hydrolysis probe (Cy5/BHQ2) and DNA 
-binding dye (EvaGreen) (Mao et al. 2007) performed in the Roche Light 
+binding dye (EvaGreen)  performed in the Roche Light 
 Cycler 1.5 thermo cycler.", 
 "  Human vimentin amplifcation curve data (measured during annealing phase 
 at 60 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo 
@@ -1294,10 +1302,10 @@ DNA quantities using the Bio-Rad iQ5 thermo cycler.",
 sapiens hypoxanthine phosphoribosyltransferase 1) measured at at 55, 60 or 
 65 degree Celsius.", 
 "  Helicase Dependent Amplification (HDA) of pCNG1 using the VideoScan 
-Platform (Roediger et al. (2013)). The HDA was performed at 65 degree 
+Platform. The HDA was performed at 65 degree 
 Celsius. Two concentrations of input DNA were used.", 
 "  Helicase Dependent Amplification (HDA) of Vimentin (Vim) in the 
-VideoScan Platform (Roediger et al. (2013)). The HDA was performed at 65 
+VideoScan Platform. The HDA was performed at 65 
 degree Celsius with three dilutions of input DNA."
 ), dat.types = c("capillary convective PCR (ccPCR)", "standard qPCR - 
 commercial thermo cyclers", 
