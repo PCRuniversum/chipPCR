@@ -616,37 +616,6 @@ stencil approach can find an application even in problems not related to
 the 
 analysis of amplification curve.
 
-\begin{figure*}
-\begin{verbatim}
-# AmpSim is used to generate an amplification curve with 40 cycles 
-(approximate 
-# Cq ~ 20) as object isPCR. isPCR is an object of the class "data.frame".
-isPCR <- AmpSim(cyc = 1:40, Cq = 20)
-
-# Invoke the inder function for the object isPCR to interpolate the 
-derivatives 
-# of the simulated data as object res. The Nip parameter was set to 5. 
-# This leads to smoother curves. res is an object of the class "der".
-
-res <- inder(isPCR)
-
-# Fetch the Cq values from res with the summary function
-summ <- summary(res, print = FALSE)
-
-# Print the summary of the object res.
-summ
-
-# FDM: first derivative maximum, SDM: second derivative maximum, SDm: 
-second 
-# derivative minimum, SDC: second derivative center.
-#     FDM      SDM      SDm      SDC 
-19.88679 18.90566 21.11321 19.97897
-\end{verbatim}
-\end{figure*}
-
-\emph{Example 2: The \textsl{inder} function in combination with the 
-\textsl{diffQ2} function}
-
 \textsl{inder} is a helper function, which can be part of other routines. 
 Recently, we added this approach to the \textsl{diffQ} function of the 
 \emph{MBmca} for improved predictions. \textsl{diffQ} function is part of 
