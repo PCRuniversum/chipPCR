@@ -308,20 +308,21 @@ setMethod("qqline", signature(y = "refMFI"), function(y, datax = FALSE,
          probs = probs, qtype = qtype)
 })
 
+
 setMethod("summary", signature(object = "refMFI"), function(object, print = TRUE) {
   stats <- slot(object, "stats")
+  nice.names <- c("Mean", "Median", "Standard deviation", 
+                  "Median Absolute Deviation", "Interquartile Range", 
+                  "Medcouple", "Skewness", 
+                  "SNR", "VRM", "Number of NAs", "Intercept", "Slope", 
+                  "R squared", "Breusch-Pagan Test p-value"
+  )
   if (print) {
-    cat(paste0("Mean: ", format(stats[1], digits = 6)))
-    cat(paste0("\nMedian: ", format(stats[2], digits = 6)))
-    cat(paste0("\nStandard deviation: ", format(stats[3], digits = 6)))
-    cat(paste0("\nMedian absolute deviation: ", format(stats[4], digits = 6)))
-    cat(paste0("\nBreusch-Pagan Test p-value: ", format(stats["heter.p"], digits = 6)))
+    for(i in 1L:length(stats))
+      cat(paste0(nice.names[i], ": ", 
+                 format(stats[i], digits = getOption("digits") - 3), "\n"))
   }
-  invisible(c(mean = stats[1], 
-              median = stats[2],
-              sd = stats[3],
-              mad = stats[4],
-              heter.p = stats[["heter.p"]]))
+  invisible(stats)
 })
 
 
