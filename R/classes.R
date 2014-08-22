@@ -171,7 +171,9 @@ setClass("der", contains = "matrix", representation(.Data = "matrix",
                                                     method = "character"))
 
 
-setMethod("summary", signature(object = "der"), function(object, digits = 0, print = TRUE) {
+setMethod("summary", signature(object = "der"), function(object, 
+                                                         digits = getOption("digits") - 3, 
+                                                         print = TRUE) {
   data <- slot(object, ".Data")
   FDM <- data[data[, "d1y"] == max(data[, "d1y"]), "x"] 
   SDM <- data[data[, "d2y"] == max(data[, "d2y"]), "x"]
@@ -179,10 +181,10 @@ setMethod("summary", signature(object = "der"), function(object, digits = 0, pri
   SDC <- sqrt(SDM * SDm)
   if (print) {
     cat(paste0("Smoothing method: ", slot(object, "method")))
-    cat(paste0("\nFirst derivative maximum: ", round(FDM, digits = digits)))
-    cat(paste0("\nSecond derivative maximum: ", round(SDM, digits = digits)))
-    cat(paste0("\nSecond derivative minimum: ", round(SDm, digits = digits)))
-    cat(paste0("\nSecond derivative center: ", round(SDC, digits = digits)))
+    cat(paste0("\nFirst derivative maximum: ", format(FDM, digits = digits)))
+    cat(paste0("\nSecond derivative maximum: ", format(SDM, digits = digits)))
+    cat(paste0("\nSecond derivative minimum: ", format(SDm, digits = digits)))
+    cat(paste0("\nSecond derivative center: ", format(SDC, digits = digits)))
   }
   res <- c(FDM, SDM, SDm, SDC)
   names(res) <- c("FDM", "SDM", "SDm", "SDC")

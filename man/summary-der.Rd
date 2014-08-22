@@ -12,7 +12,7 @@ Summarize \code{\linkS4class{der}} objects and easily access results of
 function.
 }
 \usage{
-\S4method{summary}{der}(object, digits = 0, print = TRUE)
+\S4method{summary}{der}(object, digits = getOption("digits") - 3, print = TRUE)
 }
 
 \arguments{
@@ -22,7 +22,7 @@ is a \code{\linkS4class{der}} object.
   \item{digits}{
 is a \code{numeric} value determining the number of decimal places. Used 
 only
-for printed values. See \link[base]{round}.
+for printed values. See \link[base]{format}.
 }
   \item{print}{
 is a \code{logical} value determining if pretty summary of the object 
