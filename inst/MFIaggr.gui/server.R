@@ -1,8 +1,18 @@
 library(shiny)
 library(chipPCR)
 
+#blank plot
+bp <- function()
+  plot(1, type="n", axes=F, xlab="", ylab="", main = "No input data")
+
+
+
 # server for the Shiny app
 shinyServer(function(input, output) {
+  
+  null.input <- reactive({
+    is.null(input[["input.file"]])
+    })
   
   processed.data <- reactive({
     dat <- switch(input[["csv.type"]], 
@@ -26,25 +36,45 @@ shinyServer(function(input, output) {
   })
   
   output[["input.data"]] <- renderTable({
-    processed.data()
+    if (null.input()) {
+      data.frame(X1 = "No input data")
+    } else {
+      processed.data()
+    }
   })
   
   output[["refMFI.plot"]] <- renderPlot({
-    plot(res.mfi())
+    if (null.input()) {
+      bp()
+    } else {
+      plot(res.mfi())
+    }
   })
   
   output[["allp.plot"]] <- renderPlot({
-    dat <- processed.data()
-    plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], CPP = TRUE, type = "l")
+    if (null.input()) {
+      bp()
+    } else {
+      dat <- processed.data()
+      plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], CPP = TRUE, type = "l")
+    }
   })
   
   
   output[["refMFI.summary"]] <- renderPrint({
-    summary(res.mfi())
+    if (null.input()) {
+      print("No input data.")
+    } else {
+      summary(res.mfi())
+    }
   })
   
   output[["refMFI.table"]] <- renderTable({
-    slot(res.mfi(), ".Data")
+    if (null.input()) {
+      data.frame(X1 = "No input data")
+    } else {
+      slot(res.mfi(), ".Data")
+    }
   })
   
   
@@ -54,7 +84,7 @@ shinyServer(function(input, output) {
       write.csv(slot(res.mfi(), ".Data"), file)
     }
   )
-   
+  
   output[["download.result"]] <- downloadHandler(
     filename  = "refMFI_report.html",
     content <- function(file) {
