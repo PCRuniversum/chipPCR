@@ -37,18 +37,28 @@ fig1_cap <- "The amplification curves were generated with the
 \\textsl{AmpSim} function. All Cqs are unique due to the use of random 
 value, which were added to the starting Cq of 25. The parameter $noise = 
 0.03$ adds some scatter to the amplification curve data."
-fig2_cap <- "The function provides two modes (\\textbf{A)} is the linear 
+fig1_scap <- "Simulation of a qPCR experiment using \\textsl{AmpSim} function."
+
+
+fig2_cap <- "Working principle of \\textsl{th}.\\textsl{cyc}.
+The function provides two modes (\\textbf{A)} is the linear 
 regression. \\textbf{B)} Quadratic regression) for the calculation of the 
 Cq. In both cases is the highest R squared value determining how many left 
 an right neighbors above and the below the used defined threshold level 
 are use."
-fig3_cap <- "Data from a ccPCR were analyzed using the th.cyc function 
+fig2_scap <- "Working principle of \\textsl{th}.\\textsl{cyc}."
+
+fig3_cap <- "Application of \\textsl{th}.\\textsl{cyc} for the analysis of ccPCR data.
+Data from a ccPCR were analyzed using the th.cyc function 
 using the linear regression mode. The threshold level ($r = 50$) was 
 identical for all data. The Cq (Ct) are given in minutes. The range used 
 for the calculation of the Cq is indicated in red. Negative curves are 
 automatically excluded from the analysis if the 90\\% percentile is lower 
 or equal to the threshold level ($r$)."
-fig4_cap <- "\\textbf{A)} The raw data of the VIMCFX96\\_60 data set were 
+fig3_scap <- "Application of \\textsl{th}.\\textsl{cyc} for the analysis of ccPCR data."
+
+fig4_cap <- "Application of the \\textsl{CPP} and \\textsl{th}.\\textsl{cyc} functions.
+\\textbf{A)} The raw data of the VIMCFX96\\_60 data set were 
 plotted without pre-processing. \\textbf{B)} All amplification curve data 
 were pre-processed with the CPP function. The parameter $trans$ was set to 
 $TRUE$, which lead to a linear trend correction and base-lining. By 
@@ -58,7 +68,11 @@ Cqs were calculated with th.cyc function. The Cq for the raw data was
 $17.25 \\pm 0.5$ (at $r = 2575$) and $17.1 \\pm 0.1$ (at $r = 0.1$) for 
 the pre-processed data. Our results indicate that the dispersion of the Cq 
 values was slightly lower."
-fig5_cap <- "The VIMCFX96\\_60 data set (96-well plate cycler, Bio-Rad 
+fig4_scap <- "Application of the \\textsl{CPP} and \\textsl{th}.\\textsl{cyc} functions."
+
+
+fig5_cap <- "Comparison of the normalization functions from \\textsl{CPP}.
+The VIMCFX96\\_60 data set (96-well plate cycler, Bio-Rad 
 CFX96, EvaGreen detection) was used. \\emph{(A)} Raw data of all 
 amplification curves. The signals are superimposed to circa 2200 RFU and 
 the inter-sample baseline and plateau shift is high. Note the positive 
@@ -70,14 +84,20 @@ linear regression ($trans = TRUE$). \\emph{(B)} baselined raw data,
 \\emph{(C)} \\emph{Min-Max normalization}, \\emph{(D)} \\emph{Max 
 normalization}, \\emph{(E)} \\emph{lugn-normalization} with a cut off 3\\% 
 and \\emph{(F)} \\emph{zscore-normalization}."
-fig6_cap <- "\\emph{(A)} AmpSim was used to synthesize a qPCR experiment 
+fig5_scap <- "Comparison of the normalization functions from \\textsl{CPP}"
+
+fig6_cap <- "Amplification standard curve simulation and regression analysis.
+\\emph{(A)} AmpSim was used to synthesize a qPCR experiment 
 of six dilutions (three replicates per dilution) standard samples. The Cqs 
 were determined by the $SDM$ method (solid black vertical lines). 
 \\emph{(B)} effcalc was used to automatically perform a linear regression. 
 The regression curve (\\textendash) was plotted as the decadic logarithm 
 of input concentration versus the Cq. The 95\\% confidence interval is 
 shown be the light-blue solid lines."
-fig7_cap <- "Data of a VideoScan HCU dilution experiment (C54 data set) 
+fig6_scap <- "Amplification standard curve simulation and regression analysis."
+
+fig7_cap <- "Calculation of the amplification efficiency.
+Data of a VideoScan HCU dilution experiment (C54 data set) 
 were analyzed. \\emph{(A)} Visualization of the raw data. One of the three 
 dilutions contains a missing value due to a sensor error. \\emph{(B, top 
 panel)} The CPP function was used to baseline, to remove the missing value 
@@ -87,13 +107,18 @@ panel)} The CPP function was used to baseline, to remove the missing value
 The Cqs ($SDM$) of the pre-processed data were calculated by diffQ2 (see 
 main text) and analyzed with \\textsl{effcalc}. The amplification 
 efficiency approximately at 87.3~\\%."
+fig7_scap <- "Calculation of the amplification efficiency."
+
 fig8_cap <- "Imputation of missing values in amplification curve data. 
 \\emph{(A)} Raw data were generated using the AmpSim 
 simulation function. \\emph{(B)} A missing value was introduced in the 
 transition phase. The missing value was imputed either by \\emph{(C)} 
 linear approximation or \\emph{(D)} a cubic spline approximation. The 
 spline approximation nearly reconstituted the original curve."
-fig9_cap <- "Raw data (\\textbullet) were generated using the AmpSim 
+fig8_scap <- "Imputation of missing values in amplification curve data."
+
+fig9_cap <- "Cycle of quantification by the second derivative maximum method.
+Raw data (\\textbullet) were generated using the AmpSim 
 simulation function (see example main text). The inflection point is the 
 point where the slope is maximum and the curvature is zero. The first 
 derivative of the amplification curve has a first derivative maximum 
@@ -109,7 +134,11 @@ approximate derivative maximum ($FDM$), second derivative minimum ($SDm$),
 and approximate second derivative center ($SDC$, geometric mean of $SDM$ 
 and $SDm$) are available. $FDM$, $SDm$ and $SDC$ values can be used to 
 further characterize the amplification process."
-fig10_cap <-  "\\emph{(A)} Plot the samples detected with EvaGreen and 
+fig9_scap <- "Cycle of quantification by the second derivative maximum method."
+
+fig10_cap <-  "Plot all data from C127EGHP and calculate the $SDM$ (Second 
+Derivative Maximum) values with the \\textsl{diffQ2} function.
+\\emph{(A)} Plot the samples detected with EvaGreen and 
 \\emph{(B)} shows the same samples detected with the Hydrolysis probe for 
 MLC-2v. \\emph{(C)} Stripchart of the Cq values (\\textbullet) with the 
 median (\\emph{\\textendash}) and the median absolute deviation 
@@ -117,7 +146,12 @@ median (\\emph{\\textendash}) and the median absolute deviation
 the derived from the detection with hydrolysis probes is higher than the 
 samples detected with EvaGreen. Note: the $inder$ parameter is set as 
 TRUE."
-fig11_cap <-  "\\emph{(A)} The \textsl{C126EG595} data set was used with 
+fig10_scap <- "Plot all data from C127EGHP and calculate the $SDM$ (Second 
+Derivative Maximum) values with the \\textsl{diffQ2} function."
+
+fig11_cap <-  "Amplification curve profiles from the Bio-Rad iQ5 thermo cycler 
+for the human gene \\textit{HPRT1}.
+\\emph{(A)} The \\textsl{C126EG595} data set was used with 
 96 replicates of equal starting numbers of template molecules. Vertical 
 lines represent the Cq ($SDM$ method) determined with inder method on 
 amplification curves fitted with a 5-parameter curve function. Curves with 
@@ -127,12 +161,18 @@ after differentiation all inter sample baseline and plateau shifts are
 similar. \\emph{(C)} Histogram (class width = 0.05 Cq) of the Cq values 
 ($SDM$). Cqs were mainly at circa 15.7 (N = 80) while some amplification 
 curves had a Cq less than 15.5 (N = 16)."
+fig11_scap <- "Amplification curve profiles from the Bio-Rad iQ5 thermo cycler 
+for the human gene \\textit{HPRT1}"
+
 fig12_cap <- "Signal analysis using the VIMCFX96\\_60 data set (96-well 
 plate cycler (Bio-Rad CFX96)). All cycles (ROI: 1 -- 40) were analyzed by 
 the MFIaggr function. The density plot (right upper panel) and 
 quantile-quantile analysis (right lower panel) show no normal 
 distribution. Due to the sigmoidal curve structure is the density function 
 bimodal."
+fig12_scap <- "Signal analysis using the VIMCFX96\\_60 data set (96-well 
+plate cycler (Bio-Rad CFX96))."
+
 fig13_cap <- "Helicase Dependent Amplification (HDA) of Vimentin (Vim).
 The VideoScan Platform was used to 
 monitor the amplification. The HDA was performed at 65 degree Celsius. 
@@ -141,6 +181,8 @@ curves were smoothed by a moving average (windowsize 3) and baselined by a
 a robust linear regression by computing MM-type regression estimator. The 
 th.cyc function was used to determine the time required to reach the 
 threshold level of 0.05 (--)."
+fig13_scap <- "Helicase Dependent Amplification (HDA) of Vimentin (Vim)."
+
 fig14_cap <- "The plotCurves function. Plots many curves on one plot in 
 separate cells allowing quick assessment. Missing values were artificially 
 introduced at random position to selected curves of the VIMCFX96\\_60 data 
@@ -148,6 +190,8 @@ set (solid black line). A colored box (topleft of each plot) indicates the
 sample name and if the data contain missing values. The red rug indicates 
 the position of the missing values. The red lined shows the amplification 
 curve after unsupervised pre-processesing (using an instance of CPP)."
+fig14_scap <- "The plotCurves function."
+
 fig15_cap <- "Use of MFIaggr to test for heteroskedasticity using the 
 Breusch-Pagan test. The data were aggregated with the MFIaggr function and 
 assigned to the object res. The standard deviation was transformed to the 
@@ -158,6 +202,8 @@ analyzed. Next the cycles 1 to 40 of the same amplification curve data were
 analyzed. The Breusch-Pagan confirmed the heteroskedasticity in the 
 amplification curve data. The VIMCFX96\\_60 and VIMCFX96\\_69 data sets were 
 used."
+fig15_scap <- "Use of MFIaggr to test for heteroskedasticity using the 
+Breusch-Pagan test."
 @
 
 
@@ -255,7 +301,7 @@ In our example we analyzed the raw fluorescence from 96 replicates
 \textit{Vimentin}. The \textsl{MFIaggr} plot shows that the analysis of 
 all cycles is non-normal distributed (Figure~\ref{figure:MFIaggr_all}). 
 
-<<MFIaggr_all,fig.show='hold',fig.cap=fig12_cap>>=
+<<MFIaggr_all,fig.show='hold',fig.cap=fig12_cap,fig.scap=fig12_scap>>=
 plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
      llul = c(1,40)), CV = FALSE)
 @
@@ -278,7 +324,7 @@ in the annealing phase (Figure~\ref{figure:MFIaggr_all}A and B). The
 heteroskedasticity was significant in during the 
 (Figure~\ref{figure:MFIaggr_all}A) first 15 cycles at 60 degree Celsius.
 
-<<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig15_cap>>=
+<<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig15_cap,fig.scap=fig15_scap>>=
 par(mfrow = c(2,2), bty = "n")
 # Create a helper function "hsk.test" to analyze the heteroskedasticity
 # and the variance.
@@ -324,7 +370,7 @@ data (Savitzky-Golay Smoothing), remove missing values (spline
 interpolation by default) and perform a background subtraction (baselining 
 to zero).
 
-<<plotCurves,fig.show='hold',fig.cap=fig14_cap>>=
+<<plotCurves,fig.show='hold',fig.cap=fig14_cap,fig.scap=fig14_scap>>=
 y <- VIMCFX96_60[, 2L:9]
 # Introduce some missing values.
 y[unique(floor(runif(10,1,35))), unique(floor(runif(10,1,8)))] <- NA
@@ -405,7 +451,7 @@ $0.00078 \pm 0.000601$ \\
 \end{tabular}
 \end{table}
 
-<<fixNA,fig.show='hold',fig.cap=fig8_cap>>=
+<<fixNA,fig.show='hold',fig.cap=fig8_cap,fig.scap=fig8_scap>>=
 # Simulation of an ideal amplification curve with 40 cycles
 # The other parameter of the AmpSim function are identical to
 # the default.
@@ -476,7 +522,7 @@ percent quantiles).
 standard deviation of 1.
 \end{itemize}
 
-<<normalization,fig.show='hold',fig.cap=fig5_cap>>=
+<<normalization,fig.show='hold',fig.cap=fig5_cap,fig.scap=fig5_scap>>=
 par(mfrow = c(2,3), las = 0, bty = "n", oma = c(.5,.5,.5,.5))
 tmp <- VIMCFX96_60
 
@@ -642,6 +688,7 @@ function was used to calculate the $SDM$ of the predicted models. for
 Figure~\ref{figure:inder_fit} 
 
 \subsection{Threshold cycle method}
+\label{sec:ccPCR}
 
 \textsl{th.cyc} function can also be used to calculate the quantification 
 cycle. This function was implemented primarily for the analysis of 
@@ -677,7 +724,7 @@ to fit a "complex" non linear model to the entire data set but rather
 focuses on the specific area. The polynomial is calculated from four 
 neighbor values at the fluorescence threshold.
 
-<<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap>>=
+<<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap,fig.scap=fig2_scap>>=
 # Raw data from the VIMCFX96_69 data set.
 # Cycles
 x <- VIMCFX96_69[, 1]
@@ -714,7 +761,7 @@ legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
 
 
 	
-<<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap>>=
+<<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap>>=
 # Application of the th.cyc method to determine the Cq from a continuous
 # amplification reaction.
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -740,6 +787,7 @@ legend("topleft", c("Run 1", "Run 2", "Run 3", "Control"), pch = c(19, 17,
 \subsection{Isothermal amplification -  Helicase Dependent Amplification 
 of Vimentin}
 
+
 A Helicase Dependent Amplification (HDA) of Vimentin (Vim) was performed. 
 The VideoScan Platform \cite{roediger_highly_2013} was used to monitor the 
 amplification. The HDA was performed at 65 degree Celsius. 
@@ -763,7 +811,7 @@ dilution (D2) and a 1:100 (D3) dilution were tested. Temperature profile
 - 60 seconds at 65 degree Celsius 
 - 11 seconds at 55 degree Celsius \& Measurement
 
-<<HDA,fig.show='hold',fig.cap=fig13_cap>>=
+<<HDA,fig.show='hold',fig.cap=fig13_cap,fig.scap=fig13_scap>>=
 par(mfrow = c(2,1), bty = "n")
 plot(NA, NA, xlim = c(0,5000), ylim = c(0,1), xlab = "Time [sec]", 
      ylab = "Fluorescence", main = "HDA amplification - Raw data")
@@ -840,7 +888,7 @@ efficiency (\%) according to Equation~S\ref{eq:AE}, the results of the
 linear regression and the correlation test (Pearson) 
 (Table~S\ref{table:effcalc_output}).
 
-<<CPP_C54,fig.show='hold',fig.cap=fig7_cap>>=
+<<CPP_C54,fig.show='hold',fig.cap=fig7_cap,fig.scap=fig7_scap>>=
 require(MBmca)
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
 par(fig = c(0,0.5,0,1), new = TRUE)
@@ -882,7 +930,7 @@ plot(effcalc(res.dil[, 1], res.dil[, 2]))
 % effcalc function.", label = "effcalc_output")
 % @
 
-<<AmpSim_effcalc,fig.show='hold',fig.cap=fig6_cap,message=FALSE>>=
+<<AmpSim_effcalc,fig.show='hold',fig.cap=fig6_cap,fig.scap=fig6_scap,message=FALSE>>=
 
 # Load MBmca package (v. 0.0.3-3 or later)
 require(MBmca)
@@ -981,7 +1029,7 @@ example illustrates the use of \textsl{AmpSim}
 (Figure~\ref{figure:AmpSim_random}).
 
 
-<<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold', fig.cap=fig1_cap>>=
+<<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig1_cap,fig.scap=fig1_scap>>=
 # Draw an empty plot for 40 cycles with user defined parameters.
 
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -1007,7 +1055,7 @@ sim <- sapply(1L:8, function(i) {
 \section{Proposed workflow}
 
 
-<<workflow,fig.show='hold',fig.cap=fig4_cap,warning=FALSE>>=
+<<workflow,fig.show='hold',fig.cap=fig4_cap,fig.scap=fig4_scap,warning=FALSE>>=
 layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE), respect = TRUE)
 
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -1040,7 +1088,7 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 \section{Auxillary functions}
       
 
-<<SDM,fig.show='hold',fig.cap=fig9_cap>>=
+<<SDM,fig.show='hold',fig.cap=fig9_cap,fig.scap=fig9_scap>>=
 # Use AmpSim to generate an amplification curve with 40 cycles
 # and an approximate Cq of 20 and assign it to the object isPCR.
 # isPCR is an object of the class "data.frame".
@@ -1089,7 +1137,7 @@ summ
 
 
 
-<<inder,fig.show='hold',fig.cap=fig10_cap,message=FALSE,results='hide'>>=
+<<inder,fig.show='hold',fig.cap=fig10_cap,fig.scap=fig10_scap,message=FALSE,results='hide'>>=
 # Plot all data from C127EGHP and calculate the SDM (Second Derivative 
 # Maximum) values with the diffQ2() function (Note: the inder parameter
 # is set as TRUE)
@@ -1146,7 +1194,7 @@ pointer(HP, pos = 2, w = 8)
 @
 
 
-<<inder_fit,fig.cap=fig11_cap,fig.show='hold',message=FALSE,results='hide'>>=
+<<inder_fit,fig.cap=fig11_cap,fig.scap=fig11_scap,fig.show='hold',message=FALSE,results='hide'>>=
 fit.amp <- function(cyc, fluo, plot = FALSE) {
 
 	ampl <- quantile(fluo, 0.999)
