@@ -39,6 +39,7 @@ Suggests:
     xtable
 VignetteBuilder: knitr
 Imports:
+    lmtest,
     MASS,
     outliers,
     ptw,

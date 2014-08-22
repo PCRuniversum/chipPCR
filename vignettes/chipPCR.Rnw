@@ -146,6 +146,16 @@ as solid black line. A colored box (topleft of each plot) indicates the
 sample name and if the data contain missing values. The red lined shows 
 the amplification curve after unsupervised pre-processesing (using an 
 instance of CPP)."
+fig15_cap <- "Use of MFIaggr to test for heteroskedasticity using the 
+Breusch-Pagan test. The data were aggregated with the MFIaggr function and 
+assigned to the object res. The standard deviation was transformed to the 
+variance. The plot shows the cycle dependent variance measured at 60 degree 
+Celsius (annealing phase; A, B) and 69 degree Celsius (elongation phase, C, 
+D). First cycles 1 to 10 of 96 qPCR replicate amplification curves were 
+analyzed. Next the cycles 1 to 40 of the same amplification curve data were 
+analyzed. The Breusch-Pagan confirmed the heteroskedasticity in the 
+amplification curve data. The VIMCFX96\\_60 and VIMCFX96\\_69 data sets were 
+used."
 @
 
 
@@ -219,11 +229,88 @@ rapid and convenient inspection of raw data.
 
 \subsection*{MFIaggr}
 
+ \textsl{MFIaggr} is a powerful analytical and graphical tool for fast 
+multiple comparison of the cycle dependent signal dispersion and 
+distribution. This functions enables the analysis of specific parts of the 
+curve data as defined by the $llul$ parameter. $llul$ defines the lower 
+and upper data limit (cycles) for a region of interest (ROI). The function 
+returns an object with the columns ``Cycle'', ``Location'' (Mean, Median), 
+``Deviation'' (Standard Deviation, Median Absolute Deviation) and 
+``Coefficient of Variation''. Using the option $rob = TRUE$ the median and 
+the median absolute deviation (MAD) are calculated instead of the mean and 
+standard deviation. \textsl{MFIaggr} has parameter $llul$ to define the 
+lower and upper data limit (cycle) for a ROI. Inoked by $@stats$ reports 
+\textsl{MFIaggr} further information such as inter quartile range (IQR), 
+medcouple (robust measure of skewness), skewness (Pearson's second 
+skewness coefficient), signal-to-noise ratio (SNR), variance-to-mean ratio 
+(VRM), number of missing values (NAs), results from a linear fit of the 
+ROI (intercept, slope, r.squared) and the Breusch-Pagan test to test for 
+heteroscedasticity in a linear regression model.
 
+In our example we analyzed the raw fluorescence from 96 replicates 
+("VIMCFX96\_60" data set) of a qPCR experiment for the human gene 
+\textit{Vimentin}. The \textsl{MFIaggr} plot shows that the analysis of 
+all cycles is non-normal distributed (Figure~\ref{figure:MFIaggr_all}). 
 
 <<MFIaggr_all,fig.show='hold',fig.cap=fig12_cap>>=
 plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
      llul = c(1,40)), CV = FALSE)
+@
+
+\textsl{MFIaggr} can be used to analyze the heteroskedasticity in a given 
+data set. Heteroskedasticity (“hetero” = different, “skedasis” = 
+dispersion) is present if the variance (error term) is not constant. In 
+case the variance is constant data are considered to be homoskedastic. If 
+the error terms do not have constant variance, they are said to be 
+homoskedastic. Analysis of the heteroskedasticity can give some insight 
+into the the characteristics of a system. In the following example we 
+compared the VIMCFX96\_60 and VIMCFX96\_69 data sets. Both data set were 
+obtained from the same qPCR run in a Bio-Rad CFX96. However, data from the 
+VIMCFX96\_60 data set were obtained during the annealing phase at 60 degree 
+Celsius and data from the VIMCFX96\_60 data set were measured during the 
+elongation phase at 69 degree Celsius. The heteroskedasticity increased 
+expectedly during the amplification reaction. The variance in the 
+elongation phase (Figure~\ref{figure:MFIaggr_all}C and D) was lower than 
+in the annealing phase (Figure~\ref{figure:MFIaggr_all}A and B). The 
+heteroskedasticity was significant in during the 
+(Figure~\ref{figure:MFIaggr_all}A) first 15 cycles at 60 degree Celsius.
+
+<<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig14_cap>>=
+par(mfrow = c(2,2), bty = "n")
+
+hsk.test <- function(x, y, llul = c(1,15), main = "") {
+    res <- MFIaggr(x, y, llul = llul)
+    head(res)
+    plot(res[, 1], res[, 3]^2, xlab = "Cycle", 
+    ylab = "Variance of refMFI", 
+	xlim = llul, ylim = c(min(res[llul[1]:llul[2], 3]^2), 
+	max(res[llul[1]:llul[2], 3]^2)), main = main, 
+	pch = 19, type = "b")
+    abline(v = llul, col = "grey", lty = 2, lwd = 2)
+    legend("top", paste0("Breusch-Pagan test p-value: \n", 
+format(summary(res)[5], 
+	  digits = 2)), bty = "n")
+}
+
+hsk.test(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
+	 llul = c(1,15),
+	 main = "ROI from Cycle 1 to 15\nAnnealing phase") 
+mtext("A", cex = 2, side = 3, adj = 0)
+
+hsk.test(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], llul = 
+c(1,40),
+	 main = "ROI from Cycle 1 to 40\nAnnealing phase") 
+mtext("B", cex = 2, side = 3, adj = 0)
+
+hsk.test(VIMCFX96_69[, 1], VIMCFX96_69[, 2:ncol(VIMCFX96_69)], llul = 
+c(1,15),
+	 main = "ROI from Cycle 1 to 15\nElongation phase") 
+mtext("C", cex = 2, side = 3, adj = 0)
+
+hsk.test(VIMCFX96_69[, 1], VIMCFX96_69[, 2:ncol(VIMCFX96_69)], llul = 
+c(1,40),
+	 main = "ROI from Cycle 1 to 40\nElongation phase") 
+mtext("D", cex = 2, side = 3, adj = 0)
 @
 
 \subsection*{plotCurves}
@@ -254,7 +341,8 @@ amplification from qIA but also for qPCR. We implement a symmetrically
 approximation algorithm based on linear and quadratic least squares 
 regression.
 
-\textsl{th.cyc} is a function to calculate the number of cycles at which the 
+\textsl{th.cyc} is a function to calculate the number of cycles at which 
+the 
 fluorescence exceeds a defined threshold, called the threshold cycle (Ct). 
 According to the MIQE guidelines the Ct is referred to as quantification 
 cycle (Cq). The calculated Cq is a relative value, which depends on the 
@@ -296,7 +384,8 @@ composed of reaction mix A)10 micro L A. bidest, 1.25 micro L 10xbuffer,
 0.75 micro L primer(150~nM final), 0.5 micro L template plasmid. 
 Preincubation: This mixture was incubated for 2 min at 95 degree. Celsius 
 and immediately placed on ice. Reaction mix B) 5 micro L A. bidest., 1.25 
-micro L 10x buffer, 2 micro L NaCl, 1.25 micro L MgSO4, 1.75 micro L dNTPs, 
+micro L 10x buffer, 2 micro L NaCl, 1.25 micro L MgSO4, 1.75 micro L 
+dNTPs, 
 0.25 micro L EvaGreen, 1 micro L enzyme mix. The mix was covered with 50 
 micro L mineral oil. The fluorescence measurement in VideoScan HCU started 
 directly after adding buffer B at 65 degree Celsius. A 1x (D1), a 1:10 
@@ -367,7 +456,7 @@ example illustrates the use of \textsl{AmpSim}
 (Figure~\ref{figure:AmpSim_random}).
 
 
-<<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig1_cap>>=
+<<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold', fig.cap=fig1_cap>>=
 # Draw an empty plot for 40 cycles with user defined parameters.
 
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -801,7 +890,8 @@ mtext("B", cex = 1.1, side = 3, adj = 0, font = 2)
 \subsection{Imputation of missing values in amplification curve data - 
 fixNA}
 
-Amplification data of experimental systems may contain missing values (NA). 
+Amplification data of experimental systems may contain missing values 
+(NA). 
 The NAs may be caused by detector problems, acquisition error or other 
 assorted problems. There are different ways to handle missing values. One 
 approach is to ignore NAs which is generally acceptable. However, in case 
@@ -813,7 +903,8 @@ median) or other significant values (e.g., minimum, maximum, modus) of a
 data column. However, in non-linear processes such as amplification 
 processes its is better to estimate the missing values from a trend. The 
 function fixNA was empirically tested and relies on a linear trend 
-estimation based on the approx function. This approach is useful but may be 
+estimation based on the approx function. This approach is useful but may 
+be 
 problematic on the phases other then background or plateau phases of an 
 amplification reaction. The parameter spline on fixNA enables a trend 
 estimation on splines and may be more appropriate in most scenarios. Other 
@@ -1041,7 +1132,8 @@ fit.amp <- function(cyc, fluo, plot = FALSE) {
 	if (plot) {
 	    lines(res[, 1], res[, 4])
 	}
-	summary(res)[2] # SDM
+	# SDM
+	summary(res)[2]
 }
 
 tmp <- C126EG595
