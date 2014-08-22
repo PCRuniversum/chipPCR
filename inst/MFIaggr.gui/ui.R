@@ -1,7 +1,7 @@
 library(shiny)
 
 shinyUI(pageWithSidebar(
-  headerPanel("MGIaggr"),
+  headerPanel("MFIaggr"),
   sidebarPanel(
     fileInput("input.file", "Choose CSV File (input should contain cycle data)",
               accept=c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
