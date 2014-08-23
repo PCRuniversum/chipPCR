@@ -17,9 +17,9 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
     abs(x[i] - x[i + 1]))
   
   res.x <- list(d.x = d.x, 
-                d.x.m = mean(d.x), 
-                d.x.s = sd(d.x)
-  )
+                d.x.m = mean(d.x, na.rm = TRUE), 
+                d.x.s = sd(d.x, na.rm = TRUE)
+		)
   if ((res.x[["d.x.m"]] + res.x[["d.x.s"]]) != res.x[["d.x.m"]]) {
     warning("x is not uniform/equidistant (different inter cycle or time intervals.
 	       This may cause artifacts during the pre-processing.")
