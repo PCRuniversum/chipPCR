@@ -7,7 +7,7 @@ Amplification curve simulator
 \description{
 This function is a simple simulator of an amplification reaction based on a 
 5-parameter Richards function. This simple approach was chosen because it 
-is not possible to model the shape of any amplification curve. An 
+is impossible to model the shape of any amplification curve. An 
 implementation of realistic models is ambitious and not conclusively 
 addressed in the literature. First, they have to take ``all'' random 
 effects of noise into consideration and second, they need to be generic 

@@ -10,7 +10,7 @@ experimental technologies for the amplifiaction of nucleic acids. The data
 sets include results from qPCR experiments with the VideoScan HCU 
 (Roediger 
 et al. 2013), Bio-Rad (iQ5, CFX96), capilary convectiive PCR (ccPCR) and 
-Roche Light Cycler 1.5. Real-time monitored amplifcation reactions were 
+Roche Light Cycler 1.5. Real-time monitored amplification reactions were 
 performed using standard amplifiaction methods (qPCR, based on Taq 
 polymerase) and quantitive isothermal amplifiaction (qIA). In selected 
 data 
@@ -52,11 +52,11 @@ dye (EvaGreen) (Mao et al. 2007) performed in the Roche Light Cycler
 1.5 thermo cycler.
 
 \code{\link[chipPCR]{VIMCFX96_60}}:
-Human vimentin amplifcation curve data (measured during annealing phase at 
+Human vimentin amplification curve data (measured during annealing phase at 
 60 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMCFX96_69}}:
-Human vimentin amplifcation curve data (measured during elongatio phase at 
+Human vimentin amplification curve data (measured during elongatio phase at 
 69 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMCFX96_meltcurve}}:
@@ -64,11 +64,11 @@ Human vimentin melting curve data for 96 replicate samples in a Bio-Rad
 CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_595}}:
-Human vimentin amplifcation curve data (measured during annealing phase at 
+Human vimentin amplification curve data (measured during annealing phase at 
 59.5 deg Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_685}}:
-Human vimentin amplifcation curve data (measured during elongatio phase at 
+Human vimentin amplification curve data (measured during elongatio phase at 
 68.5 deg Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_melt}}:
