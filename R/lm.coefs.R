@@ -20,20 +20,24 @@ lm.coefs <- function(x, y, method.reg) {
   lm.fit <- function(y, x, method) {
     switch(method,
            lmrob = do.call(function(x, y) lmrob(y ~ x), c(list(x = x, y = y))),
-           rfit = do.call(function(x, y) {
-             op.warn <- options("warn")[[1]]
-             options(warn=2)
-             rfit.res <- Rfit::rfit.default(y ~ x)
-             options(warn=op.warn)
-             rfit.res
-           }, c(list(x = x, y = y))),
+           rfit = do.call(function(x, y) Rfit::rfit.default(y ~ x), c(list(x = x, y = y))),
            least = do.call(function(x, y) lm(y ~ x), c(list(x = x, y = y))),
            rq = do.call(function(x, y) rq(y ~ x), c(list(x = x, y = y)))
            )  
   }
   
+  if(method.reg == "rfit") {
+    op.warn <- options("warn")[[1]]
+    options(warn=2)
+  }
   tried.fit <- try(lm.fit(y, x, method = method.reg), 
                    silent = TRUE)
+  
+  if(method.reg == "rfit") {
+    options(warn=op.warn)
+  }
+  
+  
   if(class(tried.fit) != "try-error" && is.null(tried.fit[["converged"]]))
     tried.fit[["converged"]] <- TRUE
   if (class(tried.fit) != "try-error" && tried.fit[["converged"]] == TRUE) { 

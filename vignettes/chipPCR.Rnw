@@ -894,7 +894,7 @@ dilution (D2) and a 1:100 (D3) dilution were tested. Temperature profile
 - 60 seconds at 65 degree Celsius 
 - 11 seconds at 55 degree Celsius \& Measurement
 
-<<HDA,fig.show='hold',fig.cap=fig13_cap,fig.scap=fig13_scap>>=
+<<HDA,fig.show='hold',fig.cap=fig13_cap,fig.scap=fig13_scap,message=FALSE,warning=FALSE>>=
 par(mfrow = c(2,1), bty = "n")
 plot(NA, NA, xlim = c(0,5000), ylim = c(0,1), xlab = "Time (sec)", 
      ylab = "Fluorescence", main = "HDA - Raw data")
