@@ -14,13 +14,13 @@
 \makeatletter
 \renewcommand{\@maketitle}{
 \newpage
- \null
- \vskip 2em%
- \begin{center}%
-  {\large \@author \par}%
-  {\LARGE \@title \par}%
- \end{center}%
- \par} \makeatother
+\null
+\vskip 2em%
+\begin{center}%
+{\large \@author \par}%
+{\LARGE \@title \par}%
+\end{center}%
+\par} \makeatother
 
 \title{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve Data"}
 \author{Stefan R\"{o}diger* and Micha\l{} Burdukiewicz and Peter Schierack}
@@ -331,7 +331,7 @@ rapid and convenient inspection of raw data.
 \subsection{MFIaggr}
 \label{sec:MFIaggr}
 
- \textsl{MFIaggr} is a powerful analytical and graphical tool for fast 
+\textsl{MFIaggr} is a powerful analytical and graphical tool for fast 
 multiple comparison of the cycle dependent signal dispersion and 
 distribution. This function enables the analysis of specific parts of the 
 curve data as defined by the $llul$ parameter. $llul$ defines the lower 
@@ -356,7 +356,7 @@ all cycles is non-normal distributed (Figure~\ref{figure:MFIaggr_all}).
 
 <<MFIaggr_all,fig.show='hold',fig.cap=fig12_cap,fig.scap=fig12_scap>>=
 plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
-     llul = c(1,40)), CV = FALSE)
+             llul = c(1,40)), CV = FALSE)
 @
 
 \textsl{MFIaggr} can be used to analyze the heteroskedasticity in a given 
@@ -383,33 +383,33 @@ par(mfrow = c(2,2), bty = "n")
 # Create a helper function "hsk.test" to analyze the heteroskedasticity
 # and the variance.
 hsk.test <- function(x, y, llul = c(1,15), main = "") {
-    res <- MFIaggr(x, y, llul = llul)
-    head(res)
-    plot(res[, 1], res[, 3]^2, xlab = "Cycle", 
-    ylab = "Variance of refMFI", 
-	xlim = llul, ylim = c(min(res[llul[1]:llul[2], 3]^2), 
-	max(res[llul[1]:llul[2], 3]^2)), main = main, 
-	pch = 19, type = "b")
-    abline(v = llul, col = "grey", lty = 2, lwd = 2)
-    legend("top", paste0("Breusch-Pagan test p-value: \n", 
-    format(summary(res, print = FALSE)[5], digits = 2)), bty = "n")
+  res <- MFIaggr(x, y, llul = llul)
+  head(res)
+  plot(res[, 1], res[, 3]^2, xlab = "Cycle", 
+       ylab = "Variance of refMFI", 
+       xlim = llul, ylim = c(min(res[llul[1]:llul[2], 3]^2), 
+                             max(res[llul[1]:llul[2], 3]^2)), main = main, 
+       pch = 19, type = "b")
+  abline(v = llul, col = "grey", lty = 2, lwd = 2)
+  legend("top", paste0("Breusch-Pagan test p-value: \n", 
+                       format(summary(res, print = FALSE)[5], digits = 2)), bty = "n")
 }
 
 hsk.test(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
-	 llul = c(1,15),
-	 main = "ROI Cycle 1 to 15\nAnnealing phase") 
+         llul = c(1,15),
+         main = "ROI Cycle 1 to 15\nAnnealing phase") 
 mtext("A", cex = 2, side = 3, adj = 0)
 
 hsk.test(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], llul = 
-c(1,40), main = "ROI Cycle 1 to 40\nAnnealing phase") 
+           c(1,40), main = "ROI Cycle 1 to 40\nAnnealing phase") 
 mtext("B", cex = 2, side = 3, adj = 0)
 
 hsk.test(VIMCFX96_69[, 1], VIMCFX96_69[, 2:ncol(VIMCFX96_69)], llul = 
-c(1,15), main = "ROI Cycle 1 to 15\nElongation phase") 
+           c(1,15), main = "ROI Cycle 1 to 15\nElongation phase") 
 mtext("C", cex = 2, side = 3, adj = 0)
 
 hsk.test(VIMCFX96_69[, 1], VIMCFX96_69[, 2:ncol(VIMCFX96_69)], llul = 
-c(1,40), main = "ROI Cycle 1 to 40\nElongation phase") 
+           c(1,40), main = "ROI Cycle 1 to 40\nElongation phase") 
 mtext("D", cex = 2, side = 3, adj = 0)
 @
 
@@ -466,45 +466,45 @@ splines.
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllll}
-  \hline
- & Background - raw data & Background - fixed NA & cpD2 - raw data & cpD2 
+\hline
+& Background - raw data & Background - fixed NA & cpD2 - raw data & cpD2 
 - fixed NA \\ 
-  \hline
+\hline
 Linear phase - 1 NA & $4606.43 \pm 186$ & $4606.53 \pm 186$ & $18.20 \pm 
 0.145$ & $18.20 \pm 0.145$ \\ 
-  Exponential phase - 1 NA & $7555.31 \pm 468$ & $7555.28 \pm 468$ & 
+Exponential phase - 1 NA & $7555.31 \pm 468$ & $7555.28 \pm 468$ & 
 $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-  Plateau phase  - 1 NA & $11736.60 \pm 1032$ & $11736.82 \pm 1032$ & 
+Plateau phase  - 1 NA & $11736.60 \pm 1032$ & $11736.82 \pm 1032$ & 
 $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-  Linear phase - 3 NA & $4606.43 \pm 186$ & $4607.05 \pm 186$ & $18.20 \pm 
+Linear phase - 3 NA & $4606.43 \pm 186$ & $4607.05 \pm 186$ & $18.20 \pm 
 0.145$ & $18.20 \pm 0.145$ \\ 
-  Exponential phase - 3 NA & $7555.31 \pm 468$ & $7555.15 \pm 468$ & 
+Exponential phase - 3 NA & $7555.31 \pm 468$ & $7555.15 \pm 468$ & 
 $18.20 \pm 0.145$ & $18.19 \pm 0.148$ \\ 
-  Plateau phase  - 3 NA & $11736.60 \pm 1032$ & $11736.86 \pm 1033$ & 
+Plateau phase  - 3 NA & $11736.60 \pm 1032$ & $11736.86 \pm 1033$ & 
 $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-   \hline
+\hline
 \end{tabular}
 \end{table}
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlll}
-  \hline
- & Cy0 - raw data & Cy0 - fixed NA & NRMSE \\ 
-  \hline
+\hline
+& Cy0 - raw data & Cy0 - fixed NA & NRMSE \\ 
+\hline
 Linear phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00012 \pm 
 0.000133$ \\ 
-  Exponential phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & 
+Exponential phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & 
 $0.00018 \pm 0.000176$ \\ 
-  Plateau phase  - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00026 
+Plateau phase  - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00026 
 \pm 0.000237$ \\ 
-  Linear phase - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00033 \pm 
+Linear phase - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00033 \pm 
 0.00031$ \\ 
-  Exponential phase - 3 NA & $11.73 \pm 1.06$ & $11.71 \pm 1.06$ & 
+Exponential phase - 3 NA & $11.73 \pm 1.06$ & $11.71 \pm 1.06$ & 
 $0.00078 \pm 0.000601$ \\ 
-  Plateau phase  - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00072 
+Plateau phase  - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00072 
 \pm 0.000475$ \\ 
-   \hline
+\hline
 \end{tabular}
 \end{table}
 
@@ -523,9 +523,9 @@ res.NA[18, 2] <- NA
 
 # Helper function to highlight the position of the missing value.
 abliner <- function(x1 = 17.5, x2 = 18.5, y1 = 0.09, y2 = 0.14) {
-		abline(v = c(x1, x2), col = "red")
-		abline(h = c(y1, y2), col = "red")
-	    }
+  abline(v = c(x1, x2), col = "red")
+  abline(h = c(y1, y2), col = "red")
+}
 
 par(las = 0, mfrow = c(2,2), bty = "n")
 plot(res, xlab = "Cycles", ylab = "refMFI", type = "b", pch = 20, 
@@ -533,7 +533,7 @@ plot(res, xlab = "Cycles", ylab = "refMFI", type = "b", pch = 20,
 abliner()
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2)
 res.NA.linear <- fixNA(res.NA[, 1], res.NA[, 2], spline = FALSE, 
-		       verbose = FALSE)
+                       verbose = FALSE)
 
 plot(res.NA, xlab = "Cycles", ylab = "refMFI", type = "b", pch = 20, 
      main = "With NA during transition")
@@ -541,15 +541,15 @@ abliner()
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2)
 
 res.NA.spline <- fixNA(res.NA[, 1], res.NA[, 2], spline = TRUE, 
-		       verbose = FALSE)
-	       
+                       verbose = FALSE)
+
 plot(res.NA.linear, xlab = "Cycles", ylab = "refMFI", type = "b", 
      pch = 20, main = "Linear imputed\n NA")
 abliner()
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
-     
+
 plot(res.NA.spline, xlab = "Cycles", ylab = "refMFI", type = "b", 
-      pch = 20, main = "Spline imputed\n NA")
+     pch = 20, main = "Spline imputed\n NA")
 abliner()
 mtext("D", cex = 1.2, side = 3, adj = 0, font = 2)
 par(mfrow = c(1,1))
@@ -596,32 +596,32 @@ plot(NA, NA, xlim = c(1,40), ylim = c(0, 3300), xlab = "Cycle",
      ylab = "RFU", main = "Baselined data")
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2) 
 lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x, 
-	method.norm = "none")$y))
-	
+                                                           method.norm = "none")$y))
+
 
 plot(NA, NA, xlim = c(1,40), ylim = c(0, 1.15), xlab = "Cycle", 
      ylab = "RFU", main = "MinMax-Normalization")
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2) 
 lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x, 
-	method.norm = "minmax")$y))
-	
+                                                           method.norm = "minmax")$y))
+
 plot(NA, NA, xlim = c(1,40), ylim = c(0, 1.15), xlab = "Cycle", 
      ylab = "RFU", main = "Max-Normalization")
 mtext("D", cex = 1.2, side = 3, adj = 0, font = 2) 
 lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x,, 
-	method.norm = "max")$y))
-     
+                                                           method.norm = "max")$y))
+
 plot(NA, NA, xlim = c(1,40), ylim = c(0, 1.15), xlab = "Cycle", 
      ylab = "RFU", main = "luqn-Normalization")
 mtext("E", cex = 1.2, side = 3, adj = 0, font = 2) 
 lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x, 
-	method.norm = "luqn", qnL = 0.03)$y))
+                                                           method.norm = "luqn", qnL = 0.03)$y))
 
 plot(NA, NA, xlim = c(1,40), ylim = c(-1.5, 1.5), xlab = "Cycle", 
      ylab = "RFU", main = "zscore-Normalization")
 mtext("F", cex = 1.2, side = 3, adj = 0, font = 2) 
 lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x, 
-	method.norm = "zscore")$y))
+                                                           method.norm = "zscore")$y))
 @
 
 \section{Compute linear model coefficients - Background subtraction based 
@@ -646,7 +646,7 @@ for (i in 1:4) {
   tmp <- lm.coefs(VIMCFX96_69[1:10, 1], VIMCFX96_69[1:10, 2], 
                   method.reg = method[i])
   text(9, 3200 - i * 100, paste(method[i], ":", "m: ", 
-       round(tmp[1,1], 4), "n: ", round(tmp[2,1], 3)))
+                                round(tmp[1,1], 4), "n: ", round(tmp[2,1], 3)))
   abline(a = tmp[1, 1], b = tmp[2, 1], col = i + 1, lwd = 1.5)
 }
 legend("right", c("Data", "lmrob", "rq", "least", "rfit"), lty = 1, 
@@ -836,7 +836,7 @@ legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
 \subsubsection{Application of the th.cyc and CPP function on ccPCR data}
 \label{sec:ccPCR}
 
-	
+
 <<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap>>=
 # Application of the th.cyc method to determine the Cq from a continuous
 # amplification reaction.
@@ -891,11 +891,11 @@ par(mfrow = c(2,1), bty = "n")
 plot(NA, NA, xlim = c(0,5000), ylim = c(0,1), xlab = "Time (sec)", 
      ylab = "Fluorescence", main = "HDA - Raw data")
 mtext("A", cex = 2, side = 3, adj = 0)
-  lines(C85[, 2], C85[, 3], type = "b", col = 2, pch = 20)
-  lines(C85[, 4], C85[, 5], type = "b", col = 4, pch = 20)
-  lines(C85[, 6], C85[, 7], type = "b", col = 6, pch = 20)
-  legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
-         pch = rep(20,3))
+lines(C85[, 2], C85[, 3], type = "b", col = 2, pch = 20)
+lines(C85[, 4], C85[, 5], type = "b", col = 4, pch = 20)
+lines(C85[, 6], C85[, 7], type = "b", col = 6, pch = 20)
+legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
+       pch = rep(20,3))
 
 plot(NA, NA, xlim = c(0,2000), ylim = c(0,0.4), xlab = "Time (sec)", 
      ylab = "Fluorescence", main = "HDA - Pre-processed data")
@@ -923,7 +923,7 @@ r <- 0.05
 # calculated time (in minutes) to the plot.
 for (i in c(2,4,6)) {
   y.tmp <- CPP(C85[xr, i], C85[xr, i + 1], method = sm, bg.range = br, 
-	       trans = TRUE)$y.norm
+               trans = TRUE)$y.norm
   Ct.tmp <- th.cyc(C85[xr, i], y.tmp, r = r, linear = FALSE)
   abline(v = Ct.tmp[1], col = "grey")
   lines(C85[xr, i], y.tmp, col = i, lwd = 2)
@@ -950,8 +950,7 @@ inhibitors and noise. Indirect methods use fitted mathematical models or
 estimate the AE from absolute fluorescence values \cite{tichopad_2003, 
 liu_2002, alvarez_2007, smith_2007, batsch_2008, mallona_2011}. The 
 \emph{qpcR} has many functions included, which can be used for the 
-indirect 
-estimation of the AE. However, most commonly used is the ''direct method'' 
+indirect estimation of the AE. However, most commonly used is the ''direct method'' 
 \cite{liu_2002, stahlberg_2003}. Herein, the AE is estimated from dilution 
 series of a template. The AE of a qPCR reaction is calculated from the 
 slope of the standard curve (Equation~S\ref{eq:AE}).
@@ -1006,21 +1005,21 @@ Cq.out <- vector()
 # Simulate a qPCR reaction with AmpSim for 45 cycles and some noise.
 
 for (i in 1L:18) {
-      ma.out[1:45, i] <- AmpSim(cyc = c(1:45), b.eff = -50, bl = 0.001, 
-				ampl = 1, Cq = Cq.t[i], noise = TRUE, 
-				nnl = 0.02)[, 2]
-      lines(1:45, ma.out[, i])
-      tmpP <- mcaSmoother(1:45, ma.out[, i])
-# Calculate the pseudo Second Derivative Maximum (SDM) (Cq) using 
-# the diffQ2 function from the MBmca package.
-      Cq.tmp <- diffQ2(tmpP, inder = TRUE)$xTm1.2.D2[1]
-      abline(v = Cq.tmp)
-      Cq.out <- c(Cq.out, Cq.tmp)
+  ma.out[1:45, i] <- AmpSim(cyc = c(1:45), b.eff = -50, bl = 0.001, 
+                            ampl = 1, Cq = Cq.t[i], noise = TRUE, 
+                            nnl = 0.02)[, 2]
+  lines(1:45, ma.out[, i])
+  tmpP <- mcaSmoother(1:45, ma.out[, i])
+  # Calculate the pseudo Second Derivative Maximum (SDM) (Cq) using 
+  # the diffQ2 function from the MBmca package.
+  Cq.tmp <- diffQ2(tmpP, inder = TRUE)$xTm1.2.D2[1]
+  abline(v = Cq.tmp)
+  Cq.out <- c(Cq.out, Cq.tmp)
 }
 
 # Assign the calculated Cqs to the corresponding concentrations.
 tmp <- data.frame(dilution[1:6], Cq.out[1:6], Cq.out[7:12],  Cq.out[13:18])
-		  
+
 # Determine the amplification efficiency by using the effcalc function.
 plot(effcalc(tmp[, 1], tmp[, 2:4]), CI = TRUE)
 mtext("B", cex = 1.1, side = 3, adj = 0, font = 2) 
@@ -1055,11 +1054,11 @@ plot(NA, NA, xlim = c(1,55), ylim = c(0, 0.55), xlab = "Cycle",
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2) 
 
 D1 <- cbind(C54[1:35, 1], CPP(C54[1:35, 1], C54[1:35, 2], trans = TRUE, 
-bg.range = c(1,8))[["y.norm"]])
+                              bg.range = c(1,8))[["y.norm"]])
 D2 <- cbind(C54[1:45, 1], CPP(C54[1:45, 1], C54[1:45, 3], trans = 
-TRUE)[["y.norm"]])
+                                TRUE)[["y.norm"]])
 D3 <- cbind(C54[1:55, 1], CPP(C54[1:55, 1], C54[1:55, 4], trans = 
-TRUE)[["y.norm"]])
+                                TRUE)[["y.norm"]])
 
 lines(D1, col = 1)
 lines(D2, col = 2)
@@ -1100,9 +1099,9 @@ legend(0, 6, colnames(C60.amp[, 4L:17]), ncol = 2, col = colors[1:14],
        pch = 19, bty = "n")
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2)
 SDM.vim <- sapply(4L:17, function(i) {
-	lines(C60.amp[, 1], C60.amp[, i], col = colors[i - 3])
-	SDM <- summary(inder(C60.amp[, 1], C60.amp[, i]), print = FALSE)[2]
-	}
+  lines(C60.amp[, 1], C60.amp[, i], col = colors[i - 3])
+  SDM <- summary(inder(C60.amp[, 1], C60.amp[, i]), print = FALSE)[2]
+}
 )
 
 plot(NA, NA, xlim = c(0,44), ylim = c(0, 4), xlab = "Cycles", ylab = "RFU")
@@ -1110,9 +1109,9 @@ legend(0, 4, colnames(C60.amp[, 18L:31]), ncol = 2, col = colors[1:14],
        pch = 19, bty = "n")
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2)
 SDM.mlc2v <- sapply(18L:31, function(i) {
-	lines(C60.amp[, 1], C60.amp[, i], col = colors[i - 17])
-	SDM <- summary(inder(C60.amp[, 1], C60.amp[, i]), print = FALSE)[2]
-	}
+  lines(C60.amp[, 1], C60.amp[, i], col = colors[i - 17])
+  SDM <- summary(inder(C60.amp[, 1], C60.amp[, i]), print = FALSE)[2]
+}
 )
 
 #create vector of dillutions
@@ -1129,7 +1128,7 @@ mtext("D", cex = 1.2, side = 3, adj = 0, font = 2)
 
 \section{AmpSim - a function to simulate amplification curves}
 
-  The function \textsl{AmpSim} is a simulator for amplification reactions. 
+The function \textsl{AmpSim} is a simulator for amplification reactions. 
 Use cases include teaching, algorithm testing or the comparison of an 
 experimental system to the predicted (''optimal``) model. \textsl{AmpSim} 
 uses a 5-parameter model (Equation~S\ref{eq:richards}).
@@ -1165,7 +1164,7 @@ runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
 runGist('https://gist.github.com/michbur/e1def41598f1d0c1e2e6')
 @
 
-  \textsl{AmpSim} has several parameters, which can be used to simulate an 
+\textsl{AmpSim} has several parameters, which can be used to simulate an 
 amplification curve. $b.eff$ and $Cq$ are most connected with another. 
 Thus changing one of them will change both values. $Cq$ can be used to 
 define an approximate Cq value. The expression ''approximate Cq value`` is 
@@ -1210,33 +1209,33 @@ layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE), respect = TRUE)
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
 
 th.cyc.raw <- apply(VIMCFX96_60[, -1], 2, function(i) {
-		    th.cyc(VIMCFX96_60[, 1], i, r = 2575)[1,1]})
+  th.cyc(VIMCFX96_60[, 1], i, r = 2575)[1,1]})
 
 res.CPP <- apply(VIMCFX96_60[, -1], 2, function(i) {
-		    CPP(VIMCFX96_60[, 1], i, trans = TRUE, 
-			method.norm = "minmax")[["y.norm"]]})
-		 
+  CPP(VIMCFX96_60[, 1], i, trans = TRUE, 
+      method.norm = "minmax")[["y.norm"]]})
+
 th.cyc.CPP <- apply(res.CPP, 2, function(i) {
-		    th.cyc(VIMCFX96_60[, 1], i, r = 0.1)[1,1]})
+  th.cyc(VIMCFX96_60[, 1], i, r = 0.1)[1,1]})
 
 matplot(VIMCFX96_60[, -1], type = "l", pch = 19, col = 1, lty = 1, 
-	xlab = "Cycle", ylab = "Raw fluorescence", main = "Raw")
+        xlab = "Cycle", ylab = "Raw fluorescence", main = "Raw")
 abline(h = 2575, lty = 2)
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2)
 
 matplot(res.CPP, type = "l", pch = 19, col = 1, lty = 1, xlab = "Cycle", 
-	ylab = "Fluorescence", main = "CPP")
+        ylab = "Fluorescence", main = "CPP")
 abline(h = 0.1, lty = 2)
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2)
 
 boxplot(data.frame(Raw = th.cyc.raw, CPP = th.cyc.CPP), ylab = "Cq (Ct)", 
-	notch = TRUE)
+        notch = TRUE)
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 @
 
 \section{Auxillary functions}
 \label{auxillary_functions}
-      
+
 
 <<SDM,fig.show='hold',fig.cap=fig9_cap,fig.scap=fig9_scap>>=
 # Use AmpSim to generate an amplification curve with 40 cycles
@@ -1260,29 +1259,27 @@ colors <- rainbow(4)
 # Add graphical elements for the dervatives and the calculated
 # Cq values FDM, SDM, SDm and SDC.
 
-  lines(res[, "x"], res[, "d1y"], col = "blue", lwd = 2)
-  lines(res[, "x"], res[, "d2y"], col = "red", lwd = 2)
-  
+lines(res[, "x"], res[, "d1y"], col = "blue", lwd = 2)
+lines(res[, "x"], res[, "d2y"], col = "red", lwd = 2)
+
 # Fetch the Cq values from res with the summary function
-  summ <- summary(res, print = FALSE)
-  
-  abline(v = summ, col = colors, lwd = 2)
-  text(15, 0.3, paste("FDM ~ ", round(summ["FDM"], 2)), 
-       cex = 1.1, col = colors[1])
-  text(15, 0.2, paste("SDM ~ ", round(summ["SDM"], 2)), 
-       cex = 1.1, col = colors[2])
-  text(15, - 0.1, paste("SDm ~ ", round(summ["SDm"], 2)), 
-       cex = 1.1, col = colors[3])
-  text(15, 0.7, paste("SDC ~ ", round(summ["SDC"], 2)), 
-       cex = 1.1, col = colors[4])
-       
-  legend(1.1, 0.9, c("raw", "first derivative", "second derivative"), 
-         col = c(1,4,2), lty = c(2,1,1), bty = "n")
+summ <- summary(res, print = FALSE)
+
+abline(v = summ, col = colors, lwd = 2)
+text(15, 0.3, paste("FDM ~ ", round(summ["FDM"], 2)), 
+     cex = 1.1, col = colors[1])
+text(15, 0.2, paste("SDM ~ ", round(summ["SDM"], 2)), 
+     cex = 1.1, col = colors[2])
+text(15, - 0.1, paste("SDm ~ ", round(summ["SDm"], 2)), 
+     cex = 1.1, col = colors[3])
+text(15, 0.7, paste("SDC ~ ", round(summ["SDC"], 2)), 
+     cex = 1.1, col = colors[4])
+
+legend(1.1, 0.9, c("raw", "first derivative", "second derivative"), 
+       col = c(1,4,2), lty = c(2,1,1), bty = "n")
 
 # Summary of the object res.
 summ
-#     FDM      SDM      SDm      SDC 
-#19.81407 19.03015 20.98995 19.98604
 @
 
 
@@ -1300,37 +1297,37 @@ pointer <- function (x, pos = 1, w = 5, stat = TRUE){
   
   if (stat == TRUE)
     x.median <- median(x, na.rm = T)
-    x.mad <- mad(x, na.rm = T) * 2
-    param <- c(length= 0, code = 3, pch = 15, cex = 1.2)
-    arrows(xx[1] * 0.98, x.median, tail(xx, 1) * 1.02, 
-	    x.median, param, lwd = 3)
-    arrows(xx[1] * 1.01, x.median + x.mad, tail(xx, 1) * 0.99, 
-	    x.median + x.mad, param, lwd = 2, lty = 2)
-    arrows(xx[1] * 1.01, x.median - x.mad, tail(xx, 1) * 0.99, 
-	    x.median - x.mad, param, lwd = 2, lty = 2)
+  x.mad <- mad(x, na.rm = T) * 2
+  param <- c(length= 0, code = 3, pch = 15, cex = 1.2)
+  arrows(xx[1] * 0.98, x.median, tail(xx, 1) * 1.02, 
+         x.median, param, lwd = 3)
+  arrows(xx[1] * 1.01, x.median + x.mad, tail(xx, 1) * 0.99, 
+         x.median + x.mad, param, lwd = 2, lty = 2)
+  arrows(xx[1] * 1.01, x.median - x.mad, tail(xx, 1) * 0.99, 
+         x.median - x.mad, param, lwd = 2, lty = 2)
 }
 
 amp.liner <- function(range, input, colors = "black") {
   sapply(range, function(i) {
-	 lines(input[, 2], input[, i], col = colors, pch = 19)
-	 tmpP <- mcaSmoother(input[, 2], input[, i])
-	 SDM <- diffQ2(tmpP, inder = TRUE)[["xTm1.2.D2"]][1]
-	 abline(v = SDM)
-	 SDM
-       }
+    lines(input[, 2], input[, i], col = colors, pch = 19)
+    tmpP <- mcaSmoother(input[, 2], input[, i])
+    SDM <- diffQ2(tmpP, inder = TRUE)[["xTm1.2.D2"]][1]
+    abline(v = SDM)
+    SDM
+  }
   )
 }
 
 layout(matrix(c(1,3,2,3), 2, 2, byrow = TRUE), respect = TRUE)
 par(las = 0, bty = "n")
 plot(NA, NA, xlim = c(1,40), ylim = c(0,10), xlab = "Cycle", 
-      ylab = "Fluorescence", main = "EvaGreen")
+     ylab = "Fluorescence", main = "EvaGreen")
 mtext("A", cex = 1.1, side = 3, adj = 0, font = 2)
 
 EG <- amp.liner(range = 3L:34, input = C127EGHP)
-  
+
 plot(NA, NA, xlim = c(1,40), ylim = c(0,10), xlab = "Cycle", 
-      ylab = "Fluorescence", main = "Hydrolysis probe")
+     ylab = "Fluorescence", main = "Hydrolysis probe")
 mtext("B", cex = 1.1, side = 3, adj = 0, font = 2)
 
 HP <- amp.liner(range = 35L:66, input = C127EGHP)
@@ -1346,24 +1343,24 @@ pointer(HP, pos = 2, w = 8)
 
 <<inder_fit,fig.cap=fig11_cap,fig.scap=fig11_scap,fig.show='hold',message=FALSE,results='hide'>>=
 fit.amp <- function(cyc, fluo, plot = FALSE) {
-
-	ampl <- quantile(fluo, 0.999)
-	bl <- quantile(fluo, 0.001)
-	Cq <- round(mean(cyc))
-	b.eff <- 1
-	
- 	fit <- nls(fluo ~ bl + ampl / (1 + exp(- (cyc - Cq) / b.eff)), 
- 		     start = list(Cq = Cq, b.eff = b.eff, ampl = ampl, 
- 		     bl = bl)
- 		     )
-	
-	res.pred <- data.frame(cyc, predict(fit))
-	res <- inder(res.pred[, 1], res.pred[, 2])
-	if (plot) {
-	    lines(res[, 1], res[, 4])
-	}
-	# SDM
-	summary(res)[2]
+  
+  ampl <- quantile(fluo, 0.999)
+  bl <- quantile(fluo, 0.001)
+  Cq <- round(mean(cyc))
+  b.eff <- 1
+  
+  fit <- nls(fluo ~ bl + ampl / (1 + exp(- (cyc - Cq) / b.eff)), 
+             start = list(Cq = Cq, b.eff = b.eff, ampl = ampl, 
+                          bl = bl)
+  )
+  
+  res.pred <- data.frame(cyc, predict(fit))
+  res <- inder(res.pred[, 1], res.pred[, 2])
+  if (plot) {
+    lines(res[, 1], res[, 4])
+  }
+  # SDM
+  summary(res)[2]
 }
 
 tmp <- C126EG595
@@ -1373,20 +1370,20 @@ out <- apply(tmp[, -1], 2, function(x) fit.amp(tmp[, 1], x))
 layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
 
 plot(NA, NA, xlim = c(1,40), ylim = c(min(tmp[, 2L:97]), 
-     max(tmp[, 2L:97])), xlab = "Cycle", ylab = "Raw fluorescence")
+                                      max(tmp[, 2L:97])), xlab = "Cycle", ylab = "Raw fluorescence")
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2)
 for (i in 2L:97) {
-    lines(tmp[, 1], tmp[, i], col = ifelse(out[i - 1] < 15.5, "red", 
-	  "black"), lwd = 2)
-  }
+  lines(tmp[, 1], tmp[, i], col = ifelse(out[i - 1] < 15.5, "red", 
+                                         "black"), lwd = 2)
+}
 abline(v = out)
 
 plot(NA, NA, xlab = "Cycle", ylab = "RFU''(Cycle)", main = "", 
      xlim = c(0,40), ylim = c(-850, 850))
-    
-    invisible(apply(tmp[, -1], 2, function(x) {
-    fit.amp(tmp[, 1], x, plot = TRUE)
-  }
+
+invisible(apply(tmp[, -1], 2, function(x) {
+  fit.amp(tmp[, 1], x, plot = TRUE)
+}
 ))
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2)
 
@@ -1497,16 +1494,16 @@ plot(res, xlim = c(1,40), ylim = c(-0.1,1), xlab = "Cycles",
 background <- bg.max(res[, 1], res[, 2])
 mtext("A", cex = 2, side = 3, adj = 0, font = 2)
 
-points(background@.Data[, 3], col = "red", type = "b", pch = 20)
-points(background@.Data[, 4], col = "blue", type = "b", pch = 20)
+points(background[, 3], col = "red", type = "b", pch = 20)
+points(background[, 4], col = "blue", type = "b", pch = 20)
 abline(v = background@bg.start)
-  text(background@bg.start, 0.2, "Background start", pos = 4)
+text(background@bg.start, 0.2, "Background start", pos = 4)
 abline(v = background@bg.stop, col = "blue")
-  text(background@bg.stop, 0.25, "Background stop", pos = 4, 
-	col = "blue")
+text(background@bg.stop, 0.25, "Background stop", pos = 4, 
+     col = "blue")
 abline(v = background@amp.stop, col = "green")
-  text(background@amp.stop, 0.3, "Plateau transition", pos = 4, 
-	col = "green")
+text(background@amp.stop, 0.3, "Plateau transition", pos = 4, 
+     col = "green")
 legend(4, 1, c("Raw data", "First derivative", "Second derivative"), 
        pch = rep(20,3), col = c(1,2,4), bty = "n")
 
@@ -1518,15 +1515,15 @@ plot(res, xlim = c(1,40), ylim = c(-0.1,1), xlab = "Cycles",
 mtext("B", cex = 2, side = 3, adj = 0, font = 2)
 background <- bg.max(res[, 1], res[, 2])
 
-points(background@.Data[, 3], col = "red", type = "b", pch = 20)
-points(background@.Data[, 4], col = "blue", type = "b", pch = 20)
+points(background[, 3], col = "red", type = "b", pch = 20)
+points(background[, 4], col = "blue", type = "b", pch = 20)
 abline(v = background@bg.start)
 text(background@bg.start, 0.2, "Background start", pos = 4)
 abline(v = background@bg.stop, col = "blue")
 text(background@bg.stop, 0.25, "Background stop", pos = 4, col = "blue")
 abline(v = background@amp.stop, col = "green")
 text(background@amp.stop, 0.3, "Plateau transition", pos = 4, col = 
-"green")
+       "green")
 legend(4, 1, c("Raw data", "First derivative", "Second derivative"), 
        pch = rep(20,3), col = c(1,2,4), bty = "n")
 par(mfrow = c(1,1))
@@ -1543,7 +1540,7 @@ and pre-processed data.
 <<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide'>>=
 # Set parameter for the plot.
 par(mfrow = c(2,1), las = 0, bty = "n")
-    
+
 # Use of bg.max for time-dependent measurements. Amplification curves 
 # from the capillaryPCR data set were processed in a loop. The results of 
 #  bg.max are added to the plot. 
@@ -1554,33 +1551,33 @@ plot(NA, NA, xlim = c(0,75), ylim = c(-200,1300), xlab = "Time (min)",
      ylab = "Voltage (micro V)", main = "ccPCR - Raw data")
 mtext("A", cex = 1.5, side = 3, adj = 0)
 for (i in c(1,3,5,7)) {
-    x <- capillaryPCR[1L:750, i]
-    y <- capillaryPCR[1:750, i + 1]
-    res.bg <- summary(bg.max(x, y))
-    lines(x, y, type = "b", pch = 20, col = colors[i], cex = 0.5)
-    lines(c(res.bg[2], res.bg[2], res.bg[4], res.bg[4]), 
-	  c(-150, -50, -150, -50), col = colors[i], lwd = 1.5)
-    text(10, 1200 - i * 50, 
-	 paste("bg.start: ", res.bg[1], ", bg.stop: ", res.bg[2], 
-	       ", amp.stop: ", res.bg[4]), col = colors[i], cex = 0.6)
-  }
+  x <- capillaryPCR[1L:750, i]
+  y <- capillaryPCR[1:750, i + 1]
+  res.bg <- summary(bg.max(x, y))
+  lines(x, y, type = "b", pch = 20, col = colors[i], cex = 0.5)
+  lines(c(res.bg[2], res.bg[2], res.bg[4], res.bg[4]), 
+        c(-150, -50, -150, -50), col = colors[i], lwd = 1.5)
+  text(10, 1200 - i * 50, 
+       paste("bg.start: ", res.bg[1], ", bg.stop: ", res.bg[2], 
+             ", amp.stop: ", res.bg[4]), col = colors[i], cex = 0.6)
+}
 
 plot(NA, NA, xlim = c(0,75), ylim = c(-200,1300), xlab = "Time (min)", 
      ylab = "Voltage (micro V)", main = "ccPCR - Pre-processed")
 mtext("B", cex = 1.5, side = 3, adj = 0)
 for (i in c(1,3,5,7)) {
-    x <- capillaryPCR[1L:750, i]
-    y <- CPP(capillaryPCR[1L:750, i], capillaryPCR[1:750, i + 1], 
-	     method = "mova", trans = TRUE, bg.range = c(1,105), 
-	     bg.outliers = TRUE)[["y.norm"]]
-    res.bg <- summary(bg.max(x, y))
-    lines(x, y, type = "b", pch = 20, col = colors[i], cex = 0.5)
-    lines(c(res.bg[2], res.bg[2], res.bg[4], res.bg[4]), 
-	  c(-150, -50, -150, -50), col = colors[i], lwd = 1.5)
-    text(10, 1200 - i * 50, 
-	 paste("bg.start: ", res.bg[1], ", bg.stop: ", res.bg[2], 
-	       ", amp.stop: ", res.bg[4]), col = colors[i], cex = 0.6)
-  }
+  x <- capillaryPCR[1L:750, i]
+  y <- CPP(capillaryPCR[1L:750, i], capillaryPCR[1:750, i + 1], 
+           method = "mova", trans = TRUE, bg.range = c(1,105), 
+           bg.outliers = TRUE)[["y.norm"]]
+  res.bg <- summary(bg.max(x, y))
+  lines(x, y, type = "b", pch = 20, col = colors[i], cex = 0.5)
+  lines(c(res.bg[2], res.bg[2], res.bg[4], res.bg[4]), 
+        c(-150, -50, -150, -50), col = colors[i], lwd = 1.5)
+  text(10, 1200 - i * 50, 
+       paste("bg.start: ", res.bg[1], ", bg.stop: ", res.bg[2], 
+             ", amp.stop: ", res.bg[4]), col = colors[i], cex = 0.6)
+}
 @
 
 \section{humanrater}
@@ -1596,111 +1593,18 @@ machine.
 
 \begin{enumerate}
 <<summ.datasets,echo=FALSE,results='asis'>>=
-datdf <- structure(list(dat.names = c("capillaryPCR", "C60.amp", 
-"C60.melt", 
-"C126EG595", "C126EG685", "C127EGHP", "VIMCFX96_60", "VIMCFX96_69", 
-"VIMCFX96_meltcurve", "VIMiQ5_595", "VIMiQ5_685", "VIMiQ5_melt", 
-"C54", "CD74", "Eff625", "Eff750", "Eff875", "Eff1000", "C67", 
-"CD75", "C81", "C85"), descrs = c("  The capillary convective PCR (ccPCR) 
-is a modified device of the ccPCR system proposed by .", 
-"  qPCR Experiment for the Amplification of MLC-2v and Vimentin (as 
-decadic dilutions) Using the Roche Light Cycler 1.5.", 
-"  Melt Curves MLC-2v and Vimentin for the qPCR experiment C60.amp using 
-the Roche Light Cycler 1.5", 
-"  A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) 
-was performed in the Bio-Rad iQ5 thermo cycler. The cycle-dependent 
-increase of the fluorescence was quantified at the elongation step (59.5 
-deg Celsius).", 
-"  A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen)
-was performed in the Bio-Rad iQ5 thermo cycler. The 
-cycle-dependent 
-increase of the fluorescence was quantified at the elongation step (68.5 
-deg Celsius).", 
-"  Quantitive PCR (qPCR) with a hydrolysis probe (Cy5/BHQ2) and DNA 
-binding dye (EvaGreen)  performed in the Roche Light 
-Cycler 1.5 thermo cycler.", 
-"  Human vimentin amplification curve data (measured during annealing phase 
-at 60 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo 
-cycler.", 
-"  Human vimentin amplification curve data (measured during elongatio phase 
-at 69 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo 
-cycler.", 
-"  Human vimentin melting curve data for 96 replicate samples in a Bio-Rad 
-CFX96 thermo cycler.", 
-"  Human vimentin amplification curve data (measured during annealing phase 
-at 59.5 deg Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo 
-cycler.", 
-"  Human vimentin amplification curve data (measured during elongatio phase 
-at 68.5 deg Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo 
-cycler.", 
-"  Human vimentin melting curve data for 96 replicate samples in a Bio-Rad 
-iQ5 thermo cycler.", 
-"  qPCR Experiment in the VideoScan heating/cooling-unit for the 
-amplification using different concentrations of MLC-2v input cDNA 
-quantities. ", 
-"  Quantitive PCR with a hydrolysis probe and DNA binding dye (EvaGreen) 
-for MLC-2v measured at 59.5 degree Celsius (annealing temperature), 68.5 
-degree Celsius (elongation temperature) and at 30 degree Celsius.", 
-"  Highly replicate number amplification curves with an approximate 
-amplification efficiency of 62.5 percent at cycle number 18. The data were 
-derived from a simulation such as the AmpSim function.", 
-"  Highly replicate number amplification curves with an approximate 
-amplification efficiency of 75 percent at cycle number 18. The data were 
-derived from a simulation such as the AmpSim function.", 
-"  Highly replicate number amplification curves with an approximate 
-amplification efficiency of 87.5 percent at cycle number 18. The data were 
-derived from a simulation such as the AmpSim function.", 
-"  Highly replicate number amplification curves with an approximate 
-amplification efficiency of 100 percent at cycle number 18. The data were 
-derived from a simulation such as the AmpSim function.", 
-"  A Helicase Dependent Amplification (HDA) of HRPT1 (Homo sapiens 
-hypoxanthine phosphoribosyltransferase 1), performed at different input 
-DNA quantities using the Bio-Rad iQ5 thermo cycler.", 
-"  Helicase Dependent Amplification in the VideoScan HCU of HRPT1 (Homo 
-sapiens hypoxanthine phosphoribosyltransferase 1) measured at at 55, 60 or 
-65 degree Celsius.", 
-"  Helicase Dependent Amplification (HDA) of pCNG1 using the VideoScan 
-Platform. The HDA was performed at 65 degree 
-Celsius. Two concentrations of input DNA were used.", 
-"  Helicase Dependent Amplification (HDA) of Vimentin (Vim) in the 
-VideoScan Platform. The HDA was performed at 65 
-degree Celsius with three dilutions of input DNA."
-), dat.types = c("capillary convective PCR (ccPCR)", "standard qPCR - 
-commercial thermo cyclers", 
-"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial 
-thermo cyclers", 
-"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial 
-thermo cyclers", 
-"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial 
-thermo cyclers", 
-"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial 
-thermo cyclers", 
-"standard qPCR - commercial thermo cyclers", "standard qPCR - commercial 
-thermo cyclers", 
-"standard qPCR - experimental thermo cyclers", "standard qPCR - 
-experimental thermo cyclers", 
-"simulations", "simulations", "simulations", "simulations", "Isothermal 
-Amplifcation - Helicase Dependent Amplification", 
-"Isothermal Amplifcation - Helicase Dependent Amplification", 
-"Isothermal Amplifcation - Helicase Dependent Amplification", 
-"Isothermal Amplifcation - Helicase Dependent Amplification")), .Names = 
-c("dat.names", 
-"descrs", "dat.types"), row.names = c(NA, -22L), class = "data.frame")
+load("datdf.RData")
 
 datdf <- cbind(datdf, t(sapply(datdf[["dat.names"]], function(i) 
-dim(get(i)))))
+  dim(get(substr(i, 1, nchar(i) - 1))))))
 tmp <- apply(datdf, 1, function(i) {
   safe.name <- i[1]
-  if(grepl("_", i)) {
-    safe.name <- sub("_", ".", i)
+  if(grepl("_", safe.name, fixed = TRUE)) {
+    safe.name <- sub("_", ".", i, fixed = TRUE)
   }
-  cat("\\item Data set: ", safe.name, "\n")
-  cat("\\begin{itemize}\n")
-  cat("\\item Data set type: ", i[3], "\n")
-  cat("\\item Description: ", i[2], "\n")
-  cat("\\item Number of variables: ", i[4], "\n")
-  cat("\\item Number of measurements: ", i[5], "\n")
-  cat("\\end{itemize}\n")
+  cat("\\item Data set: ", safe.name, "\n\\begin{itemize}\n\\item Data set type: ", 
+      i[3], "\n\\item Description: ", i[2], "\n\\item Number of variables: ", i[4], 
+      "\n\\item Number of measurements: ", i[5], "\n\\end{itemize}\n")
 })
 @
 \end{enumerate}
@@ -1709,11 +1613,9 @@ tmp <- apply(datdf, 1, function(i) {
 
 \section{Acknowledgment}
 
-  Part of this work was funded by the BMBF InnoProfile-Projekt 03 IPT 
-611X. 
+Part of this work was funded by the BMBF InnoProfile-Projekt 03 IPT 611X. 
 Grateful thanks belong to all authors of the cited \textbf{R} packages, the \textbf{R} 
-community 
-and RKWard developers.
+community and RKWard developers.
 
 
 
