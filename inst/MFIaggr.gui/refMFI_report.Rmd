@@ -34,10 +34,10 @@ plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], CPP = TRUE, ty
 Settings used during analysis
 -------------------------
 ```{r,results='asis',echo=FALSE}
-cat("Input file name: ", input[["input.file"]][["name"]], "\n")
-cat("Column containing the cycle data: ", input[["cyc.col"]], "\n")
-cat("Relative standard deviation: ", input[["RSD"]], "\n")
-cat("Median and MAD: ", input[["rob"]], "\n")
-cat("Region of interest - lower border: ", input[["llul.low"]], "\n")
-cat("Region of interest - upper border: ", input[["llul.up"]], "\n")
+cat("Input file name: ", input[["input.file"]][["name"]], "\n\n")
+cat("Column containing the cycle data: ", input[["cyc.col"]], "\n\n")
+cat("Relative standard deviation: ", input[["RSD"]], "\n\n")
+cat("Median and MAD: ", input[["rob"]], "\n\n")
+cat("Region of interest - lower border: ", input[["llul.low"]], "\n\n")
+cat("Region of interest - upper border: ", input[["llul.up"]], "\n\n")
 ```
