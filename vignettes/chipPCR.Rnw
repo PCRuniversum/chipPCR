@@ -997,7 +997,7 @@ Cq.t <- rep(seq(15, 34, 3.5), 3)
 # In-silico experiment set up: Define the levels for the decadic dilutions
 # with concentrations from 100 to 0.001 (six steps) as three replicates.
 
-dilution <-rep(sapply((2:-4), function(i) {10^i}), 3)
+dilution <- rep(10^(2:-4), 3)
 
 # Create an empty matrix for the results of the concentration
 # dependent Cq values.
@@ -1054,7 +1054,7 @@ par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
 par(fig = c(0,0.5,0,1), new = TRUE)
 plot(NA, NA, xlim = c(1,55), ylim = c(0, 0.7), xlab = "Cycle", 
      ylab = "refMFI", main = "Raw data")
-apply(C54[, c(2:4)], 2, function(y) lines(C54[, 1], y))
+just_line <- apply(C54[, c(2:4)], 2, function(y) lines(C54[, 1], y))
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2) 
 
 par(fig = c(0.5,1,0.5,1), new = TRUE)
@@ -1109,7 +1109,7 @@ legend(0, 6, colnames(C60.amp[, 4L:17]), ncol = 2, col = colors[1:14],
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2)
 SDM.vim <- sapply(4L:17, function(i) {
 	lines(C60.amp[, 1], C60.amp[, i], col = colors[i - 3])
-	SDM <- summary(inder(C60.amp[, 1], C60.amp[, i]))[2]
+	SDM <- summary(inder(C60.amp[, 1], C60.amp[, i]), print = FALSE)[2]
 	}
 )
 
@@ -1119,11 +1119,12 @@ legend(0, 4, colnames(C60.amp[, 18L:31]), ncol = 2, col = colors[1:14],
 mtext("B", cex = 1.2, side = 3, adj = 0, font = 2)
 SDM.mlc2v <- sapply(18L:31, function(i) {
 	lines(C60.amp[, 1], C60.amp[, i], col = colors[i - 17])
-	SDM <- summary(inder(C60.amp[, 1], C60.amp[, i]))[2]
+	SDM <- summary(inder(C60.amp[, 1], C60.amp[, i]), print = FALSE)[2]
 	}
 )
 
-dil <- rep(sapply(-(0:6), function(i) {10^i}), each = 2)
+#create vector of dillutions
+dil <- sort(rep(10^(0L:-6), 2), TRUE)
 
 res <- cbind(dil, SDM.vim, SDM.mlc2v)
 
@@ -1160,8 +1161,7 @@ Further details on \emph{shiny} are described in in the main document.
 (Figure~\ref{figure:fixNA}) and the use of the \textsl{smoother} 
 (Figure~\ref{figure:smoother}) function.
 
-\begin{figure*}
-\begin{verbatim}
+<<AmpSim_GUI,eval = FALSE>>=
 # Load the shiny package (chipPCR should already be loaded).
 # Run from a R console following commands.
 require(shiny)
@@ -1171,8 +1171,7 @@ runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
 
 # Call shiny app AmpSim directly from gist
 runGist('https://gist.github.com/michbur/e1def41598f1d0c1e2e6')
-\end{verbatim}
-\end{figure*}
+@
 
   \textsl{AmpSim} has several parameters, which can be used to simulate an 
 amplification curve. $b.eff$ and $Cq$ are most connected with another. 
