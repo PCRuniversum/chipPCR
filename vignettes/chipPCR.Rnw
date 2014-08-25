@@ -306,29 +306,20 @@ The vignette can be viewed from \textbf{R} using command: vignette("chipPCR").
 Further details of the experimental set-up for the data sets are described in 
 the manual of the $\emph{chipPCR}$ package.
 
-Although the numbers already contain all accessible information, data 
-visualization greatly simplifies further analysis. For example, outputs of 
-the \textsl{bg.max()} function can be added to the plots to provide even 
-more knowledge about the properties of analyzed experiments. Before the 
-start of any analysis, a user must must choose data set and proper tools. 
+Before the start of any analysis, a user must must choose data set, as shown in 
+example below. 
 
-<<load_data,message=FALSE>>=
+<<load_data,message=FALSE,results='asis'>>=
+# Load chipPCR 
 require(chipPCR)
-# Load the drc package for the five-parameter log-logistic fit.
-require(drc)
-# Load the testdat dataset from the qpcR package without 
-# loading the entire package.
-data(testdat, package = "qpcR")
-@
-
-<<see_data,echo=FALSE,results='asis',message=FALSE>>=
+# Load package for table formatting
 require(xtable)
-print(xtable(head(testdat[, 1L:5]), caption = "First six cycles of data.", 
-label = "tdhead"))
+# Print table
+print(xtable(head(C60.amp[, 1L:5]), caption = "First five cycles of imported data."))
 @
 
-For purpose of this short presentation, we will limit our analysis to four 
-experiments (Table~S\ref{tdhead}).
+All datasets used in following examples can be loaded in the same manner. They atre also 
+automatically avaible after loading whole package.
 
 \section{Inspection and analysis of amplification curve data}
 
@@ -401,7 +392,7 @@ hsk.test <- function(x, y, llul = c(1,15), main = "") {
 	pch = 19, type = "b")
     abline(v = llul, col = "grey", lty = 2, lwd = 2)
     legend("top", paste0("Breusch-Pagan test p-value: \n", 
-    format(summary(res)[5], digits = 2)), bty = "n")
+    format(summary(res, print = FALSE)[5], digits = 2)), bty = "n")
 }
 
 hsk.test(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
@@ -422,22 +413,23 @@ c(1,40), main = "ROI Cycle 1 to 40\nElongation phase")
 mtext("D", cex = 2, side = 3, adj = 0)
 @
 
-\subsection*{plotCurves}
+\subsection{Data overview - plotCurves}
 \label{sec:plotCurves}
 
-Plots can be used to visualize many curves on one plot in separate cells 
-allowing quick assessment (Figure~\ref{figure:plotCurves}). All 
-amplification curve data are arranged in an orthogonal matrix. In 
+\textsl{plotCurves} visualizes many curves on one plot in separate cells
+allowing quick experiment assessment (Figure~\ref{figure:plotCurves}). In 
 addition, \textsl{plotCurves} has an option to run an unsupervised 
 \textsl{CPP} pre-processing step on the raw data. This will smooth the 
 data (Savitzky-Golay Smoothing), remove missing values (spline 
 interpolation by default) and perform a background subtraction (base-lining 
 to zero).
 
-<<plotCurves,fig.show='hold',fig.cap=fig14_cap,fig.scap=fig14_scap>>=
+Warnings in following code chunks were supressed.
+
+<<plotCurves,fig.show='hold',fig.cap=fig14_cap,fig.scap=fig14_scap,warning=FALSE>>=
 y <- VIMCFX96_60[, 2L:9]
 # Introduce some missing values.
-y[unique(floor(runif(10,1,35))), unique(floor(runif(10,1,8)))] <- NA
+y[c(10, 22, 3, 25, 26, 15, 27, 23, 4), c(5, 7, 4, 2, 1)] <- NA
 
 # Show plot with raw data and missing values (black line) and show 
 # plots with pre-processed data and imputed missing values (red line).
