@@ -392,7 +392,7 @@ hsk.test <- function(x, y, llul = c(1,15), main = "") {
        pch = 19, type = "b")
   abline(v = llul, col = "grey", lty = 2, lwd = 2)
   legend("top", paste0("Breusch-Pagan test p-value: \n", 
-                       format(summary(res, print = FALSE)[5], digits = 2)), bty = "n")
+                       format(summary(res, print = FALSE)[14], digits = 2)), bty = "n")
 }
 
 hsk.test(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 

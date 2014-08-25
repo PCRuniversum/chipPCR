@@ -20,13 +20,13 @@ data.
 \usage{
 \S4method{smoother}{numeric,numeric}(x, y, trans = FALSE, 
 		    bg.outliers = FALSE, method = "savgol", 
-		    CPP = TRUE, paralell = NULL, ...)
+		    CPP = TRUE, paralell = NULL)
 \S4method{smoother}{matrix,missing}(x, y, trans = FALSE, 
 		    bg.outliers = FALSE, method = "savgol", 
-		    CPP = TRUE, paralell = NULL, ...)
+		    CPP = TRUE, paralell = NULL)
 \S4method{smoother}{data.frame,missing}(x, y, trans = FALSE, 
 		    bg.outliers = FALSE, method = "savgol", 
-		    CPP = TRUE, paralell = NULL, ...)
+		    CPP = TRUE, paralell = NULL)
 }
 
 \arguments{
@@ -48,8 +48,9 @@ should
 			be removed from background range.
   }
     \item{method}{
-		    a vector of names defining which smoothing method 
-should be used or list. The Savitzky-Golay smoothing filter is the default 
+		    a list where each element is character vector representing a smoothing 
+        method or a named list of additional arguments to a smoothing algorithm.
+        See Examples section. The Savitzky-Golay smoothing filter is the default 
 smoother. Use "lowess" for LOWESS smoother (locally-weighted polynomial 
 regression, "mova" for moving average, "savgol" for Savitzky-Golay 
 smoothing filter, "smooth" for cubic spline smooth, "spline" for standard 
@@ -57,10 +58,7 @@ cubic spline smooth, "supsmu" for Friedman's SuperSmoother, "whit1" for
 weighted Whittaker smoothing with a first order finite difference penalty, 
 "whit2" for weighted Whittaker smoothing with a second order finite 
 difference penalty or "all" for all implemented smoothing algorithms. Both 
-upper and lower case is accepted. If \code{method} is a list, each element 
-represents a smoothing method. If additional arguments are used, the 
-element must be a named list. If not, the element must be a character. See 
-Examples section.
+upper and lower case names are accepted.
   }
   \item{CPP}{
 		  logical parameter which indicates if CPP (curve 
@@ -69,10 +67,6 @@ pre-procssor) should be used.
   \item{paralell}{
   	  should contain a cluster object, created by package \code{parallel} or 
       \code{snow} package. If \code{NULL}, no parallelization is used.
-  }
-    \item{...}{
-		  dot operator for diverse arguments of the smoothers (see 
-details). Ignored if \code{method} is a list.
   }
 }
 \details{
@@ -143,6 +137,8 @@ legend(25, 0.8, c("Raw data", "savgol", "lowess", "mova 3", "mova 5",
 		  "smooth", "spline", "supsmu"), pch = 20, lwd = 2, 
 		  col = c(1:8))
 
+\dontrun{
+#on machines with multiple cores
 library(parallel)
 cl <- makeCluster(getOption("cl.cores", 2))
 tmp.smooths <- smoother(tmp, method = list("savgol",
@@ -154,8 +150,15 @@ tmp.smooths <- smoother(tmp, method = list("savgol",
                                            "supsmu"),
                         parallel = TRUE)
 stopCluster(cl)
-
-
+}
+#else
+tmp.smooths <- smoother(tmp, method = list("savgol",
+                                           "lowess",
+                                           mova = list(movaww = 3),
+                                           mova = list(movaww = 5),
+                                           "smooth",
+                                           "spline",
+                                           "supsmu"))
 for (i in 1:ncol(tmp.smooths))
   lines(tmp[, 1], tmp.smooths[, i], type = "b", pch = 20, lwd = 2, col = i 
 + 1)
@@ -195,16 +198,16 @@ plot(tmp, type = "b", col = 1, pch = 20, xlab = "", ylab = "RFU",
 
 #different ways of using smoother
 #1. single method
-single.smooth <- smoother(tmp, method = "mova")
+single.smooth <- smoother(tmp, method = list("mova"))
 #single smooth, additional argument specified
-single.smooth.add <- smoother(tmp, method = "mova", movaww = 3)
+single.smooth.add <- smoother(tmp, method = list(mova = list(movaww = 3)))
 #3. more than one smoothing method, no additional arguments specified
-double.smooth <- smoother(tmp, method = c("savgol", "mova"))
+double.smooth <- smoother(tmp, method = list("savgol", "mova"))
 #4. more than one smoothing method, additional arguments specified
 double.smooth.add <- smoother(tmp, method = list("savgol", mova = 
 list(movaww = 3)))
-#5. all smoothing methods, , no additional arguments specified
-all.smooth <- smoother(tmp, method = "all")
+#5. all smoothing methods, no additional arguments specified
+all.smooth <- smoother(tmp, method = list("all"))
 }
 
 \keyword{ smooth }

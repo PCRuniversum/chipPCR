@@ -40,7 +40,7 @@ fixNA <- function(x, y, spline = TRUE, verbose = FALSE) {
   # Indicate if information about the number of missing
   # values is needed
   if (verbose) 
-    print(paste(nNA, "missing value(s) imputed.", sep = " "))
+    message(paste(nNA, "missing value(s) imputed.", sep = " "))
   
   # If NAs are present in the data set, substitie them by
   # linear approximation or by splines

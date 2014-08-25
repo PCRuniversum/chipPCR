@@ -69,11 +69,11 @@ plot(NA, NA, xlim = c(0,30), ylim = c(0,0.8), xlab = "Time [min]",
      ylab = "Fluorescence", main = "HDA amplification")
 points(C85[, 2]/60, C85[, 3], type = "b", col = 1, pch = 20)
 points(C85[, 2]/60, smoother(C85[, 2]/60, C85[, 3], 
-			     method = "savgol"), type = "b", col = 2, pch = 20)
+			     method = list("savgol")), type = "b", col = 2, pch = 20)
 points(C85[, 2]/60, smoother(C85[, 2]/60, C85[, 3], 
-			     method = "smooth"), type = "b", col = 3, pch = 20)
+			     method = list("smooth")), type = "b", col = 3, pch = 20)
 points(C85[, 2]/60, smoother(C85[, 2]/60, C85[, 3], 
-			     method = "mova"), type = "b", col = 4, pch = 20)
+			     method = list("mova")), type = "b", col = 4, pch = 20)
 
 legend(1, 0.8, c("D1, raw", "D1, savgol", "D1, smooth", "D1, mova"), 
 	col = c(1:4), pch = rep(20,4))
@@ -100,7 +100,7 @@ movaww <- seq(1,17,4)
 for (i in 1:length(movaww)) {
   for (j in c(2,4,6)) {
     tmp <- data.frame(na.omit(C85[xrange, j])/60, na.omit(C85[xrange, j+1]))
-    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "mova", movaww = movaww[i], 
+    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = list(mova = list(movaww = movaww[i])), 
                         bg.outliers = TRUE)
     lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, cex = 0.5, 
           col = i)
@@ -118,8 +118,9 @@ df.fact <- seq(0.5,0.9,0.1)
 for (i in 1:length(df.fact)) {
   for (j in c(2,4,6)) {
     tmp <- data.frame(na.omit(C85[xrange, j])/60, na.omit(C85[xrange, j+1]))
-    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "smooth", 
-                        df.fact = df.fact[i], bg.outliers = TRUE)
+    tmp.out <- smoother(tmp[, 1], tmp[, 2], 
+                        method = list(smooth = list(df.fact = df.fact[i])), 
+                        bg.outliers = TRUE)
             
             lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, 
                   cex = 0.5, col = i)
@@ -138,7 +139,7 @@ f <- seq(0.01,0.2,0.04)
 for (i in 1:length(f)) {
   for (j in c(2,4,6)) {
       tmp <- data.frame(na.omit(C85[xrange, j])/60, na.omit(C85[xrange, j+1]))
-      tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "lowess", f = f[i], 
+      tmp.out <- smoother(tmp[, 1], tmp[, 2], method = list(lowess = list(f = f[i])), 
                          bg.outliers = TRUE)
             
       lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, cex = 0.5, 
@@ -158,7 +159,7 @@ span <- seq(0.01,0.05,0.01)
 for (i in 1:length(span)) {
   for (j in c(2,4,6)) {
     tmp <- data.frame(na.omit(C85[xrange, j])/60, na.omit(C85[xrange, j+1]))
-    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "supsmu", span = span[i], 
+    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = list(supsmu = list(span = span[i])), 
                          bg.outliers = TRUE)
             
     lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, cex = 0.5, 
@@ -176,7 +177,7 @@ plot(NA, NA, xlim = c(0,40), ylim = c(0.4,0.8), xlab = "Time [min]",
 
 for (j in c(2,4,6)) {
     tmp <- data.frame(na.omit(C85[xrange, j])/60, na.omit(C85[xrange, j+1]))
-    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "savgol", 
+    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = list("savgol"), 
 			 bg.outliers = TRUE)
 	    
     lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, cex = 0.5, 

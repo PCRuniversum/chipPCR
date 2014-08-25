@@ -74,7 +74,6 @@ setMethod("plot", signature(x = "amptest"),
             
             y.lims[1] <- y.lims[1] - 0.4*(lb.pos + abs(ub.pos))
             y.lims[2] <- y.lims[2] + 0.4*(lb.pos + abs(ub.pos))
-            print(y.lims)
             plot(abscissa, y.pos, xlim = c(abscissa[1], 
                                            abscissa[length(abscissa)] * 1.3), 
                  ylim = y.lims, xlab = "Cycle", ylab = "RFU", 

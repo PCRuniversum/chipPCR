@@ -72,7 +72,7 @@ for (i in 1:3) {
   for (j in c(1,3,5,7)) {
       tmp <- data.frame(na.omit(capillaryPCR[, j]), 
 			na.omit(capillaryPCR[, j+1]))
-      tmp.sm <- smoother(tmp[, 1], tmp[, 2], method = type[i])
+      tmp.sm <- smoother(tmp[, 1], tmp[, 2], method = list(type[i]))
       lines(data.frame(tmp[, 1], tmp.sm), type = "b", pch = 20, cex = 0.5, 
 	    col = i)
   }
@@ -89,7 +89,7 @@ for (i in 1:3) {
   for (j in c(1,3,5,7)) {
       tmp <- data.frame(na.omit(capillaryPCR[, j]), 
 			na.omit(capillaryPCR[, j+1]))
-      tmp.sm <- smoother(tmp[, 1], tmp[, 2], method = type[i])
+      tmp.sm <- smoother(tmp[, 1], tmp[, 2], method = list(type[i]))
       lines(data.frame(tmp[, 1], tmp.sm), type = "b", pch = 20, cex = 0.5, 
 	    col = i)
   }
@@ -109,7 +109,7 @@ for (i in 1:length(method)) {
   for (j in c(1,3,5,7)) {
       tmp <- data.frame(na.omit(capillaryPCR[, j]), 
 			na.omit(capillaryPCR[, j+1]))
-      tmp.sm <- smoother(tmp[, 1], tmp[, 2], method = method[i])
+      tmp.sm <- smoother(tmp[, 1], tmp[, 2], method = list(method[i]))
       lines(data.frame(tmp[, 1], tmp.sm), type = "l", pch = 20, cex = 0.5, 
 	    col = i)
   }
@@ -124,7 +124,7 @@ for (i in 1:length(method)) {
   for (j in c(1,3,5,7)) {
       tmp <- data.frame(na.omit(capillaryPCR[, j]), 
 			na.omit(capillaryPCR[, j+1]))
-      tmp.sm <- smoother(tmp[, 1], tmp[, 2], method = method[i])
+      tmp.sm <- smoother(tmp[, 1], tmp[, 2], method = list(method[i]))
       lines(data.frame(tmp[, 1], tmp.sm), type = "l", pch = 20, cex = 0.5, 
 	    col = i)
   }
@@ -143,8 +143,8 @@ for (i in 1:length(movaww)) {
   for (j in c(1,3,5,7)) {
 	    tmp <- data.frame(na.omit(capillaryPCR[, j]), 
 			      na.omit(capillaryPCR[, j+1]))
-	    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "mova", 
-				movaww = movaww[i])
+	    tmp.out <- smoother(tmp[, 1], tmp[, 2], 
+                 method = list(mova = list(movaww = movaww[i])))
 	    
 	    lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, 
 		  cex = 0.5, col = i)
@@ -161,8 +161,8 @@ for (i in 1:length(df.fact)) {
   for (j in c(1,3,5,7)) {
     tmp <- data.frame(na.omit(capillaryPCR[, j]), 
 		      na.omit(capillaryPCR[, j+1]))
-    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "smooth", 
-			df.fact = df.fact[i])
+    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = list(smooth = 
+    list(df.fact = df.fact[i])))
    
     lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, 
 		  cex = 0.5, col = i)
@@ -180,7 +180,7 @@ for (i in 1:length(f)) {
   for (j in c(1,3,5,7)) {
 	    tmp <- data.frame(na.omit(capillaryPCR[, j]), 
 			      na.omit(capillaryPCR[, j+1]))
-	    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "lowess", f = f[i])
+	    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = list(lowess = list(f = f[i])))
 	    
 	    lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, 
 		  cex = 0.5, col = i)
@@ -197,8 +197,8 @@ for (i in 1:length(span)) {
   for (j in c(1,3,5,7)) {
 	    tmp <- data.frame(na.omit(capillaryPCR[, j]), 
 			      na.omit(capillaryPCR[, j+1]))
-	    tmp.out <- smoother(tmp[, 1], tmp[, 2], method = "supsmu", 
-				span = span[i])
+	    tmp.out <- smoother(tmp[, 1], tmp[, 2], 
+                 method = list(supsmu = list(span = span[i])))
 	    
 	    lines(data.frame(tmp[, 1], tmp.out), type = "l", pch = 20, 
 		  cex = 0.5, col = i)
