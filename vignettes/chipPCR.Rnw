@@ -11,6 +11,7 @@
 \newcommand\subsubsectionbreak{\ifnum\value{subsubsection}>1\clearpage\fi}
 
 \renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
 \makeatletter
 \renewcommand{\@maketitle}{
 \newpage
@@ -425,7 +426,6 @@ interpolation by default) and perform a background subtraction (base-lining
 to zero).
 
 Warnings in following code chunks were supressed.
-
 <<plotCurves,fig.show='hold',fig.cap=fig14_cap,fig.scap=fig14_scap,warning=FALSE>>=
 y <- VIMCFX96_60[, 2L:9]
 # Introduce some missing values.
@@ -484,10 +484,7 @@ Plateau phase  - 3 NA & $11736.60 \pm 1032$ & $11736.86 \pm 1033$ &
 $18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
 \hline
 \end{tabular}
-\end{table}
 
-\begin{table}[ht]
-\centering
 \begin{tabular}{rlll}
 \hline
 & Cy0 - raw data & Cy0 - fixed NA & NRMSE \\ 
@@ -506,6 +503,8 @@ Plateau phase  - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00072
 \pm 0.000475$ \\ 
 \hline
 \end{tabular}
+\caption{Results of fixNA data imputation.}
+\label{table:fixNA}
 \end{table}
 
 <<fixNA,fig.show='hold',fig.cap=fig8_cap,fig.scap=fig8_scap>>=
@@ -669,6 +668,8 @@ smoothed data, which results in data points not observable in reality. The
 \textsl{rounder} function averages such result to the real values of cycle 
 number.
 
+Warnings in following code chunks were supressed.
+
 <<rounder_show,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig16_cap,fig.scap=fig16_scap>>=
 # Simulate an amplification curve with 40 cycles using the AmpSim 
 # function.
@@ -793,6 +794,7 @@ to fit a "complex" non linear model to the entire data set but rather
 focuses on the specific area. The polynomial is calculated from four 
 neighbor values at the fluorescence threshold.
 
+Warnings in following code chunks were supressed.
 <<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap,fig.scap=fig2_scap>>=
 # Raw data from the VIMCFX96_69 data set.
 # Cycles x and Fluoresce values y
@@ -886,6 +888,7 @@ dilution (D2) and a 1:100 (D3) dilution were tested. Temperature profile
 - 60 seconds at 65 degree Celsius 
 - 11 seconds at 55 degree Celsius \& Measurement
 
+Warnings in following code chunks were supressed.
 <<HDA,fig.show='hold',fig.cap=fig13_cap,fig.scap=fig13_scap,message=FALSE,warning=FALSE>>=
 par(mfrow = c(2,1), bty = "n")
 plot(NA, NA, xlim = c(0,5000), ylim = c(0,1), xlab = "Time (sec)", 
@@ -1075,11 +1078,10 @@ plot(effcalc(res.dil[, 1], res.dil[, 2]))
 @
 
 
-% <<effcalc_output,echo=FALSE,results='asis',message=FALSE>>=
-% require(xtable)
-% print(xtable(effcalc(tmp[, 1], tmp[, 2:4])), caption = "Output of the 
-% effcalc function.", label = "effcalc_output")
-% @
+<<effcalc_output,echo=FALSE,results='asis',message=FALSE>>=
+print(xtable(effcalc(res.dil[, 1], res.dil[, 2]), 
+      caption = "Output of the effcalc function.", label = "table:effcalc_output"))
+@
 
 In another example we used \textsl{effcalc} function to analyze the C60.amp data 
 set from the $\emph{chipPCR}$ package. All data of the human genes Vimentin 
@@ -1088,7 +1090,8 @@ set from the $\emph{chipPCR}$ package. All data of the human genes Vimentin
 1.5 and detected by the HRM dye EvaGreen in independent experiments. As shown in 
 the code and Figure~\ref{figure:effcalc_VIM_MLC} it is possible to obtain a 
 complete analysis with few commands. The amplification efficiencies for both 
-qPCRs was higher than 94~\% (Figure~\ref{figure:effcalc_VIM_MLC}~C~and~D).
+qPCRs was higher than 94~\% (Figure~\ref{figure:effcalc_VIM_MLC}~C~and~D, 
+Table~\ref{table:effcalc_output}).
 
 <<effcalc_VIM_MLC,fig.show='hold',fig.cap=fig17_cap,fig.scap=fig17_scap>>=
 colors <- rep(rainbow(7), each = 2)
@@ -1176,7 +1179,7 @@ photo-bleaching and other influences on a qPCR reaction. The following
 example illustrates the use of \textsl{AmpSim} 
 (Figure~\ref{figure:AmpSim_random}).
 
-
+Warnings in following code chunks were supressed.
 <<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig1_cap,fig.scap=fig1_scap>>=
 # Draw an empty plot for 40 cycles with user defined parameters.
 
@@ -1202,7 +1205,7 @@ sim <- sapply(1L:8, function(i) {
 
 \section{Proposed workflow}
 
-
+Warnings in following code chunks were supressed.
 <<workflow,fig.show='hold',fig.cap=fig4_cap,fig.scap=fig4_scap,warning=FALSE>>=
 layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE), respect = TRUE)
 
