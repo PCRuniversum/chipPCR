@@ -470,7 +470,7 @@ setMethod("plot", signature(x = "eff"), function(x, xlab = "log10(Concentration)
   coords <- c(range(res[, 1]), 
               range(res[, 2]))
   # Store default graphic parameters
-  default.par <- par()
+  #   default.par <- par()
   
   # Perform a linear regression based on the values of the 
   # calculated mean/median
@@ -517,6 +517,6 @@ setMethod("plot", signature(x = "eff"), function(x, xlab = "log10(Concentration)
     abline(lm.res)
   }
   
-  # Restore default graphic parameters
-  par(default.par)
+  #   # Restore default graphic parameters
+  #   par(default.par)
 })
