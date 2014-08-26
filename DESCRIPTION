@@ -34,7 +34,7 @@ Suggests:
     drc,
     knitr,
     markdown,
-    MBmca (>= 0.0.3-3),
+    MBmca (>= 0.0.3-4),
     qpcR,
     xtable
 VignetteBuilder: knitr
