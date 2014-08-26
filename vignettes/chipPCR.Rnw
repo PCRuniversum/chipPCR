@@ -554,6 +554,19 @@ mtext("D", cex = 1.2, side = 3, adj = 0, font = 2)
 par(mfrow = c(1,1))
 @
 
+\clearpage
+
+reps384, two repetitions - removal of 1 and 3 data points.
+
+\begin{figure}[ht]
+\centering
+\scalebox{0.43}{
+\includegraphics{fixNA_test.png}
+}
+\caption{Test of \textsl{fixNA} function.}
+\label{figure:test_fixNA}
+\end{figure}
+
 
 \section{Normalization of amplification curve data}
 
