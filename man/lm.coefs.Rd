@@ -22,12 +22,12 @@ regression.
 }
 }
 \details{
-\code{lm.coefs} is convinient wrapper around few functions performing 
-normal (least squares) and robust linear regression. If the robut linear 
+\code{lm.coefs} is convenient wrapper around few functions performing 
+normal (least squares) and robust linear regression. If the robust linear 
 regression is impossible, \code{lm.coefs} will perform linear regression 
 using the least squares method.
 This function can be used to calculate the background of an amplification
-cruve. The coefficients of the analysis can be used for a trend based
+curve. The coefficients of the analysis can be used for a trend based
 correction of the entire data set.
 }
 \value{

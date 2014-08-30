@@ -234,9 +234,16 @@ amplification curve was simulated with the AmpSim function."
 fig16_scap <- "Use of rounder to average numeric derivatives to the real 
 values of cycle number."
 
-fig17_cap <- "FILL ME."
+fig17_cap <- "\\textsl{lm.coefs} a function to compute linear model 
+coefficients. The function is a convenient wrapper around few functions 
+performing normal (least squares) and robust linear regression. If the robust 
+linear regression is impossible, \\textsl{lm.coefs} will perform linear 
+regression using the least squares method. This function can be used to 
+calculate the background of an amplification curve. The coefficients of the 
+analysis can be used for a trend based correction of the entire data set."
 
-fig17_scap <- "FILL ME."
+fig17_scap <- "\\textsl{lm.coefs} a function to compute linear model 
+coefficients."
 
 fig18_cap <- "\\textsl{bg}.\\textsl{max} tries to estimate the range between the 
 background and the plateau phase of an amplification reaction. \\emph{(A)} in 
@@ -319,12 +326,12 @@ require(xtable)
 print(xtable(head(C60.amp[, 1L:5]), caption = "First five cycles of imported data."))
 @
 
-All datasets used in following examples can be loaded in the same manner. They atre also 
-automatically avaible after loading whole package.
+All datasets used in following examples can be loaded in the same manner. They are also 
+automatically available after loading whole package.
 
 \section{Inspection and analysis of amplification curve data}
 
-The following section briefly describes function from the \emph{chipPCR} 
+The following section briefly describes function from the $\emph{chipPCR}$ 
 to visualize and analyze amplification curve data. In particular, the 
 functions \textsl{MFIaggr} and \textsl{plotCurves} were developed for a 
 rapid and convenient inspection of raw data.
@@ -463,6 +470,13 @@ column of data. The imputation is based on a linear approximation by
 default. However, the data can also be estimated from an approximation by 
 splines.
 
+We used the ``reps384'' data set from the $\emph{qpcR}$ package to compare the 
+influence of imputation on real-world data. This data set consists of 380 
+replicate amplification curves (see documentation of the $\emph{qpcR}$ package 
+for details). The missing values were artificially introduced into the data at 
+random cycle numbers. Our in-silico experiment was designed to introduce either 
+or three missing values. 
+
 \begin{table}[ht]
 \centering
 \begin{tabular}{rllll}
@@ -570,13 +584,18 @@ reps384, two repetitions - removal of 1 and 3 data points.
 
 \section{Normalization of amplification curve data}
 
+Data within an experiment have in most cases different minimum and maximum 
+values. For the visualization of the data it is ofter better to scale the data
+within a defined range. Eventually, this helps to grasp the data faster. In 
+particular, a comparison of data from different measurements and/or scaling is
+easier if data are normalized.
 \textsl{normalizer} is a function to normalize any data set. It is 
 possible 
 to chose from different methods (see Details). The function is useful if
 the data from an experiment have considerable variation regarding the 
 background and plateau signal.
 
-The parameter qnL is a user defined quantile, which is used for the 
+The parameter $qnL$ is a user defined quantile, which is used for the 
 quantile 
 normalization. 
 \begin{itemize}
@@ -681,7 +700,7 @@ smoothed data, which results in data points not observable in reality. The
 \textsl{rounder} function averages such result to the real values of cycle 
 number.
 
-Warnings in following code chunks were supressed.
+Warnings in following code chunks were suppressed.
 
 <<rounder_show,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig16_cap,fig.scap=fig16_scap>>=
 # Simulate an amplification curve with 40 cycles using the AmpSim 
@@ -778,22 +797,21 @@ amplification from qIA but also for qPCR. We implement a symmetrically
 approximation algorithm based on linear and quadratic least squares 
 regression.
 
-\textsl{th}.\textsl{cyc} is a function to calculate the number of cycles at which 
-the 
-fluorescence exceeds a defined threshold, called the threshold cycle (Ct) 
-(Figure~\ref{figure:thcyc}). 
-According to the MIQE guidelines the Ct is referred to as quantification 
-cycle (Cq). The calculated Cq is a relative value, which depends on the 
-template copy number, instrument, reagents, amplification efficiency and 
-probe technology. Low Cqs correlate with high quantities template copy 
-numbers. Real-time technologies enable the quantification of nucleic acids 
-by calculation of specific curve parameters like the quantification point 
-(Cq) and the amplification efficiency (AE) based on the kinetics of the 
-amplification curve. The Cq represents the number of cycles (time for qIA) 
-needed to reach a defined fluorescence signal level in the exponential 
-phase of the amplification curve. The Cq can be determined from a fixed 
-threshold value or by various analytical algorithm as described elsewhere 
-\cite{ruijter_2009, ruijter_2013, tellinghuisen_2014}.
+\textsl{th}.\textsl{cyc} is a function to calculate the number of cycles at 
+which the fluorescence exceeds a defined threshold, called the threshold cycle 
+(Ct) (Figure~\ref{figure:thcyc}). According to the MIQE guidelines (``Minimum 
+Information for publication of Quantitative real-time PCR Experiments'') the Ct is 
+referred to as quantification cycle (Cq). The calculated Cq is a relative value, 
+which depends on the template copy number, instrument, reagents, amplification 
+efficiency and probe technology. Low Cqs correlate with high quantities template 
+copy numbers. Real-time technologies enable the quantification of nucleic acids 
+by calculation of specific curve parameters like the quantification point (Cq) 
+and the amplification efficiency (AE) based on the kinetics of the amplification 
+curve. The Cq represents the number of cycles (time for qIA) needed to reach a 
+defined fluorescence signal level in the exponential phase of the amplification 
+curve. The Cq can be determined from a fixed threshold value or by various 
+analytical algorithm as described elsewhere \cite{ruijter_2009, ruijter_2013, 
+tellinghuisen_2014}.
 
 The Threshold Cycle (Ct) (Cq according to MIQE, see 
 \cite{bustin_miqe_2009}) is 
