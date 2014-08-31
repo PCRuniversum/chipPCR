@@ -266,9 +266,12 @@ between raw data and pre-processed data."
 fig19_scap <- "Application of the \\textsl{bg}.\\textsl{max} function to detect 
 the start and end of an amplification reaction in a capillary convective PCR."
 
-fig20_cap <- "FILL ME."
+fig20_cap <- "Inspection of the reps384 data set. The reps384 data set was used 
+for the analysis of the impact of imputed missing values. Three areas of the 
+curve data were defined as ``Linear phase'' (red, cycle 1 -- 10), ``Exponential 
+phase'' (blue, cycle 11 -- 33), ``Plateau phase'' (green, cycle 34 -- 40)."
 
-fig20_scap <- "FILL ME."
+fig20_scap <- "Inspection of the reps384 data set."
 @
 
 
@@ -473,9 +476,30 @@ splines.
 We used the ``reps384'' data set from the $\emph{qpcR}$ package to compare the 
 influence of imputation on real-world data. This data set consists of 380 
 replicate amplification curves (see documentation of the $\emph{qpcR}$ package 
-for details). The missing values were artificially introduced into the data at 
-random cycle numbers. Our in-silico experiment was designed to introduce either 
-or three missing values. 
+for details). Our in-silico experiment was designed to introduce either or three 
+missing values. The missing values were artificially introduced into the data at 
+random cycle numbers. We separated the amplification curve in three fixed 
+regions (``Linear phase'', ``Exponential phase'', ``Plateau phase'') and 
+investigated the impact on the pPCR parameters ``Cq (SDM, Cy0)'' and curve 
+background parameter ``bg''. The performance of the imputed models was analyzed 
+the goodness-of-fit in this region by the commonly normalized used 
+root-mean-squared-error (NRMSE). The smaller the NRMSE the better the imputation 
+is. Using this approach we compared the imputation by ``linear approximation'' 
+and ``spline approximation''. Our results show that the imputation with the 
+spline method worked reliably and introduced no significant bias to all 
+investigated parameters.
+
+<<fixNA_data,fig.show='hold',fig.cap=fig20_cap,fig.scap=fig20_scap>>=
+library(qpcR)
+library(chipPCR)
+plot(NA, NA, xlim = c(1,45), ylim = c(min(reps384[, -1]), max(reps384[, -1])), 
+     col = 1, pch = 19, type = "b", xlab = "Cycle", ylab = "Fluorescence")
+rect(0.8, min(reps384[, -1]), 10.2, max(reps384[, -1]), border = NA, col = "red")
+rect(10.8, min(reps384[, -1]), 33.2, max(reps384[, -1]), border = NA, col = "blue")
+rect(33.8, min(reps384[, -1]), 45, max(reps384[, -1]), border = NA, col = "green")
+
+apply(reps384[, -1], 2, function(i) lines(reps384[, 1], i))
+@
 
 \begin{table}[ht]
 \centering
@@ -658,14 +682,20 @@ lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x,
 \section{Compute linear model coefficients - Background subtraction based 
 on linear models}
 
+The slope of the background range is often unequal to zero and in most cased 
+accompanied by a positive or negative trend. By using a linear trend 
+extrapolation it is possible to apply a correction of the slope.
+
 \textsl{lm.coefs} is a wrapper around functions performing normal (linear least 
 squares) and robust linear regression. If the robust linear regression is 
-impossible, \textsl{lm.coefs} will perform linear regression using the 
-least squares method. This function can be used to calculate the 
-background 
-of an amplification curve. The coefficients of the analysis can be used 
-for 
-a trend based correction of the entire data set.
+impossible, \textsl{lm.coefs} will perform linear regression using the least 
+squares method. This function can be used to calculate the background of an 
+amplification curve. The coefficients of the analysis can be used for a trend 
+based correction of the entire data set. Thereby either a robust linear 
+regression by computing MM-type regression estimators, a nonparametric 
+rank-based estimator or a standard linear regression model. Care is needed when 
+using trans with time series (see \textsl{lm} from the $\emph{stats}$ package 
+for details).
 
 <<lmcoef,fig.show='hold',fig.cap=fig17_cap,fig.scap=fig17_scap>>=
 par(bty = "n")
@@ -1062,8 +1092,8 @@ mtext("B", cex = 1.1, side = 3, adj = 0, font = 2)
 Next we used \textsl{effcalc} to analyze the C54 data set from the 
 $\emph{chipPCR}$ package. Herein, a qPCR Experiment for the amplification of 
 MLC-2v using the VideoScan heating/cooling-unit was performed. To calculate the 
-Cq it was necessary to pre-process the amplifcation curve data. One 
-amplifcation curve contained a missing value (Figure~\ref{figure:CPP_C54}~A) 
+Cq it was necessary to pre-process the amplification curve data. One 
+amplification curve contained a missing value (Figure~\ref{figure:CPP_C54}~A) 
 wich was remove by the spline method in \textsl{CPP}. In addition, the data 
 were baselined (linear model, robus MM-estimator) and smoothed by 
 Savitzky-Golay Smoothing (Figure~\ref{figure:CPP_C54}~B). The final analysis 
