@@ -457,46 +457,58 @@ values. One approach is to ignore NAs, which is generally acceptable.
 However, in case of further calculation it is often necessary to handle 
 cases of missing values in a way that the next calculation steps can be 
 performed. Missing values can be eliminated by a imputation. Imputation 
-encompasses various approaches. This includes to calculate a location 
-parameter (e.g., mean, median) or other significant values (e.g., minimum, 
-maximum, modus) of a data column. However, in non-linear processes such as 
-amplification processes its is better to estimate the missing values from 
-a trend. The function \textsl{fixNA} was empirically tested and relies on a linear 
-trend estimation based on the approx function. This approach is useful but 
-may be problematic on the phases other then background or plateau phases 
-of an amplification reaction. The parameter spline on \textsl{fixNA} enables a 
-trend estimation on splines and may be more appropriate in most scenarios. 
-Other smoothing functions such as the Savitzky-Golay smoothing filter have 
-the intrinsic capability to remove missing values \cite{Eilers_2003, 
-Savitzky_1964}. The function \textsl{fixNA} imputes missing values in a single 
-column of data. The imputation is based on a linear approximation by 
-default. However, the data can also be estimated from an approximation by 
-splines.
+encompasses various approaches. This includes to calculate a location parameter 
+(e.g., mean, median) or other significant values (e.g., minimum, maximum, modus) 
+of a data column. However, in non-linear processes such as amplification 
+processes its is reasonable to estimate the missing values from a trend. The 
+function \textsl{fixNA} was empirically tested and relies on a linear or 
+non-linear trend estimation. Other smoothing functions such as the 
+Savitzky-Golay smoothing filter have the intrinsic capability to remove missing 
+values \cite{Eilers_2003, Savitzky_1964}. However, such functionality was not 
+yet implemented. This linear approach is useful but may be problematic on the 
+phases other then background or plateau phases of an amplification reaction. The 
+parameter spline on \textsl{fixNA} enables a trend estimation on cubic splines 
+and may be more appropriate in most scenarios. The function \textsl{fixNA} 
+imputes missing values in a single column of data. The imputation is based on a 
+linear approximation by default. However, the data can also be estimated from an 
+approximation by splines.
 
 We used the ``reps384'' data set from the $\emph{qpcR}$ package to compare the 
-influence of imputation on real-world data. This data set consists of 380 
-replicate amplification curves (see documentation of the $\emph{qpcR}$ package 
-for details). Our in-silico experiment was designed to introduce either or three 
-missing values. The missing values were artificially introduced into the data at 
-random cycle numbers. We separated the amplification curve in three fixed 
-regions (``Linear phase'', ``Exponential phase'', ``Plateau phase'') and 
+influence of imputation on real-world data. The ``reps384'' data set consists 
+of 380 replicate amplification curves (see documentation of the $\emph{qpcR}$ 
+package for details). Our in-silico experiment was designed as followed: Either 
+one or three missing values were artificially to each amplification curve at 
+random positions. We separated the amplification curve in three fixed regions 
+(``Linear phase'' (cycle 1 -- 10), ``Exponential phase'' (cycle 11 -- 34), 
+``Plateau phase'' (cycle 34 -- 40), Figure~\ref{figure:fixNA_data}) and 
 investigated the impact on the pPCR parameters ``Cq (SDM, Cy0)'' and curve 
 background parameter ``bg''. The performance of the imputed models was analyzed 
 the goodness-of-fit in this region by the commonly normalized used 
-root-mean-squared-error (NRMSE). The smaller the NRMSE the better the imputation 
-is. Using this approach we compared the imputation by ``linear approximation'' 
-and ``spline approximation''. Our results show that the imputation with the 
+root-mean-squared-error (NRMSE). The smaller the NRMSE the better the 
+imputation is. Using this approach we compared the imputation by ``linear 
+approximation'' ($fixNA(x, y, spline = FALSE)$) and ``spline approximation'' 
+($fixNA(x, y, spline = TRUE)$). Our results show that the imputation with the 
 spline method worked reliably and introduced no significant bias to all 
-investigated parameters.
+investigated parameters. To compare the linear and spline-based imputation we 
+performed a Kruskal-Wallis rank sum test (\textsl{kruskal.test}, $\emph{stats}$ 
+package).
+
+Our results for the given experiential setting support following statements. 
+(I) The imputation of missing values by spline interpolation and liner methods 
+introduce no significant bias on the tested parameters ``Cq (SDM, Cy0)'', 
+``bg'' and the accompanied quality measure NRMSE (Table~\ref{table:fixNA}). (II) 
+We found that the difference between the linear and spline imputation is 
+negligible (p~1).
 
 <<fixNA_data,fig.show='hold',fig.cap=fig20_cap,fig.scap=fig20_scap>>=
 library(qpcR)
 library(chipPCR)
+cols <- adjustcolor(2:4, 0.7)
 plot(NA, NA, xlim = c(1,45), ylim = c(min(reps384[, -1]), max(reps384[, -1])), 
      col = 1, pch = 19, type = "b", xlab = "Cycle", ylab = "Fluorescence")
-rect(0.8, min(reps384[, -1]), 10.2, max(reps384[, -1]), border = NA, col = "red")
-rect(10.8, min(reps384[, -1]), 33.2, max(reps384[, -1]), border = NA, col = "blue")
-rect(33.8, min(reps384[, -1]), 45, max(reps384[, -1]), border = NA, col = "green")
+rect(0.8, min(reps384[, -1]), 10.2, max(reps384[, -1]), border = NA, col = cols[1])
+rect(10.8, min(reps384[, -1]), 33.2, max(reps384[, -1]), border = NA, col = cols[2])
+rect(33.8, min(reps384[, -1]), 45, max(reps384[, -1]), border = NA, col = cols[3])
 
 apply(reps384[, -1], 2, function(i) lines(reps384[, 1], i))
 @
@@ -541,7 +553,8 @@ Plateau phase  - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00072
 \pm 0.000475$ \\ 
 \hline
 \end{tabular}
-\caption{Results of fixNA data imputation.}
+\caption{Results of fixNA data imputation. $1 NA$ (=~one) or $3 NA$ (=~three) 
+missing value per amplification curve, respectively.}
 \label{table:fixNA}
 \end{table}
 
@@ -598,13 +611,12 @@ reps384, two repetitions - removal of 1 and 3 data points.
 
 \begin{figure}[ht]
 \centering
-\scalebox{0.43}{
+\scalebox{0.6}{
 \includegraphics{fixNA_test.png}
 }
 \caption{Test of \textsl{fixNA} function.}
 \label{figure:test_fixNA}
 \end{figure}
-
 
 \section{Normalization of amplification curve data}
 
@@ -1191,30 +1203,42 @@ mtext("D", cex = 1.2, side = 3, adj = 0, font = 2)
 @
 
 \section{AmpSim - a function to simulate amplification curves}
+\label{AmpSim}
 
-The function \textsl{AmpSim} is a simulator for amplification reactions. 
-Use cases include teaching, algorithm testing or the comparison of an 
-experimental system to the predicted (''optimal``) model. \textsl{AmpSim} 
-uses a 5-parameter model (Equation~S\ref{eq:richards}).
+The function \textsl{AmpSim} is a simulator for amplification reactions. Use 
+cases include teaching, algorithm testing or the comparison of an experimental 
+system to the predicted (''optimal``) model. \textsl{AmpSim} uses a 5-parameter 
+model (Equation~S\ref{eq:richards}). The function is commonly used for the 
+simulation of amplification curves \cite{spiess_2008, ritz_2008, gerhard_2014}.
 
 \begin{equation} \label{eq:richards}
 fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
 \end{equation}
 
 It is an intrinsic property of \textsl{AmpSim} to generate unique results if the 
-$noise$ parameter is set $TRUE$. This is due the use of the \textsl{rnorm} 
-(\emph{stats}) function to simulate noise. If data need to be replicated 
-identically use \textsl{set.seed(123)} to alter the random number generator 
-(RNG) state. For example, the amplification curves of 
+$noise$ parameter is\textsl{bg}.\textsl{max} set $TRUE$. This is due the use of 
+the \textsl{rnorm} (\emph{stats}) function to simulate noise. If data need to be 
+replicated identically use \textsl{set.seed(123)} to alter the random number 
+generator (RNG) state. For example, the amplification curves of 
 Figure~\ref{figure:AmpSim_effcalc}~\emph{A} are generated with the same starting 
-parameter of \textsl{AmpSim} but noise was added. \textsl{AmpSim.gui} is a 
+parameter of \textsl{AmpSim} but noise was added. \textsl{AmpSim}.\textsl{gui} is a 
 \emph{shiny} GUI (graphical user interface) implementation for \textsl{AmpSim}. 
-The code example below is an exmple how-to invoke the \textsl{AmpSim.gui}. 
+The code example below is an exmple how-to invoke the \textsl{AmpSim}.\textsl{gui}. 
 Further details on \emph{shiny} are described in in the main document. 
 \textsl{AmpSim} was also used to illustrate the \textsl{inder} function 
 (Figure~\ref{figure:SDM}), the \textsl{fixNA} function 
 (Figure~\ref{figure:fixNA}) and the use of the \textsl{smoother} 
 (Figure~\ref{figure:smoother}) function.
+
+As explained in the main text there are several ways of $\emph{chipPCR}$ GUIs. 
+An example to launches graphical user interface that allows simulating and 
+analyzing amplification reactions is shown next. This approach is usable to run 
+a GUI on a local machine without the requirement to connect to the Internet. 
+Prerequisites are a local installation of \textbf{R}, with installed 
+$\emph{shiny}$ and $\emph{chipPCR}$ packages and a modern web browser. It is 
+important to note that any ad-blocking software may be cause of malfunctions. 
+The GUI is invoked by pasting the following code snippet into a \textbf{R} 
+console.
 
 <<AmpSim_GUI,eval = FALSE>>=
 # Load the shiny package (chipPCR should already be loaded).
@@ -1227,6 +1251,27 @@ runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
 # Call shiny app AmpSim directly from gist
 runGist('https://gist.github.com/michbur/e1def41598f1d0c1e2e6')
 @
+
+The function will open the GUI in a $\emph{chipPCR}$ webpage of the default 
+browser (Figure~\ref{figure:browser}). All parameters of the \textsl{AmpSim} 
+function can be used. In addition shows the GUI some information calculated by 
+the \textsl{bg}.\textsl{max} in a summary field and a plot below the simulated 
+amplification curve.
+
+\begin{figure}[ht]
+\centering
+\scalebox{0.43}{
+\includegraphics{browser.png}
+}
+\caption{Locally running \emph{shiny} \textsl{AmpSim}.\textsl{gui} app. 
+\emph{(Top)} The plot of the \textsl{AmpSim}.\textsl{gui} is shown in a standard 
+browser (\textbf{Iceweasel}, v. 29.0.1) along with the parameters (left panel). 
+The code (``server.R'', ``ui.R'') of the \emph{shiny} app is accessible too. All 
+parameters (e.g., Cq value, Baseline) of the \textsl{AmpSim} function are 
+accessible. \emph{(Bottom)} In addition shows \textsl{AmpSim}.\textsl{gui} the 
+plot output and the textual results of \textsl{bg}.\textsl{max}}
+\label{figure:browser}
+\end{figure}
 
 \textsl{AmpSim} has several parameters, which can be used to simulate an 
 amplification curve. $b.eff$ and $Cq$ are most connected with another. 
@@ -1536,7 +1581,7 @@ The algorithm of \textsl{bg}.\textsl{max} is based on the assumption that the
 signal difference of successive cycles in the linear ground phase is 
 approximately constant. After transition in the early exponential phase the 
 signal changes drastically. First data are smoothed by Friedman's 'super 
-smoother' (as found in supsmu. Thereof the approximate first and second 
+smoother' (as found in ``supsmu''. Thereof the approximate first and second 
 derivative are calculated by a five-point stencil \textsl{inder}. The difference 
 of cycles at the maxima of the first and second approximate derivative and a 
 correction factor are used to estimate the range before the exponential phase. 
@@ -1544,8 +1589,10 @@ This simple function finds the background range without modeling the function.
 The start of the background range is defined be a ``fixed'' value. Since many 
 signals tend to overshot in the first cycles a default value of 2 (for qPCR) is 
 chosen. \textsl{bg}.\textsl{max} tries also to estimate the end of an 
-amplification reaction (Figure~\ref{figure:bgmax}). Application of this function 
-is for example a rational basis for trimming of unneeded data.
+amplification reaction (Figure~\ref{figure:bgmax}). See section 
+\textsl{bg}.\textsl{max} ``Details'' of the $\emph{chipPCR}$ manual for further 
+details. Application of this function is for example a rational basis for 
+trimming of unneeded data.
 
 <<bgmax,fig.cap=fig18_cap,fig.scap=fig18_scap,fig.show='hold',message=FALSE,results='hide'>>=
 par(las = 0, mfrow = c(2,1), bty = "n", oma = c(.5,.5,.5,.5))
