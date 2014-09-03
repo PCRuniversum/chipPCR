@@ -274,6 +274,12 @@ phase'' (blue, cycle 11 -- 33), ``Plateau phase'' (green, cycle 34 -- 40)."
 fig20_scap <- "Inspection of the reps384 data set."
 @
 
+\begin{figure}[ht]
+\centering
+\scalebox{0.6}{
+\includegraphics[clip=true,trim=7cm 7cm 7cm 7cm]{logo.pdf}
+}
+\end{figure}
 
 %create TOC
 \tableofcontents
@@ -607,7 +613,6 @@ par(mfrow = c(1,1))
 
 \clearpage
 
-reps384, two repetitions - removal of 1 and 3 data points.
 
 \begin{figure}[ht]
 \centering
@@ -616,7 +621,10 @@ reps384, two repetitions - removal of 1 and 3 data points.
 }
 \caption{Test of the  \textsl{fixNA} function using the spline and linear 
 imputation for qPCR data with missing values. Missing values were artificially 
-introduced into the ``reps384'' data set from the $\emph{qpcR}$ package. We found no significant difference between raw data and data with imputed missing values. $R^2$ and correlation coefficients of curves were close to 1 with p-value $< 10^{-6}$} 
+introduced into the ``reps384'' data set from the $\emph{qpcR}$ package. We 
+found no significant difference between raw data and data with imputed missing 
+values. $R^2$ and correlation coefficients of curves were close to 1 with 
+p-value $< 10^{-6}$} 
 \label{figure:test_fixNA}
 \end{figure}
 
