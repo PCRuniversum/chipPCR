@@ -500,10 +500,10 @@ introduce no significant bias on the tested parameters ``Cq (SDM, Cy0)'',
 We found that the difference between the linear and spline imputation is 
 negligible (p~1).
 
-<<fixNA_data,fig.show='hold',fig.cap=fig20_cap,fig.scap=fig20_scap>>=
+<<fixNA_data,fig.show='hold',fig.cap=fig20_cap,fig.scap=fig20_scap,message=FALSE>>=
 library(qpcR)
 library(chipPCR)
-cols <- adjustcolor(2:4, 0.7)
+cols <- adjustcolor(2:4, 0.6)
 plot(NA, NA, xlim = c(1,45), ylim = c(min(reps384[, -1]), max(reps384[, -1])), 
      col = 1, pch = 19, type = "b", xlab = "Cycle", ylab = "Fluorescence")
 rect(0.8, min(reps384[, -1]), 10.2, max(reps384[, -1]), border = NA, col = cols[1])
@@ -612,13 +612,15 @@ reps384, two repetitions - removal of 1 and 3 data points.
 \begin{figure}[ht]
 \centering
 \scalebox{0.6}{
-\includegraphics{fixNA_test.png}
+\includegraphics{fixNA_test1.png}
 }
 \caption{Test of the  \textsl{fixNA} function using the spline and linear 
 imputation for qPCR data with missing values. Missing values were artificially 
-introduced into the ``reps384'' data set from the $\emph{qpcR}$ package. We found no significant difference } 
+introduced into the ``reps384'' data set from the $\emph{qpcR}$ package. We found no significant difference between raw data and data with imputed missing values. $R^2$ and correlation coefficients of curves were close to 1 with p-value $< 10^{-6}$} 
 \label{figure:test_fixNA}
 \end{figure}
+
+
 
 \section{Normalization of amplification curve data}
 
