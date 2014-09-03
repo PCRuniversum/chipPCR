@@ -614,7 +614,9 @@ reps384, two repetitions - removal of 1 and 3 data points.
 \scalebox{0.6}{
 \includegraphics{fixNA_test.png}
 }
-\caption{Test of \textsl{fixNA} function.}
+\caption{Test of the  \textsl{fixNA} function using the spline and linear 
+imputation for qPCR data with missing values. Missing values were artificially 
+introduced into the ``reps384'' data set from the $\emph{qpcR}$ package. We found no significant difference } 
 \label{figure:test_fixNA}
 \end{figure}
 
