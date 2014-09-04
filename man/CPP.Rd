@@ -136,7 +136,7 @@ Normalization: \code{\link{normalizer}}
 
 Smoothing: \code{\link{smoother}}
 
-Robut linear regression: \code{\link{lm.coefs}}
+Robust linear regression: \code{\link{lm.coefs}}
 }
 
 \examples{
