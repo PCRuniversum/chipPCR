@@ -39,7 +39,7 @@ Stefan Roediger, Michal Burdukiewicz
 pcr <- AmpSim(cyc = 1:40)
 res <- inder(pcr[, 1], pcr[, 2])
 sums <- summary(res)
-sums
+print(sums)
 }
 
 \keyword{classes}

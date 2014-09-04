@@ -42,7 +42,7 @@ Stefan Roediger, Michal Burdukiewicz
 
 \seealso{
 \code{\link[quantreg]{rq}}, \code{\link[Rfit]{rfit}}, 
-\code{\link[stats]{lm}}
+\code{\link[stats]{lm}}, \code{\link[robustbase]{lmrob}}
 }
 \examples{
 plot(VIMCFX96_69[, 1], VIMCFX96_69[, 2], type = "l", xlab = "Cycle", 
