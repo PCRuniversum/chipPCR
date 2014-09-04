@@ -29,7 +29,7 @@ is the index of column containing the cycle data.
 number of repeats to rate the samples.
 }
   \item{designations}{
-a list of length 3. See Details.
+a named list of length at least 2. See Details.
 }
   \item{shuffle}{
 logical, if \code{TRUE} sequence of curves is shuffled for purpose of rating.
