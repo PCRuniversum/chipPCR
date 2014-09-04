@@ -1,9 +1,0 @@
-Problems with viginette
-
-Some distributions like Debian sid might fail to compile the package.
-
-Messages:
-sh: 1: /usr/bin/texi2dvi: not found
-Calls: <Anonymous> -> texi2pdf -> texi2dvi
-
-In this case try to install "texinfo" (apt-get install texinfo).
