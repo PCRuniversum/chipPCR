@@ -645,7 +645,7 @@ other assorted problems. There are different ways to handle missing
 values. One approach is to ignore NAs, which is generally acceptable. 
 However, in case of further calculation it is often necessary to handle 
 cases of missing values in a way that the next calculation steps can be 
-performed. Missing values can be eliminated by a imputation. Imputation 
+performed. Missing values can be eliminated by a imputation, which 
 encompasses various approaches. This includes to calculate a location parameter 
 (e.g., mean, median) or other significant values (e.g., minimum, maximum, modus) 
 of a data column. However, in non-linear processes such as amplification 

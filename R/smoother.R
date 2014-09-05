@@ -1,5 +1,5 @@
 smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE, 
-                     method = "savgol", CPP = TRUE, paralell = NULL) {
+                     method = list("savgol"), CPP = TRUE, paralell = NULL) {
   if(is.null(paralell)) {
     used.lapply <- lapply
   } else {
