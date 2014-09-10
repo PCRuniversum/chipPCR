@@ -579,7 +579,7 @@ background range and to test if an amplification is significant. The function
 \textsl{CPP} uses the function \textsl{bg}.\textsl{max} to estimate 
 automatically the start of the amplification process. In the background range 
 there is often noise which makes it harder to determine a meaningful background 
-value. Therefore \textsl{CPP} can optionally remove outliers by finding the 
+value. Therefore, \textsl{CPP} can optionally remove outliers by finding the 
 value with the smallest and largest difference from the mean as provided by the 
 $rm.outlier$ function from the $\emph{outlier}$ package \cite{Komsta_2011}. 
 $rm.outlier$ detects these outliers by a simple rule without statistical testing 
@@ -596,11 +596,11 @@ linear trend over the entire data set. However, this step his to be performed
 with caution since this operation effects the amplification efficiency. The 
 background is assumed to be constant for the entire measurement. Care is also 
 needed when using trans with time series (see \textsl{lm} from the 
-$\emph{stats}$ package for details). In addition all data are normalized between 
+$\emph{stats}$ package for details). In addition, all data are normalized between 
 there minimum and maximum. This is taken care of by the \textsl{normalizer} 
 function (see main text). Smoothing of the data is finally done based on an 
-instance of the \textsl{smoother} function. By default a Savitsky-Golay filter 
-was used to smooth the data. The following code is an representative example for 
+instance of the \textsl{smoother} function. By default, a Savitsky-Golay filter 
+was used to smooth the data. The following code is a representative example for 
 the use of \textsl{CPP} (Figure~\ref{figure:workflow}). Warnings in following 
 code chunks were suppressed.
 
