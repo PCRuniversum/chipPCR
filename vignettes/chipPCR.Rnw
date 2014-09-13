@@ -334,8 +334,12 @@ require(xtable)
 print(xtable(head(C60.amp[, 1L:5]), caption = "First five cycles of imported data."))
 @
 
-All datasets used in following examples can be loaded in the same manner. They are also 
-automatically available after loading whole package.
+All datasets used in following examples can be loaded in the same manner. They 
+are also automatically available after loading whole package. Recently we added 
+the $\emph{chipPCR}$ package \cite{blagodatskikh_2014} to CRAN. The 
+$\emph{chipPCR}$ can be used to read the Real-time PCR Data Markup Language 
+(RDML) from various qPCR cycler systems. This means that basically any RDML 
+compliant data set can be directly used with the $\emph{chipPCR}$ package.
 
 \section{Inspection and analysis of amplification curve data}
 

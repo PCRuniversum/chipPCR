@@ -1,4 +1,10 @@
-Changes from Version 0.0.7 to 0.0.8 [August 25 2014]
+Changes from Version 0.0.8-1 to 0.0.9 [September XX 2014]
+* suggest RDML package
+
+Changes from Version 0.0.8 to 0.0.8-1 [August 26 2014]
+* Fix CRAN issue
+
+Changes from Version 0.0.7 to 0.0.8-1 [August 25 2014]
 * Numerous bug fixes (see changelog at https://github.com/michbur/chipPCR)
 * New function th.cyc (threshold cycle method)
 * New function humanrater
