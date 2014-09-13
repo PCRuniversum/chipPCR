@@ -1,5 +1,7 @@
 Changes from Version 0.0.8-1 to 0.0.9 [September XX 2014]
 * suggest RDML package
+* update of the vignette
+* fix of several annoying bugs
 
 Changes from Version 0.0.8 to 0.0.8-1 [August 26 2014]
 * Fix CRAN issue
