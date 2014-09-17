@@ -15,11 +15,14 @@ shinyUI(pageWithSidebar(
     checkboxInput("rob", "Median and MAD:", FALSE),
     numericInput("llul.low", "Region of interest - lower border:", 1,
                  min = 1, step = 1),
-    numericInput("llul.up", "Region of interest - upper border:", 10,
+    numericInput("llul.up", "Region of interest - lower border:", 10,
                  min = 1, step = 1),
     
     downloadButton("download.result", "Download MFIaggr results (with graphics)"),
-    downloadButton("download.table", "Download MFIaggr results (.csv)")
+    br(),
+    downloadButton("download.table", "Download MFIaggr results (.csv)"),
+    br(),
+    actionButton("run.example", "Run example")
   ),
   mainPanel(
     tabsetPanel(

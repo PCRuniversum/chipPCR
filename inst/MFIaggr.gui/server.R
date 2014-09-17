@@ -11,23 +11,30 @@ bp <- function()
 shinyServer(function(input, output) {
   
   null.input <- reactive({
-    is.null(input[["input.file"]])
-    })
+    is.null(input[["input.file"]]) && input[["run.example"]] == 0
+  })
   
   processed.data <- reactive({
-    dat <- switch(input[["csv.type"]], 
-                  csv1 = read.csv(input[["input.file"]][["datapath"]], 
-                                  header = input[["header"]]),
-                  csv2 = read.csv2(input[["input.file"]][["datapath"]], 
-                                   header = input[["header"]]))
-    if(!input[["header"]])
-      colnames(dat) <- paste0("Column", 1L:ncol(dat))
+    if(input[["run.example"]] == 0) {
+      dat <- switch(input[["csv.type"]], 
+                    csv1 = read.csv(input[["input.file"]][["datapath"]], 
+                                    header = input[["header"]]),
+                    csv2 = read.csv2(input[["input.file"]][["datapath"]], 
+                                     header = input[["header"]]))
+      if(!input[["header"]])
+        colnames(dat) <- paste0("Column", 1L:ncol(dat))
+    } else {
+      dat <- read.csv("some_curves.csv", header = input[["header"]])
+    }
+    
     dat
   })
   
   
-  res.mfi <- reactive({
+  
+  res.mfi <- reactive({  
     dat <- processed.data()
+    
     res <- MFIaggr(x = dat, cyc = input[["cyc.col"]],
                    fluo = (1L:ncol(dat))[-input[["cyc.col"]]], RSD = input[["RSD"]], 
                    rob = input[["rob"]], 
