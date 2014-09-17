@@ -24,7 +24,7 @@ shinyServer(function(input, output) {
       if(!input[["header"]])
         colnames(dat) <- paste0("Column", 1L:ncol(dat))
     } else {
-      dat <- read.csv("some_curves.csv", header = input[["header"]])
+      dat <- VIMCFX96_60[, 1L:16]
     }
     
     dat

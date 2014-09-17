@@ -22,6 +22,7 @@ shinyUI(pageWithSidebar(
     br(),
     downloadButton("download.table", "Download MFIaggr results (.csv)"),
     br(),
+    p("Lost? Use button below to see an example:"),
     actionButton("run.example", "Run example")
   ),
   mainPanel(
