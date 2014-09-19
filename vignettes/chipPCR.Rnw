@@ -160,8 +160,8 @@ Derivative Maximum) values with the \\textsl{diffQ2} function.
 \\emph{(A)} Plot the samples detected with EvaGreen and 
 \\emph{(B)} shows the same samples detected with the Hydrolysis probe for 
 MLC-2v. \\emph{(C)} Stripchart of the Cq values (\\textbullet) with the 
-median (\\emph{\\textendash}) and the median absolute deviation 
-(\\textendash~\\textendash). This result indicates, that the variance of 
+median (\\textcolor{red}{\\textendash}) and the median absolute deviation 
+(\\textcolor{blue}{\\textendash~\\textendash}). This result indicates, that the variance of 
 the derived from the detection with hydrolysis probes is higher than the 
 samples detected with EvaGreen. Note: the $inder$ parameter is set as 
 TRUE."
@@ -194,14 +194,16 @@ bimodal."
 fig12_scap <- "Signal analysis using the VIMCFX96\\_60 data set (96-well 
 plate cycler (Bio-Rad CFX96))."
 
-fig13_cap <- "Helicase Dependent Amplification (HDA) of Vimentin (Vim). 
-The VideoScan Platform was used to monitor the amplification. The HDA was 
-performed at 65 degree Celsius. Three concentrations of input DNA (D1, D2, 
-D3) were used. The amplification curves were smoothed by a moving average 
-(windowsize 3) and base-lined by a a robust linear regression by computing 
-MM-type regression estimator. The \\textsl{th}.\\textsl{cyc} function was used to determine 
-the time required to reach the threshold level of 0.05 (--)."
-fig13_scap <- "Helicase Dependent Amplification (HDA) of Vimentin (Vim)."
+fig13_cap <- "Helicase Dependent Amplification (HDA) of Vimentin (Vim). The 
+VideoScan Platform was used to monitor the amplification. The HDA was performed 
+at 65 degree Celsius. Three concentrations of input DNA (D1, D2, D3) were used. 
+The amplification curves were smoothed by a moving average (windowsize 3) and 
+base-lined by a a robust linear regression by computing MM-type regression 
+estimator. The \\textsl{th}.\\textsl{cyc} function was used to determine the 
+time required to reach the threshold level of 0.05 (--)." 
+
+fig13_scap <- 
+"Helicase Dependent Amplification (HDA) of Vimentin (Vim)."
 
 fig14_cap <- "The plotCurves function. Plots many curves on one plot in 
 separate cells allowing quick assessment. Missing values were artificially 
@@ -816,7 +818,7 @@ p-value $< 10^{-6}$}
 \end{figure}
 
 \subsection{\textsl{bg}.\textsl{max} - a function to estimate the start and end of an amplification reaction}
-\label{bgmax}
+\label{sec:bgmax}
 
 The following paragraphs describe methods from the literature to detect the 
 background range of amplification curves. Background range herein refers to a 
@@ -1348,20 +1350,20 @@ dilution (D2) and a 1:100 (D3) dilution were tested. Temperature profile
 Warnings in following code chunks were suppressed.
 <<HDA,fig.show='hold',fig.cap=fig13_cap,fig.scap=fig13_scap,message=FALSE,warning=FALSE>>=
 par(mfrow = c(2,1), bty = "n")
-plot(NA, NA, xlim = c(0,5000), ylim = c(0,1), xlab = "Time (sec)", 
+plot(NA, NA, xlim = c(0,5000), ylim = c(0.45,0.8), xlab = "Time (sec)", 
      ylab = "Fluorescence", main = "HDA - Raw data")
 mtext("A", cex = 2, side = 3, adj = 0)
 lines(C85[, 2], C85[, 3], type = "b", col = 2, pch = 20)
 lines(C85[, 4], C85[, 5], type = "b", col = 4, pch = 20)
 lines(C85[, 6], C85[, 7], type = "b", col = 6, pch = 20)
-legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
-       pch = rep(20,3))
+legend("bottomright", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
+       pch = rep(20,3), bty = "n")
 
 plot(NA, NA, xlim = c(0,2000), ylim = c(0,0.4), xlab = "Time (sec)", 
      ylab = "Fluorescence", main = "HDA - Pre-processed data")
 mtext("B", cex = 2, side = 3, adj = 0)
 legend("topleft", c("D1, 1x", "D2, 1:10", "D3, 1:100"), col = c(2,4,6), 
-       pch = rep(20,3))
+       pch = rep(20,3), bty = "n")
 
 # Define the parameters for the pre-processesing by CPP and the th.cyc 
 # function.
@@ -1654,11 +1656,11 @@ pointer <- function (x, pos = 1, w = 5, stat = TRUE){
   x.mad <- mad(x, na.rm = T) * 2
   param <- c(length= 0, code = 3, pch = 15, cex = 1.2)
   arrows(xx[1] * 0.98, x.median, tail(xx, 1) * 1.02, 
-         x.median, param, lwd = 3)
+         x.median, param, lwd = 3, col = 2)
   arrows(xx[1] * 1.01, x.median + x.mad, tail(xx, 1) * 0.99, 
-         x.median + x.mad, param, lwd = 2, lty = 2)
+         x.median + x.mad, param, lwd = 2, lty = 2, col = 4)
   arrows(xx[1] * 1.01, x.median - x.mad, tail(xx, 1) * 0.99, 
-         x.median - x.mad, param, lwd = 2, lty = 2)
+         x.median - x.mad, param, lwd = 2, lty = 2, col = 4)
 }
 
 amp.liner <- function(range, input, colors = "black") {
@@ -1724,7 +1726,9 @@ out <- apply(tmp[, -1], 2, function(x) fit.amp(tmp[, 1], x))
 layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
 
 plot(NA, NA, xlim = c(1,40), ylim = c(min(tmp[, 2L:97]), 
-                                      max(tmp[, 2L:97])), xlab = "Cycle", ylab = "Raw fluorescence")
+                                      max(tmp[, 2L:97])), 
+                                      xlab = "Cycle", 
+                                      ylab = "Raw fluorescence")
 mtext("A", cex = 1.2, side = 3, adj = 0, font = 2)
 for (i in 2L:97) {
   lines(tmp[, 1], tmp[, i], col = ifelse(out[i - 1] < 15.5, "red", 
@@ -1749,6 +1753,7 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 
 
 \section{humanrater}
+\label{sec:humanrater}
 
 \textsl{humanrater} is an interactive function, which can be used 
 to rate a curve for a certain characteristic. \textsl{humanrater} draws 
@@ -1807,21 +1812,15 @@ tmp <- apply(datdf, 1, function(i) {
 @
 \end{enumerate}
 
-
-
 \section{Acknowledgment}
 
 Part of this work was funded by the BMBF InnoProfile-Projekt 03 IPT 611X. 
 Grateful thanks belong to all authors of the cited \textbf{R} packages, the \textbf{R} 
 community and RKWard developers.
 
-
-
 \listoffigures
-
 
 \bibliographystyle{plain} 
 \bibliography{roediger-burdukiewicz}      
-
 
 \end{document}
