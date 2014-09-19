@@ -45,15 +45,16 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
   curve.names <- colnames(y)
   sapply(1L:ncol(y), function(i) {
     plot(0, 0, xlab = "", ylab = "", type = "n", xaxt = "n", yaxt = "n")
+    bg.color <- ifelse(sum(res.NA) > 0, bg <- 2, bg <- 3)
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], 
-         col = "lightskyblue1")
+         col = bg.color)
     text(0, 0, curve.names[i])
     
     plot(x, y[, i], xlim = x.lim, ylim = y.lim,  
          xaxt = "n", yaxt = "n", ylab = "", xlab = "", ...)
     res.NA <- which(is.na(y[, i]))
     rug(res.NA, col = 2, lwd = 1.5, quiet = TRUE)
-    ifelse(sum(res.NA) > 0, bg <- 2, bg <- 3)
+
     if(i %in% lefts)
       axis(2)
     if(i %in% bottoms)
