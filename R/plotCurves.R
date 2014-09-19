@@ -47,7 +47,7 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
     plot(x, y[, i], xlim = x.lim, ylim = y.lim,  
          xaxt = "n", yaxt = "n", ylab = "", xlab = "", ...)
     res.NA <- which(is.na(y[, i]))
-    rug(res.NA, col = 2, lwd = 1.5)
+    rug(res.NA, col = 2, lwd = 1.5, quiet = TRUE)
     ifelse(sum(res.NA) > 0, bg <- 2, bg <- 3)
     legend("topleft", curve.names[i], bg = bg)
     if(i %in% lefts)
