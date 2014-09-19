@@ -206,7 +206,6 @@ setMethod("plot", signature(x = "der"), function(x, what = 1:3, add = FALSE,
   
   if (length(plot.colors) != 3) 
     stop("'plot.colors' must contain three colors.")
-  
   #smallest and biggest fluorescence values
   ylims <- range(sapply(what + 1, function(i) {
     x[, i]
@@ -216,6 +215,8 @@ setMethod("plot", signature(x = "der"), function(x, what = 1:3, add = FALSE,
     plot(x = range(x[, 1]),  y = ylims, cex = 0, ...)
   }
   
+
+
   for (i in what)
     points(x[, c(1, i + 1)], col = plot.colors[i], pch = 20, type = "b")
   

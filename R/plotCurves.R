@@ -22,6 +22,12 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
                                  ncol = new.columns))
   }
   
+  #save parameters before invoking layout
+  old.oma <- par("oma")
+  old.mar <- par("mar")
+  old.fig <- par("fig")
+  
+  
   lay.matrix <- matrix(1L:(2*ncol(y)), nrow = nrow*2)
   
   layout(lay.matrix, heights = rep(c(0.2, 1), nrow*2))
@@ -31,8 +37,6 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
   
   bottoms <- lay.matrix[nrow(lay.matrix), ]/2
   
-  old.oma <- par("oma")
-  old.mar <- par("mar")
   par(oma = c(5, 4, 4, 2))
   par(mar = c(0, 0, 0, 0))
   
@@ -65,6 +69,6 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
   
   par(oma = old.oma)
   par(mar = old.mar)
-  
+  par(fig = old.fig)
   invisible()
 }
