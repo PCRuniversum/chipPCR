@@ -22,14 +22,14 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
                                  ncol = new.columns))
   }
   
-  lay.matrix <- matrix(1L:ncol(y), nrow = nrow)
+  lay.matrix <- matrix(1L:(2*ncol(y)), nrow = nrow*2)
   
-  layout(lay.matrix)
+  layout(lay.matrix, heights = rep(c(0.2, 1), nrow*2))
   
-  lefts <- lay.matrix[, 1]
+  #divide by 2, because of fake plot with column name
+  lefts <- lay.matrix[seq(2, nrow(lay.matrix), by = 2)/2, 1]
   
-  bottoms <- lay.matrix[nrow(lay.matrix), ]
-  
+  bottoms <- lay.matrix[nrow(lay.matrix), ]/2
   
   old.oma <- par("oma")
   old.mar <- par("mar")
@@ -44,12 +44,16 @@ plotCurves <- function(x, y, cyc = 1, fluo = 2:ncol(y), nrow = ceiling(sqrt(ncol
   
   curve.names <- colnames(y)
   sapply(1L:ncol(y), function(i) {
+    plot(0, 0, xlab = "", ylab = "", type = "n", xaxt = "n", yaxt = "n")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], 
+         col = "lightskyblue1")
+    text(0, 0, curve.names[i])
+    
     plot(x, y[, i], xlim = x.lim, ylim = y.lim,  
          xaxt = "n", yaxt = "n", ylab = "", xlab = "", ...)
     res.NA <- which(is.na(y[, i]))
     rug(res.NA, col = 2, lwd = 1.5)
     ifelse(sum(res.NA) > 0, bg <- 2, bg <- 3)
-    legend("topleft", curve.names[i], bg = bg)
     if(i %in% lefts)
       axis(2)
     if(i %in% bottoms)
