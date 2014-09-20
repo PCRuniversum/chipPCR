@@ -31,7 +31,7 @@ shinyServer(function(input, output) {
   output[["dynamic.tabset"]] <- renderUI({
     if(null.input()) {
       tabPanel("No input detected",
-               HTML('<p><img src="https://raw.githubusercontent.com/michbur/chipPCR/master/vignettes/logo.png"/></p>'))
+               HTML('<p><img src="https://raw.githubusercontent.com/michbur/chipPCR/master/vignettes/logo.png" width="55%" height="55%"/></p>'))
     } else {
       tabsetPanel(
         tabPanel("Input data", tableOutput("input.data")),
