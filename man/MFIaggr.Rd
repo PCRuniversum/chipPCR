@@ -26,17 +26,16 @@ interated in the \code{\link[MBmca]{MFIerror}} function (Roediger et al.
 }
 
 \arguments{
-  \item{x}{ is the column of a data frame for the cycle. }
+  \item{x}{ is the column of a data frame for the cycle or dasta.frame/matrix with whole data.}
   
   \item{y}{ are multiple columns of fluorescence values from a 
-	    \code{data.frame} (e.g., [, c(1:n)]). Omitted if \code{x} is 
-	    matrix or data frame.}
+	    \code{data.frame} (e.g., [, c(1:n)]). }
 
-  \item{cyc}{ is the index of column containing the cycle data. 
-  Used only if \code{x} is matrix or data frame.}
+\item{cyc}{ is the index of column containing the cycle data. 
+  Used only if \code{y} is \code{NULL}.}
 
   \item{fluo}{ are the columns containing the fluorescence data. 
-  Used only if \code{x} is matrix or data frame.}
+  Used only if \code{y} is \code{NULL}.}
 
   \item{RSD}{ Setting the option \code{RSD = TRUE} shows the relative 
 standard deviation (RSD) in percent. }
