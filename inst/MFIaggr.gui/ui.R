@@ -26,7 +26,7 @@ shinyUI(pageWithSidebar(
     actionButton("run.example", "Run example")
   ),
   mainPanel(
-    uiOutput("dynamic.tabset") 
+    uiOutput("dynamic_tabset") 
   )
 )
 )

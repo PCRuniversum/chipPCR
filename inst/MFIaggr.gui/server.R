@@ -1,12 +1,27 @@
 library(shiny)
 library(chipPCR)
 
-
 # server for the Shiny app
 shinyServer(function(input, output) {
-  
+  #check data input or example usage
   null.input <- reactive({
     is.null(input[["input.file"]]) && input[["run.example"]] == 0
+  })
+  
+  #UI before data input or example usage
+  output[["dynamic.tabset"]] <- renderUI({
+    if(null.input()) {
+      tabPanel("No input detected",
+               HTML('<p><img src="https://raw.githubusercontent.com/michbur/chipPCR/master/vignettes/logo.png"/></p>'))
+    } else {
+      tabsetPanel(
+        tabPanel("Input data", tableOutput("input.data")),
+        tabPanel("Results with graphics", plotOutput("refMFI.plot"), 
+                 verbatimTextOutput("refMFI.summary")),
+        tabPanel("Results - table", tableOutput("refMFI.table")),
+        tabPanel("All curves plot", plotOutput("allp.plot"))
+      )
+    }
   })
   
   processed.data <- reactive({
@@ -24,8 +39,6 @@ shinyServer(function(input, output) {
     
     dat
   })
-  
-  
   
   res.mfi <- reactive({  
     dat <- processed.data()
@@ -61,7 +74,6 @@ shinyServer(function(input, output) {
     
   })
   
-  
   output[["download.table"]] <- downloadHandler(
     filename = "refMFI_report.csv",
     content <- function(file) {
@@ -77,21 +89,6 @@ shinyServer(function(input, output) {
       markdown:::markdownToHTML("refMFI_report.md", file)
     }
   )
-  
-  output[["dynamic.tabset"]] <- renderUI({
-    if(null.input()) {
-      tabPanel("No input detected",
-               HTML('<p><img src="https://raw.githubusercontent.com/michbur/chipPCR/master/vignettes/logo.png"/></p>'))
-    } else {
-      tabsetPanel(
-        tabPanel("Input data", tableOutput("input.data")),
-        tabPanel("Results with graphics", plotOutput("refMFI.plot"), 
-                 verbatimTextOutput("refMFI.summary")),
-        tabPanel("Results - table", tableOutput("refMFI.table")),
-        tabPanel("All curves plot", plotOutput("allp.plot"))
-      )
-    }
-  })
   
 })
 
