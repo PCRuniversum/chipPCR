@@ -3,9 +3,6 @@ library(shiny)
 shinyUI(pageWithSidebar(
   headerPanel("MFIaggr"),
   sidebarPanel(
-    p("Part of"),
-    img(src = "https://github.com/michbur/chipPCR/blob/master/vignettes/logo.png",
-        alt = "chipPCR logo"),
     fileInput("input.file", "Choose CSV File (input should contain cycle data)",
               accept=c("text/csv", "text/comma-separated-values,text/plain", ".csv")),
     checkboxInput("header", "Header", TRUE),
@@ -29,13 +26,7 @@ shinyUI(pageWithSidebar(
     actionButton("run.example", "Run example")
   ),
   mainPanel(
-    tabsetPanel(
-      tabPanel("Input data", tableOutput("input.data")),
-      tabPanel("Results with graphics", plotOutput("refMFI.plot"), 
-               verbatimTextOutput("refMFI.summary")),
-      tabPanel("Results - table", tableOutput("refMFI.table")),
-      tabPanel("All curves plot", plotOutput("allp.plot"))
-    )
+    uiOutput("dynamic.tabset") 
   )
 )
 )

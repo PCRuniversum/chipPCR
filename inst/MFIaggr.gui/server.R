@@ -1,11 +1,6 @@
 library(shiny)
 library(chipPCR)
 
-#blank plot
-bp <- function()
-  plot(1, type="n", axes=F, xlab="", ylab="", main = "No input data")
-
-
 
 # server for the Shiny app
 shinyServer(function(input, output) {
@@ -15,7 +10,9 @@ shinyServer(function(input, output) {
   })
   
   processed.data <- reactive({
-    if(input[["run.example"]] == 0) {
+    if(is.null(input[["input.file"]])) {
+      dat <- VIMCFX96_60[, 1L:16]
+    } else {
       dat <- switch(input[["csv.type"]], 
                     csv1 = read.csv(input[["input.file"]][["datapath"]], 
                                     header = input[["header"]]),
@@ -23,8 +20,6 @@ shinyServer(function(input, output) {
                                      header = input[["header"]]))
       if(!input[["header"]])
         colnames(dat) <- paste0("Column", 1L:ncol(dat))
-    } else {
-      dat <- VIMCFX96_60[, 1L:16]
     }
     
     dat
@@ -43,45 +38,27 @@ shinyServer(function(input, output) {
   })
   
   output[["input.data"]] <- renderTable({
-    if (null.input()) {
-      data.frame(X1 = "No input data")
-    } else {
-      processed.data()
-    }
+    processed.data()
   })
   
   output[["refMFI.plot"]] <- renderPlot({
-    if (null.input()) {
-      bp()
-    } else {
-      plot(res.mfi())
-    }
+    plot(res.mfi())
   })
   
   output[["allp.plot"]] <- renderPlot({
-    if (null.input()) {
-      bp()
-    } else {
-      dat <- processed.data()
-      plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], CPP = TRUE, type = "l")
-    }
+    dat <- processed.data()
+    plotCurves(dat[[input[["cyc.col"]]]], dat[, -input[["cyc.col"]]], CPP = TRUE, type = "l")
   })
   
   
   output[["refMFI.summary"]] <- renderPrint({
-    if (null.input()) {
-      print("No input data.")
-    } else {
-      summary(res.mfi())
-    }
+    summary(res.mfi())
+    
   })
   
   output[["refMFI.table"]] <- renderTable({
-    if (null.input()) {
-      data.frame(X1 = "No input data")
-    } else {
-      slot(res.mfi(), ".Data")
-    }
+    slot(res.mfi(), ".Data")
+    
   })
   
   
@@ -100,7 +77,22 @@ shinyServer(function(input, output) {
       markdown:::markdownToHTML("refMFI_report.md", file)
     }
   )
+  
+  output[["dynamic.tabset"]] <- renderUI({
+    if(null.input()) {
+      tabPanel("No input detected",
+               HTML('<p><img src="https://raw.githubusercontent.com/michbur/chipPCR/master/vignettes/logo.png"/></p>'))
+    } else {
+      tabsetPanel(
+        tabPanel("Input data", tableOutput("input.data")),
+        tabPanel("Results with graphics", plotOutput("refMFI.plot"), 
+                 verbatimTextOutput("refMFI.summary")),
+        tabPanel("Results - table", tableOutput("refMFI.table")),
+        tabPanel("All curves plot", plotOutput("allp.plot"))
+      )
+    }
+  })
+  
 })
-
 
 
