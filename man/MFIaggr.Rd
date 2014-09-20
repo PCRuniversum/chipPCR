@@ -26,7 +26,7 @@ interated in the \code{\link[MBmca]{MFIerror}} function (Roediger et al.
 }
 
 \arguments{
-  \item{x}{ is the column of a data frame for the cycle or dasta.frame/matrix with whole data.}
+  \item{x}{ is the column of a data frame for the cycle or data.frame/matrix with whole data.}
   
   \item{y}{ are multiple columns of fluorescence values from a 
 	    \code{data.frame} (e.g., [, c(1:n)]). }
