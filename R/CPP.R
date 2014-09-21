@@ -7,28 +7,10 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = FALSE,
   
   # Define the method for the smoothing
   # functionality identical to smoother function
-  method.smooth <- tolower(method)
-  if (grepl(method.smooth, "savgol"))
-    method.smooth <- "savgol"
-  if (grepl(method.smooth, "lowess")) 
-    method.smooth <- "lowess"
-  if (grepl(method.smooth, "mova")) 
-    method.smooth <- "mova"
-  if (grepl(method.smooth, "smooth")) 
-    method.smooth <- "smooth"
-  if (grepl(method.smooth, "spline")) 
-    method.smooth <- "spline"
-  if (grepl(method.smooth, "supsmu")) 
-    method.smooth <- "supsmu"
-  if (grepl(method.smooth, "whit1")) 
-    method.smooth <- "whit1"
-  if (grepl(method.smooth, "whit2")) 
-    method.smooth <- "whit2"
-  if (!(method.smooth %in% c("savgol", "lowess", "mova", "smooth", "spline", 
-                             "supsmu", "whit1", "whit2")))
-    stop("Invalid smoothing/filter method chosen.")
+
   
-  
+  method.smooth <- check.method(c("savgol", "lowess", "mova", "smooth", "spline", 
+                 "supsmu", "whit1", "whit2"), method)
   
   # Remove missing values from y
   if(any(is.na(y)))

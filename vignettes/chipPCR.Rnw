@@ -81,7 +81,7 @@ plotted without pre-processing. \\textbf{B)} All amplification curve data
 were pre-processed with the CPP function. The parameter $trans$ was set to 
 $TRUE$, which lead to a linear trend correction and base-lining. By 
 default a Savitsky-Golay filter was used to smooth the data. The data were 
-normalized between 0 and 1 ($method.norm = 'minmax'$). \\textbf{C)} All 
+normalized between 0 and 1 ($method.norm = 'minm'$). \\textbf{C)} All 
 Cqs were calculated with \\textsl{th}.\\textsl{cyc} function. The Cq for the raw data was 
 $17.25 \\pm 0.5$ (at $r = 2575$) and $17.1 \\pm 0.1$ (at $r = 0.1$) for 
 the pre-processed data. Our results indicate that the dispersion of the Cq 
@@ -837,7 +837,7 @@ th.cyc.raw <- apply(VIMCFX96_60[, -1], 2, function(i) {
 
 res.CPP <- apply(VIMCFX96_60[, -1], 2, function(i) {
   CPP(VIMCFX96_60[, 1], i, trans = TRUE, 
-      method.norm = "minmax")[["y.norm"]]})
+      method.norm = "minm")[["y.norm"]]})
 
 th.cyc.CPP <- apply(res.CPP, 2, function(i) {
   th.cyc(VIMCFX96_60[, 1], i, r = 0.1)[1,1]})
@@ -1398,7 +1398,7 @@ normalization.
 prone to 
 outliers than a normalization based on the minimum and the maximum of an 
 amplification curve.
-\item minmax does a normalization between 0 and 1 (see 
+\item minm does a min-max normalization between 0 and 1 (see 
 \cite{roediger_RJ_2013} for explanation).
 \item max does a normalization to the maximum value (MFI/max(MFI)).
 \item lugn does a quantile normalization based on a symmetric proportion 
@@ -1429,7 +1429,7 @@ plot(NA, NA, xlim = c(1,40), ylim = c(0, 1.15), xlab = "Cycle",
      ylab = "RFU", main = "MinMax-Normalization")
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2) 
 lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x, 
-                                                           method.norm = "minmax")$y))
+                                                           method.norm = "minm")$y))
 
 plot(NA, NA, xlim = c(1,40), ylim = c(0, 1.15), xlab = "Cycle", 
      ylab = "RFU", main = "Max-Normalization")

@@ -32,10 +32,10 @@ interated in the \code{\link[MBmca]{MFIerror}} function (Roediger et al.
 	    \code{data.frame} (e.g., [, c(1:n)]). }
 
 \item{cyc}{ is the index of column containing the cycle data. 
-  Used only if \code{y} is \code{NULL}.}
+  Used only if \code{y} is missing.}
 
   \item{fluo}{ are the columns containing the fluorescence data. 
-  Used only if \code{y} is \code{NULL}.}
+  Used only if \code{y} is missing.}
 
   \item{RSD}{ Setting the option \code{RSD = TRUE} shows the relative 
 standard deviation (RSD) in percent. }

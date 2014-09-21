@@ -3,17 +3,14 @@ AmpSim <- function(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1,
 		   nnl.method = "constant") {
 #   tmp.warn <- getOption("warn")
 #   options(warn = -1)
-  # Test if x and y exist and have identical lengths.
-  if (is.null(cyc)) 
-    stop("Enter cycle values")
   if (min(cyc) < 1) 
-    stop("The minimum cycle value must be 1.")
-  if (Cq < 1) 
+    stop("The minimum cycle value must 1 or larger.")
+  if (Cq <= 1) 
     stop("The Cq value must larger than 1.")
   if (nnl < 0 || nnl > 10) 
     stop("nnl must be within 0 and 10.")
 
-# Define the model used to simulate the ammplification curve
+# Define the model used to simulate the amplification curve
 # based on a 5-parameter sigmoidal function
 
   fluo <- bl + (

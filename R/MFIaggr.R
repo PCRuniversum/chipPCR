@@ -1,14 +1,7 @@
 MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE, 
 		    rob = FALSE, llul = c(1,10)){
   
-  if(is.null(y)) {
-    if (!(is.matrix(x) || is.data.frame(x)))
-      stop("If 'y' is NULL, x must be matrix or data.frame")
-    y <- x[, fluo]
-    x <- x[, cyc]  
-  }
-  
-
+  #cyc and fluo arguments are used in methods
   #Test if x and y exist.
   testxy(x, y, length = FALSE)
   

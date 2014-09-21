@@ -3,25 +3,13 @@ normalizer <- function(y, method.norm = "none", qnL = 0.03) {
     stop("qnL must be within 0.001 and 0.999.")
   
   # Select a method for the normalization
+  method.norm <- check.method(c("none", "luqn", "minm", "max", "zscore"), method.norm)
   
-  method.norm <- tolower(method.norm)
-  if (grepl(method.norm, "none"))
-    method.norm <- "none"
-  if (grepl(method.norm, "luqn")) 
-    method.norm <- "luqn"
-  if (grepl(method.norm, "minmax"))
-    method.norm <- "minmax"
-  if (grepl(method.norm, "max"))
-    method.norm <- "max"
-  if (grepl(method.norm, "zscore"))
-    method.norm <- "zscore"
-  if (!(method.norm %in% c("none", "luqn", "minmax", "max", "zscore")))
-    stop("Invalid method chosen.")
-  # Test meaningfulness of qnL
+  # TODO Test meaningfulness of qnL
   
   switch(method.norm,
          none = do.call(function(y) y, c(list(y = y))),
-         minmax = do.call(function(y) (y - min(y)) / (max(y) - min(y)), 
+         minm = do.call(function(y) (y - min(y)) / (max(y) - min(y)), 
                           c(list(y = y))),
          max = do.call(function(y) (y / max(y)), 
                        c(list(y = y))),
