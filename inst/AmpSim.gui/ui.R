@@ -16,14 +16,16 @@ shinyUI(pageWithSidebar(
                 list("Constant" = "constant", 
                      "Decreasing" = "decrease", 
                      "Increasing" = "increase")),
-	hr(),
-        helpText("")
+  numericInput("th.r", "Fluorescence threshold value", 0.7, step = 0.05),
+  checkboxInput("th.auto", "Automatic estimation of the threshold (experimental)", FALSE),
+  checkboxInput("th.lin", "Linear regression in quadratic estimation", FALSE)
   ),
 
     mainPanel(
       tabsetPanel(
         tabPanel("Amplification plots", plotOutput("AmpSimPlot"), 
-                 verbatimTextOutput("bgSummary"), plotOutput("inderPlot")),
+                 verbatimTextOutput("bgSummary"),
+                 plotOutput("inderPlot")),
         tabPanel("Amplification data", tableOutput("bgTable"))
       )
     )

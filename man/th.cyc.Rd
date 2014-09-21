@@ -26,8 +26,7 @@ th.cyc(x, y, r = 2500, auto = FALSE, linear = TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-  is a vector containing the time or cycle values or a matrix or data frame
-    containing both time or cycle values and fluorescence.
+  is a vector containing the time or cycle values.
 }
   \item{y}{
     is a vector containing the fluorescence values.
@@ -40,7 +39,7 @@ th.cyc(x, y, r = 2500, auto = FALSE, linear = TRUE)
 threshold should be used (Note: Experimental, not save to use).
 }
   \item{linear}{
-    is logical parameter which indicates if a linear of quadratic regression 
+    is logical parameter which indicates if a linear or quadratic regression 
     should be used for the calculation. (Note: Experimental, not save to use).
 }
 }

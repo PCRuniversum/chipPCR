@@ -80,7 +80,7 @@ selection in quantitative real-time polymerase chain reaction analysis.
 \emph{Bioinformatics} 24(13), 1549--1551 (2008).
 doi:10.1093/bioinformatics/btn227. PMID: 18482995. 
 
-See also{\link[qpcR]{qpcR.news}}
+See also \code{\link[qpcR]{qpcR.news}}
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz

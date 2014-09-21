@@ -15,10 +15,19 @@ shinyServer(function(input, output) {
   # Use bg.max to calculate the SDM and alike
   res.bg <- reactive({bg.max(res.AmpSim())
   })
-  # Create a plot
   
+  res.th.cyc <- reactive({th.cyc(res.AmpSim()[, 1], res.AmpSim()[, 2], 
+                                 r = input$th.r, auto = input$th.auto, linear = TRUE)})
+  
+  
+  # Create a plot
   output$AmpSimPlot <- renderPlot({
     plot(res.AmpSim(), main = "Simulated curve", type = "b")
+    lines(c(res.AmpSim()[1, 1], res.th.cyc()[1]), c(res.th.cyc()[2], res.th.cyc()[2]), 
+          lty = "dashed", col = "orange")
+    lines(c(res.th.cyc()[1], res.th.cyc()[1]), 
+          c(min(res.AmpSim()[, 2]), res.th.cyc()[2]), lty = "dashed", col = "orange")
+    points(res.th.cyc(), pch = 20, col = "orange")
   })
   
   output$inderPlot <- renderPlot({
@@ -31,6 +40,8 @@ shinyServer(function(input, output) {
   
   output$bgSummary <- renderPrint({
     summary(res.bg())
+    cat("\nThreshold cycle: ", format(res.th.cyc()[1], digits = 4))
   })
+  
 })
 
