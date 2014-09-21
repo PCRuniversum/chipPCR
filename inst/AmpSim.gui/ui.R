@@ -19,7 +19,7 @@ shinyUI(pageWithSidebar(
                      "Increasing" = "increase")),
     numericInput("th.r", "Fluorescence threshold value", 0.7, step = 0.05),
     checkboxInput("th.auto", "Automatic estimation of the threshold (experimental)", FALSE),
-    checkboxInput("th.lin", "Linear regression in quadratic estimation", FALSE)
+    checkboxInput("th.lin", "Linear regression instead of quadratic", TRUE)
   ),
   
   mainPanel(

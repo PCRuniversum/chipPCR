@@ -17,4 +17,4 @@ This is a web-based implementation of function from package [chipPCR](http://git
 8. *Variable* - trend of noise level during the amplification reaction. "constant" uses same noise of amplification, "decreasing" leads to less noise at the end of the amplification reaction, and "increasing" leads to more noise at the end of the amplification reaction.  
 9. *Fluorescence threshold value* - a fluorescence value which defines the threshold.  
 10. *Automatic estimation of the threshold* -  indicates if an automatic estimation of the threshold should be used (Note: Experimental, not save to use).  
-11. *Linear regression in quadratic estimation* -  indicates if a linear or quadratic regression should be used for the calculation. (Note: Experimental, not save to use).  
+11. *Linear regression instead of quadratic* -  indicates if a linear regression should be used instead of quadratic regression for the calculation. 
