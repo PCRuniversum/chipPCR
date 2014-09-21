@@ -18,7 +18,7 @@ normalizer(y, method.norm = "none", qnL = 0.03)
 is a vector containing the fluorescence values.
 }
   \item{method.norm}{
-  is a argument to use a "none", "minmax", "max", "lugn", or
+  is a argument to use a "none", "minm", "max", "lugn", or
 	"zscore" normalization.
 }
   \item{qnL}{
@@ -33,7 +33,7 @@ a user defined quantile which is used for the quantile normalization. A
 quantile normalization herein refers to an approach which is less prone to 
 outliers than a normalization based on the minimum and the maximum of an 
 amplification curve.
-\code{minmax} does a normalization between 0 and 1 (see Roediger et al. 
+\code{minm} does a min-max normalization between 0 and 1 (see Roediger et al. 
 2013 for explanation).
 \code{max} does a normalization to the maximum value (MFI/max(MFI)).
 \code{lugn} does a quantile normalization based on a symmetric proportion 
@@ -60,7 +60,7 @@ Stefan Roediger, Michal Burdukiewicz
 \code{\link{CPP}}
 }
 \examples{
-normalizer(C17[2L:50, 1], "minmax")
+normalizer(C17[2L:50, 1], "minm")
 }
 
 \keyword{ manip }

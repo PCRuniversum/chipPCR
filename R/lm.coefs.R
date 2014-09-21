@@ -5,21 +5,12 @@ lm.coefs <- function(x, y, method.reg) {
   # uses a rank-based estimation model for linear regression,
   # and lm (stats) an ordinary least squares 
   
-  method.reg <- tolower(method.reg)
-  if (grepl(method.reg, "lmrob"))
-    method.reg <- "lmrob"
-  if (grepl(method.reg, "rfit")) 
-    method.reg <- "rfit"
-  if (grepl(method.reg, "least")) 
-    method.reg <- "least"
-  if (grepl(method.reg, "rq")) 
-    method.reg <- "rq"
-  if (!(method.reg %in% c("lmrob", "rfit", "least", "rq")))
-    stop("Invalid regression method chosen.")
+  method.reg <- check.method(c("lmrob", "rfit", "least", "rq"), method.reg)
   
   lm.fit <- function(y, x, method) {
     switch(method,
            lmrob = do.call(function(x, y) lmrob(y ~ x), c(list(x = x, y = y))),
+           #TO DO: check if Rfit can be called other way
            rfit = do.call(function(x, y) Rfit::rfit.default(y ~ x), c(list(x = x, y = y))),
            least = do.call(function(x, y) lm(y ~ x), c(list(x = x, y = y))),
            rq = do.call(function(x, y) rq(y ~ x), c(list(x = x, y = y)))
@@ -43,6 +34,8 @@ lm.coefs <- function(x, y, method.reg) {
   if (class(tried.fit) != "try-error" && tried.fit[["converged"]] == TRUE) { 
     coefficients <- data.frame(tried.fit[1])
   } else { 
+    warning(paste0("Chosen method ", method.reg, " failed to converge. 
+                   Performed linear regression. "))
     coefficients <- data.frame(lm.fit(y, x, method = "least")[1]) 
   } 
   coefficients

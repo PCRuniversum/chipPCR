@@ -24,8 +24,8 @@ regression.
 \details{
 \code{lm.coefs} is convenient wrapper around few functions performing 
 normal (least squares) and robust linear regression. If the robust linear 
-regression is impossible, \code{lm.coefs} will perform linear regression 
-using the least squares method.
+regression is impossible, \code{lm.coefs} will give a warning and perform linear 
+regression using the least squares method.
 This function can be used to calculate the background of an amplification
 curve. The coefficients of the analysis can be used for a trend based
 correction of the entire data set.

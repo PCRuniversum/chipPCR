@@ -4,8 +4,12 @@ Title: Toolkit of helper functions to pre-process amplification data
 Version: 0.0.8-2
 LazyData: true
 Date: 2014-09-25
-Author: Stefan Roediger, Michal Burdukiewicz
-Maintainer: Stefan Roediger <stefan.roediger@hs-lausitz.de>
+Authors@R: c(
+    person("Stefan", "Roediger", 
+      email = "stefan.roediger@hs-lausitz.de", 
+      role = c("cre", "aut")),
+    person("Michal", "Burdukiewicz", 
+      email = "michalburdukiewicz@gmail.com", role = "aut"))
 Description: The chipPCR package is a toolkit of functions to pre-process
     amplification curve data. Amplification data can be obtained from
     conventional PCR reactions or isothermal amplification reactions. The

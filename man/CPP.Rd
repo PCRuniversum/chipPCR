@@ -81,7 +81,7 @@ range.
 replacement.  The mean is used by default.
 }
   \item{method.norm}{
-	is a argument to use a "none", "minmax", "max", "lugn", or
+	is a argument to use a "none", "minm", "max", "lugn", or
 	"zscore" normalization.
 }
   \item{qnL}{
@@ -161,7 +161,7 @@ plot(NA, NA, xlab = "Time [sec]", ylab = "refMFI",
      main = "Curve Pre-processor Applied to HDA Data", 
      xlim = c(0, 2500), ylim = c(0,1.1), pch = 20)
 for (i in 3:5) {
-  y.cpp <- CPP(C17[2:50, 1], C17[2:50, i], method.norm = "minmax", 
+  y.cpp <- CPP(C17[2:50, 1], C17[2:50, i], method.norm = "minm", 
 	      bg.outliers = TRUE)$y.norm
   lines(C17[2:50, 1], y.cpp, col = i - 2, 
 	type = "b", pch = 20)
