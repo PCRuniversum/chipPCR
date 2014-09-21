@@ -17,7 +17,7 @@ shinyServer(function(input, output) {
   })
   
   res.th.cyc <- reactive({th.cyc(res.AmpSim()[, 1], res.AmpSim()[, 2], 
-                                 r = input$th.r, auto = input$th.auto, linear = TRUE)})
+                                 r = input$th.r, auto = input$th.auto, linear = input$th.lin)})
   
   
   # Create a plot
