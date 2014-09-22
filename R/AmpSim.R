@@ -5,8 +5,8 @@ AmpSim <- function(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1,
 #   options(warn = -1)
   if (min(cyc) < 1) 
     stop("The minimum cycle value must 1 or larger.")
-  if (Cq <= 1) 
-    stop("The Cq value must larger than 1.")
+  if (Cq < 1) 
+    stop("The Cq value must larger or equal to 1.")
   if (nnl < 0 || nnl > 10) 
     stop("nnl must be within 0 and 10.")
 

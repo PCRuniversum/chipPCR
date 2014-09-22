@@ -452,7 +452,7 @@ are performed. A manual alteration is in contradiction to reproducible research.
 The presence of noise may lead to false conclusions and performance estimation. 
 Noise is challenging because derivative processes as used for ``cycle of 
 quantification'' methods (e.g., Second Derivative Maximum method) lead to an 
-amplification of noise \cite{ruijter_2013, tellinghuisen_2014,roediger_RJ_2013, 
+amplification of noise \cite{ruijter_2013, tellinghuisen_2014, roediger_RJ_2013, 
 larionov_2005, tuomi_2010}.
 
 The $\emph{chipPCR}$ package ($\emph{chipPCR}$: ``Lab-on-a-\textbf{Chip}'' \& 
@@ -488,10 +488,10 @@ res.neg <- AmpSim(cyc = 1:40, b.eff = -0.1, bl = 0.05, ampl = 0.4, Cq = 1,
 		      
 res.pos.CPP <- cbind(1:40, CPP(res.pos[, 1], res.pos[, 2], 
 		     bg.outliers = TRUE, smoother = TRUE, method = "smooth", 
-		      method.norm = "minmax", method.reg = "lmrob")$y)
+		      method.norm = "minm", method.reg = "lmrob")$y)
 		      
 res.low.NA <- cbind(1:40, CPP(res.low[, 1], res.low[, 2], smoother = TRUE, 
-		    method = "smooth", bg.outliers = TRUE, method.norm = "minmax", 
+		    method = "smooth", bg.outliers = TRUE, method.norm = "minm", 
 		    method.reg = "lmrob")$y)
 		      
 res.neg.exc <- cbind(1:40, amptester(res.neg[, 2]))
