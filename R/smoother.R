@@ -45,16 +45,8 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   
   #uniformize names
   if (length(method.names) != 1 || method.names != "all") {
-    for (i in pos.meth) 
-      for (j in 1L:length(method.names))
-        if (any(grepl(method.names[j], i)))
-          method.names[j] <- i
-    
-    #check for presence of invalid names
-    invalids <- !(method.names %in% pos.meth)
-    if (sum(invalids) > 0)
-      stop(paste0("Invalid method(s) chosen: ", paste0(method.names[invalids], 
-                                                       collapse = ", ")))
+    method.names <- sapply(method.names, function(i)
+      check.method(pos.meth, i))
   } else {
     method.names <- pos.meth
     method <- lapply(pos.meth, function(i) list())
