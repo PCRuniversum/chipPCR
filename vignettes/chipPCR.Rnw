@@ -1148,8 +1148,9 @@ to locate peaks but it should cautiously be used to measure peaks.
 
 \section*{Tables}
 \begin{table*}[b]
-\caption{\label{table:tab1} \csentence{Smoothing and filter methods of the 
-$\emph{chipPCR}$ package}. The parameter $lowess$ for LOWESS smoother 
+\label{table:tab1}
+\caption{ Smoothing and filter methods of the 
+$\emph{chipPCR}$ package. The parameter $lowess$ for LOWESS smoother 
 (locally-weighted polynomial regression) can be tuned by the parameters $f$ and 
 $iter$. The parameter $mova$ for moving average can be tuned by the parameter 
 $movaww$. $movaww$ is the window size used for the moving average. The parameter 
