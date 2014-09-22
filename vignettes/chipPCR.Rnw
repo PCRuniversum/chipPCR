@@ -413,12 +413,12 @@ reaction,
 (e.g., moving average, Savitzky-Golay smoothing).
 \end{itemize}
 
-In addition further (auxiliary)functions (\textsl{amptester}, \textsl{effcalc}, 
+In addition further (auxiliary) functions (\textsl{amptester}, \textsl{effcalc}, 
 \textsl{humanrater}, \textsl{lm.coefs}, \textsl{normalizer}, 
 \textsl{plotCurves}, \textsl{th.cyc}) typically used for post-processing (e.g., 
 Cq calculation, amplification efficiency calculation) are available. For more 
 information please refer to the following sections. Selected functionality is 
-used in the $\emph{RDML}$ \cite{blagodatskikh_2014} packages.
+used in the \emph{RDML} \cite{blagodatskikh_2014} packages.
 
 
 \section{Artifacts in amplification curve data}
@@ -1086,7 +1086,7 @@ methods while minimizing the drawback of learning syntax of specific functions.
 
 <<smoothing_intro,fig.show='hold',fig.cap=fig22_cap,fig.scap=fig22_scap>>=
 # Simulate and amplification curve with the AmpSim function
-tmp <- AmpSim(cyc = c(1:35), bl = 0)
+tmp <- AmpSim(cyc = 1:35, bl = 0)
 
 par(las = 0, bty = "n", cex.axis = 1.5, cex.lab = 1.5, 
     font = 2, cex.main = 1.8, oma = c(1,1,1,1), fig = c(0,1,0.55,1))
@@ -1121,7 +1121,7 @@ legend(1.5, 0.1, ncol = 2, colnames(res.out[, 2:9]), pch = 15:22,
        lwd = 2, col = c(2:9))
 
 # Plot the results.
-sapply(2:9, function(i) {
+tmp <- sapply(2:9, function(i) {
       lines(res.out[, 1], res.out[, i], type = "b", col = i, pch = i + 13)
      }
 )
@@ -1332,7 +1332,8 @@ function. For both cases it was possible to recieve results, which can be used
 for further processing. We observed no significant difference between the raw 
 and pre-processed data.
 
-<<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide'>>=
+Warnings in code chunk below were supressed.
+<<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide',warning=FALSE>>=
 # Set parameter for the plot.
 par(mfrow = c(2,1), las = 0, bty = "n")
 
