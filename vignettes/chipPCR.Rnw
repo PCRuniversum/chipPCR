@@ -1869,7 +1869,7 @@ a dilution series (Figure~\ref{figure:AmpSim_effcalc}). An object of the class
 list contains the ``Concentration'', Cqs, deviation of the Cqs, "Coefficient of 
 Variance" sequentially in the columns, the amplification efficiency (\%) 
 according to Equation~S\ref{eq:AE}, the results of the linear regression and the 
-correlation test (Pearson) (Table~S\ref{table:effcalc_output}). The 
+correlation test (Pearson) (Table~\ref{table:effcalc_output}). The 
 \textsl{effcalc} has several options to enhance the plot. For example, it is 
 possible to indicate the confidence interval (default CI~=~95~\%). Further 
 options are described in the manual.
