@@ -472,7 +472,7 @@ tools. Moreover, it is desirable set up workflows in an open environment, which
 enables downstream analyses and which offers powerful tools for data 
 visualizations and automatic report generation.
 
-<<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap>>=
+<<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE>>=
 # Use AmpSim to generate an amplification curve with 40 cycles
 # and a different Cq.
 res.pos <- AmpSim(cyc = 1:40, noise = TRUE, b.eff = -12, nnl = 0.02)
@@ -564,7 +564,7 @@ invoke the \textsl{AmpSim}.\textsl{gui}. Further details on \emph{shiny} are
 described in in the main document. \textsl{AmpSim} was also used to illustrate 
 the \textsl{inder} function (Figure~\ref{figure:SDM}), the \textsl{fixNA} 
 function (Figure~\ref{figure:fixNA}) and the use of the \textsl{smoother} 
-(Figure~\ref{figure:smoother}) function.
+(Figure~\ref{figure:smoothing_intro}) function.
 
 As explained in the main text there are several ways of $\emph{chipPCR}$ GUIs. 
 An example to launches graphical user interface that allows simulating and 
@@ -682,7 +682,7 @@ model (see Section~S\ref{sec:MFIaggr}). In our example we analyzed the
 raw fluorescence from 96 replicates of a 
 qPCR experiment for the human gene \textit{Vimentin}. The \textsl{MFIaggr} plot 
 shows that the first ten cycles (noise) follow a normal distribution 
-(Figure~\ref{figure:MFIaggr}). In contrast, the analysis of all cycles shows 
+(Figure~\ref{figure:MFIaggr_intro}). In contrast, the analysis of all cycles shows 
 expectedly a distribution, which significantly differs from a normal 
 distribution (Figure~\ref{figure:MFIaggr_all}). Setting the option $CV = FLASE$ 
 shows the relative standard deviation (RSD,~\%). Ideally the variance between 
@@ -693,7 +693,7 @@ ROI. In particular, this function might be useful for quality management during
 the development of high-throughput technologies. An analysis via a the 
 \emph{shiny} \textsl{MFIaggr.gui} app is shown in Figure~\ref{figure:MFIaggr2}.
 
-<<MFIaggr_intro,eval = FALSE>>=
+<<MFIaggr_intro,fig.show='hold',fig.cap="STEFAN, PUT STH HERE">>=
 par(las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
     font = 2, cex.main = 1.2, oma = c(1,1,1,1))
 
@@ -1084,7 +1084,7 @@ methods while minimizing the drawback of learning syntax of specific functions.
 \textsl{CPP}. Figure~\ref{figure:smoothing_intro} shows results of the 
 \textsl{smoother} function an amplification curve data.
 
-<<smoothing_intro,fig.show='hold',fig.cap=fig22_cap,fig.scap=fig22_scap>>=
+<<smoothing_intro,fig.show='hold',fig.cap=fig22_cap,fig.scap=fig22_scap,warning=FALSE>>=
 # Simulate and amplification curve with the AmpSim function
 tmp <- AmpSim(cyc = 1:35, bl = 0)
 
