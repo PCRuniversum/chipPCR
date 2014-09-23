@@ -311,6 +311,15 @@ the amplification curve. Optimized time series smoother, like the Kalman filter
 
 fig22_scap <- "Smoother and filter methods of the \\emph{chipPCR} package."
 
+fig23_cap <- "Sample code for the analysis with the \\textsl{MFIaggr} function. 
+The VIMCFX96\\_60 data set (96-well plate cycler (Bio-Rad CFX96)) was used. 
+Either all a subset of cycles (ROI: 1 -- 10) or all cycles (ROI: 1 -- 40) were 
+analyzed by. The density plot (right upper panel) and quantile-quantile analysis 
+(right lower panel) show no normal distribution. Due to the sigmoidal curve 
+structure is the density function bimodal."
+
+fig23_scap <- "Signal analysis by the \\textsl{MFIaggr} function."
+
 @
 
 \begin{figure}[ht]
@@ -539,7 +548,7 @@ text(27, 0.06, "Cq", col = "red")
 @
 
 \section{AmpSim - a function to simulate amplification curves}
-\label{AmpSim}
+\label{sec:AmpSim}
 
 The function \textsl{AmpSim} is a simulator for amplification reactions. Use 
 cases include teaching, algorithm testing or the comparison of an experimental 
@@ -552,15 +561,15 @@ fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
 \end{equation}
 
 It is an intrinsic property of \textsl{AmpSim} to generate unique results if the 
-$noise$ parameter is\textsl{bg}.\textsl{max} set $TRUE$. This is due the use of 
+$noise$ parameter is\\textsl{bg}.\\textsl{max} set $TRUE$. This is due the use of 
 the \textsl{rnorm} (\emph{stats}) function to simulate noise. If data need to be 
 replicated identically use \textsl{set.seed(123)} to alter the random number 
 generator (RNG) state. For example, the amplification curves of 
 Figure~\ref{figure:AmpSim_effcalc}~\emph{A} are generated with the same starting 
-parameter of \textsl{AmpSim} but noise was added. \textsl{AmpSim}.\textsl{gui} 
+parameter of \textsl{AmpSim} but noise was added. \\textsl{AmpSim}.\\textsl{gui} 
 is a \emph{shiny} GUI (graphical user interface \cite{shiny_2014}) 
 implementation for \textsl{AmpSim}. The code example below is an exmple how-to 
-invoke the \textsl{AmpSim}.\textsl{gui}. Further details on \emph{shiny} are 
+invoke the \\textsl{AmpSim}.\\textsl{gui}. Further details on \emph{shiny} are 
 described in in the main document. \textsl{AmpSim} was also used to illustrate 
 the \textsl{inder} function (Figure~\ref{figure:SDM}), the \textsl{fixNA} 
 function (Figure~\ref{figure:fixNA}) and the use of the \textsl{smoother} 
@@ -591,7 +600,7 @@ runGist('https://gist.github.com/michbur/e1def41598f1d0c1e2e6')
 The function will open the GUI in a $\emph{chipPCR}$ webpage of the default 
 browser (Figure~\ref{figure:browser}). All parameters of the \textsl{AmpSim} 
 function can be used. In addition shows the GUI some information calculated by 
-the \textsl{bg}.\textsl{max} in a summary field and a plot below the simulated 
+the \\textsl{bg}.\\textsl{max} in a summary field and a plot below the simulated 
 amplification curve.
 
 \begin{figure}[ht]
@@ -599,21 +608,21 @@ amplification curve.
 \scalebox{0.43}{
 \includegraphics{browser.png}
 }
-\caption{Locally running \emph{shiny} \textsl{AmpSim}.\textsl{gui} app. 
-\emph{(Top)} The plot of the \textsl{AmpSim}.\textsl{gui} is shown in a standard 
+\caption{Locally running \\emph{shiny} \\textsl{AmpSim}.\\textsl{gui} app. 
+\\emph{(Top)} The plot of the \\textsl{AmpSim}.\\textsl{gui} is shown in a standard 
 browser (\textbf{Iceweasel}, v. 29.0.1) along with the parameters (left panel) 
-and the estimation by the \textsl{th}.\textsl{cyc} function. The code 
-(``server.R'', ``ui.R'') of the \emph{shiny} app is also shown. All parameters 
-(e.g., Cq value, Baseline) of the \textsl{AmpSim} function are accessible. 
-\emph{(Bottom)} In addition shows \textsl{AmpSim}.\textsl{gui} the plot output 
-and the textual results of \textsl{bg}.\textsl{max}}
+and the estimation by the \\textsl{th}.\\textsl{cyc} function. The code 
+(``server.R'', ``ui.R'') of the \\emph{shiny} app is also shown. All parameters 
+(e.g., Cq value, Baseline) of the \\textsl{AmpSim} function are accessible. 
+\\emph{(Bottom)} In addition shows \\textsl{AmpSim}.\\textsl{gui} the plot output 
+and the textual results of \\textsl{bg}.\\textsl{max}.}
 \label{figure:browser}
 \end{figure}
 
 \textsl{AmpSim} has several parameters, which can be used to simulate an 
 amplification curve. $b.eff$ and $Cq$ are most connected with another. 
 Thus changing one of them will change both values. $Cq$ can be used to 
-define an approximate Cq value. The expression ''approximate Cq value`` is 
+define an approximate Cq value. The expression ``approximate Cq'' value is 
 used because the calculated Cq value will vary depending on the preferred 
 Cq quantification method (e.g., Second Derivative Maximum ($SDM$) method, 
 threshold method). \textsl{AmpSim} can be used to simulate data with noise 
@@ -693,7 +702,7 @@ ROI. In particular, this function might be useful for quality management during
 the development of high-throughput technologies. An analysis via a the 
 \emph{shiny} \textsl{MFIaggr.gui} app is shown in Figure~\ref{figure:MFIaggr2}.
 
-<<MFIaggr_intro,fig.show='hold',fig.cap="STEFAN, PUT STH HERE">>=
+<<MFIaggr_intro,fig.show='hold',fig.cap=fig23_cap,fig.scap=fig23_scap>>=
 par(las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
     font = 2, cex.main = 1.2, oma = c(1,1,1,1))
 
@@ -703,6 +712,19 @@ plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)],
 plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
      llul = c(1,40)), CV = FALSE)
 @
+
+\begin{figure}[ht]
+\centering
+\scalebox{0.43}{
+\includegraphics{browser.png}
+}
+\caption{Example of \emph{shiny} \\textsl{MFIaggr}.\\textsl{gui} app. \emph{(Top)} 
+The plot of the \\textsl{AmpSim}.\\textsl{gui} is shown in a standard browser 
+(\textbf{Iceweasel}, v. 32.0) along with the parameters (left panel). The code 
+(``server.R'', ``ui.R'') of the \emph{shiny} app is also shown. Most parameters 
+of the \\textsl{MFIaggr}.\\textsl{gui} function are accessible. 
+\label{figure:MFIaggr2}
+\end{figure}
 
 \subsection{Parameters of MFIaggr}
 
@@ -828,7 +850,7 @@ The function \textsl{CPP} encompasses a set of functions to pre-process an
 amplification curve. The pre-processing includes options to normalize curve 
 data, to remove background, to remove outliers (\textsl{fixNA} function) in the 
 background range and to test if an amplification is significant. The function 
-\textsl{CPP} uses the function \textsl{bg}.\textsl{max} to estimate 
+\textsl{CPP} uses the function \\textsl{bg}.\\textsl{max} to estimate 
 automatically the start of the amplification process. In the background range 
 there is often noise which makes it harder to determine a meaningful background 
 value. Therefore, \textsl{CPP} can optionally remove outliers by finding the 
@@ -1187,7 +1209,7 @@ parent functions.
 \end{tabular}
 \end{table*}
 
-\subsection{\textsl{bg}.\textsl{max} - a function to estimate the start and end of an amplification reaction}
+\subsection{\\textsl{bg}.\\textsl{max} - a function to estimate the start and end of an amplification reaction}
 \label{sec:bgmax}
 
 The following paragraphs describe methods from the literature to detect the 
@@ -1262,7 +1284,7 @@ two last points are designated as outliers. The first of aforementioned outliers
 is considered the end of lag phase. It is worth noting that this algorithm is 
 versatile enough to also detect the beginning of the plateau phase.
 
-The algorithm of \textsl{bg}.\textsl{max} is based on the assumption that the 
+The algorithm of \\textsl{bg}.\\textsl{max} is based on the assumption that the 
 signal difference of successive cycles in the linear ground phase is 
 approximately constant. After transition in the early exponential phase the 
 signal changes drastically. First data are smoothed by Friedman's 'super 
@@ -1273,9 +1295,9 @@ correction factor are used to estimate the range before the exponential phase.
 This simple function finds the background range without modeling the function. 
 The start of the background range is defined be a ``fixed'' value. Since many 
 signals tend to overshot in the first cycles a default value of 2 (for qPCR) is 
-chosen. \textsl{bg}.\textsl{max} tries also to estimate the end of an 
+chosen. \\textsl{bg}.\\textsl{max} tries also to estimate the end of an 
 amplification reaction (Figure~\ref{figure:bgmax}). See section 
-\textsl{bg}.\textsl{max} ``Details'' of the $\emph{chipPCR}$ manual for further 
+\\textsl{bg}.\\textsl{max} ``Details'' of the $\emph{chipPCR}$ manual for further 
 details. Application of this function is for example a rational basis for 
 trimming of unneeded data.
 
@@ -1325,7 +1347,7 @@ legend(4, 1, c("Raw data", "First derivative", "Second derivative"),
 par(mfrow = c(1,1))
 @
 
-We used to the \textsl{bg}.\textsl{max} algorithm to analyze amplification curve 
+We used to the \\textsl{bg}.\\textsl{max} algorithm to analyze amplification curve 
 data from an capillary convective PCR (capillaryPCR $\emph{chipPCR}$ data set). 
 The data were used as raw data (Figure~\ref{figure:bgmax_ccPCR}~A) and 
 pre-processed data (Figure~\ref{figure:bgmax_ccPCR}~B) using the \textsl{CPP} 
