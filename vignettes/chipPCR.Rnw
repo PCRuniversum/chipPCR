@@ -395,7 +395,7 @@ All datasets used in following examples can be loaded in the same manner. They
 are also automatically available after loading whole package. $\emph{chipPCR}$ 
 relies on the \textbf{R} workspaces, and dedicated \textbf{R} packages as 
 default data format and standard import and export as described elsewhere 
-\cite{perkins_2012, RDCT2014c, blagodatskikh_2014}.The $\emph{chipPCR}$ can be 
+\cite{blagodatskikh_2014,perkins_2012, RDCT2014c}.The $\emph{chipPCR}$ can be 
 used to read the Real-time PCR Data Markup Language (RDML) from various qPCR 
 cycler systems. This means that basically any RDML compliant data set can be 
 directly used with the $\emph{chipPCR}$ package.
@@ -436,12 +436,11 @@ Quantitative polymerase chain reaction (qPCR) and quantitative isothermal
 amplification (qIA) are standard methods to amplify nucleic acids (e.g., genomic 
 DNA, copy DNA). Recently amplification methods with a continuous temperature 
 gradient (e.g., microfluidics, capillary convective PCR (ccPCR)) emerged 
-\cite{rodiger_nucleic_2014, chou_rapid_2011}. Both amplification methods are 
+\cite{chou_rapid_2011,rodiger_nucleic_2014}. Both amplification methods are 
 used in different real-time monitoring technologies, such as our previously 
 reported VideoScan technology, microfluidic systems, point-of-care devices, 
 microbead-chip technologies and commercial real-time thermo cyclers 
-\cite{rodiger_nucleic_2014,chang_2012, roediger_highly_2013, 
-roediger_bead_qPCR_2013}.
+\cite{chang_2012,roediger_bead_qPCR_2013,rodiger_nucleic_2014,roediger_highly_2013}.
 
 Real-time technologies enable the quantification of nucleic acids by calculation 
 of specific curve parameters like the quantification point (Cq) and the 
@@ -460,8 +459,7 @@ are performed. A manual alteration is in contradiction to reproducible research.
 The presence of noise may lead to false conclusions and performance estimation. 
 Noise is challenging because derivative processes as used for ``cycle of 
 quantification'' methods (e.g., Second Derivative Maximum method) lead to an 
-amplification of noise \cite{ruijter_2013, tellinghuisen_2014, roediger_RJ_2013, 
-larionov_2005, tuomi_2010}.
+amplification of noise \cite{larionov_2005, roediger_RJ_2013, ruijter_2013, tellinghuisen_2014, tuomi_2010}.
 
 The $\emph{chipPCR}$ package ($\emph{chipPCR}$: ``Lab-on-a-\textbf{Chip}'' \& 
 \textbf{PCR}) was developed to automatize pre-processing, to ease data 
@@ -553,7 +551,7 @@ The function \textsl{AmpSim} is a simulator for amplification reactions. Use
 cases include teaching, algorithm testing or the comparison of an experimental 
 system to the predicted (''optimal``) model. \textsl{AmpSim} uses a 5-parameter 
 model (Equation~\ref{eq:richards}). The function is commonly used for the 
-simulation of amplification curves \cite{spiess_2008, ritz_2008, gerhard_2014}.
+simulation of amplification curves \cite{gerhard_2014,ritz_2008,spiess_2008}.
 
 \begin{equation} \label{eq:richards}
 fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
@@ -710,18 +708,18 @@ plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)],
 #      llul = c(1,40)), CV = FALSE)
 @
 
-\begin{figure}[ht]
-\centering
-\scalebox{0.43}{
-\includegraphics{browser.png}
-}
-\caption{Example of \emph{shiny} \textsl{MFIaggr}.\textsl{gui} app. \emph{(Top)} 
-The plot of the \textsl{AmpSim}.\textsl{gui} is shown in a standard browser 
-(\textbf{Iceweasel}, v. 32.0) along with the parameters (left panel). The code 
-(``server.R'', ``ui.R'') of the \emph{shiny} app is also shown. Most parameters 
-of the \textsl{MFIaggr}.\textsl{gui} function are accessible. 
-\label{figure:MFIaggr2}
-\end{figure}
+% \begin{figure}[ht]
+% \centering
+% \scalebox{0.43}{
+% \includegraphics{browser.png}
+% }
+% \caption{Example of \emph{shiny} \textsl{MFIaggr}.\textsl{gui} app. \emph{(Top)} 
+% The plot of the \textsl{AmpSim}.\textsl{gui} is shown in a standard browser 
+% (\textbf{Iceweasel}, v. 32.0) along with the parameters (left panel). The code 
+% (``server.R'', ``ui.R'') of the \emph{shiny} app is also shown. Most parameters 
+% of the \textsl{MFIaggr}.\textsl{gui} function are accessible. 
+% \label{figure:MFIaggr2}
+% \end{figure}
 
 \subsection{Parameters of MFIaggr}
 
@@ -1859,21 +1857,20 @@ abline(h = r, lty = 2)
 
 \subsection{Amplification efficiency}
 
-Various influences alter amplification reactions. The amplification efficiency is
-controlled by a complex interaction of the intrinsic and extrinsic factors like 
-reaction conditions, substrate consumption, primer dimmer formation and molecule 
-specific reaction rates \cite{mehra_2005}. Some probe systems 
-are percevied as bias-introducing. Therefore, qPCR reaction should be 
-corrected based on the amplification efficiency \cite{tuomi_2010, 
-ruijter_2014}. The amplification efficiency (AE) can be estimated from 
-individual samples or a set of samples to compensate the presence of 
-inhibitors and noise. Indirect methods use fitted mathematical models or 
-estimate the AE from absolute fluorescence values \cite{tichopad_2003, 
-liu_2002, alvarez_2007, smith_2007, batsch_2008, mallona_2011}. The 
-\emph{qpcR} has many functions included, which can be used for the 
-indirect estimation of the AE. However, most commonly used is the ''direct method'' 
-\cite{liu_2002, stahlberg_2003}. Herein, the AE is estimated from dilution 
-series of a template. The AE of a qPCR reaction is calculated from the 
+Various influences alter amplification reactions. The amplification efficiency 
+is controlled by a complex interaction of the intrinsic and extrinsic factors 
+like reaction conditions, substrate consumption, primer dimmer formation and 
+molecule specific reaction rates \cite{mehra_2005}. Some probe systems are 
+percevied as bias-introducing. Therefore, qPCR reaction should be corrected 
+based on the amplification efficiency \cite{ruijter_2014,tuomi_2010}. The 
+amplification efficiency (AE) can be estimated from individual samples or a set 
+of samples to compensate the presence of inhibitors and noise. Indirect methods 
+use fitted mathematical models or estimate the AE from absolute fluorescence 
+values \cite{alvarez_2007, batsch_2008, liu_2002, mallona_2011, tichopad_2003, 
+smith_2007}. The \emph{qpcR} has many functions included, which can be used for 
+the indirect estimation of the AE. However, most commonly used is the ''direct 
+method'' \cite{liu_2002, stahlberg_2003}. Herein, the AE is estimated from 
+dilution series of a template. The AE of a qPCR reaction is calculated from the 
 slope of the standard curve (Equation~\ref{eq:AE}).
 
 \begin{equation} \label{eq:AE}
@@ -1885,7 +1882,7 @@ a dilution series (Figure~\ref{figure:AmpSim_effcalc}). An object of the class
 list contains the ``Concentration'', Cqs, deviation of the Cqs, "Coefficient of 
 Variance" sequentially in the columns, the amplification efficiency (\%) 
 according to Equation~\ref{eq:AE}, the results of the linear regression and the 
-correlation test (Pearson) (Table~S\ref{table:effcalc_output}). The 
+correlation test (Pearson) (Table~\ref{table:effcalc_output}). The 
 \textsl{effcalc} has several options to enhance the plot. For example, it is 
 possible to indicate the confidence interval (default CI~=~95~\%). Further 
 options are described in the manual.
