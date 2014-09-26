@@ -112,12 +112,12 @@ derived from a simulation such as the AmpSim function.
 \strong{Isothermal Amplifcation - Helicase Dependent Amplification}
 
 \code{\link[chipPCR]{C67}}:
-A Helicase Dependent Amplification (HDA) of HRPT1 (Homo sapiens 
+A Helicase Dependent Amplification (HDA) of HPRT1 (Homo sapiens 
 hypoxanthine phosphoribosyltransferase 1), performed at different 
 input DNA quantities using the Bio-Rad iQ5 thermo cycler.
 
 \code{\link[chipPCR]{CD75}}:
-Helicase Dependent Amplification in the VideoScan HCU of HRPT1 (Homo 
+Helicase Dependent Amplification in the VideoScan HCU of HPRT1 (Homo 
 sapiens hypoxanthine phosphoribosyltransferase 1) measured at at 55, 60 or 
 65 degree Celsius.
 
