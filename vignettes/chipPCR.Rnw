@@ -371,8 +371,19 @@ integration to Web based and standalone \emph{shiny} applications. The
 is freely available.
 \end{abstract}
 
-\section{Setting up a work environment}
+\section{Availability, requirements and Setting up a work environment}
 \label{sec:work_environment}
+
+Availability and requirements are an \textbf{R} installation and optionally a working internet connection and web browser:
+\begin{itemize}
+\item Project name: chipPCR, 
+\item Project homepage (development): https://github.com/michbur/chipPCR, 
+\item Project homepage at CRAN: http://cran.r-project.org/web/packages/chipPCR/index.html, 
+\item Operating System: Platform independent, 
+\item Other requirement: R 3.1.0 or higher, 
+\item License: GPL-3
+\end{itemize}
+
 
 The vignette can be viewed from \textbf{R} using command: vignette("chipPCR").
 
@@ -400,36 +411,7 @@ used to read the Real-time PCR Data Markup Language (RDML) from various qPCR
 cycler systems. This means that basically any RDML compliant data set can be 
 directly used with the $\emph{chipPCR}$ package.
 
-\section{Functions of the chipPCR package}
-\label{sec:functions}
-
-Functions of the $\emph{RDML}$ package are:
-
-\begin{itemize}
-\item \textsl{AmpSim}: a 5-parameter model for a 
-S-shaped amplification curves accompanied by \textsl{AmpSim.gui} a \emph{shiny} 
-GUI, for \textsl{AmpSim},
-\item \textsl{bg.max}: a function to detect the start and end of an 
-amplification reaction,
-\item \textsl{CPP}: wrapper for several pre-processing functions,
-\item \textsl{fixNA}: to impute missing values in a data column,
-\item \textsl{inder}: for interpolating first and second derivatives 
-interpolation using the five-point stencil (accompanied by 
-\textsl{rounder} function),
-\item \textsl{MFIaggr}: to analyze a bulk of replicates of an amplification 
-reaction, 
-\item \textsl{smoother}: to smooth the curve data by different methods 
-(e.g., moving average, Savitzky-Golay smoothing).
-\end{itemize}
-
-In addition further (auxiliary) functions (\textsl{amptester}, \textsl{effcalc}, 
-\textsl{humanrater}, \textsl{lm.coefs}, \textsl{normalizer}, 
-\textsl{plotCurves}, \textsl{th.cyc}) typically used for post-processing (e.g., 
-Cq calculation, amplification efficiency calculation) are available. For more 
-information please refer to the following sections. Selected functionality is 
-used in the \emph{RDML} \cite{blagodatskikh_2014} packages.
-
-\section{Artifacts in amplification curve data}
+\section{Pre-processing of amplification curve data}
 \label{sec:problems}
 
 Quantitative polymerase chain reaction (qPCR) and quantitative isothermal 
@@ -461,14 +443,33 @@ Noise is challenging because derivative processes as used for ``cycle of
 quantification'' methods (e.g., Second Derivative Maximum method) lead to an 
 amplification of noise \cite{larionov_2005, roediger_RJ_2013, ruijter_2013, tellinghuisen_2014, tuomi_2010}.
 
+\textbf{R} belongs to the most used bioinformatics tools and is known to be an 
+early adopter of emerging technologies such as digital PCR and  NanoString 
+nCounter Platform \cite{pabinger_2014,waggott_2012pabinger_2014}. At same time it is widely 
+used for established methods, such as qPCR. Most \textbf{R} packages focus on 
+the read-in and (post)-processing of data sets, which originate from commercial 
+qPCR systems. Sophisticated \textbf{R} packages for the steps 1. and 3.--7. are 
+available from Bioconductor and CRAN 
+\cite{Dvinge_2009, gehlenborg_2013, heckmann_2011, huntley_2013, 
+pabinger_2014, mccall_2014, perkins_2012, Zhang_2010, zhang_2013}. However, 
+there is no \textbf{R} package for pre-processing and quality analysis of 
+amplification curve data. Similar applies to other software solutions (compare 
+\cite{pabinger_2014}). Pre-processing is in most commercial cyclers a ``black 
+box''. This has limitations, such as hard to reproduce analysis on other 
+platforms, difficulties during the adoption to changing experimental setups and 
+limited sophisticated statistical tools. Moreover, it is desirable set up 
+workflows in an open environment, which enables downstream analyses and which 
+offers powerful tools for data visualizations and automatic report generation.
+
 The $\emph{chipPCR}$ package ($\emph{chipPCR}$: ``Lab-on-a-\textbf{Chip}'' \& 
 \textbf{PCR}) was developed to automatize pre-processing, to ease data 
 analysis/visualization and to offer a quality control for the statistical data 
-analysis of qPCR and qIA experiments. $\emph{chipPCR}$ is primarily targeted at 
+analysis of qPCR and qIA experiments by a comprehensive set of functions 
+(Section~\ref{sec:functions}). $\emph{chipPCR}$ is primarily targeted at 
 developers of experimental nucleic acid amplification systems but non the less 
-at users who have access to the raw data of commercial systems. This manuscript
-highlights pinnacles of the $\emph{chipPCR}$ package. Due to the vast 
-amount of information we refer the interested reader to the supplement for further 
+at users who have access to the raw data of commercial systems. This manuscript 
+highlights pinnacles of the $\emph{chipPCR}$ package. Due to the vast amount of 
+information we refer the interested reader to the supplement for further 
 information and use case examples.
 
 Pre-processing is in most commercial cyclers an black box. This has limitations, 
@@ -543,6 +544,38 @@ text(14, 0.06, "Cq")
 lines(c(28.5,28.5), c(-1,0.03), lwd = 2, col = "red")
 text(27, 0.06, "Cq", col = "red")
 @
+
+\section{Functions of the chipPCR package}
+\label{sec:functions}
+
+Functions of the $\emph{RDML}$ package are:
+
+\begin{itemize}
+\item \textsl{AmpSim}: a 5-parameter model for a 
+S-shaped amplification curves accompanied by \textsl{AmpSim.gui} a \emph{shiny} 
+GUI, for \textsl{AmpSim},
+\item \textsl{bg.max}: a function to detect the start and end of an 
+amplification reaction,
+\item \textsl{CPP}: wrapper for several pre-processing functions,
+\item \textsl{fixNA}: to impute missing values in a data column,
+\item \textsl{inder}: for interpolating first and second derivatives 
+interpolation using the five-point stencil (accompanied by 
+\textsl{rounder} function),
+\item \textsl{MFIaggr}: to analyze a bulk of replicates of an amplification 
+reaction, 
+\item \textsl{smoother}: to smooth the curve data by different methods 
+(e.g., moving average, Savitzky-Golay smoothing).
+\end{itemize}
+
+In addition further (auxiliary) functions (\textsl{amptester}, \textsl{effcalc}, 
+\textsl{humanrater}, \textsl{lm.coefs}, \textsl{normalizer}, 
+\textsl{plotCurves}, \textsl{th.cyc}) typically used for post-processing (e.g., 
+Cq calculation, amplification efficiency calculation) are available. For more 
+information please refer to the following sections. Selected functionality is 
+used in the \emph{RDML} \cite{blagodatskikh_2014} packages.
+
+The following section give details on the application of the different functions.
+
 
 \section{AmpSim - a function to simulate amplification curves}
 \label{sec:AmpSim}
@@ -655,10 +688,10 @@ sim <- sapply(1L:8, function(i) {
 \section{Inspection and analysis of amplification curve data}
 \label{sec:MFIaggr}
 
-The following section briefly describes function from the $\emph{chipPCR}$ 
-to visualize and analyze amplification curve data. In particular, the 
-functions \textsl{MFIaggr} and \textsl{plotCurves} were developed for a 
-rapid and convenient inspection of raw data.
+The following section briefly describes function from the $\emph{chipPCR}$ to 
+visualize and analyze amplification curve data. In particular, the functions 
+\textsl{MFIaggr} and \textsl{plotCurves} (Section~\ref{sec:plotCurves}) were 
+developed for a rapid and convenient inspection of raw data.
 
  \textsl{MFIaggr} is a powerful analytical and graphical tool for fast multiple 
 comparison of the cycle dependent signal dispersion and distribution. The 
@@ -682,7 +715,7 @@ $skewness~=~3~(mean(x)~-~median(x))~/~sd(x)$), signal-to-noise ratio (SNR),
 variance-to-mean ratio (VRM), number of missing values (NAs) and results from a 
 linear fit of the ROI (intercept, slope, r.squared). Moreover, we included 
 the Breusch-Pagan test to test for heteroskedasticity in a linear regression 
-model (see Section~S\ref{sec:MFIaggr}). In our example we analyzed the 
+model (see Section~\ref{sec:MFIaggr}). In our example we analyzed the 
 raw fluorescence from 96 replicates of a 
 qPCR experiment for the human gene \textit{Vimentin}. The \textsl{MFIaggr} plot 
 shows that the first ten cycles (noise) follow a normal distribution 
@@ -708,18 +741,18 @@ plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)],
 #      llul = c(1,40)), CV = FALSE)
 @
 
-% \begin{figure}[ht]
-% \centering
-% \scalebox{0.43}{
-% \includegraphics{browser.png}
-% }
-% \caption{Example of \emph{shiny} \textsl{MFIaggr}.\textsl{gui} app. \emph{(Top)} 
-% The plot of the \textsl{AmpSim}.\textsl{gui} is shown in a standard browser 
-% (\textbf{Iceweasel}, v. 32.0) along with the parameters (left panel). The code 
-% (``server.R'', ``ui.R'') of the \emph{shiny} app is also shown. Most parameters 
-% of the \textsl{MFIaggr}.\textsl{gui} function are accessible. 
-% \label{figure:MFIaggr2}
-% \end{figure}
+\begin{figure}[ht]
+\centering
+\scalebox{0.43}{
+\includegraphics{MFIaggr_gui.png}
+}
+\caption{Example of \emph{shiny} \textsl{MFIaggr}.\textsl{gui} app. \emph{(Top)} 
+The plot of the \textsl{AmpSim}.\textsl{gui} is shown in a standard browser 
+(\textbf{Iceweasel}, v. 32.0) along with the parameters (left panel). The code 
+(``server.R'', ``ui.R'') of the \emph{shiny} app is also shown. Most parameters 
+of the \textsl{MFIaggr}.\textsl{gui} function are accessible.} 
+\label{figure:MFIaggr2}
+\end{figure}
 
 \subsection{Parameters of MFIaggr}
 
@@ -733,7 +766,7 @@ returns an object with the columns ``Cycle'', ``Location'' (Mean, Median),
 ``Coefficient of Variation''. Using the option $rob = TRUE$ the median and 
 the median absolute deviation (MAD) are calculated instead of the mean and 
 standard deviation. \textsl{MFIaggr} has the parameter $llul$ to define the 
-lower and upper data limit (cycle) for a ROI. Inoked by $@stats$ reports 
+lower and upper data limit (cycle) for a ROI. Invoked by $@stats$ reports 
 \textsl{MFIaggr} further information such as inter quartile range (IQR), 
 medcouple (robust measure of skewness), skewness (Pearson's second 
 skewness coefficient), signal-to-noise ratio (SNR), variance-to-mean ratio 
@@ -906,8 +939,19 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 \subsection{Imputation of missing values in amplification curve data - fixNA}
 \label{sec:fixNA}
 
-Amplification data of experimental systems may contain missing values 
-(NA). The NAs may be caused by detector problems, acquisition error or 
+Experimental technologies may produce missing values (NA) at 
+random due to sensor drop-outs or other technical difficulties. Many analytical 
+functions stop to progress or discard entire data sets. This 
+behavior is rational for unknown data structures. However, in case of 
+amplification curve data it is justified to impute NAs because the structure 
+generally resembles an S-shaped curve. Standard approaches include substitution 
+with most frequent values, mean value imputation, last value carried forward, 
+bootstrapping, or substitution by correlation with replicate measurements 
+\cite{Harrell_2001}. In case of amplification curves other approaches are 
+favorable. Particularly, the transitions phases (e.g., background phase to 
+exponential phase) is potentially prone to bias.
+
+The NAs may be caused by detector problems, acquisition error or 
 other assorted problems. There are different ways to handle missing 
 values. One approach is to ignore NAs, which is generally acceptable. 
 However, in case of further calculation it is often necessary to handle 
@@ -916,18 +960,11 @@ performed. Missing values can be eliminated by a imputation, which
 encompasses various approaches. This includes to calculate a location parameter 
 (e.g., mean, median) or other significant values (e.g., minimum, maximum, modus) 
 of a data column. However, in non-linear processes such as amplification 
-processes its is reasonable to estimate the missing values from a trend. The 
-function \textsl{fixNA} was empirically tested and relies on a linear or 
-non-linear trend estimation. Other smoothing functions such as the 
-Savitzky-Golay smoothing filter have the intrinsic capability to remove missing 
-values \cite{Eilers_2003, Savitzky_1964}. However, such functionality was not 
-yet implemented. This linear approach is useful but may be problematic on the 
-phases other then background or plateau phases of an amplification reaction. The 
-parameter spline on \textsl{fixNA} enables a trend estimation on cubic splines 
-and may be more appropriate in most scenarios. The function \textsl{fixNA} 
-imputes missing values in a single column of data. The imputation is based on a 
-linear approximation by default. However, the data can also be estimated from an 
-approximation by splines.
+processes its is reasonable to estimate the missing values from a trend. 
+
+  The function \textsl{fixNA} imputes missing values in a single column 
+of data (response). The imputation is based either on a linear approximation or an 
+approximation by cubic splines (default) (Figure~\ref{figure:fixNA}). 
 
 We used the ``reps384'' data set from the $\emph{qpcR}$ package 
 \cite{Spiess_qpcR_2014} to compare the influence of imputation on real-world 
@@ -948,6 +985,21 @@ the imputation with the spline method worked reliably and introduced no
 significant bias to all investigated parameters. To compare the linear and 
 spline-based imputation we performed a Kruskal-Wallis rank sum test 
 (\textsl{kruskal.test}, $\emph{stats}$ package \cite{RCT_2013}).
+
+Our in-silico experiments showed that cubic spline interpolation yielded the most probable 
+values and therefore led to the least effect on tested statistical parameters 
+(Cq, background signal, Pearson correlation coefficient) the exponential phase 
+and is therefore the recommended approach to remove missing values 
+(Figure~\ref{figure:fixNA_data}). We observed no significant bias by cubic spline 
+interpolation (Table~\ref{table:fixNA}). The performance of \textsl{fixNA} using 
+cubic splines was better than a linear interpolation (Figure~\ref{figure:fixNA}). 
+However, the linear approximation might be applicable in measurements with high 
+sample rates (e.g., isothermal amplification) (not shown). Any method requires a 
+minimum number of data points as foundation for a meaningful imputation. 
+\textsl{fixNA} attampts to take care of such pitfalls. By rule of thumbs we 
+determined that the number of missing elements in relation to the total number 
+of elements. In case more than 30~\% of all values are NAs gives \textsl{fixNA} 
+a warning.
 
 Our results for the given experiential setting support following statements. 
 (I) The imputation of missing values by spline interpolation and liner methods 
@@ -1078,6 +1130,18 @@ p-value $< 10^{-6}$}
 \label{figure:test_fixNA}
 \end{figure}
 
+Other smoothing functions such as the 
+Savitzky-Golay smoothing filter have the intrinsic capability to remove missing 
+values \cite{Eilers_2003, Savitzky_1964}. However, such functionality was not 
+yet implemented. This linear approach is useful but may be problematic on the 
+phases other then background or plateau phases of an amplification reaction. The 
+parameter spline on \textsl{fixNA} enables a trend estimation on cubic splines 
+and may be more appropriate in most scenarios. The function \textsl{fixNA} 
+imputes missing values in a single column of data. The imputation is based on a 
+linear approximation by default. However, the data can also be estimated from an 
+approximation by splines.
+
+
 \section*{Smoothing and filtering}
 \label{sec:smoothing_filterring}
 
@@ -1089,7 +1153,7 @@ output for subsequent analysis steps. Filtering uses methods of signal
 processing and takes a data input and apply a function to form an output. 
 Smoothing in contrast uses statistical approaches, like local 
 regression models (e.g., least squares estimate) or cubic splines. 
-Therefore we developed the \textsl{smoother} function, which is a wrapper for 
+Therefore, we developed the \textsl{smoother} function, which is a wrapper for 
 smoother functions and filters commonly used to process amplification curve 
 data. \textsl{smoother} inherited traits (Table~\ref{table:tab1})  of the 
 parent functions. However, the functionality of \textsl{smoother} greatly 
@@ -1146,14 +1210,14 @@ tmp <- sapply(2:9, function(i) {
 
 Many functions (e.g., 
 Savitsky-Golay filter) of $\emph{chipPCR}$ assume uniform (equally spaced) 
-sampling. Therefore it is recommended to pre-process the data to have equally 
+sampling. Therefore, it is recommended to pre-process the data to have equally 
 spaced values. The function \textsl{smoother} and \textsl{CPP} (inherited from 
 \textsl{smoother}) give a warning in such cases. The \textsl{smoother} function 
 enables users to tune behavior of the chosen smoothing algorithm by using nearly 
 all parameters available in called subroutines and at the same time uniforms 
 input and output. It should be noted that smoothing may alter the curve shape 
 and thus lead to artificial results. Smoothed data are easier to read 
-but introduce a bias to the pre-processed data. Therefore the prime 
+but introduce a bias to the pre-processed data. Therefore, the prime 
 use of smoothers is processing data for visualization purposes. However, it is 
 not recommended to smooth signals unsupervised prior to statistical procedures 
 (e.g., least-squares curve fitting). All smoothing algorithms are ``lossy'' to a 
@@ -1626,7 +1690,7 @@ amplification curve.
 Recently, we added this approach to the \textsl{diffQ} function of the 
 \emph{MBmca} for improved predictions. \textsl{diffQ} function is part of 
 a routine to calculate the melting points of nucleic acids 
-\cite{roediger_RJ_2013}.The $FDM$ and $SDM$ are peak values to determine 
+\cite{roediger_RJ_2013}. The $FDM$ and $SDM$ are peak values to determine 
 the Cq.
 
 \subsubsection*{Quantification cycle calculation by the inder function}
@@ -2277,6 +2341,10 @@ Claudia Deutschmann (Brandenburg University of Technology Cottbus - Senftenberg,
 Germany), Ralf Himmelreich (Fraunhofer ICT-IMM, Germany) and Katharina Klat 
 (Darmstadt University of Applied Sciences, Germany) for the contribution of 
 data.
+
+\textbf{Authors' contributions:} SR conceived of the study, and participated in its design and coordination and 
+wrote the manuscript. SR and MB jointly developed the software. All authors read 
+and approved the final manuscript.
 
 \listoffigures
 
