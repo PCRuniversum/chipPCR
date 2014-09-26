@@ -106,7 +106,7 @@ and \\emph{(F)} \\emph{zscore-normalization}."
 fig5_scap <- "Comparison of the normalization functions from \\textsl{CPP}"
 
 fig6_cap <- "Amplification standard curve simulation and regression 
-analysis. \\emph{(A)} AmpSim was used to synthesize a qPCR experiment of 
+analysis. \\emph{(A)} \\textsl{AmpSim} was used to synthesize a qPCR experiment of 
 six dilutions (three replicates per dilution) standard samples. The Cqs 
 were determined by the $SDM$ method (solid black vertical lines). 
 \\emph{(B)} effcalc was used to automatically perform a linear regression. 
@@ -130,7 +130,7 @@ efficiency approximately at 87.3~\\%."
 fig7_scap <- "Calculation of the amplification efficiency."
 
 fig8_cap <- "Imputation of missing values in amplification curve data. 
-\\emph{(A)} Raw data were generated using the AmpSim 
+\\emph{(A)} Raw data were generated using the \\textsl{AmpSim} 
 simulation function. \\emph{(B)} A missing value was introduced in the 
 transition phase. The missing value was imputed either by \\emph{(C)} 
 linear approximation or \\emph{(D)} a cubic spline approximation. The 
@@ -138,7 +138,7 @@ spline approximation nearly reconstituted the original curve."
 fig8_scap <- "Imputation of missing values in amplification curve data."
 
 fig9_cap <- "Cycle of quantification by the second derivative maximum 
-method. Raw data (\\textbullet) were generated using the AmpSim simulation 
+method. Raw data (\\textbullet) were generated using the \\textsl{AmpSim} simulation 
 function (see example main text). The inflection point is the point where 
 the slope is maximum and the curvature is zero. The first derivative of the 
 amplification curve has a first derivative maximum ($FDM$) at the 
@@ -188,7 +188,7 @@ for the human gene \\textit{HPRT1}"
 
 fig12_cap <- "Signal analysis using the VIMCFX96\\_60 data set (96-well 
 plate cycler (Bio-Rad CFX96)). All cycles (ROI: 1 -- 40) were analyzed by 
-the MFIaggr function. The density plot (right upper panel) and 
+the \\textsl{MFIaggr} function. The density plot (right upper panel) and 
 quantile-quantile analysis (right lower panel) show no normal 
 distribution. Due to the sigmoidal curve structure is the density function 
 bimodal."
@@ -211,11 +211,11 @@ introduced at random position to selected curves of the VIMCFX96\\_60 data
 set (solid black line). A colored box (topleft of each plot) indicates the 
 sample name and if the data contain missing values. The red rug indicates 
 the position of the missing values. The red lined shows the amplification 
-curve after unsupervised pre-processing (using an instance of CPP)."
+curve after unsupervised pre-processing (using an instance of \\textsl{CPP})."
 fig14_scap <- "The plotCurves function."
 
-fig15_cap <- "Use of MFIaggr to test for heteroskedasticity using the 
-Breusch-Pagan test. The data were aggregated with the MFIaggr function and 
+fig15_cap <- "Use of \\textsl{MFIaggr} to test for heteroskedasticity using the 
+Breusch-Pagan test. The data were aggregated with the \\textsl{MFIaggr} function and 
 assigned to the object res. The standard deviation was transformed to the 
 variance. The plot shows the cycle dependent variance measured at 60 
 degree Celsius (annealing phase; A, B) and 69 degree Celsius (elongation 
@@ -224,13 +224,13 @@ curves were analyzed. Next the cycles 1 to 40 of the same amplification
 curve data were analyzed. The Breusch-Pagan confirmed the 
 heteroskedasticity in the amplification curve data. The VIMCFX96\\_60 and 
 VIMCFX96\\_69 data sets were used."
-fig15_scap <- "Use of MFIaggr to test for heteroskedasticity using the 
+fig15_scap <- "Use of \\textsl{MFIaggr} to test for heteroskedasticity using the 
 Breusch-Pagan test."
 
 fig16_cap <- "Function inder calculates numeric derivatives on smoothed 
 data, which results in data points not observable in reality. The rounder 
 function averages such result to the real values of cycle number. An 
-amplification curve was simulated with the AmpSim function."
+amplification curve was simulated with the \\textsl{AmpSim} function."
 
 fig16_scap <- "Use of rounder to average numeric derivatives to the real 
 values of cycle number."
@@ -636,12 +636,12 @@ case scenarios are given in the following sections. The following section give
 details on the application of the different functions.
 
 
-\section{AmpSim - a function to simulate amplification curves}
+\section{\textsl{AmpSim} - a function to simulate amplification curves}
 \label{sec:AmpSim}
 
 The function \textsl{AmpSim} is a simulator for amplification reactions. Use 
 cases include teaching, algorithm testing or the comparison of an experimental 
-system to the predicted (''optimal``) model. \textsl{AmpSim} uses a 5-parameter 
+system to the predicted (``optimal'') model. \textsl{AmpSim} uses a 5-parameter 
 model (Equation~\ref{eq:richards}). The function is commonly used for the 
 simulation of amplification curves \cite{gerhard_2014,ritz_2008,spiess_2008}.
 
@@ -745,7 +745,7 @@ sim <- sapply(1L:8, function(i) {
 @
 
 
-\section{Single-blinded, randomized judging of amplification curves by humanrater}
+\section{Single-blinded, randomized judging of amplification curves}
 \label{sec:humanrater}
 
 Humans tend to bias the interpretation towards a desirable outcome. A 
@@ -873,7 +873,7 @@ of the \textsl{MFIaggr}.\textsl{gui} function are accessible.}
 \label{figure:MFIaggr2}
 \end{figure}
 
-\subsection{Parameters of MFIaggr}
+\subsection{Parameters of \textsl{MFIaggr}}
 
 \textsl{MFIaggr} is a powerful analytical and graphical tool for fast 
 multiple comparison of the cycle dependent signal dispersion and 
@@ -915,12 +915,12 @@ obtained from the same qPCR run in a Bio-Rad CFX96. However, data from the
 VIMCFX96\_60 data set were obtained during the annealing phase at 60 
 degree 
 Celsius and during the 
-elongation phase at 69 degree Celsius. The heteroskedasticity increased 
+elongation phase at $69\,^{\circ}\mathrm{C}$. The heteroskedasticity increased 
 expectedly during the amplification reaction. The variance in the 
 elongation phase (Figure~\ref{figure:MFIaggr_all}C and D) was lower than 
 in the annealing phase (Figure~\ref{figure:MFIaggr_all}A and B). The 
 heteroskedasticity was significant in during the 
-(Figure~\ref{figure:MFIaggr_all}A) first 15 cycles at 60 degree Celsius.
+(Figure~\ref{figure:MFIaggr_all}A) first 15 cycles at $60\,^{\circ}\mathrm{C}$.
 
 <<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig15_cap,fig.scap=fig15_scap>>=
 par(mfrow = c(2,2), bty = "n")
@@ -957,7 +957,7 @@ hsk.test(VIMCFX96_69[, 1], VIMCFX96_69[, 2:ncol(VIMCFX96_69)], llul =
 mtext("D", cex = 2, side = 3, adj = 0)
 @
 
-\subsection{Data overview - plotCurves}
+\subsection{Data overview - \textsl{plotCurves}}
 \label{sec:plotCurves}
 
 \textsl{plotCurves} visualizes many curves on one plot in separate cells
@@ -1056,7 +1056,7 @@ boxplot(data.frame(Raw = th.cyc.raw, CPP = th.cyc.CPP), ylab = "Cq (Ct)",
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 @
 
-\section{Imputation of missing values in amplification curve data - fixNA}
+\section{Imputation of missing values in amplification curve data - \textsl{fixNA}}
 \label{sec:fixNA}
 
 Experimental technologies may produce missing values (NA) at 
@@ -2095,7 +2095,7 @@ legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
 @
 
 
-\subsection{Application of the th.cyc on ccPCR data}
+\subsection{Application of the \textsl{th.cyc}  on ccPCR data}
 \label{sec:ccPCR}
 
 Similarly to the previous experiments we used the \textsl{CPP} and 
@@ -2107,8 +2107,8 @@ used. As heating system a conventional block heat was used. On
 the top of the heating block, we placed for the uptake of the capillaries an 
 aluminum block (8 mm height) in which four holes (3.2 mm diameter and 3.0 mm 
 depth with round shaped bottom) were drilled. The capillaries are regular 100 
-micro L Roche LightCycler(R). These glass capillaries have a round shaped closed 
-bottom (2.3 mm inner diameter and 3.2 mm outer diameter). An "ESE-Log" detector 
+$\mu$L Roche LightCycler(R). These glass capillaries have a round shaped closed 
+bottom (2.3 mm inner diameter and 3.2 mm outer diameter). An ``ESE-Log'' detector 
 (QIAGEN Lake Constance) was used for the real time fluorescent measurements, 
 which was mounted in a distance of 5-10 mm next to the capillary. The PCR was 
 performed with SYBR(R) Green fluorescent intercalating dye. Thereof the ESE-Log 
@@ -2120,8 +2120,7 @@ Volt and slight negative trend (Figure~\ref{figure:bgmax_ccPCR}~A). Therefore,
 the data were first pre-processed with \textsl{CPP}. Note that the amplification 
 curve were baselined and slightly smoother after pre-processing. Finally, we 
 used the \textsl{th.cyc} function to determine the time required to reach a 
-certain threshold level above the defined value (Threshold level "r" (50 micro 
-Volts)) (Figure~\ref{figure:thcyc_ccPCR}~B).
+certain threshold level above the defined value (Threshold level ``r'' (50 $\mu$Volts)) (Figure~\ref{figure:thcyc_ccPCR}~B).
 
 <<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap>>=
 # Application of the th.cyc method to determine the Cq from a continuous
@@ -2146,32 +2145,33 @@ legend("topleft", c("Run 1", "Run 2", "Run 3", "Control"),
 @
 
 
-\subsection{Application of the th.cyc and CPP function for Helicase 
+\subsection{Application of the \textsl{th.cyc}  and \textsl{CPP}  function for Helicase 
 Dependent Amplification}
 \label{sec:HDA}
 
 The $\emph{chipPCR}$ package was used to analyze a helicase dependent 
 amplification (HDA) of Vimentin (Vim). The VideoScan Platform 
 \cite{roediger_highly_2013} was used to monitor the amplification. The HDA was 
-performed at 65 degree Celsius. Three concentrations of input DNA (D1, D2, D3) 
+performed at $65\,^{\circ}\mathrm{C}$. Three concentrations of input DNA (D1, D2, D3) 
 were used (Figure~\ref{figure:HDA}).
 
 To perform an isothermal amplification in VideoScan, standard conditions 
 for the IsoAmp(R) III Universal tHDA Kit (Biohelix) were used. Primers and 
 templates are described in \cite{roediger_highly_2013}. The reaction was 
-composed of reaction mix A) 10 $\mu$L A. bidest, 1.25 $\mu$L 10xbuffer, 
-0.75 $\mu$L primer(150~nM final), 0.5 $\mu$L template plasmid. 
-Preincubation: This mixture was incubated for 2 min at 95 degree. Celsius 
-and immediately placed on ice. Reaction mix B) 5 $\mu$L A. bidest., 1.25 
-$\mu$L 10x buffer, 2 $\mu$L NaCl, 1.25 $\mu$L MgSO4, 1.75 $\mu$L 
-dNTPs, 
-0.25 $\mu$L EvaGreen, 1 $\mu$L enzyme mix. The mix was covered with 50 
-$\mu$L mineral oil. The fluorescence measurement in VideoScan HCU started 
-directly after adding buffer B at 65 degree Celsius. A 1x (D1), a 1:10 
-dilution (D2) and a 1:100 (D3) dilution were tested. Temperature profile 
-(after Preincubation): 
-- 60 seconds at 65 degree Celsius 
-- 11 seconds at 55 degree Celsius \& Measurement
+composed of reaction mix A) 10 $\mu$L A. bidest, 1.25 $\mu$L 10xbuffer, 0.75 
+$\mu$L primer(150~nM final), 0.5 $\mu$L template plasmid. Preincubation: This 
+mixture was incubated for 2 min at $95\,^{\circ}\mathrm{C}$ and immediately placed on 
+ice. Reaction mix B) 5 $\mu$L A. bidest., 1.25 $\mu$L 10x buffer, 2 $\mu$L NaCl, 
+1.25 $\mu$L MgSO$_{4}$, 1.75 $\mu$L dNTPs, 0.25 $\mu$L EvaGreen, 1 $\mu$L enzyme 
+mix. The mix was covered with 50 $\mu$L mineral oil. The fluorescence 
+measurement in VideoScan HCU started directly after adding buffer B at 65 degree 
+Celsius. A 1x (D1), a 1:10 dilution (D2) and a 1:100 (D3) dilution were tested. 
+Temperature profile (after Preincubation):
+
+\begin{itemize}
+ \item - 60 seconds at $65\,^{\circ}\mathrm{C}$,
+ \item - 11 seconds at $55\,^{\circ}\mathrm{C}$ \& Measurement
+\end{itemize}
 
 Warnings in following code chunks were suppressed.
 <<HDA,fig.show='hold',fig.cap=fig13_cap,fig.scap=fig13_scap,message=FALSE,warning=FALSE>>=
