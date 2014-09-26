@@ -313,8 +313,8 @@ fig22_scap <- "Smoother and filter methods of the \\emph{chipPCR} package."
 
 fig23_cap <- "Sample code for the analysis with the \\textsl{MFIaggr} function. 
 The VIMCFX96\\_60 data set (96-well plate cycler (Bio--Rad CFX96)) was used. 
-Either all a subset of cycles (ROI: 1 -- 10) or all cycles (ROI: 1 -- 40) were 
-analyzed by. The density plot (right upper panel) and quantile-quantile analysis 
+Either all a subset of cycles (ROI: 1 -- 10) or all cycles (ROI: 1 -- 40) (Figure~\\ref{figure:MFIaggr_all}) were 
+analyzed. The density plot (right upper panel) and quantile-quantile analysis 
 (right lower panel) show no normal distribution. Due to the sigmoidal curve 
 structure is the density function bimodal."
 
@@ -371,7 +371,7 @@ integration to Web based and standalone \emph{shiny} applications. The
 is freely available.
 \end{abstract}
 
-\section{Availability, requirements and setting up a work environment}
+\section{Availability, requirements and setting up a working environment}
 \label{sec:work_environment}
 
 Availability and requirements are an \textbf{R} installation and optionally a working internet connection and web browser:
@@ -384,6 +384,26 @@ Availability and requirements are an \textbf{R} installation and optionally a wo
 \item License: GPL-3
 \end{itemize}
 
+We use \textbf{R}'s object model \emph{S4} class system (see \emph{methods} 
+package) to separate between interface and implementation. Other than in 
+\textbf{R}'s \emph{S3} class system, needs \emph{S4} to declare classes, slots, 
+methods relationships explicitly and to establish formal declarations of 
+methods. Therefore, the number and types of slots in an instance of a class have 
+to be established at the time the class definition and the objects from the 
+class are validated against this definition and have to comply to it at any 
+time. \emph{S4} methods are declared by calls to \textsl{setMethod} together 
+with the names and signatures of the arguments. Signatures are used for 
+identification of classes of one or more arguments of the methods. 
+\textsl{setGeneric} can be used to declare generic functions. \emph{S4} classes 
+require a higher effort than \emph{S3} classes, but assures strictly objects in 
+a class have the required slots, that data in the slots have consistent names 
+and classes, and enable to include additional information (e.g., results, 
+parameters) \cite{Karatzoglou_2004}. As perquisite for high-throughput 
+technologies we avoided loops in the core structures and use partially parallel 
+computing (\textsl{smoother} function) to keep the code fast. $\emph{chipPCR}$ 
+includes a set of classes for It requires a higher effort than \emph{S3} 
+classes, but assures better control on the object structure and the method 
+dispatch. 
 
 The vignette can be viewed from \textbf{R} using command: vignette("chipPCR").
 
@@ -445,7 +465,7 @@ amplification of noise \cite{larionov_2005, roediger_RJ_2013, ruijter_2013, tell
 
 \textbf{R} belongs to the most used bioinformatics tools and is known to be an 
 early adopter of emerging technologies such as digital PCR and  NanoString 
-nCounter Platform \cite{pabinger_2014,waggott_2012pabinger_2014}. At same time it is widely 
+nCounter Platform \cite{pabinger_2014,waggott_2012,pabinger_2014}. At same time it is widely 
 used for established methods, such as qPCR. Most \textbf{R} packages focus on 
 the read-in and (post)-processing of data sets, which originate from commercial 
 qPCR systems. Sophisticated \textbf{R} packages for the steps 1. and 3.--7. are 
@@ -567,6 +587,21 @@ reaction,
 (e.g., moving average, Savitzky-Golay smoothing).
 \end{itemize}
 
+Graphical user interface (GUI) are important to spread software. \textbf{R} 
+offers several GUI projects to chose from \cite{rodiger_rkward_2012}. Some 
+functionality of $\emph{chipPCR}$ originates from experimental plugins for the 
+\textbf{RKWard} GUI \cite{pabinger_2014}. Recently, the \emph{shiny} 
+\cite{shiny_2014} framework to build and deploy GUI's for the desktop (web 
+browser) or services for interactive web applications emerged. \emph{shiny} 
+enables to build plugin-like applications with highly customizable widgets 
+(e.g., sliders, plots, reports) for a efficient extension. \emph{shiny} 
+applications update live and interactively. The user interfaces can be built 
+entirely using \textbf{R} and operates in any \textbf{R} environment 
+(cross-platform). Currently, the functions \textsl{AmpSim}, \textsl{th.cyc}, 
+\textsl{bg.max} and \textsl{amptester} are part of \emph{shiny} GUIs. It is 
+possible to run the applications as service on a server. Examples for these use 
+case scenarios are given in the following sections. 
+
 In addition further (auxiliary) functions (\textsl{amptester}, \textsl{effcalc}, 
 \textsl{humanrater}, \textsl{lm.coefs}, \textsl{normalizer}, 
 \textsl{plotCurves}, \textsl{th.cyc}) typically used for post-processing (e.g., 
@@ -684,6 +719,66 @@ sim <- sapply(1L:8, function(i) {
   text(3, 1 - i / 10, paste("Cq ", round(Cq.tmp, 2)), col = colors[i])
 })
 @
+
+
+\section{Single-blinded, randomized judging of amplification curves by humanrater}
+\label{sec:humanrater}
+
+Humans tend to bias the interpretation towards 
+A single-blinded and randomized experiment aims to reduce bias in the results, 
+which concealed from the human tester. The bias towards a certain result may be 
+intentional or unconscious. We developed the \textsl{humanrater} function to 
+evaluate the quality of an amplification curve in a randomized, half-blind 
+study. \textsl{humanrater} is an interactive function, which can be used to rate 
+a curve for a certain characteristic. \textsl{humanrater} draws individual 
+graphs of a curve and prompts an input field for the user. Application of this 
+function are numerous. For example, this function can be used to compare the 
+human rating and the rating of a machine or the rating of several individual 
+experts. It is possible to specify a list of designations, which seem 
+appropriate to characterize the amplification curve, where the names of elements 
+specify short designations used during rating. Defaults are $y$ for ``yes'', $a$ 
+for ``ambiguous'' and $n$ for ``no''. It is possible to supply longer or shorter 
+designations lists. In our example we used \textsl{humanrater} in the 
+\textbf{RKWard} GUI (Figure~\ref{figure:humanrater}). We aimed to characterize 
+amplification curves which were randomly drawn from ``testdata'' to avoid a bias 
+by the user. However, it should be noted that \textsl{humanrater} can be used to rate other 
+input data such as melting curves.
+
+<<humanrater_gui,eval = FALSE>>=
+# Create a set of data to be analyzed by humanrater.
+# The function AmpSim will create amplification curves which follow a nearly
+# optimal sigmoidal curve shape or just noise.
+
+testdata <- data.frame(1:35,
+                       AmpSim(Cq = 15, noise = TRUE)[, 2], 
+                       AmpSim(Cq = 25, noise = TRUE)[, 2],
+                       rnorm(35),
+                       AmpSim(Cq = 35, noise = TRUE)[, 2],
+                       rnorm(35),
+                       AmpSim(Cq = 45, noise = TRUE)[, 2])
+
+# Use testdata as input for humanrater and assign the results to the
+# object human.test.
+# check testdata for significance of amplification in two repeats.
+
+human.test1 <- humanrater(testdata, repeats = 2)
+@
+
+\begin{figure}[ht]
+\centering
+\scalebox{0.43}{
+\includegraphics{humanrater.png}
+}
+\caption{Application of \textsl{humanrater} in a instance of \textbf{RKWard}. 
+\textsl{humanrater} was used to analyze a row of amplification curves. 
+\emph{(A)} All data are anonymous and can be randomized during the rating. The 
+number of repeats for the rating and the categories (e.g., $y$ for ``yes'', $a$ 
+for ``ambiguous'' and $n$ for ``no'') can be defined by the user. The function 
+has an option to present the curves at random (default). \emph{(B)} The user 
+gets as result a tabular output, including the result of each run and the 
+conformity of the runs (see table in console).} 
+\label{figure:humanrater}
+\end{figure}
 
 \section{Inspection and analysis of amplification curve data}
 \label{sec:MFIaggr}
@@ -936,7 +1031,7 @@ boxplot(data.frame(Raw = th.cyc.raw, CPP = th.cyc.CPP), ylab = "Cq (Ct)",
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 @
 
-\subsection{Imputation of missing values in amplification curve data - fixNA}
+\section{Imputation of missing values in amplification curve data - fixNA}
 \label{sec:fixNA}
 
 Experimental technologies may produce missing values (NA) at 
@@ -1142,7 +1237,7 @@ linear approximation by default. However, the data can also be estimated from an
 approximation by splines.
 
 
-\section*{Smoothing and filtering}
+\section{Smoothing and filtering}
 \label{sec:smoothing_filterring}
 
   Amplification curve data of experimental thermo-cyclers may deliver results, 
@@ -1267,7 +1362,7 @@ parent functions.
 \end{tabular}
 \end{table*}
 
-\subsection{\textsl{bg}.\textsl{max} - a function to estimate the start and end of an amplification reaction}
+\section{\textsl{bg}.\textsl{max} - a function to estimate the start and end of an amplification reaction}
 \label{sec:bgmax}
 
 The following paragraphs describe methods from the literature to detect the 
@@ -1457,7 +1552,7 @@ for (i in c(1,3,5,7)) {
 }
 @
 
-\subsection{Normalization of amplification curve data}
+\section{Normalization of amplification curve data}
 
 It is a common characteristic of amplification curve data that the fluorescence 
 values between samples vary due to high background, sample inhomogeneities and 
@@ -1575,7 +1670,7 @@ linear trend over the entire data set. However, this step his to be performed
 with caution since this operation effects the amplification efficiency. The 
 background is assumed to be constant for the entire measurement.
 
-\subsection{Compute linear model coefficients - Background subtraction based 
+\section{Compute linear model coefficients - Background subtraction based 
 on linear models}
 
 The slope of the background range is often unequal to zero and in most cased 
@@ -1693,7 +1788,7 @@ a routine to calculate the melting points of nucleic acids
 \cite{roediger_RJ_2013}. The $FDM$ and $SDM$ are peak values to determine 
 the Cq.
 
-\subsubsection*{Quantification cycle calculation by the inder function}
+\subsection{Quantification cycle calculation by the inder function}
 
 The presence of noise may cause many false estimates for the 
 $FDM$ and $SDM$. To minimize this problem, it is possible to smooth the 
@@ -1725,7 +1820,7 @@ contrast to the original publication \cite{roediger_RJ_2013} is the
 precise peak location while the approximate $SDM$ is calculated from the 
 derivative of a quadratic function at the approximate $SDM$. 
 
-\subsubsection*{The \textsl{inder} function in combination with a 
+\subsection{The \textsl{inder} function in combination with a 
 5-parameter curve fit function}
 
 In the previous example we used smoothing and the \textsl{inder} method to 
@@ -1815,7 +1910,7 @@ legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
 @
 
 
-\subsubsection{Application of the th.cyc and CPP function on ccPCR data}
+\subsection{Application of the th.cyc and CPP function on ccPCR data}
 \label{sec:ccPCR}
 
 
@@ -1841,7 +1936,7 @@ legend("topleft", c("Run 1", "Run 2", "Run 3", "Control"),
 @
 
 
-\subsubsection{Application of the th.cyc and CPP function for Helicase 
+\subsection{Application of the th.cyc and CPP function for Helicase 
 Dependent Amplification}
 \label{sec:HDA}
 
@@ -1919,7 +2014,7 @@ abline(h = r, lty = 2)
 @
 
 
-\subsection{Amplification efficiency}
+\section{Amplification efficiency}
 
 Various influences alter amplification reactions. The amplification efficiency 
 is controlled by a complex interaction of the intrinsic and extrinsic factors 
@@ -2271,47 +2366,6 @@ abline(v = 15.5, lty = 2)
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 @
 
-
-\section{humanrater}
-\label{sec:humanrater}
-
-\textsl{humanrater} is an interactive function, which can be used 
-to rate a curve for a certain characteristic. \textsl{humanrater} draws 
-individual graphs of a curve and prompts an input field for the user. 
-Application of this function are numerous. For example, this function can be 
-used to compare the human rating and the rating of a machine or the rating of 
-several individual experts. It is possible to specify a list of designations, 
-which seem appropriate to characterize the amplification curve, where the names 
-of elements specify short designations used during rating. Defaults are $y$ for 
-``yes'', $a$ for ``ambiguous'' and $n$ for ``no''. It is possible to supply 
-longer or shorter designations lists. In our example we usdr \textsl{humanrater} 
-in the \textbf{RKWard} GUI. We aimed to characterize amplification curves which 
-were randomly drawn from ``testdata'' to avoid a bias by the user.
-
-<<humanrater_gui,eval = FALSE>>=
-# Create a set of data to be analyzed by humanrater.
-# The function AmpSim will create amplification curves which follow a nearly
-# optimal sigmoidal curve shape or just noise.
-
-testdata <- data.frame(1:35,
-                       AmpSim(Cq = 15, noise = TRUE)[, 2], 
-                       AmpSim(Cq = 25, noise = TRUE)[, 2],
-                       rnorm(35),
-                       AmpSim(Cq = 35, noise = TRUE)[, 2],
-                       rnorm(35),
-                       AmpSim(Cq = 45, noise = TRUE)[, 2])
-
-# Use testdata as input for humanrater and assign the results to the
-# object human.test.
-# check testdata for significance of amplification in two repeats.
-
-human.test1 <- humanrater(testdata, repeats = 2)
-@
-
-
-However, it should be noted that \textsl{humanrater} can be used to rate other 
-input data such as melting curves.
-
 \section{Data sets}
 
 \begin{enumerate}
@@ -2336,7 +2390,7 @@ tmp <- apply(datdf, 1, function(i) {
 
 Part of this work was funded by the BMBF InnoProfile-Projekt 03 IPT 611X. 
 Grateful thanks belong to all authors of the cited \textbf{R} packages, the \textbf{R} 
-community and RKWard developers. We would like to thank 
+community and \textbf{RKWard} developers. We would like to thank 
 Claudia Deutschmann (Brandenburg University of Technology Cottbus - Senftenberg, 
 Germany), Ralf Himmelreich (Fraunhofer ICT-IMM, Germany) and Katharina Klat 
 (Darmstadt University of Applied Sciences, Germany) for the contribution of 
