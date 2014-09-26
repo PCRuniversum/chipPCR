@@ -64,8 +64,8 @@ are use."
 fig2_scap <- "Working principle of \\textsl{th}.\\textsl{cyc}."
 
 fig3_cap <- "Application of \\textsl{th}.\\textsl{cyc} for the analysis of 
-ccPCR data.
-Data from a ccPCR were analyzed using the \\textsl{th}.\\textsl{cyc} function 
+ccPCR data. The \\textsl{CPP} function was used to pre-process the data. 
+Susequently, the data were analyzed using the \\textsl{th}.\\textsl{cyc} function 
 using the linear regression mode. The threshold level ($r = 50$) was 
 identical for all data. The Cq (Ct) are given in minutes. The range used 
 for the calculation of the Cq is indicated in red. Negative curves are 
@@ -1460,7 +1460,7 @@ two last points are designated as outliers. The first of aforementioned outliers
 is considered the end of lag phase. It is worth noting that this algorithm is 
 versatile enough to also detect the beginning of the plateau phase.
 
-The algorithm of \\textsl{bg}.\\textsl{max} is based on the assumption that the 
+The algorithm of \textsl{bg}.\textsl{max} is based on the assumption that the 
 signal difference of successive cycles in the linear ground phase is 
 approximately constant. After transition in the early exponential phase the 
 signal changes drastically. First data are smoothed by Friedman's 'super 
@@ -1471,9 +1471,9 @@ correction factor are used to estimate the range before the exponential phase.
 This simple function finds the background range without modeling the function. 
 The start of the background range is defined be a ``fixed'' value. Since many 
 signals tend to overshot in the first cycles a default value of 2 (for qPCR) is 
-chosen. \\textsl{bg}.\\textsl{max} tries also to estimate the end of an 
+chosen. \textsl{bg}.\textsl{max} tries also to estimate the end of an 
 amplification reaction (Figure~\ref{figure:bgmax}). See section 
-\\textsl{bg}.\\textsl{max} ``Details'' of the $\emph{chipPCR}$ manual for further 
+\textsl{bg}.\textsl{max} ``Details'' of the $\emph{chipPCR}$ manual for further 
 details. Application of this function is for example a rational basis for 
 trimming of unneeded data.
 
@@ -1728,23 +1728,7 @@ legend("right", c("Data", "lmrob", "rq", "least", "rfit"), lty = 1,
        col = 1:5, cex = 0.95)
 @
 
-\section{Quantitative description of amplification reactions}
-
-According to the MIQE guidelines (``Minimum Information for publication of 
-Quantitative real-time PCR Experiments'', \cite{bustin_miqe_2009}) is the Ct 
-referred to as quantification cycle (Cq). The calculated Cq is a relative value, 
-which depends on the template copy number, instrument, reagents, amplification 
-efficiency and probe technology. Low Cqs correlate with high quantities template 
-copy numbers. Real-time technologies enable the quantification of nucleic acids 
-by calculation of specific curve parameters like the quantification point (Cq) 
-and the amplification efficiency (AE) based on the kinetics of the amplification 
-curve. The Cq represents the number of cycles (time for qIA) needed to reach a 
-defined fluorescence signal level in the exponential phase of the amplification 
-curve. The Cq can be determined from a fixed threshold value or by various 
-analytical algorithm as described elsewhere \cite{ruijter_2009, ruijter_2013, 
-tellinghuisen_2014}.
-
-\subsection{The inder function - an interpolating five-point stencil}
+\section{The inder function - an interpolating five-point stencil}
 \label{sec:inder}
 
 Many methods for curves analysis require the calculation of derivatives. It is 
@@ -1769,12 +1753,27 @@ and the last cycle. A high Nip may improve the precision. However, $Nip$ less
 than 2 and higher than 20 are not meaningful for conventional qPCR with 30 to 50 
 cycles. In context of qIA, a higher $Nip$ might be appropriate.
 
-The output of \textsl{inder} includes the first derivative maximum ($FDM$) 
-and second derivative maximum ($SDM$), which are commonly used in qPCR 
-experiments. Figure~\ref{figure:SDM} shows a typical result of the 
-\textsl{inder} function. Following we show three examples explain 
-properties of \textsl{inder} and to illustrate applications of the 
-function in combination with other functions.
+
+\subsection{Quantitative description of amplification reactions}
+
+According to the MIQE guidelines (``Minimum Information for publication of 
+Quantitative real-time PCR Experiments'', \cite{bustin_miqe_2009}) is the Ct 
+referred to as quantification cycle (Cq). The calculated Cq is a relative value, 
+which depends on the template copy number, instrument, reagents, amplification 
+efficiency and probe technology. Low Cqs correlate with high quantities template 
+copy numbers. Real-time technologies enable the quantification of nucleic acids 
+by calculation of specific curve parameters like the quantification point (Cq) 
+and the amplification efficiency (AE) based on the kinetics of the amplification 
+curve. The Cq represents the number of cycles (time for qIA) needed to reach a 
+defined fluorescence signal level in the exponential phase of the amplification 
+curve. The Cq can be determined from a fixed threshold value or by various 
+analytical algorithm as described elsewhere \cite{ruijter_2009, ruijter_2013, 
+tellinghuisen_2014}. The output of \textsl{inder} includes the first derivative 
+maximum ($FDM$) and second derivative maximum ($SDM$), which are commonly used 
+in qPCR experiments. Figure~\ref{figure:SDM} shows a typical result of the 
+\textsl{inder} function. Following we show three examples explain properties of 
+\textsl{inder} and to illustrate applications of the function in combination 
+with other functions.
 
 Function \textsl{inder} calculates numeric derivatives on 
 smoothed data, which results in data points not observable in reality. The 
@@ -1967,6 +1966,7 @@ contrast to the original publication \cite{roediger_RJ_2013} is the
 precise peak location while the approximate $SDM$ is calculated from the 
 derivative of a quadratic function at the approximate $SDM$. 
 
+
 \subsection{The \textsl{inder} function in combination with a 
 5-parameter curve fit function}
 
@@ -2034,7 +2034,7 @@ abline(v = 15.5, lty = 2)
 mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 @
 
-\subsection{Threshold cycle method}
+\section{Threshold cycle method}
 
 The \textsl{th}.\textsl{cyc} function can also be used to calculate the 
 quantification cycle. However, in contrast to the $FDM$ and $SDM$ requires this 
@@ -2095,19 +2095,45 @@ legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
 @
 
 
-\subsection{Application of the th.cyc and CPP function on ccPCR data}
+\subsection{Application of the th.cyc on ccPCR data}
 \label{sec:ccPCR}
+
+Similarly to the previous experiments we used the \textsl{CPP} and 
+\textsl{th.cyc} functions to analyze a continuous amplification reaction. The 
+data used herein were taken from the \textsl{capillaryPCR} data set, which were 
+measured with capillary convective PCR (ccPCR) technology. A modified device of 
+the ccPCR system as described by Chou et al. 2011 \cite{chou_rapid_2011} was 
+used. As heating system a conventional block heat was used. On 
+the top of the heating block, we placed for the uptake of the capillaries an 
+aluminum block (8 mm height) in which four holes (3.2 mm diameter and 3.0 mm 
+depth with round shaped bottom) were drilled. The capillaries are regular 100 
+micro L Roche LightCycler(R). These glass capillaries have a round shaped closed 
+bottom (2.3 mm inner diameter and 3.2 mm outer diameter). An "ESE-Log" detector 
+(QIAGEN Lake Constance) was used for the real time fluorescent measurements, 
+which was mounted in a distance of 5-10 mm next to the capillary. The PCR was 
+performed with SYBR(R) Green fluorescent intercalating dye. Thereof the ESE-Log 
+has in one channel the excitation at 470 nm and the detection at 520 nm. The 
+data was recorded by the FL Digital Software (QIAGEN Lake Constance) and the 
+exported text based raw data.
+The raw data were accompanied by noise, showed an off-set of circa 150 micro 
+Volt and slight negative trend (Figure~\ref{figure:bgmax_ccPCR}~A). Therefore, 
+the data were first pre-processed with \textsl{CPP}. Note that the amplification 
+curve were baselined and slightly smoother after pre-processing. Finally, we 
+used the \textsl{th.cyc} function to determine the time required to reach a 
+certain threshold level above the defined value (Threshold level "r" (50 micro 
+Volts)) (Figure~\ref{figure:thcyc_ccPCR}~B).
 
 <<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap>>=
 # Application of the th.cyc method to determine the Cq from a continuous
 # amplification reaction.
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
+       
 plot(NA, NA, xlim = c(0,80), ylim = c(0,1200), xlab = "Time (min)", 
-     ylab = "Voltage [micro V]", main = "ccPCR - Raw Data")
-
+     ylab = "Voltage [micro V]", main = "ccPCR - Pre-processed Data")
+mtext("B", cex = 2, side = 3, adj = 0)
 # Threshold level "r" (50 micro Volts)
 for (i in c(1,3,5,7)) {
-  y.tmp <- capillaryPCR[, i + 1] - mean(capillaryPCR[1L:150, i + 1])
+  y.tmp <- CPP(capillaryPCR[, i], capillaryPCR[, i + 1], trans = TRUE, bg.range = c(1,150))$y.norm
   Ct.tmp <- th.cyc(capillaryPCR[, i], y.tmp, r = 50, linear = FALSE)
   abline(v = Ct.tmp[1])
   text(Ct.tmp[1] * 1.1, 1200, paste(round(Ct.tmp[1], 1), "\nmin"))
