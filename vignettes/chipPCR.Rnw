@@ -411,6 +411,17 @@ used to read the Real-time PCR Data Markup Language (RDML) from various qPCR
 cycler systems. This means that basically any RDML compliant data set can be 
 directly used with the $\emph{chipPCR}$ package.
 
+Graphical user interface (GUI) are important to spread software. \textbf{R} 
+offers several GUI projects to chose from \citep{rodiger_rkward_2012}. Recently, 
+the \emph{shiny} \citep{shiny_2014} framework to build and deploy GUI's for the 
+desktop (web browser) or services for interactive web applications emerged. 
+\emph{shiny} enables to build plugin-like applications with highly customizable 
+widgets (e.g., sliders, plots, reports) for a efficient extension. \emph{shiny} 
+applications update live and interactively. The user interfaces can be built 
+entirely using \textbf{R} and operates in any \textbf{R} environment (crossplatform). Currently, the functions \textsl{AmpSim}, \textsl{th.cyc}, \textsl{bg.max} and 
+\textsl{amptester} are part of \emph{shiny} GUIs.
+
+
 \section{Pre-processing of amplification curve data}
 \label{sec:problems}
 
