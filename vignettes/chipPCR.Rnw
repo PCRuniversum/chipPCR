@@ -371,7 +371,7 @@ integration to Web based and standalone \emph{shiny} applications. The
 is freely available.
 \end{abstract}
 
-\section{Availability, requirements and Setting up a work environment}
+\section{Availability, requirements and setting up a work environment}
 \label{sec:work_environment}
 
 Availability and requirements are an \textbf{R} installation and optionally a working internet connection and web browser:
@@ -390,7 +390,7 @@ The vignette can be viewed from \textbf{R} using command: vignette("chipPCR").
 Further details of the experimental set-up for the data sets are described in 
 the manual of the $\emph{chipPCR}$ package.
 
-Before the start of any analysis, a user must must a choose data set, as shown in 
+Before the start of any analysis, a user must choose a data set, as shown in 
 example below.
 
 <<load_data,message=FALSE,results='asis'>>=
@@ -548,7 +548,7 @@ text(27, 0.06, "Cq", col = "red")
 \section{Functions of the chipPCR package}
 \label{sec:functions}
 
-Functions of the $\emph{RDML}$ package are:
+Functions of the $\emph{chipPCR}$ package are:
 
 \begin{itemize}
 \item \textsl{AmpSim}: a 5-parameter model for a 
@@ -572,7 +572,7 @@ In addition further (auxiliary) functions (\textsl{amptester}, \textsl{effcalc},
 \textsl{plotCurves}, \textsl{th.cyc}) typically used for post-processing (e.g., 
 Cq calculation, amplification efficiency calculation) are available. For more 
 information please refer to the following sections. Selected functionality is 
-used in the \emph{RDML} \cite{blagodatskikh_2014} packages.
+used in the \emph{RDML} \cite{blagodatskikh_2014} package.
 
 The following section give details on the application of the different functions.
 
