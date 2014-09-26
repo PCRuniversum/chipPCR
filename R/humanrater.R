@@ -1,7 +1,7 @@
 humanrater <-
   function(x, cyc = 1, repeats = 1, 
            designations = list(y = "yes", a = "ambiguous", n = "not"), 
-           shuffle = TRUE) {
+           shuffle = TRUE, ...) {
     if (!is.numeric(repeats) || length(repeats) > 1)
       stop("'repeats' must be a numeric vector of length 1.")
     if (repeats < 1)
@@ -28,8 +28,9 @@ humanrater <-
       if(shuffle)
         rating.order <- sample(rating.order)
       all.ratings <- sapply(rating.order, function(i) {
+        
         plot(x[, 1], x[, i], main = paste0("Experiment ", i), type = "b", pch = 19, lwd = 2, 
-             xlab = "Cycle", ylab = "Fluorescence")
+             xlab = "Cycle", ylab = "Fluorescence", ...)
         #declare dummy variable - without it while loop does not work
         #the dummy cannot belong to the set of designations
         res <- "dummy which surely would not be a designation"
