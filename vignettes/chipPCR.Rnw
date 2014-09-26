@@ -4,7 +4,7 @@
 \usepackage[margin=0.75in]{geometry}
 \usepackage{titlesec}
 \usepackage{xr}
-\externaldocument{Roediger_et_al}
+\externaldocument{Roediger_OxBio}
 
 \newcommand\sectionbreak{\ifnum\value{section}>1\clearpage\fi}
 \newcommand\subsectionbreak{\ifnum\value{subsection}>1\clearpage\fi}
