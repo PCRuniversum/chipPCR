@@ -484,8 +484,8 @@ analysis are: (1) raw data read-in, (2) amplification curve pre-processing
 secondary parameters (e.g., Delta-Delta-Ct for gene expression analysis), (5) 
 data export, (6) visualization and (7) report generation. Sophisticated 
 \textbf{R} packages for the steps 1. and 3.--7. are available from Bioconductor 
-and CRAN \cite{Dvinge_2009, gehlenborg_2013, heckmann_2011, huntley_2013, 
-pabinger_2014, mccall_2014, perkins_2012, Zhang_2010, zhang_2013}. However, 
+and CRAN \cite{Dvinge_2009, gehlenborg_2013, heckmann_2011, huntley_2013, mccall_2014, 
+pabinger_2014, perkins_2012, Zhang_2010, zhang_2013}. However, 
 there is no \textbf{R} package for pre-processing and quality analysis of 
 amplification curve data. Similar applies to other software solutions (compare 
 \cite{pabinger_2014}). Pre-processing is in most commercial cyclers a ``black 
@@ -659,14 +659,14 @@ parameter of \textsl{AmpSim} but noise was added. \textsl{AmpSim}.\textsl{gui}
 is a \emph{shiny} GUI (graphical user interface \cite{shiny_2014}) 
 implementation for \textsl{AmpSim}. The code example below is an example how-to 
 invoke the \textsl{AmpSim}.\textsl{gui}. Further details on \emph{shiny} are 
-described in in the main document. \textsl{AmpSim} was also used to illustrate 
+described in Section~\ref{sec:work_environment}. \textsl{AmpSim} was also used to illustrate 
 the \textsl{inder} function (Figure~\ref{figure:SDM}), the \textsl{fixNA} 
 function (Figure~\ref{figure:fixNA}) and the use of the \textsl{smoother} 
 (Figure~\ref{figure:smoothing_intro}) function.
 
-As explained in the main text there are several ways of $\emph{chipPCR}$ GUIs. 
-An example to launches graphical user interface that allows simulating and 
-analyzing amplification reactions is shown next. This approach is usable to run 
+There are several ways to implement $\emph{chipPCR}$ GUIs.  
+An example to launch a graphical user interface that allows simulating and 
+analyzing amplification reactions is shown below. This approach is usable to run 
 a GUI on a local machine without the requirement to connect to the Internet. 
 Prerequisites are a local installation of \textbf{R}, with installed 
 $\emph{shiny}$ and $\emph{chipPCR}$ packages and a modern web browser. It is 
@@ -2021,7 +2021,7 @@ abline(v = out)
 
 plot(NA, NA, xlab = "Cycle", ylab = "RFU''(Cycle)", main = "", 
      xlim = c(0,40), ylim = c(-850, 850))
-
+abline(v = 15.5, lty = 2)
 invisible(apply(tmp[, -1], 2, function(x) {
   fit.amp(tmp[, 1], x, plot = TRUE)
 }
