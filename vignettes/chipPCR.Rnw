@@ -617,7 +617,9 @@ are available. These functions are typically used for post-processing (e.g., Cq 
 efficiency calculation) and quality analysis are available from the 
 $\emph{chipPCR}$  package. For more information please refer to the following 
 sections. Selected functionality is used in the \emph{RDML} 
-\cite{blagodatskikh_2014} package.
+\cite{blagodatskikh_2014} package. Most of the functions are element of other 
+functions in this package. For example, \textsl{fixNA} is embedded in most 
+functions to prevent potential problem during processing due to missing values.
 
 Graphical user interface (GUI) are important to spread software. \textbf{R} 
 offers several GUI projects to chose from \cite{rodiger_rkward_2012}. Some 
