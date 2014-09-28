@@ -513,7 +513,7 @@ tools. Moreover, it is desirable set up work-flows in an open environment, which
 enables downstream analyses and which offers powerful tools for data 
 visualizations and automatic report generation.
 
-<<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE>>=
+<<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE,fig.width = 11, fig.height = 11>>=
 # Use AmpSim to generate an amplification curve with 40 cycles
 # and a different Cq.
 res.pos <- AmpSim(cyc = 1:40, noise = TRUE, b.eff = -12, nnl = 0.02)
@@ -1282,7 +1282,7 @@ methods while minimizing the drawback of learning syntax of specific functions.
 \textsl{CPP}. Figure~\ref{figure:smoothing_intro} shows results of the 
 \textsl{smoother} function an amplification curve data.
 
-<<smoothing_intro,fig.show='hold',fig.cap=fig22_cap,fig.scap=fig22_scap,warning=FALSE>>=
+<<smoothing_intro,fig.show='hold',fig.cap=fig22_cap,fig.scap=fig22_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
 # Simulate and amplification curve with the AmpSim function
 tmp <- AmpSim(cyc = 1:35, bl = 0)
 
@@ -1477,7 +1477,7 @@ amplification reaction (Figure~\ref{figure:bgmax}). See section
 details. Application of this function is for example a rational basis for 
 trimming of unneeded data.
 
-<<bgmax,fig.cap=fig18_cap,fig.scap=fig18_scap,fig.show='hold',message=FALSE,results='hide'>>=
+<<bgmax,fig.cap=fig18_cap,fig.scap=fig18_scap,fig.show='hold',message=FALSE,results='hide',fig.width = 11, fig.height = 8>>=
 par(las = 0, mfrow = c(2,1), bty = "n", oma = c(.5,.5,.5,.5))
 
 res <- AmpSim(cyc = 1:40, Cq = 25)
@@ -1532,7 +1532,7 @@ for further processing. We observed no significant difference between the raw
 and pre-processed data.
 
 Warnings in code chunk below were suppressed.
-<<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide',warning=FALSE>>=
+<<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide',warning=FALSE,fig.width = 11, fig.height = 11>>=
 # Set parameter for the plot.
 par(mfrow = c(2,1), las = 0, bty = "n")
 
@@ -2122,7 +2122,7 @@ curve were baselined and slightly smoother after pre-processing. Finally, we
 used the \textsl{th.cyc} function to determine the time required to reach a 
 certain threshold level above the defined value (Threshold level ``r'' (80 $\mu$Volts)) (Figure~\ref{figure:thcyc_ccPCR}~B).
 
-<<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap>>=
+<<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap,fig.height=8,fig.width=11>>=
 # Application of the th.cyc method to determine the Cq from a continuous
 # amplification reaction.
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -2377,7 +2377,7 @@ complete analysis with few commands. The amplification efficiencies for both
 qPCRs was higher than 94~\% (Figure~\ref{figure:effcalc_VIM_MLC}~C~and~D, 
 Table~\ref{table:effcalc_output}).
 
-<<effcalc_VIM_MLC,fig.show='hold',fig.cap=fig17_cap,fig.scap=fig17_scap>>=
+<<effcalc_VIM_MLC,fig.show='hold',fig.cap=fig17_cap,fig.scap=fig17_scap,fig.height=11,fig.width=11>>=
 colors <- rep(rainbow(7), each = 2)
 par(mfrow = c(2,2))
 
