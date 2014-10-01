@@ -2,11 +2,11 @@
 \alias{C67}
 \docType{data}
 \title{
-Helicase Dependent Amplification of HRPT1 with different input DNA 
+Helicase Dependent Amplification of HPRT1 with different input DNA 
 quantities using the Bio-Rad iQ5 thermo cycler
 }
 \description{
-A Helicase Dependent Amplification (HDA) of HRPT1 (Homo sapiens 
+A Helicase Dependent Amplification (HDA) of HPRT1 (Homo sapiens 
 hypoxanthine phosphoribosyltransferase 1) was performed at three different 
 input DNA quantities using the Bio-Rad iQ5 thermo cycler. The HDA was 
 performed at 65 degree Celsius. The optimal temperature for a HDA is circa 

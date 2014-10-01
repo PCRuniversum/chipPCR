@@ -2,11 +2,11 @@
 \alias{C17}
 \docType{data}
 \title{
-Helicase Dependent Amplification of HRPT1 at Different Temperatures using the 
+Helicase Dependent Amplification of HPRT1 at Different Temperatures using the 
 VideoScan Platform 2.0
 }
 \description{
-A Helicase Dependent Amplification (HDA) of HRPT1 (Homo sapiens 
+A Helicase Dependent Amplification (HDA) of HPRT1 (Homo sapiens 
 hypoxanthine phosphoribosyltransferase 1) was performed at different 
 temperatures in the VideoScan Platform 2.0 (similar to Roediger et al. 
 (2013)). The HDA was performed at 55, 60 and 65 degree Celsius. The optimal 

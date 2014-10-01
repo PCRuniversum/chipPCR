@@ -1,8 +1,13 @@
-Changes from Version 0.0.8-1 to 0.0.8-2 [September 22 2014]
+Changes from Version 0.0.8-2 to 0.0.8-3 [September 28 2014]
+* build uses now: R CMD build --resave-data --compact-vignettes="gs+qpdf" chipPCR
+* reduced size of bitmap images
+
+Changes from Version 0.0.8-1 to 0.0.8-2 [September 26 2014]
 * suggest RDML package
 * update of the vignette
 * fix of several annoying bugs
 * update and improvement of the GUIs
+* minmax parameter renamed to minm
 
 Changes from Version 0.0.8 to 0.0.8-1 [August 26 2014]
 * Fix CRAN issue

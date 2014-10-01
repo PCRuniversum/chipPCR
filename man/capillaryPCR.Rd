@@ -6,7 +6,7 @@ capillary convective PCR
 }
 \description{
 The capillary convective PCR (ccPCR) is a modified device of the ccPCR system 
-proposed by Chou et al. 2013. 
+proposed by Chou et al. 2011. 
 }
 \usage{data(capillaryPCR)}
 \format{
