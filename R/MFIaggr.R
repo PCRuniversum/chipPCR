@@ -122,7 +122,7 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
   #res is the an object of the type data.frame containing the 
   #temperature, location, deviation and coefficient of variance.
   new("refMFI", .Data = res, density = res.dens, 
-      qqnorm.data = y[llul, ], stats = stats, summ.lm = summ.lm)  
+      qqnorm.data = as.data.frame(y[llul, ]), stats = stats, summ.lm = summ.lm)  
 }
 
 setGeneric("MFIaggr")
