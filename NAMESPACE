@@ -36,6 +36,7 @@ export(
 	"fixNA",
 	"humanrater",
 	"inder",
+  "linreg",
   "lm.coefs",
 	"MFIaggr",
   "MFIaggr.gui",
