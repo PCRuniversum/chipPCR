@@ -13,7 +13,7 @@ linreg <- function(cyc = 1L:length(fluo), fluo, max.it = 50) {
   #part I of figure 3A
   sl <- get_slopes(cyc, fluo_c)
   it <- 0
-  while(sl["up"] < sl["low"] || it > max.it) {
+  while(sl["up"] < sl["low"] && it < max.it) {
     baseline <- baseline + 0.01*ifelse(baseline < 0, baseline, -baseline)
     fluo_c <- fluo + ifelse(baseline < 0, baseline, -baseline)
     sl <- get_slopes(cyc, fluo_c)
@@ -27,7 +27,7 @@ linreg <- function(cyc = 1L:length(fluo), fluo, max.it = 50) {
   sl <- get_slopes(cyc, fluo_c)
   
   it <- 0
-  while(abs(sl["up"] - sl["low"]) > 1e-5  || it > max.it) {
+  while(abs(sl["up"] - sl["low"]) > 1e-5  && it < max.it) {
     if(sl["up"] < sl["low"]) {
       step <- step/2
       baseline <- baseline - step
@@ -38,6 +38,7 @@ linreg <- function(cyc = 1L:length(fluo), fluo, max.it = 50) {
       fluo_c <- fluo + ifelse(baseline < 0, baseline, -baseline)
       sl <- get_slopes(cyc, fluo_c)
     } 
+    it <- it + 1
   }
   fluo_c
 }
