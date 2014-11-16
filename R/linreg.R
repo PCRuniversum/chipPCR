@@ -1,46 +1,46 @@
 #library(qpcR)
 #linreg(fluo = reps[, 2])
 
-linreg <- function(cyc = 1L:length(fluo), fluo, max.it = 50) {
+linreg <- function(cyc = 1L:length(fluo), fluo, max.it = 100) {
   
   if(abs(max(fluo)/min(fluo)) < 7)
     stop("No amplification")
   
   baseline <- min(fluo)
   
-  fluo_c <- fluo + ifelse(baseline < 0, baseline, -baseline)
+  fluo_c <- fluo - baseline
   #put here takeoff from qpcR as the alternative
   #part I of figure 3A
   sl <- get_slopes(cyc, fluo_c)
-  it <- 0
-  while(sl["up"] < sl["low"] && it < max.it) {
-    baseline <- baseline + 0.01*ifelse(baseline < 0, baseline, -baseline)
-    fluo_c <- fluo + ifelse(baseline < 0, baseline, -baseline)
+  it1 <- 0
+  while(sl["up"] < sl["low"] && it1 < max.it) {
+    baseline <- 0.99*baseline
+    fluo_c <- fluo - baseline
     sl <- get_slopes(cyc, fluo_c)
-    it <- it + 1
+    it1 <- it1 + 1
   }
   
   #part II of figure 3A
   step <- 0.5*baseline
   baseline <- baseline + step
-  fluo_c <- fluo + ifelse(baseline < 0, baseline, -baseline)
+  fluo_c <- fluo - baseline
   sl <- get_slopes(cyc, fluo_c)
   
-  it <- 0
-  while(abs(sl["up"] - sl["low"]) > 1e-5  && it < max.it) {
+  it2 <- 0
+  while(abs(sl["up"] - sl["low"]) > 1e-5  && it2 < max.it) {
     if(sl["up"] < sl["low"]) {
       step <- step/2
       baseline <- baseline - step
-      fluo_c <- fluo + ifelse(baseline < 0, baseline, -baseline)
+      fluo_c <- fluo - baseline
       sl <- get_slopes(cyc, fluo_c)
     } else {
       baseline <- baseline + step
-      fluo_c <- fluo + ifelse(baseline < 0, baseline, -baseline)
+      fluo_c <- fluo - baseline
       sl <- get_slopes(cyc, fluo_c)
     } 
-    it <- it + 1
+    it2 <- it2 + 1
   }
-  fluo_c
+  list(fluo = fluo_c, it1 = it1, it2 = it2)
 }
 
 
