@@ -241,7 +241,7 @@ performing normal (least squares) and robust linear regression. If the robust
 linear regression is impossible, \\textsl{lm.coefs} will perform linear 
 regression using the least squares method. This function can be used to 
 calculate the background of an amplification curve. The coefficients of the 
-analysis can be used for a trend based correction of the entire data set."
+analysis can be used for a trend-based correction of the entire data set."
 
 fig17_scap <- "\\textsl{lm.coefs} a function to compute linear model 
 coefficients."
@@ -341,7 +341,7 @@ amplification are standard methods for quantification of nucleic acids. Numerous
 real-time read-out technologies with different technical foundation have been 
 developed. However, the amplification curve analysis consists of cascaded steps, 
 which are carried out similarly in all technologies. Despite the continuous 
-interest in amplification based techniques, there are only few transparent tools 
+interest in amplification-based techniques, there are only few transparent tools 
 for amplification data pre-processing. It is a major setback especially during 
 development of new instruments, when the precise and reproducible processing of 
 raw data is indispensable.
@@ -366,7 +366,7 @@ and intercalating dyes. Examples for their usage are presented herein. We have
 developed $\emph{chipPCR}$, which is a versatile software tailored for the 
 pre-processing of amplification curve data. Its utility is elaborated on both 
 real and simulated data sets. The structure of the packages is open for 
-integration to Web based and standalone \emph{shiny} applications. The 
+integration to Web-based and standalone \emph{shiny} applications. The 
 \textbf{R} package along codes used for creation of figures used in publication 
 is freely available.
 \end{abstract}
@@ -449,9 +449,9 @@ DNA, copy DNA) \cite{cobb_1994, pabinger_2014}. Recently amplification methods w
 gradient (e.g., microfluidics, capillary convective PCR (ccPCR)) emerged 
 \cite{chou_rapid_2011,rodiger_nucleic_2014}. All these amplification methods are 
 used in different real-time monitoring technologies, such as our previously 
-reported VideoScan technology, microfluidic systems, point-of-care devices, 
+reported VideoScan technology \cite{roediger_highly_2013}, microfluidic systems, point-of-care devices, 
 microbead-chip technologies and commercial real-time thermo cyclers 
-\cite{chang_2012, roediger_highly_2013, roediger_bead_qPCR_2013, rodiger_nucleic_2014}.
+\cite{chang_2012, roediger_bead_qPCR_2013, rodiger_nucleic_2014}.
 
 Real-time technologies enable the quantification of nucleic acids by calculation 
 of specific curve parameters like the quantification point (Cq) and the 
@@ -619,10 +619,9 @@ sections. Selected functionality is used in the \emph{RDML}
 functions in this package. For example, \textsl{fixNA} is embedded in most 
 functions to prevent potential problem during processing due to missing values.
 
-Graphical user interface (GUI) are important to spread software. \textbf{R} 
-offers several GUI projects to chose from \cite{rodiger_rkward_2012}. Some 
-functionality of $\emph{chipPCR}$ originates from experimental plugins for the 
-\textbf{RKWard} GUI \cite{pabinger_2014}. Recently, the \emph{shiny} 
+\textbf{R} offers several GUI projects to chose from \cite{rodiger_rkward_2012}. 
+Some functionality of $\emph{chipPCR}$ originates from experimental plugins for 
+the \textbf{RKWard} GUI \cite{pabinger_2014}. Recently, the \emph{shiny} 
 \cite{shiny_2014} framework to build and deploy GUIs for the desktop (web 
 browser) or services for interactive web applications emerged. \emph{shiny} 
 enables to build plugin-like applications with highly customizable widgets 
@@ -874,9 +873,7 @@ of the \textsl{MFIaggr}.\textsl{gui} function are accessible.}
 
 \subsection{Parameters of \textsl{MFIaggr}}
 
-\textsl{MFIaggr} is a powerful analytical and graphical tool for fast 
-multiple comparison of the cycle dependent signal dispersion and 
-distribution. This function enables the analysis of specific parts of the 
+\textsl{MFIaggr} enables the analysis of specific parts of the 
 curve data as defined by the $llul$ parameter. $llul$ defines the lower 
 and upper data limit (cycles) for a region of interest (ROI). The function 
 returns an object with the columns ``Cycle'', ``Location'' (Mean, Median), 
@@ -1090,9 +1087,9 @@ yet implemented. This linear approach is useful but may be problematic on the
 phases other than background or plateau phases of an amplification reaction. The 
 parameter spline on \textsl{fixNA} enables a trend estimation on cubic splines 
 and may be more appropriate in most scenarios. The function \textsl{fixNA} 
-imputes missing values in a single column of data. The imputation is based on a 
-linear approximation by default. However, the data can also be estimated from an 
-approximation by splines.
+imputes missing values in a single column of data (linear approximation by 
+default). However, the data can also be estimated from an approximation by 
+splines.
 
 We used the ``reps384'' data set from the $\emph{qpcR}$ package 
 \cite{Spiess_qpcR_2014} to compare the influence of imputation on real-world 
@@ -1624,7 +1621,7 @@ normalization.
 \begin{itemize}
 \item A quantile normalization herein refers to an approach, which is less 
 prone to 
-outliers than a normalization based on the minimum and the maximum of an 
+outliers than a normalization to the minimum and the maximum of an 
 amplification curve.
 \item minm does a min-max normalization between 0 and 1 (see 
 \cite{roediger_RJ_2013} for explanation).
@@ -1703,8 +1700,8 @@ extrapolation it is possible to apply a correction of the slope.
 squares) and robust linear regression. If the robust linear regression is 
 impossible, \textsl{lm.coefs} will perform linear regression using the least 
 squares method. This function can be used to calculate the background of an 
-amplification curve. The coefficients of the analysis can be used for a trend 
-based correction of the entire data set. Thereby either a robust linear 
+amplification curve. The coefficients of the analysis can be used for a 
+trend-based correction of the entire data set. Thereby either a robust linear 
 regression by computing MM-type regression estimators, a nonparametric 
 rank-based estimator or a standard linear regression model. Care is needed when 
 using trans with time series (see \textsl{lm} from the $\emph{stats}$ package 
@@ -2112,8 +2109,8 @@ bottom (2.3 mm inner diameter and 3.2 mm outer diameter). An ``ESE-Log'' detecto
 which was mounted in a distance of 5-10 mm next to the capillary. The PCR was 
 performed with SYBR(R) Green fluorescent intercalating dye. Thereof the ESE-Log 
 has in one channel the excitation at 470 nm and the detection at 520 nm. The 
-data was recorded by the FL Digital Software (QIAGEN Lake Constance) and the 
-exported text based raw data.
+data was recorded by the FL Digital Software (QIAGEN Lake Constance) and 
+exported as text-based raw data.
 The raw data were accompanied by noise, showed an off-set of circa 150 micro 
 Volt and slight negative trend (Figure~\ref{figure:bgmax_ccPCR}~A). Therefore, 
 the data were first pre-processed with \textsl{CPP}. Note that the amplification 
@@ -2313,14 +2310,14 @@ mtext("B", cex = 1.1, side = 3, adj = 0, font = 2)
 
 Next we used \textsl{effcalc} to analyze the C54 data set from the 
 $\emph{chipPCR}$ package. Herein, a qPCR Experiment for the amplification of 
-MLC-2v using the VideoScan heating/cooling-unit was performed. To calculate the 
+\textit{MLC-2v} using the VideoScan heating/cooling-unit was performed. To calculate the 
 Cq it was necessary to pre-process the amplification curve data. One 
 amplification curve contained a missing value (Figure~\ref{figure:CPP_C54}~A) 
 which was remove by the spline method in \textsl{CPP}. In addition, the data 
 were baselined (linear model, robust MM-estimator) and smoothed by 
 Savitzky-Golay Smoothing (Figure~\ref{figure:CPP_C54}~B). The final analysis 
 with the \textsl{effcalc} function showed that the amplification efficiency is 
-circa 87.3~\% for the gene MLC-2v in the VideoScan HCU 
+circa 87.3~\% for the gene \textit{MLC-2v} in the VideoScan HCU 
 (Figure~\ref{figure:CPP_C54}~C). However, since only few measure points were 
 tested in this experiment it just save to say that the hardware of the HCU works 
 reliably.
@@ -2368,7 +2365,7 @@ print(xtable(effcalc(res.dil[, 1], res.dil[, 2]),
 
 In another example we used \textsl{effcalc} function to analyze the C60.amp data 
 set from the $\emph{chipPCR}$ package. All data of the human genes Vimentin 
-(Figure~\ref{figure:effcalc_VIM_MLC}~A) and MLC-2v 
+(Figure~\ref{figure:effcalc_VIM_MLC}~A) and \textit{MLC-2v} 
 (Figure~\ref{figure:effcalc_VIM_MLC}~B) were amplified in a Roche Light Cycler 
 1.5 and detected by the HRM dye EvaGreen in independent experiments. As shown in 
 the code and Figure~\ref{figure:effcalc_VIM_MLC} it is possible to obtain a 
