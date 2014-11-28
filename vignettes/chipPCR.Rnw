@@ -149,7 +149,7 @@ numerically derived by five-point stencil. This method do not require any
 assumptions regarding the function $f$. \\textsl{inder} calculates the 
 approximate $SDM$. The $SDM$ might in addition be useful for isothermal 
 amplification processes. The $SDM$ is calculated from a derived cubic spline. 
-Similarly the first approximate derivative maximum ($FDM$), second derivative 
+Similarly, the first approximate derivative maximum ($FDM$), second derivative 
 minimum ($SDm$), and approximate second derivative center ($SDC$, geometric mean 
 of $SDM$ and $SDm$) are available. $FDM$, $SDm$ and $SDC$ values can be used to 
 further characterize the amplification process."
@@ -385,7 +385,7 @@ Availability and requirements are an \textbf{R} installation and optionally a wo
 \end{itemize}
 
 We use \textbf{R}'s object model \emph{S4} class system (see \emph{methods} 
-package) to separate between interface and implementation. Other than in 
+package) to separate between the interface and the implementation. Other than in 
 \textbf{R}'s \emph{S3} class system, needs \emph{S4} to declare classes, slots, 
 methods relationships explicitly and to establish formal declarations of 
 methods. Therefore, the number and types of slots in an instance of a class have 
@@ -445,13 +445,13 @@ entirely using \textbf{R} and operates in any \textbf{R} environment
 
 Quantitative polymerase chain reaction (qPCR) and quantitative isothermal 
 amplification (qIA) are standard methods to amplify nucleic acids (e.g., genomic 
-DNA, copy DNA). Recently amplification methods with a continuous temperature 
+DNA, copy DNA) \cite{cobb_1994, pabinger_2014}. Recently amplification methods with a continuous temperature 
 gradient (e.g., microfluidics, capillary convective PCR (ccPCR)) emerged 
 \cite{chou_rapid_2011,rodiger_nucleic_2014}. All these amplification methods are 
 used in different real-time monitoring technologies, such as our previously 
 reported VideoScan technology, microfluidic systems, point-of-care devices, 
 microbead-chip technologies and commercial real-time thermo cyclers 
-\cite{chang_2012,roediger_bead_qPCR_2013,rodiger_nucleic_2014,roediger_highly_2013}.
+\cite{chang_2012, roediger_highly_2013, roediger_bead_qPCR_2013, rodiger_nucleic_2014}.
 
 Real-time technologies enable the quantification of nucleic acids by calculation 
 of specific curve parameters like the quantification point (Cq) and the 
@@ -470,11 +470,11 @@ are performed. A manual alteration is in contradiction to reproducible research.
 The presence of noise may lead to false conclusions and performance estimation. 
 Noise is challenging because derivative processes as used for ``cycle of 
 quantification'' methods (e.g., Second Derivative Maximum method) lead to an 
-amplification of noise \cite{larionov_2005, roediger_RJ_2013, ruijter_2013, tellinghuisen_2014, tuomi_2010}.
+amplification of noise \cite{larionov_2005, tuomi_2010, roediger_RJ_2013, ruijter_2013, tellinghuisen_2014}.
 
 \textbf{R} belongs to the most used bioinformatics tools and is known to be an 
 early adopter of emerging technologies such as digital PCR and NanoString 
-nCounter Platform \cite{pabinger_2014,waggott_2012,pabinger_2014}. At same time 
+nCounter Platform \cite{waggott_2012, pabinger_2014}. At same time 
 it is widely used for established methods, such as qPCR. Most \textbf{R} 
 packages focus on the read-in and (post)-processing of data sets, which 
 originate from commercial qPCR systems. Fundamental steps of amplification curve 
@@ -483,17 +483,17 @@ analysis are: (1) raw data read-in, (2) amplification curve pre-processing
 (e.g., Cq and AE calculation), (4) post-processing and quantification of 
 secondary parameters (e.g., Delta-Delta-Ct for gene expression analysis), (5) 
 data export, (6) visualization and (7) report generation. Sophisticated 
-\textbf{R} packages for the steps 1. and 3.--7. are available from Bioconductor 
-and CRAN \cite{Dvinge_2009, gehlenborg_2013, heckmann_2011, huntley_2013, mccall_2014, 
-pabinger_2014, perkins_2012, Zhang_2010, zhang_2013}. However, 
+\textbf{R} packages for the steps 1 and 3--7 are available from Bioconductor and 
+CRAN \cite{Dvinge_2009, Zhang_2010, heckmann_2011, perkins_2012, 
+gehlenborg_2013, huntley_2013, zhang_2013, mccall_2014, pabinger_2014}. However, 
 there is no \textbf{R} package for pre-processing and quality analysis of 
 amplification curve data. Similar applies to other software solutions (compare 
 \cite{pabinger_2014}). Pre-processing is in most commercial cyclers a ``black 
 box''. This has limitations, such as hard to reproduce analysis on other 
 platforms, difficulties during the adoption to changing experimental setups and 
 limited sophisticated statistical tools. Moreover, it is desirable to set up 
-work-flows in an open environment, which enables downstream analyses and which 
-offers powerful tools for data visualizations and automatic report generation.
+work-flows in an open environment, which enable downstream analyses and offer 
+powerful tools for data visualizations and automatic report generation.
 
 The $\emph{chipPCR}$ package ($\emph{chipPCR}$: ``Lab-on-a-\textbf{Chip}'' \& 
 \textbf{PCR}) was developed to automatize pre-processing, to ease data 
@@ -1392,7 +1392,7 @@ background range of amplification curves. Background range herein refers to a
 level of fluorescence measured before any specific amplification is detectable. 
 The raw data (e.g., fluorescence intensity) measured after each step (cycle or 
 time point) follow a non-linear progress. Currently none of them is implemented 
-as \textbf{R} function. The easiest way to classify them is the extend of 
+as \textbf{R} function. The easiest way to classify them is by the extend of 
 assumptions made before applying of a method.
 
 The simplest approach is to treat 
@@ -1420,7 +1420,7 @@ changes of fluorescence between subsequent cycles are exclusively caused by the
 amplification of the product \cite{rao_2013}. The corrected values are 
 calculated by simply subtracting the fluorescence value in the former cycle 
 from fluorescence in the latter. Of course in this case the real fluorescence 
-value in first cycle is unknown, so the number of cycles that can be used in 
+value in the first cycle is unknown, so the number of cycles that can be used in 
 following computations is reduced by one. 
 
 The Real-Time PCR Miner algorithm is also nearly assumption-free 
@@ -1461,8 +1461,8 @@ versatile enough to also detect the beginning of the plateau phase.
 
 The algorithm of \textsl{bg}.\textsl{max} is based on the assumption that the 
 signal difference of successive cycles in the linear ground phase is 
-approximately constant. After transition in the early exponential phase the 
-signal changes drastically. First data are smoothed by Friedman's 'super 
+approximately constant. During the transition in the early exponential phase changes the 
+signal drastically. First data are smoothed by Friedman's 'super 
 smoother' (as found in ``supsmu''. Thereof the approximate first and second 
 derivative are calculated by a five-point stencil \textsl{inder}. The difference 
 of cycles at the maxima of the first and second approximate derivative and a 
@@ -1594,7 +1594,7 @@ based on quantiles (Equation~\ref{eq:quantile_normalization}). Quantiles are
 less affected by outliers. The method can be invoked by the parameter $norm = 
 "luqn"$. Although this does not scale all values between zero and one we found 
 it to be useful for noisy data. The parameter $qnL$ is symmetrically used to set 
-the level for the quantiles. By default the 3~\% and 97~\% quantiles are used 
+the level for the quantiles. By default, the 3~\% and 97~\% quantiles are used 
 for the normalization. In addition, a normalization to maximum 
 (Equation~\ref{eq:max_normalization}, 
 Figure~\ref{figure:normalization}~\emph{D}) and by standard score 
@@ -1686,7 +1686,7 @@ considered to be less vulnerable to outliers. This feature is especially useful,
 when the background range contains considerable noise. The methods are (I) a 
 nonparametric rank-based estimator \cite{Kloke_2012}, (II) quantile regression 
 \cite{Koenker_2008} and (III) a MM-type estimators for linear regression 
-\cite{Todorov_2009}. By default the MM-type estimator is used. In all cases 
+\cite{Todorov_2009}. By default, the MM-type estimator is used. In all cases 
 takes \textsl{CPP} a defined range of the amplification curve to extrapolate the 
 linear trend over the entire data set. However, this step his to be performed 
 with caution since this operation effects the amplification efficiency. The 
@@ -1939,7 +1939,7 @@ The presence of noise may cause many false estimates for the
 $FDM$ and $SDM$. To minimize this problem, it is possible to smooth the 
 first derivative of the amplification curve. Many methods integrated the 
 moving average as first pre-processing step (e.g., \cite{shain_2008}). 
-The moving average filter is linear filter, which replaces sequentially 
+The moving average filter is a linear filter, which replaces sequentially 
 data points with the average of the neighbor data points. The average is 
 calculated from a defined span (``window'') of odd count (e.g., 3, 5). The 
 ``average'' herein may refer to the arithmetic mean, the median, the 
@@ -2102,7 +2102,7 @@ Similarly, to the previous experiments we used the \textsl{CPP} and
 data used herein were taken from the \textsl{capillaryPCR} data set, which were 
 measured with capillary convective PCR (ccPCR) technology. A modified device of 
 the ccPCR system as described by Chou et al. 2011 \cite{chou_rapid_2011} was 
-used. As heating system a conventional block heat was used. On 
+used. A conventional block heat was used. On 
 the top of the heating block, we placed for the uptake of the capillaries an 
 aluminum block (8 mm height) in which four holes (3.2 mm diameter and 3.0 mm 
 depth with round shaped bottom) were drilled. The capillaries are regular 100 
