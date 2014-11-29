@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc} %unicode support
 \usepackage[margin=0.75in]{geometry}
 \usepackage{titlesec}
-\usepackage{xr}
+% \usepackage{xr}
 \externaldocument{Roediger_OxBio}
 
 \newcommand\sectionbreak{\ifnum\value{section}>1\clearpage\fi}
@@ -455,7 +455,7 @@ microbead-chip technologies and commercial real-time thermo cyclers
 
 Real-time technologies enable the quantification of nucleic acids by calculation 
 of specific curve parameters like the quantification point (Cq) and the 
-amplification efficiency (AE) \cite{ruijter_2013,tellinghuisen_2014}. Novel qPCR 
+amplification efficiency (AE) \cite{ruijter_2013, tellinghuisen_2014}. Novel qPCR 
 and qIA technologies initially depend on tools to pre-process the raw data. 
 Pre-processing specifically addresses raw data inspection, steps to transform 
 raw data in a compatible format for successive analysis steps (e.g., smoothing, 
