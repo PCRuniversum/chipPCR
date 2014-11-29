@@ -3,8 +3,10 @@
 \usepackage[utf8]{inputenc} %unicode support
 \usepackage[margin=0.75in]{geometry}
 \usepackage{titlesec}
-\usepackage{xr}
-\externaldocument{Roediger_OxBio}
+\usepackage{natbib}
+\bibliographystyle{plain}
+%\usepackage{xr}
+%\externaldocument{Roediger_OxBio}
 
 \newcommand\sectionbreak{\ifnum\value{section}>1\clearpage\fi}
 \newcommand\subsectionbreak{\ifnum\value{subsection}>1\clearpage\fi}
@@ -307,7 +309,7 @@ smoothing with a finite difference penalty of order 2). The ``savgol'',
 ``smooth'', ``spline'' ``whit1'' , and ``whit2'' nearly preserved the original 
 curve. The other functions resulted in alteration in the transition phases of 
 the amplification curve. Optimized time series smoother, like the Kalman filter 
-\\cite{Tusell_2010}, are not yet integrated."
+\\citep{Tusell_2010}, are not yet integrated."
 
 fig22_scap <- "Smoother and filter methods of the \\emph{chipPCR} package."
 
@@ -399,7 +401,7 @@ require a higher effort than \emph{S3} classes, but assure strictly objects in
 a class have the required slots, that data in the slots have consistent names 
 and classes, and enable to include additional information (e.g., results, 
 parameters). Moreover, it assures better control on the object structure and the method 
-dispatch \cite{Karatzoglou_2004}. As perquisite for high-throughput 
+dispatch \citep{Karatzoglou_2004}. As perquisite for high-throughput 
 technologies we avoided loops in the core structures and use partially parallel 
 computing (\textsl{smoother} function) to keep the code fast.
 
@@ -421,7 +423,7 @@ All datasets used in following examples can be loaded in the same manner. They
 are also automatically available after loading whole package. $\emph{chipPCR}$ 
 relies on the \textbf{R} workspaces, and dedicated \textbf{R} packages as 
 default data format and standard import and export as described elsewhere 
-\cite{blagodatskikh_2014,perkins_2012, RDCT2014c}. The $\emph{chipPCR}$ can be 
+\citep{blagodatskikh_2014,perkins_2012, RDCT2014c}. The $\emph{chipPCR}$ can be 
 used to read the Real-time PCR Data Markup Language (RDML) from various qPCR 
 cycler systems. This means that basically any RDML compliant data set can be 
 directly used with the $\emph{chipPCR}$ package.
@@ -429,8 +431,8 @@ directly used with the $\emph{chipPCR}$ package.
 Graphical user interface (GUI) are important to spread software and to make it 
 available also for researchers not fluent in \textbf{R}. We implemented core 
 functionality of our package in various \textbf{R} offers several GUI projects 
-to chose from \cite{rodiger_rkward_2012}. Recently, the \emph{shiny} 
-\cite{shiny_2014} framework to build and deploy GUIs for the desktop (web 
+to chose from \citep{rodiger_rkward_2012}. Recently, the \emph{shiny} 
+\citep{shiny_2014} framework to build and deploy GUIs for the desktop (web 
 browser) or services for interactive web applications emerged. \emph{shiny} 
 enables to build plugin-like applications with highly customizable widgets 
 (e.g., sliders, plots, reports) for a efficient extension. \emph{shiny} 
@@ -445,17 +447,17 @@ entirely using \textbf{R} and operates in any \textbf{R} environment
 
 Quantitative polymerase chain reaction (qPCR) and quantitative isothermal 
 amplification (qIA) are standard methods to amplify nucleic acids (e.g., genomic 
-DNA, copy DNA) \cite{cobb_1994, pabinger_2014}. Recently amplification methods with a continuous temperature 
+DNA, copy DNA) \citep{cobb_1994, pabinger_2014}. Recently amplification methods with a continuous temperature 
 gradient (e.g., microfluidics, capillary convective PCR (ccPCR)) emerged 
-\cite{chou_rapid_2011,rodiger_nucleic_2014}. All these amplification methods are 
+\citep{chou_rapid_2011,rodiger_nucleic_2014}. All these amplification methods are 
 used in different real-time monitoring technologies, such as our previously 
-reported VideoScan technology \cite{roediger_highly_2013}, microfluidic systems, point-of-care devices, 
+reported VideoScan technology \citep{roediger_highly_2013}, microfluidic systems, point-of-care devices, 
 microbead-chip technologies and commercial real-time thermo cyclers 
-\cite{chang_2012, roediger_bead_qPCR_2013, rodiger_nucleic_2014}.
+\citep{chang_2012, roediger_bead_qPCR_2013, rodiger_nucleic_2014}.
 
 Real-time technologies enable the quantification of nucleic acids by calculation 
 of specific curve parameters like the quantification point (Cq) and the 
-amplification efficiency (AE) \cite{ruijter_2013,tellinghuisen_2014}. Novel qPCR 
+amplification efficiency (AE) \citep{ruijter_2013,tellinghuisen_2014}. Novel qPCR 
 and qIA technologies initially depend on tools to pre-process the raw data. 
 Pre-processing specifically addresses raw data inspection, steps to transform 
 raw data in a compatible format for successive analysis steps (e.g., smoothing, 
@@ -470,11 +472,11 @@ are performed. A manual alteration is in contradiction to reproducible research.
 The presence of noise may lead to false conclusions and performance estimation. 
 Noise is challenging because derivative processes as used for ``cycle of 
 quantification'' methods (e.g., Second Derivative Maximum method) lead to an 
-amplification of noise \cite{larionov_2005, tuomi_2010, roediger_RJ_2013, ruijter_2013, tellinghuisen_2014}.
+amplification of noise \citep{larionov_2005, tuomi_2010, roediger_RJ_2013, ruijter_2013, tellinghuisen_2014}.
 
 \textbf{R} belongs to the most used bioinformatics tools and is known to be an 
 early adopter of emerging technologies such as digital PCR and NanoString 
-nCounter Platform \cite{waggott_2012, pabinger_2014}. At same time 
+nCounter Platform \citep{waggott_2012, pabinger_2014}. At same time 
 it is widely used for established methods, such as qPCR. Most \textbf{R} 
 packages focus on the read-in and (post)-processing of data sets, which 
 originate from commercial qPCR systems. Fundamental steps of amplification curve 
@@ -484,11 +486,11 @@ analysis are: (1) raw data read-in, (2) amplification curve pre-processing
 secondary parameters (e.g., Delta-Delta-Ct for gene expression analysis), (5) 
 data export, (6) visualization and (7) report generation. Sophisticated 
 \textbf{R} packages for the steps 1 and 3--7 are available from Bioconductor and 
-CRAN \cite{Dvinge_2009, Zhang_2010, heckmann_2011, perkins_2012, 
+CRAN \citep{Dvinge_2009, Zhang_2010, heckmann_2011, perkins_2012, 
 gehlenborg_2013, huntley_2013, zhang_2013, mccall_2014, pabinger_2014}. However, 
 there is no \textbf{R} package for pre-processing and quality analysis of 
 amplification curve data. Similar applies to other software solutions (compare 
-\cite{pabinger_2014}). Pre-processing is in most commercial cyclers a ``black 
+\citep{pabinger_2014}). Pre-processing is in most commercial cyclers a ``black 
 box''. This has limitations, such as hard to reproduce analysis on other 
 platforms, difficulties during the adoption to changing experimental setups and 
 limited sophisticated statistical tools. Moreover, it is desirable to set up 
@@ -615,14 +617,14 @@ are available. These functions are typically used for post-processing (e.g., Cq 
 efficiency calculation) and quality analysis are available from the 
 $\emph{chipPCR}$ package. For more information please refer to the following 
 sections. Selected functionality is used in the \emph{RDML} 
-\cite{blagodatskikh_2014} package. Most of the functions are element of other 
+\citep{blagodatskikh_2014} package. Most of the functions are element of other 
 functions in this package. For example, \textsl{fixNA} is embedded in most 
 functions to prevent potential problem during processing due to missing values.
 
-\textbf{R} offers several GUI projects to chose from \cite{rodiger_rkward_2012}. 
+\textbf{R} offers several GUI projects to chose from \citep{rodiger_rkward_2012}. 
 Some functionality of $\emph{chipPCR}$ originates from experimental plugins for 
-the \textbf{RKWard} GUI \cite{pabinger_2014}. Recently, the \emph{shiny} 
-\cite{shiny_2014} framework to build and deploy GUIs for the desktop (web 
+the \textbf{RKWard} GUI \citep{pabinger_2014}. Recently, the \emph{shiny} 
+\citep{shiny_2014} framework to build and deploy GUIs for the desktop (web 
 browser) or services for interactive web applications emerged. \emph{shiny} 
 enables to build plugin-like applications with highly customizable widgets 
 (e.g., sliders, plots, reports) for a efficient extension. \emph{shiny} 
@@ -642,7 +644,7 @@ The function \textsl{AmpSim} is a simulator for amplification reactions. Use
 cases include teaching, algorithm testing or the comparison of an experimental 
 system to the predicted (``optimal'') model. \textsl{AmpSim} uses a 5-parameter 
 model (Equation~\ref{eq:richards}). The function is commonly used for the 
-simulation of amplification curves \cite{gerhard_2014,ritz_2008,spiess_2008}.
+simulation of amplification curves \citep{gerhard_2014,ritz_2008,spiess_2008}.
 
 \begin{equation} \label{eq:richards}
 fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
@@ -655,7 +657,7 @@ replicated identically use \textsl{set.seed(123)} to alter the random number
 generator (RNG) state. For example, the amplification curves of 
 Figure~\ref{figure:AmpSim_effcalc}~\emph{A} are generated with the same starting 
 parameter of \textsl{AmpSim} but noise was added. \textsl{AmpSim}.\textsl{gui} 
-is a \emph{shiny} GUI (graphical user interface \cite{shiny_2014}) 
+is a \emph{shiny} GUI (graphical user interface \citep{shiny_2014}) 
 implementation for \textsl{AmpSim}. The code example below is an example how-to 
 invoke the \textsl{AmpSim}.\textsl{gui}. Details on \emph{shiny} are 
 described in Section~\ref{sec:work_environment}. \textsl{AmpSim} was also used to illustrate 
@@ -817,7 +819,7 @@ continuous predictor variables $x_i$, where $i \in \{1, ..., n\}$. Use cases
 include the comparison of independent reaction vessels or the analysis of 
 replicate experiments. The basic idea is to analyze only a region of interest 
 (ROI) from a data set. \textsl{MFIaggr} is a relative of the \textsl{MFIerror} 
-function from the \emph{MBmca} (\cite{roediger_RJ_2013}) package. However, this functions enables a fine 
+function from the \emph{MBmca} (\citep{roediger_RJ_2013}) package. However, this functions enables a fine 
 grained analysis of specific parts of the curve data. The function returns an 
 object of the class list with the columns ``Cycle'', ``Location'' (Mean, 
 Median), ``Deviation'' (Standard Deviation, Median Absolute Deviation) and 
@@ -999,7 +1001,7 @@ uses the \textsl{bg}.\textsl{max} function to estimate automatically the start o
 there is often noise which makes it harder to determine a meaningful background 
 value. Therefore, \textsl{CPP} can optionally remove outliers by finding the 
 value with the smallest and largest difference from the mean as provided by the 
-$rm.outlier$ function from the $\emph{outlier}$ package \cite{Komsta_2011}. 
+$rm.outlier$ function from the $\emph{outlier}$ package \citep{Komsta_2011}. 
 $rm.outlier$ detects these outliers by a simple rule without statistical testing 
 and replaces it by the sample mean. Outliers herein referrers to the smallest 
 and largest value, which has maximum difference from the sample mean. The slope 
@@ -1063,7 +1065,7 @@ amplification curve data it is justified to impute NAs because the structure
 generally resembles an S-shaped curve. Standard approaches include substitution 
 with most frequent values, mean value imputation, last value carried forward, 
 bootstrapping, or substitution by correlation with replicate measurements 
-\cite{Harrell_2001}. In case of amplification curves other approaches are 
+\citep{Harrell_2001}. In case of amplification curves other approaches are 
 favorable. Particularly, the transitions phases (e.g., background phase to 
 exponential phase) is potentially prone to bias.
 
@@ -1082,7 +1084,7 @@ The function \textsl{fixNA} imputes missing values in a single column
 of data (response). The imputation is based either on a linear approximation or an 
 approximation by cubic splines (default) (Figure~\ref{figure:fixNA}). Other smoothing functions such as the 
 Savitzky-Golay smoothing filter have the intrinsic capability to remove missing 
-values \cite{Eilers_2003, Savitzky_1964}. However, such functionality was not 
+values \citep{Eilers_2003, Savitzky_1964}. However, such functionality was not 
 yet implemented. This linear approach is useful but may be problematic on the 
 phases other than background or plateau phases of an amplification reaction. The 
 parameter spline on \textsl{fixNA} enables a trend estimation on cubic splines 
@@ -1092,7 +1094,7 @@ default). However, the data can also be estimated from an approximation by
 splines.
 
 We used the ``reps384'' data set from the $\emph{qpcR}$ package 
-\cite{Spiess_qpcR_2014} to compare the influence of imputation on real-world 
+\citep{Spiess_qpcR_2014} to compare the influence of imputation on real-world 
 data. The ``reps384'' data set consists of 379 replicate amplification curves 
 (see documentation of the $\emph{qpcR}$ package for details). Our in-silico 
 experiment was designed as followed: Either one or three missing values were 
@@ -1109,7 +1111,7 @@ the imputation by ``linear approximation'' ($fixNA(x, y, spline = FALSE)$) and
 the imputation with the spline method worked reliably and introduced no 
 significant bias to all investigated parameters. To compare the linear and 
 spline-based imputation we performed a Kruskal-Wallis rank sum test 
-(\textsl{kruskal.test}, $\emph{stats}$ package \cite{RCT_2013}).
+(\textsl{kruskal.test}, $\emph{stats}$ package \citep{RCT_2013}).
 
 Our in-silico experiments showed that cubic spline interpolation yielded the most probable 
 values and therefore led to the least effect on tested statistical parameters 
@@ -1395,16 +1397,16 @@ assumptions made before applying of a method.
 The simplest approach is to treat 
 the background fluorescence as a value constant during whole amplification 
 reaction. In this case the noise could be approximated as the mean or median of 
-fluorescence values in lag phase \cite{frank_2009} or their standard deviations 
-\cite{peirson_2003}. The more sophisticated way of approximating constant 
+fluorescence values in lag phase \citep{frank_2009} or their standard deviations 
+\citep{peirson_2003}. The more sophisticated way of approximating constant 
 background fluorescence requires optimizing its value to achieve linearity of 
 the model fit on the semi logarithmic plot in log-linear phase 
-\cite{frank_2009}. The later procedure is greatly enhanced by performing 
+\citep{frank_2009}. The later procedure is greatly enhanced by performing 
 further computations only on a subset of consecutive measurements for which 
 calculated efficiencies have the lowest variance. Other methods loosen the 
 assumption that background fluorescence is a constant value and instead describe 
 it as a function of the cycle number. For example the algorithm used in SoFar 
-\cite{wilhelm_2003} fits a nonlinear saturation function to measurement points 
+\citep{wilhelm_2003} fits a nonlinear saturation function to measurement points 
 before the start of the exponential growth phase. Parameters of the saturation 
 function are chosen to minimize the sum of squared residuals of the fitted 
 function. Then the value of saturation function is calculated for all data 
@@ -1414,14 +1416,14 @@ fluorescence, which are used in next calculations.
 Some approaches make even less assumptions regarding the form of the background 
 noise. The taking-difference linear regression method has a premise that 
 changes of fluorescence between subsequent cycles are exclusively caused by the 
-amplification of the product \cite{rao_2013}. The corrected values are 
+amplification of the product \citep{rao_2013}. The corrected values are 
 calculated by simply subtracting the fluorescence value in the former cycle 
 from fluorescence in the latter. Of course in this case the real fluorescence 
 value in the first cycle is unknown, so the number of cycles that can be used in 
 following computations is reduced by one. 
 
 The Real-Time PCR Miner algorithm is also nearly assumption-free 
-(\cite{zhao_2005}). The principle is that background 
+(\citep{zhao_2005}). The principle is that background 
 fluorescence is similar in the small groups of subsequent measurements. So the 
 first step of the algorithm is division of subsequent measurement points 
 belonging to the exponential phase of amplification in at least four-element 
@@ -1436,17 +1438,17 @@ for the goodness-of-fit for both exponential-phase-only and S-shaped models.
 There are two strategies. The first narrows the area of the search to the 
 neighborhood of their theoretical values determined by a fitted model of the 
 amplification reaction. To this group belongs SoFar (Wilhelm et al. (2003) 
-\cite{wilhelm_2003}). The algorithm looks for the start and the end of the 
+\citep{wilhelm_2003}). The algorithm looks for the start and the end of the 
 exponential phase near the second derivatives of the function representing the 
 relation between logarithm of the fluorescence and the cycle number. The 
 available correction guarantees that the start of amplification has higher value 
 than background noise. The very similar procedure is implemented in Real-Time 
-PCR Miner \cite{zhao_2005}, where background noise is also used as 
+PCR Miner \citep{zhao_2005}, where background noise is also used as 
 parameter in implemented models to calculate theoretical the start of the 
 amplification process. The end of amplification process is detected by 
 calculating the third derivative of implemented S-shaped model. The second 
 approach does not require theoretical values. A very intuitive solution, 
-designated take-off point, by Tichopad et al. (2003) \cite{tichopad_2003} 
+designated take-off point, by Tichopad et al. (2003) \citep{tichopad_2003} 
 describes the lag phase using a linear function. Random deviations are taken 
 into account as standardized residuals. The method starts with a fitting of a 
 linear function to first three measurement points. If none of residuals is 
@@ -1586,7 +1588,7 @@ if the data from an experiment have considerable variation regarding the
 background and plateau signal. Therefore, normalization of amplification curve 
 data is a common task during the data analysis. To scale the fluorescence 
 between 0 and 1 a \emph{Min-Max normalization} (Equation~\ref{eq:normalization}) 
-can be used \cite{roediger_RJ_2013}. We propose an alternative normalization 
+can be used \citep{roediger_RJ_2013}. We propose an alternative normalization 
 based on quantiles (Equation~\ref{eq:quantile_normalization}). Quantiles are 
 less affected by outliers. The method can be invoked by the parameter $norm = 
 "luqn"$. Although this does not scale all values between zero and one we found 
@@ -1624,7 +1626,7 @@ prone to
 outliers than a normalization to the minimum and the maximum of an 
 amplification curve.
 \item minm does a min-max normalization between 0 and 1 (see 
-\cite{roediger_RJ_2013} for explanation).
+\citep{roediger_RJ_2013} for explanation).
 \item max does a normalization to the maximum value (MFI/max(MFI)).
 \item lugn does a quantile normalization based on a symmetric proportion 
 as defined by the $qnl$ parameter (e.g., $qnl$ = 0.03 equals 3 and 97 
@@ -1681,9 +1683,9 @@ background range. This includes a ordinary least squares method (\textsl{lm},
 \emph{stats}) but also three robust methods. The robust regression methods are 
 considered to be less vulnerable to outliers. This feature is especially useful, 
 when the background range contains considerable noise. The methods are (I) a 
-nonparametric rank-based estimator \cite{Kloke_2012}, (II) quantile regression 
-\cite{Koenker_2008} and (III) a MM-type estimators for linear regression 
-\cite{Todorov_2009}. By default, the MM-type estimator is used. In all cases 
+nonparametric rank-based estimator \citep{Kloke_2012}, (II) quantile regression 
+\citep{Koenker_2008} and (III) a MM-type estimators for linear regression 
+\citep{Todorov_2009}. By default, the MM-type estimator is used. In all cases 
 takes \textsl{CPP} a defined range of the amplification curve to extrapolate the 
 linear trend over the entire data set. However, this step his to be performed 
 with caution since this operation effects the amplification efficiency. The 
@@ -1735,7 +1737,7 @@ number and fluorescence level. Hence, we integrated the \textsl{inder} function.
 \textsl{inder} (``in'' and ``der'' = interpolate derivatives) finds numeric 
 derivatives by a five-point stencil, a commonly used finite difference method. 
 These methods approximate derivative in a given point by adding up products of 
-nearby values of function and their weights~\cite{Dahlquist_2008}. This function 
+nearby values of function and their weights~\citep{Dahlquist_2008}. This function 
 can be used to estimate the approximate cycle of quantification (Cq). 
 Differentiation is a method for background suppression and reduction of the 
 inter sample background amplitude variations 
@@ -1753,7 +1755,7 @@ cycles. In context of qIA, a higher $Nip$ might be appropriate.
 \subsection{Quantitative description of amplification reactions}
 
 According to the MIQE guidelines (``Minimum Information for publication of 
-Quantitative real-time PCR Experiments'', \cite{bustin_miqe_2009}) is the Ct 
+Quantitative real-time PCR Experiments'', \citep{bustin_miqe_2009}) is the Ct 
 referred to as quantification cycle (Cq). The calculated Cq is a relative value, 
 which depends on the template copy number, instrument, reagents, amplification 
 efficiency and probe technology. Low Cqs correlate with high quantities template 
@@ -1763,7 +1765,7 @@ and the amplification efficiency (AE) based on the kinetics of the amplification
 curve. The Cq represents the number of cycles (time for qIA) needed to reach a 
 defined fluorescence signal level in the exponential phase of the amplification 
 curve. The Cq can be determined from a fixed threshold value or by various 
-analytical algorithm as described elsewhere \cite{ruijter_2009, ruijter_2013, 
+analytical algorithm as described elsewhere \citep{ruijter_2009, ruijter_2013, 
 tellinghuisen_2014}. The output of \textsl{inder} includes the first derivative 
 maximum ($FDM$) and second derivative maximum ($SDM$), which are commonly used 
 in qPCR experiments. Figure~\ref{figure:SDM} shows a typical result of the 
@@ -1862,7 +1864,7 @@ summ
 Recently, we added this approach to the \textsl{diffQ} function of the 
 \emph{MBmca} for improved predictions. \textsl{diffQ} function is part of a 
 routine to calculate the melting points of nucleic acids 
-\cite{roediger_RJ_2013}. The $FDM$ and $SDM$ are peak values to determine the 
+\citep{roediger_RJ_2013}. The $FDM$ and $SDM$ are peak values to determine the 
 Cq. We used the \textsl{inder} function in \textsl{diffQ} to compare the Cq 
 values between a quantification experiment where the samples were either 
 detected with a gene specific hydrolysis probe or the intercalating dye 
@@ -1935,7 +1937,7 @@ pointer(HP, pos = 2, w = 8)
 The presence of noise may cause many false estimates for the 
 $FDM$ and $SDM$. To minimize this problem, it is possible to smooth the 
 first derivative of the amplification curve. Many methods integrated the 
-moving average as first pre-processing step (e.g., \cite{shain_2008}). 
+moving average as first pre-processing step (e.g., \citep{shain_2008}). 
 The moving average filter is a linear filter, which replaces sequentially 
 data points with the average of the neighbor data points. The average is 
 calculated from a defined span (``window'') of odd count (e.g., 3, 5). The 
@@ -1947,7 +1949,7 @@ example, the 3- and 5-window moving average (running mean) filters are
 useful to pre-process data, but always leads to a forerun of few cycles. 
 This is in particular problematic in the exponential phase. Splines apply 
 non-parametric regression by local cubic polynomials between knot points 
-\cite{Nie_2012}. Other examples for smoothers include Savitzky-Golay 
+\citep{Nie_2012}. Other examples for smoothers include Savitzky-Golay 
 smoothing filter, Friedman's SuperSmoother, and the Weighted Whittaker 
 smoother (see the \textsl{smoother} function for details).
 
@@ -1957,7 +1959,7 @@ only the significant peaks while small or to narrow peaks are ignored.
 \textsl{CPP}. The example for Figure~\ref{figure:inder} illustrates the 
 use of the \textsl{diffQ} and \textsl{diffQ2} function from the 
 \emph{MBmca} and the integration of the \textsl{inder} function. In 
-contrast to the original publication \cite{roediger_RJ_2013} is the 
+contrast to the original publication \citep{roediger_RJ_2013} is the 
 \textsl{inder} function in \textsl{diffQ} and \textsl{diffQ2} used for a 
 precise peak location while the approximate $SDM$ is calculated from the 
 derivative of a quadratic function at the approximate $SDM$. 
@@ -1971,7 +1973,7 @@ calculate the $SDM$. But, smoothing may alter peak signal considerably. For
 example, peak height reduction and peak width increase are 
 a common problem. An alternative technique to determine the $FDM$ or $SDM$ is 
 by fitting the raw data. In the next example we used the \textsl{drm} 
-function from the \emph{drc} package \cite{Ritz_2005} to fit a 
+function from the \emph{drc} package \citep{Ritz_2005} to fit a 
 five-parameter log-logistic function (S-shaped). The \textsl{inder} function 
 was used to calculate the $SDM$ of the predicted models 
 (Figure~\ref{figure:inder_fit}).
@@ -2034,7 +2036,7 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 
 The \textsl{th}.\textsl{cyc} function can also be used to calculate the 
 quantification cycle. However, in contrast to the $FDM$ and $SDM$ requires this 
-method a proper baselining \cite{ruijter_2009, ruijter_2013, 
+method a proper baselining \citep{ruijter_2009, ruijter_2013, 
 tellinghuisen_2014}. In qPCR analysis are other approaches the method of choice. 
 This function was implemented primarily for the analysis of amplification from 
 qIA but also usable for qPCR if used cautiously. We implement a symmetric 
@@ -2098,7 +2100,7 @@ Similarly, to the previous experiments we used the \textsl{CPP} and
 \textsl{th.cyc} functions to analyze a continuous amplification reaction. The 
 data used herein were taken from the \textsl{capillaryPCR} data set, which were 
 measured with capillary convective PCR (ccPCR) technology. A modified device of 
-the ccPCR system as described by Chou et al. 2011 \cite{chou_rapid_2011} was 
+the ccPCR system as described by Chou et al. 2011 \citep{chou_rapid_2011} was 
 used. A conventional block heat was used. On 
 the top of the heating block, we placed for the uptake of the capillaries an 
 aluminum block (8 mm height) in which four holes (3.2 mm diameter and 3.0 mm 
@@ -2147,13 +2149,13 @@ Dependent Amplification}
 
 The $\emph{chipPCR}$ package was used to analyze a helicase dependent 
 amplification (HDA) of Vimentin (Vim). The VideoScan Platform 
-\cite{roediger_highly_2013} was used to monitor the amplification. The HDA was 
+\citep{roediger_highly_2013} was used to monitor the amplification. The HDA was 
 performed at $65\,^{\circ}\mathrm{C}$. Three concentrations of input DNA (D1, D2, D3) 
 were used (Figure~\ref{figure:HDA}).
 
 To perform an isothermal amplification in VideoScan, standard conditions 
 for the IsoAmp(R) III Universal tHDA Kit (Biohelix) were used. Primers and 
-templates are described in \cite{roediger_highly_2013}. The reaction was 
+templates are described in \citep{roediger_highly_2013}. The reaction was 
 composed of reaction mix A) 10 $\mu$L A. bidest, 1.25 $\mu$L 10xbuffer, 0.75 
 $\mu$L primer(150~nM final), 0.5 $\mu$L template plasmid. Preincubation: This 
 mixture was incubated for 2 min at $95\,^{\circ}\mathrm{C}$ and immediately placed on 
@@ -2225,16 +2227,16 @@ abline(h = r, lty = 2)
 Various influences alter amplification reactions. The amplification efficiency 
 is controlled by a complex interaction of the intrinsic and extrinsic factors 
 like reaction conditions, substrate consumption, primer dimmer formation and 
-molecule specific reaction rates \cite{mehra_2005}. Some probe systems are 
+molecule specific reaction rates \citep{mehra_2005}. Some probe systems are 
 perceived as bias-introducing. Therefore, qPCR reaction should be corrected 
-based on the amplification efficiency \cite{ruijter_2014,tuomi_2010}. The 
+based on the amplification efficiency \citep{ruijter_2014,tuomi_2010}. The 
 amplification efficiency (AE) can be estimated from individual samples or a set 
 of samples to compensate the presence of inhibitors and noise. Indirect methods 
 use fitted mathematical models or estimate the AE from absolute fluorescence 
-values \cite{alvarez_2007, batsch_2008, liu_2002, mallona_2011, tichopad_2003, 
+values \citep{alvarez_2007, batsch_2008, liu_2002, mallona_2011, tichopad_2003, 
 smith_2007}. The \emph{qpcR} has many functions included, which can be used for 
 the indirect estimation of the AE. However, most commonly used is the ''direct 
-method'' \cite{liu_2002, stahlberg_2003}. Herein, the AE is estimated from 
+method'' \citep{liu_2002, stahlberg_2003}. Herein, the AE is estimated from 
 dilution series of a template. The AE of a qPCR reaction is calculated from the 
 slope of the standard curve (Equation~\ref{eq:AE}).
 
@@ -2445,7 +2447,6 @@ and approved the final manuscript.
 
 \listoffigures
 
-\bibliographystyle{plain} 
 \bibliography{roediger-burdukiewicz}      
 
 \end{document}
