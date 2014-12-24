@@ -37,7 +37,7 @@ You can install the latest development version of the code using the `devtools` 
 install.packages("devtools")
 
 library(devtools)
-install_github("chipPCR", "michbur")
+install_github("michbur/chipPCR")
 ```
 
 Problems with viginette

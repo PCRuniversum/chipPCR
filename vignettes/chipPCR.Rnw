@@ -3,15 +3,10 @@
 \usepackage[utf8]{inputenc} %unicode support
 \usepackage[margin=0.75in]{geometry}
 \usepackage{titlesec}
-<<<<<<< HEAD
-% \usepackage{xr}
-\externaldocument{Roediger_OxBio}
-=======
 \usepackage{natbib}
 \bibliographystyle{plain}
 %\usepackage{xr}
 %\externaldocument{Roediger_OxBio}
->>>>>>> 9d7695f9abca592946494b854ac0ea0b8936a25e
 
 \newcommand\sectionbreak{\ifnum\value{section}>1\clearpage\fi}
 \newcommand\subsectionbreak{\ifnum\value{subsection}>1\clearpage\fi}
