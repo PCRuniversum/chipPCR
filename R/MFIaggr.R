@@ -91,8 +91,7 @@ MFIaggr <- function(x, y, cyc = 1, fluo = 2:ncol(x), RSD = FALSE,
 
   # Calcuate robust und non-robust location and dispersion
   # parameters of the ROI and apply the results to stats
-  
-  y.roi <- na.omit(unlist(y[llul, ]))
+  y.roi <- na.omit(unlist(y[llul[1]:llul[2], ]))
   
   mean.roi <- mean(y.roi)
   median.roi <- median(y.roi)
