@@ -339,6 +339,8 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   stats <- slot(x, "stats")
   ncol.y <- ncol(slot(x, "qqnorm.data"))
   
+  default.par <- par(no.readonly = TRUE)
+  
   #Plot the Coefficient of Variance
   layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
   
@@ -354,8 +356,8 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
                              round(res.dens[["bw"]], 3), 
                              "\n", "N = ", res.dens[["n"]])
   
-  default.par <- par("mar")
-  par(mar=c(6.6, 4.1, 4.1, 2.1) )
+  
+  par(mar=c(6.6, 4.1, 4.1, 2.1))
   if (CV) {
     plot(res[, 1], res[, 4], xlab = "", ylab = "CV", 
          type = type, pch = pch, col = col,
@@ -386,8 +388,8 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   
   mtext(error.plot.text, side = 1, line = 4.8, cex = 0.75)
   mtext("Cycle", side = 1, line = 2, cex = 0.8)
-  
-  par(mar = default.par, new = FALSE)
+
+  par(mar=c(4.1, 4.1, 4.1, 2.1))
   
   # "Calculate" the Quantile-Quantile plots and density plots
   # and plot the results
@@ -401,6 +403,8 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   mtext(paste0("\nBreusch-Pagan Test p-value: ", format(stats["heter.p"], digits = 4)),
         side = 1, line = 3, cex = 0.75)
   qqline(x)
+  
+  par(default.par)
 })
 
 
