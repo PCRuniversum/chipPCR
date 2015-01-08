@@ -1,6 +1,7 @@
 \name{plot.eff}
 \alias{plot.eff}
 \alias{plot,eff-method}
+\alias{plot,eff,ANY-method}
 
 \title{
 Plot \code{eff} objects

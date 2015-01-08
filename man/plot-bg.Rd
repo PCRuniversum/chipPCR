@@ -1,6 +1,7 @@
 \name{plot.bg}
 \alias{plot.bg}
 \alias{plot,bg-method}
+\alias{plot,bg,ANY-method}
 
 \title{
 Plot \code{bg} objects

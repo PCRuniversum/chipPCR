@@ -1,6 +1,8 @@
 \name{plot.refMFI}
 \alias{plot.refMFI}
 \alias{plot,refMFI-method}
+\alias{plot,refMFI,ANY-method}
+\alias{plot,refMFI,refMFI-method}
 
 \title{
 Plot \code{refMFI} objects
@@ -11,11 +13,16 @@ Draw quick diagnostic plots of amplification reaction.
 \usage{
 \S4method{plot}{refMFI}(x, CV = FALSE, type = "p", pch = 19, length = 0.05, 
                         col = "black")
+\S4method{plot}{refMFI,refMFI}(x, y, CV = FALSE, type = "p", pch = 19, length = 0.05, 
+                        col = "black")
 }
 
 \arguments{
   \item{x}{
 is a \code{\linkS4class{refMFI}} object. refMFI means referenced Mean Fluorescence Intensity (Roediger et al. 2013)
+}
+  \item{y}{
+optionally an additional \code{\linkS4class{refMFI}} object.
 }
 \item{CV}{ If \code{CV} is true the coefficient of variation (RSD, CV) is 
 plotted. If set to \code{FALSE} the deviation as Standard Deviation or 
@@ -34,7 +41,8 @@ Median Absolute Deviation is plotted. }
            of the error bar used in the plot. }
 }
 \details{
-The plot being a result of this function is built from three subplots.
+The plot being a result of this function is built from three subplots. If \code{y} parameter is
+not absent, is is plotted in lighter color than \code{x}.
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz

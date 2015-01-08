@@ -8,6 +8,7 @@
 \alias{show,amptest-method}
 \alias{plot.amptest}
 \alias{plot,amptest-method}
+\alias{plot,amptest,ANY-method}
 
 \title{Class \code{"amptest"}}
 \description{

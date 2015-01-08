@@ -1,6 +1,7 @@
 \name{plot.der}
 \alias{plot.der}
 \alias{plot,der-method}
+\alias{plot,der,ANY-method}
 
 \title{
 Plot \code{der} objects
