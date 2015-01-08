@@ -332,9 +332,6 @@ setMethod("summary", signature(object = "refMFI"),
 setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p", 
                                                     pch = 19, length = 0.05, 
                                                     col = "black") {
-  # store the default plot parameters  
-  default.par <- par("fig")
-  
   res <- slot(x, ".Data")
   res.dens <- slot(x, "density")
   qqnorm.data <- unlist(slot(x, "qqnorm.data"))
@@ -345,38 +342,37 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   #Plot the Coefficient of Variance
   layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
   
-  main.title <- paste0("ROI samples: ", format(ncol.y, nsmall = 3), "\n",
+  error.plot.text <- paste0("ROI samples: ", format(ncol.y, nsmall = 3), "\n",
                        "ROI mean: ", format(stats[1], nsmall = 3), " +- ", 
                        format(stats[4], nsmall = 2), "\n",
                        "ROI median: ", format(stats[2], nsmall = 3), " +- ", 
                        format(stats[4], nsmall = 2))
   
+  density.plot.text <- paste("ROI cycle ", 
+                             llul[1], " to ", llul[2], 
+                             "\n", "bw ", 
+                             round(res.dens[["bw"]], 3), 
+                             "\n", "N = ", res.dens[["n"]])
+  
+  default.par <- par("mar")
+  par(mar=c(6.6, 4.1, 4.1, 2.1) )
   if (CV) {
-    plot(res[, 1], res[, 4], xlab = "Cycle", ylab = "CV", 
+    plot(res[, 1], res[, 4], xlab = "", ylab = "CV", 
          type = type, pch = pch, col = col,
-         main = main.title)
+         main = "Error plot")
     
     # Add a range for the ROI
     abline(v = llul, col = "lightgrey", lwd = 1.25)
     #Plot the location with error bars.
     
-    # "Calculate" the Quantile-Quantile plots and density plots
-    # and plot the results
     
-    plot(res.dens, xlab = "RFU", main = paste0("Cycle ", 
-                                               llul[1], " to ", llul[2], 
-                                               "\n", "bw ", 
-                                               round(res.dens$bw, 3), 
-                                               "\n", "N ", res.dens$n
-    )
-    )
     
   } else {
     plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
                                       max(res[, 2] + res[, 3])), 
-         xlab = "Cycle", ylab = "MFI", 
+         xlab = "", ylab = "MFI", 
          type = type, pch = pch, col = col,
-         main = main.title)
+         main = "Error plot")
     
     abline(v = llul, col = "lightgrey")
     
@@ -385,26 +381,26 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
            length = length, col = col)
     deviation.measure <- strsplit(colnames(res)[3], "(", fixed = TRUE)[[1]][2]
     deviation.measure <- substr(deviation.measure, 1, nchar(deviation.measure) - 1)
-    mtext(paste0("Deviation: ", deviation.measure), 4)
-    
-    
-    plot(res.dens, xlab = "RFU", main = paste("ROI cycle ", 
-                                              llul[1], " to ", llul[2], 
-                                              "\n", "bw ", 
-                                              round(res.dens[["bw"]], 3), 
-                                              "\n", "N ", res.dens[["n"]]
-    )
-    )
-    
+    mtext(paste0("Deviation: ", deviation.measure), 4, cex = 0.75)
   }
-  # Analysis of the quantiles
-  qqnorm(x)
-  mtext(paste0("\nBreusch-Pagan Test p-value: ", format(stats["heter.p"], digits = 4)),
-        cex = 0.75)
-  qqline(x)
   
-  # Restore default graphic parameters
-  par(fig = default.par, new = FALSE)
+  mtext(error.plot.text, side = 1, line = 4.8, cex = 0.75)
+  mtext("Cycle", side = 1, line = 2, cex = 0.8)
+  
+  par(mar = default.par, new = FALSE)
+  
+  # "Calculate" the Quantile-Quantile plots and density plots
+  # and plot the results
+  plot(res.dens, xlab = "", main = "Density")
+  mtext("RFU", side = 1, line = 2, cex = 0.8)
+  mtext(density.plot.text, side = 1, line = 4.85, cex = 0.75)
+  
+  # Analysis of the quantiles
+  qqnorm(x, xlab = "")
+  mtext("Theoretical Quantiles", side = 1, line = 2, cex = 0.8)
+  mtext(paste0("\nBreusch-Pagan Test p-value: ", format(stats["heter.p"], digits = 4)),
+        side = 1, line = 3, cex = 0.75)
+  qqline(x)
 })
 
 
