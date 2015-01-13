@@ -4,10 +4,10 @@
 \usepackage[margin=0.75in]{geometry}
 \usepackage{titlesec}
 \usepackage{natbib}
-\bibliographystyle{plain}
+
 %\usepackage{xr}
 %\externaldocument{Roediger_OxBio}
-
+\bibliographystyle{natbib}
 \newcommand\sectionbreak{\ifnum\value{section}>1\clearpage\fi}
 \newcommand\subsectionbreak{\ifnum\value{subsection}>1\clearpage\fi}
 \newcommand\subsubsectionbreak{\ifnum\value{subsubsection}>1\clearpage\fi}
