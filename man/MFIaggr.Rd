@@ -108,7 +108,7 @@ plot(res[, 1], res[, 3]^2, xlab = "Cycle", ylab = "Variance of refMFI",
 abline(v = c(1,40), col = "grey", lty = 2, lwd = 2)
 legend("top", paste0("Breusch-Pagan test p-value: \n", format(summary(res)[5], 
        digits = 2)), bty = "n")
-
+par(mfrow = c(1,2))
 }
 
 \keyword{ deviation }

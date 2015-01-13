@@ -344,9 +344,9 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
   
   error.plot.text <- paste0("ROI samples: ", format(ncol.y, nsmall = 3), "\n",
-                       "ROI mean: ", format(stats[1], nsmall = 3), " +- ", 
+                       "ROI mean: ", format(stats[1], nsmall = 3), " \u00b1 ", 
                        format(stats[4], nsmall = 2), "\n",
-                       "ROI median: ", format(stats[2], nsmall = 3), " +- ", 
+                       "ROI median: ", format(stats[2], nsmall = 3), " \u00b1 ", 
                        format(stats[4], nsmall = 2))
   
   density.plot.text <- paste("ROI cycles: ", 
@@ -420,13 +420,13 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
   
   error.plot.text <- paste0("ROI samples: ", format(ncol.y[[1]], nsmall = 3), "; ",
                             format(ncol.y[[2]], nsmall = 3), "\n",
-                            "ROI mean: ", format(stats[[1]][1], nsmall = 3), " +- ", 
+                            "ROI mean: ", format(stats[[1]][1], nsmall = 3), " \u00b1 ", 
                             format(stats[[1]][4], nsmall = 2), "; ",
-                            format(stats[[2]][1], nsmall = 3), " +- ", 
+                            format(stats[[2]][1], nsmall = 3), " \u00b1 ", 
                             format(stats[[2]][4], nsmall = 2), "\n",
-                            "ROI median: ", format(stats[[1]][2], nsmall = 3), " +- ", 
+                            "ROI median: ", format(stats[[1]][2], nsmall = 3), " \u00b1 ", 
                             format(stats[[1]][4], nsmall = 2), "; ",
-                            format(stats[[2]][2], nsmall = 3), " +- ", 
+                            format(stats[[2]][2], nsmall = 3), " \u00b1 ", 
                             format(stats[[2]][4], nsmall = 2))
   
   density.plot.text <- paste("ROI cycle ", 

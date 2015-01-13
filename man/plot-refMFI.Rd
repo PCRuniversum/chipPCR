@@ -41,8 +41,10 @@ Median Absolute Deviation is plotted. }
            of the error bar used in the plot. }
 }
 \details{
-The plot being a result of this function is built from three subplots. If \code{y} parameter is
-not absent, is is plotted in lighter color than \code{x}.
+This function is a relative of the MFIerr function from the MBmca package 
+(Roediger et al. 2013, The R Journal). The plot being a result of this 
+function is built from three subplots. If \code{y} parameter is
+not absent, it is plotted in lighter color than \code{x}.
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz

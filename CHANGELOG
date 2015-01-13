@@ -1,3 +1,9 @@
+Changes from Version 0.0.8-3 to 0.0.8-4 [January 24 2015]
+* Improved vignette
+* Improved examples
+* removed calculation of dB from CPP function
+* new plot option for MFIaggr function
+
 Changes from Version 0.0.8-2 to 0.0.8-3 [September 28 2014]
 * build uses now: R CMD build --resave-data --compact-vignettes="gs+qpdf" chipPCR
 * reduced size of bitmap images
@@ -25,8 +31,8 @@ Changes from Version 0.0.7 to 0.0.8-1 [August 25 2014]
   - New function MFIaggr.gui
   - New function lm.coefs (moved from CPP as independent function)
 * smoother function has parallelization option now
-  - normalization algortihm moved from CPP as independent function normalizer
-  - parameter nrom of CPP renamed to method.norm
+  - normalization algorithm moved from CPP as independent function normalizer
+  - parameter norm of CPP renamed to method.norm
   - parameter rob.reg of CPP renamed to method.reg
 * MFIaggr
   - improved plot and analysis methods
