@@ -83,11 +83,12 @@ average of the neighbor data points. The average is calculated from a
 defined span ("window") of odd count (e.g., 3, 5). The average herein may 
 also refer to the median, the geometric or exponential mean. Smoothing in 
 contrast uses statistical approaches. Such approaches use for example local 
-regression models (e.g., least squares estimate) or cubic splines. Splines 
-apply non-parametric regression by local cubic polynomials between knot 
-points. Other examples for smoothers include Savitzky-Golay smoothing 
-filter, Friedman's SuperSmoother, and Whittaker smoother. Several methods 
-were integrated in the \code{chipPCR} package. 
+regression models (e.g., least squares estimate) or cubic splines. Splines apply 
+non-parametric regression by local cubic polynomials between knot points. Other 
+examples for smoothers include Savitzky-Golay smoothing filter, Friedman's 
+SuperSmoother, and Whittaker smoother. Several methods were integrated in the 
+\code{chipPCR} package. A careful evaluation of this preprocessing step is of 
+high importance (Spiess et al. 2014).
 
 The function \code{\link[chipPCR]{smoother}} is a wrapper for smoother 
 functions and filters commonly used to process amplification curve data. 
@@ -119,6 +120,11 @@ Stefan Roediger, Michal Burdukiewicz
 \references{
 Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R. 
 \emph{The R Journal} 2013;5:37--53.
+
+Spiess, A.-N., Deutschmann, C., Burdukiewicz, M., Himmelreich, R., Klat, K., 
+Schierack, P., Roediger, S., 2014. Impact of Smoothing on Parameter Estimation 
+in Quantitative DNA Amplification Experiments. \emph{Clinical Chemistry} 
+clinchem.2014.230656. doi:10.1373/clinchem.2014.230656
 }
 
 \examples{
