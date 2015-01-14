@@ -796,7 +796,7 @@ continuous predictor variables $x_i$, where $i \in \{1, ..., n\}$. Use cases
 include the comparison of independent reaction vessels or the analysis of 
 replicate experiments. The basic idea is to analyze only a region of interest 
 (ROI) from a data set. \textsl{MFIaggr} is a relative of the \textsl{MFIerror} 
-function from the \emph{MBmca} (\citep{roediger_RJ_2013}) package. However, this functions enables a fine 
+function from the \emph{MBmca} \citep{roediger_RJ_2013} package. However, this functions enables a fine 
 grained analysis of specific parts of the curve data. The function returns an 
 object of the class list with the columns ``Cycle'', ``Location'' (Mean, 
 Median), ``Deviation'' (Standard Deviation, Median Absolute Deviation) and 
@@ -990,7 +990,7 @@ rank-based estimator or a standard linear regression model. \textsl{CPP} uses by
 default a robust linear regression (MM-type estimator) as integrated in the 
 \textsl{lm}.\textsl{coefs} function. A defined range of the 
 amplification curve (typically the background range) is used to extrapolate the 
-linear trend over the entire data set. However, this step his to be performed 
+linear trend over the entire data set. However, this step has to be performed 
 with caution since this operation effects the amplification efficiency. The 
 background is assumed to be constant for the entire measurement. Care is also 
 needed when using $trans$ with time series (see \textsl{lm} from the 
@@ -1420,7 +1420,7 @@ value in the first cycle is unknown, so the number of cycles that can be used in
 following computations is reduced by one. 
 
 The Real-Time PCR Miner algorithm is also nearly assumption-free 
-(\citep{zhao_2005}). The principle is that background 
+\citep{zhao_2005}. The principle is that background 
 fluorescence is similar in the small groups of subsequent measurements. So the 
 first step of the algorithm is division of subsequent measurement points 
 belonging to the exponential phase of amplification in at least four-element 
@@ -1430,20 +1430,19 @@ fluorescence value and the cycle number. The estimates paired with the highest
 significance are the most influential in the computation of the final 
 efficiency. 
 
-To find the beginning of the lag phase and end of plateau phase is important 
-for the goodness-of-fit for both exponential-phase-only and S-shaped models. 
-There are two strategies. The first narrows the area of the search to the 
-neighborhood of their theoretical values determined by a fitted model of the 
-amplification reaction. To this group belongs SoFar (Wilhelm et al. (2003) 
-\citep{wilhelm_2003}). The algorithm looks for the start and the end of the 
-exponential phase near the second derivatives of the function representing the 
-relation between logarithm of the fluorescence and the cycle number. The 
-available correction guarantees that the start of amplification has higher value 
-than background noise. The very similar procedure is implemented in Real-Time 
-PCR Miner \citep{zhao_2005}, where background noise is also used as 
-parameter in implemented models to calculate theoretical the start of the 
-amplification process. The end of amplification process is detected by 
-calculating the third derivative of implemented S-shaped model. The second 
+To find the beginning of the lag phase and end of plateau phase is important for 
+the goodness-of-fit for both exponential-phase-only and S-shaped models. There 
+are two strategies. The first narrows the area of the search to the neighborhood 
+of their theoretical values determined by a fitted model of the amplification 
+reaction. To this group belongs SoFar \citep{wilhelm_2003}. The algorithm looks 
+for the start and the end of the exponential phase near the second derivatives 
+of the function representing the relation between logarithm of the fluorescence 
+and the cycle number. The available correction guarantees that the start of 
+amplification has higher value than background noise. The very similar procedure 
+is implemented in Real-Time PCR Miner \citep{zhao_2005}, where background noise 
+is also used as parameter in implemented models to calculate theoretical the 
+start of the amplification process. The end of amplification process is detected 
+by calculating the third derivative of implemented S-shaped model. The second 
 approach does not require theoretical values. A very intuitive solution, 
 designated take-off point, by Tichopad et al. (2003) \citep{tichopad_2003} 
 describes the lag phase using a linear function. Random deviations are taken 
@@ -1573,8 +1572,8 @@ for (i in c(1,3,5,7)) {
 \section{Normalization of amplification curve data}
 
 It is a common characteristic of amplification curve data that the fluorescence 
-values between samples vary due to high background, sample inhomogeneities and 
-variances in dye quantities (Figure~\ref{figure:normalization}~\emph{A}). Data 
+values between samples vary (e.g., due to high background, sample inhomogeneities and 
+variances in dye quantities, Figure~\ref{figure:normalization}~\emph{A}). Data 
 within an experiment have in most cases different minimum and maximum values. 
 For the visualization of the data it is often better to scale the data within a 
 defined range. Eventually, this helps to grasp the data faster. In particular, a 
@@ -1697,7 +1696,7 @@ extrapolation it is possible to apply a correction of the slope.
 
 \textsl{lm.coefs} is a wrapper around functions performing normal (linear least 
 squares) and robust linear regression. If the robust linear regression is 
-impossible, \textsl{lm.coefs} will perform linear regression using the least 
+impossible, performs \textsl{lm.coefs} a linear regression using the least 
 squares method. This function can be used to calculate the background of an 
 amplification curve. The coefficients of the analysis can be used for a 
 trend-based correction of the entire data set. Thereby either a robust linear 
