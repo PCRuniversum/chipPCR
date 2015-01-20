@@ -279,16 +279,16 @@ fig20_scap <- "Inspection of the reps384 data set."
 fig21_cap <- "Analysis and interpretation of real-time amplification curves. \\emph{(A)} The 
 fluorescence values are plotted against the cycle. The amplification curve 
 has a sigmoidal shape (\\textcolor{black}{\\textendash},~\\textcolor{red}{\\textendash}). Amplification 
-curve raw data are affected by many influences. This includes noise introduced 
-by the detection system and sensor errors. Measurements can occasionally contain 
+curve raw data are affected by many influences (e.g., noise introduced 
+by the detection system, sensor errors). Measurements may occasionally contain 
 missing values (``NA'', \\textcolor{red}{\\textendash}) and outliers (orange 
 circle, \\textcolor{black}{\\textendash}). Outliers are often present in the first 
 cycle due to sensor adjustments. The signal difference between the background 
 phase (first cycles) and the plateau phase (last cycles) can be expressed as 
 signal-to-noise ratio (SNR). The SNR between different between samples (e.g., 
 \\textcolor{black}{\\textendash} and \\textcolor{black}{\\textendash}) can vary. For 
-interpretation it is better to compensate the differences. Negative samples 
-(\\textcolor{blue}{\\textendash}) need to be (automatically) identified. 
+interpretation it is better to normalize the data. Negative samples 
+(\\textcolor{blue}{\\textendash}) need to be identified automatically. 
 \\emph{(B)} pre-processed raw data. NAs were imputed and the noise slightly 
 removed. The curves were adjusted to have the same baseline and plateau level. 
 The quantification point (Cq) of the positive reactions are determined in the 
@@ -620,7 +620,7 @@ functions to prevent potential problem during processing due to missing values.
 \section{\textsl{AmpSim} - a function to simulate amplification curves}
 \label{sec:AmpSim}
 
-The function \textsl{AmpSim} is a simulator for amplification reactions. Use 
+The \textsl{AmpSim} function is a simulator for amplification reactions. Use 
 cases include teaching, algorithm testing or the comparison of an experimental 
 system to the predicted (``optimal'') model. \textsl{AmpSim} uses a 5-parameter 
 model (Equation~\ref{eq:richards}). The function is commonly used for the 
@@ -631,18 +631,18 @@ fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
 \end{equation}
 
 It is an intrinsic property of \textsl{AmpSim} to generate unique results if the 
-$noise$ parameter is \textsl{bg}.\textsl{max} set $TRUE$. This is due the use of 
-the \textsl{rnorm} (\emph{stats}) function to simulate noise. If data need to be 
-replicated identically use \textsl{set.seed(123)} to alter the random number 
-generator (RNG) state. For example, the amplification curves of 
+$noise$ parameter is set $TRUE$. This is due the use of the \textsl{rnorm} 
+(\emph{stats}) function to simulate noise. If data need to be replicated 
+identically use \textsl{set.seed(123)} to alter the random number generator 
+(RNG) state. For example, the amplification curves of 
 Figure~\ref{figure:AmpSim_effcalc}~\emph{A} are generated with the same starting 
 parameter of \textsl{AmpSim} but noise was added. \textsl{AmpSim}.\textsl{gui} 
-is a \emph{shiny} GUI (graphical user interface \citep{shiny_2014}) 
-implementation for \textsl{AmpSim}. The code example below is an example how-to 
-invoke the \textsl{AmpSim}.\textsl{gui}. Details on \emph{shiny} are 
-described in Section~\ref{sec:work_environment}. \textsl{AmpSim} was also used to illustrate 
-the \textsl{inder} function (Figure~\ref{figure:SDM}), the \textsl{fixNA} 
-function (Figure~\ref{figure:fixNA}) and the use of the \textsl{smoother} 
+is a \emph{shiny} GUI \citep{shiny_2014} implementation for \textsl{AmpSim}. The 
+code example below is an example how-to invoke the \textsl{AmpSim}.\textsl{gui}. 
+Details on \emph{shiny} are described in Section~\ref{sec:work_environment}. 
+\textsl{AmpSim} was also used to illustrate the \textsl{inder} function 
+(Figure~\ref{figure:SDM}), the \textsl{fixNA} function 
+(Figure~\ref{figure:fixNA}) and the use of the \textsl{smoother} 
 (Figure~\ref{figure:smoothing_intro}) function.
 
 An GUI for the simulation and analysis of amplification reactions is shown 
