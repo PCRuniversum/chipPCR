@@ -60,9 +60,9 @@ function."
 fig2_cap <- "Working principle of \\textsl{th}.\\textsl{cyc}.
 The function provides two modes (\\textbf{A)} is the linear 
 regression. \\textbf{B)} Quadratic regression) for the calculation of the 
-Cq. In both cases is the highest R squared value determining how many left 
-and right neighbors above and the below the used defined threshold level 
-are use."
+Cq. In both cases the highest R squared value determines how many left 
+and right neighbors above and the below the defined threshold level 
+are used."
 fig2_scap <- "Working principle of \\textsl{th}.\\textsl{cyc}."
 
 fig3_cap <- "Application of \\textsl{th}.\\textsl{cyc} for the analysis of 
@@ -2212,7 +2212,7 @@ amplification efficiency (AE) can be estimated from individual samples or a set
 of samples to compensate the presence of inhibitors and noise. Indirect methods 
 use fitted mathematical models or estimate the AE from absolute fluorescence 
 values \citep{liu_2002, tichopad_2003, alvarez_2007, smith_2007, batsch_2008, 
-mallona_2011}. The \emph{qpcR} has many functions included, which can be used 
+mallona_2011}. The \emph{qpcR} has many functions, which can be used 
 for the indirect estimation of the AE. However, most commonly used is the 
 ''direct method'' \citep{liu_2002, stahlberg_2003}. Herein, the AE is estimated 
 from dilution series of a template. The AE of a qPCR reaction is calculated from 
@@ -2288,13 +2288,12 @@ plot(effcalc(tmp[, 1], tmp[, 2:4]), CI = TRUE)
 mtext("B", cex = 1.1, side = 3, adj = 0, font = 2) 
 @
 
-Next we used \textsl{effcalc} to analyze the C54 data set from the 
-$\emph{chipPCR}$ package. Herein, a qPCR Experiment for the amplification of 
-\textit{MLC-2v} using the VideoScan heating/cooling-unit was performed. To calculate the 
-Cq it was necessary to pre-process the amplification curve data. One 
-amplification curve contained a missing value (Figure~\ref{figure:CPP_C54}~A) 
-which was remove by the spline method in \textsl{CPP}. In addition, the data 
-were baselined (linear model, robust MM-estimator) and smoothed by 
+Next we analyzed the C54 data set from the $\emph{chipPCR}$ package with the \textsl{effcalc} 
+function. Herein, a qPCR Experiment for the amplification of 
+\textit{MLC-2v} using the VideoScan heating/cooling-unit was performed. Calculation of the 
+Cq required pre-processing of the data. One amplification curve contained a missing value 
+(Figure~\ref{figure:CPP_C54}~A) which was removed by the spline method in \textsl{CPP}. 
+In addition, the data were baselined (linear model, robust MM-estimator) and smoothed by 
 Savitzky-Golay Smoothing (Figure~\ref{figure:CPP_C54}~B). The final analysis 
 with the \textsl{effcalc} function showed that the amplification efficiency is 
 circa 87.3~\% for the gene \textit{MLC-2v} in the VideoScan HCU 
