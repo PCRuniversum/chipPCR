@@ -315,12 +315,22 @@ fig22_scap <- "Smoother and filter methods of the \\emph{chipPCR} package."
 
 fig23_cap <- "Sample code for the analysis with the \\textsl{MFIaggr} function. 
 The VIMCFX96\\_60 data set (96-well plate cycler (Bio--Rad CFX96)) was used. 
-Either all a subset of cycles (ROI: 1 -- 10) or all cycles (ROI: 1 -- 40) (Figure~\\ref{figure:MFIaggr_all}) were 
+Either all or a subset of the cycles (ROI: 1 -- 10) or all cycles (ROI: 1 -- 40) (Figure~\\ref{figure:MFIaggr_all}) were 
 analyzed. The density plot (right upper panel) and quantile-quantile analysis 
 (right lower panel) show no normal distribution. Due to the sigmoidal curve 
 structure is the density function bimodal."
 
 fig23_scap <- "Signal analysis by the \\textsl{MFIaggr} function."
+
+fig24_cap <- "Analysis of two PCR condition with the \\textsl{MFIaggr} function. 
+The VIMCFX96\\_60 and VIMCFX96\\_69 data set (96-well plate cycler (Bio--Rad 
+CFX96)) were used. A subset of cycles (ROI: 2 -- 10) was analyzed for a qPCR 
+measured during the annealing phase and elongation phase. analyzed. The density 
+plot (right upper panel) and quantile-quantile analysis (right lower panel) show 
+no normal distribution. The measurements during the annealing phase and 
+elongation phase show a similar distribution but differ in their MFI levels."
+
+fig24_scap <- "Analysis of two PCR condition with the \\textsl{MFIaggr} function."
 
 @
 
@@ -813,11 +823,12 @@ shows that the first ten cycles (noise) follow a normal distribution
 expectedly a distribution, which significantly differs from a normal 
 distribution (Figure~\ref{figure:MFIaggr_all}). Setting the option $CV = FLASE$ 
 shows the relative standard deviation (RSD,~\%). Ideally the variance between 
-the amplification curves is low. Other results of 
-\textsl{MFIaggr} include the density analysis ($@density$), the quantile 
-($@qqnorm.data$), and the results of the linear regression ($@lm.roi$) from the 
-ROI. In particular, this function might be useful for quality management during 
-the development of high-throughput technologies. An analysis via the 
+the amplification curves is low. Other results of \textsl{MFIaggr} include the 
+density analysis ($@density$), the quantile ($@qqnorm.data$), and the results of 
+the linear regression ($@lm.roi$) from the ROI. In particular, this function 
+might be useful for quality management during the development of high-throughput 
+technologies. The function can also be used to compare two conditions of a qPCR 
+experiment Figure~\ref{figure:MFIaggr_conditions}. An analysis via the 
 \emph{shiny} \textsl{MFIaggr.gui} app is shown in Figure~\ref{figure:MFIaggr2}.
 
 <<MFIaggr_intro,warning=FALSE,message=FALSE,fig.show='hold', fig.width = 6, fig.cap=fig23_cap,fig.scap=fig23_scap>>=
@@ -829,6 +840,13 @@ plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)],
 
 # plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)], 
 #      llul = c(1,40)), CV = FALSE)
+@
+
+<<MFIaggr_conditions,warning=FALSE,message=FALSE,fig.show='hold', fig.width = 6, fig.cap=fig24_cap,fig.scap=fig24_scap>>=
+par(las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
+    font = 2, cex.main = 1.2, oma = c(1,1,1,1))
+
+plot(x = MFIaggr(VIMCFX96_60, fluo = c(2L:10)), y = MFIaggr(VIMCFX96_69, fluo = c(2L:10)))
 @
 
 \begin{figure}[ht]
