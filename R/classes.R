@@ -446,7 +446,7 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
          main = "Error plot", 
          xlim = range(res[[1]][, 1], res[[2]][, 1]),
          ylim = range(res[[1]][, 4], res[[2]][, 4])) 
-    points(res[[2]][, 1], res[[2]][, 4], pch = pch, col = adjustcolor(col, alpha.f = 0.25))
+    points(res[[2]][, 1], res[[2]][, 2], pch = pch, col = adjustcolor(col, alpha.f = 0.25))
     
   } else {
     plot(res[[1]][, 1], res[[1]][, 2], 
@@ -456,8 +456,7 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
          xlab = "", ylab = "MFI", 
          type = type, pch = pch, col = col,
          main = "Error plot")
-    points(res[[2]][, 1], res[[2]][, 4], pch = pch, col = adjustcolor(col, alpha.f = 0.25))
-    
+    points(res[[2]][, 1], res[[2]][, 2], pch = pch, col = adjustcolor(col, alpha.f = 0.25))
     #Plot the location with error bars.
     arrows(res[[1]][, 1], res[[1]][, 2] + res[[1]][, 3], res[[1]][, 1], 
            res[[1]][, 2] - res[[1]][, 3], angle = 90, code = 3, 
@@ -474,7 +473,7 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
   
   # Add a range for the ROI
   abline(v = llul[[1]], col = "lightgrey", lwd = 1.25)
-  abline(v = llul[[2]], col = "lightgrey", lwd = 1.25, lty = "dashed")
+  abline(v = llul[[2]], col = "lightgrey", lwd = 1.25, lty = 6)
   
   mtext(error.plot.text, side = 1, line = 4.8, cex = 0.75)
   mtext("Cycle", side = 1, line = 2, cex = 0.8)
