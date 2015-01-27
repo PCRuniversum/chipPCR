@@ -238,12 +238,12 @@ fig16_scap <- "Use of rounder to average numeric derivatives to the real
 values of cycle number."
 
 fig17_cap <- "\\textsl{lm.coefs} a function to compute linear model 
-coefficients. The function is a convenient wrapper around few functions 
-performing normal (least squares) and robust linear regression. If the robust 
-linear regression is impossible, \\textsl{lm.coefs} will perform linear 
-regression using the least squares method. This function can be used to 
-calculate the background of an amplification curve. The coefficients of the 
-analysis can be used for a trend-based correction of the entire data set."
+coefficients. The function is a wrapper for functions to perform normal (least 
+squares) and robust linear regression. If the robust linear regression is 
+impossible, \\textsl{lm.coefs} will perform linear regression using the least 
+squares method. lmrob, MM-type estimators for linear regression; rq,  quantile 
+regression fit; least, least squares linear regression; rfit, Rank-based 
+Estimates of Regression Coefficients. m, slope; n, asymmetry."
 
 fig17_scap <- "\\textsl{lm.coefs} a function to compute linear model 
 coefficients."
@@ -428,11 +428,12 @@ Graphical user interfaces (GUI) are important to spread software and to make it
 available also for researchers not fluent in \textbf{R}. \textbf{R} offers 
 several GUI projects to chose from \citep{rodiger_rkward_2012}. Some 
 functionality of $\emph{chipPCR}$ originates from experimental plugins for the 
-\textbf{RKWard} GUI \citep{pabinger_2014}. Recently, the \emph{shiny} 
-\citep{shiny_2014} framework to build and deploy GUIs for the desktop (web 
-browser) or services for interactive web applications emerged. \emph{shiny} 
-enables to build plugin-like applications with highly customizable widgets 
-(e.g., sliders, plots, reports) for a efficient extension. \emph{shiny} 
+\textbf{RKWard} GUI \citep{pabinger_2014}.
+
+The \emph{shiny} framework \citep{shiny_2014} can be used to build and deploy 
+GUIs for the desktop (web browser) or services for interactive web applications. 
+\emph{shiny} enables to build plugin-like applications with highly customizable 
+widgets (e.g., sliders, plots, reports) for a efficient extension. \emph{shiny} 
 applications update live and interactively. The user interfaces can be built 
 entirely using \textbf{R} and operates in any \textbf{R} environment 
 (cross-platform). Currently, the functions \textsl{AmpSim}, \textsl{th.cyc}, 
@@ -501,12 +502,12 @@ limited sophisticated statistical tools. Moreover, it is desirable to set up
 work-flows in an open environment, which enable downstream analyses and offer 
 powerful tools for data visualizations and automatic report generation.
 
-The $\emph{chipPCR}$ package was developed to automatize pre-processing, to ease data 
-analysis/visualization and to offer a quality control for the statistical data 
-analysis of qPCR and qIA experiments by a comprehensive set of functions 
-(Section~\ref{sec:functions}). $\emph{chipPCR}$ is primarily targeted at 
-developers of experimental nucleic acid amplification systems but non the less 
-at users who process raw data of commercial systems.
+The $\emph{chipPCR}$ package was developed to automatize pre-processing, to ease 
+data analysis/visualization and to offer a quality control for the statistical 
+data analysis of qPCR and qIA experiments (Section~\ref{sec:functions}). 
+$\emph{chipPCR}$ is primarily targeted at developers of experimental nucleic 
+acid amplification systems but non the less at users who process raw data of 
+commercial systems.
 
 Pre-processing is in most commercial cyclers a ``black box''. This has limitations, 
 such as hard to reproduce analysis on other platforms, difficulties during the 
@@ -827,9 +828,7 @@ the amplification curves is low. Other results of \textsl{MFIaggr} include the
 density analysis ($@density$), the quantile ($@qqnorm.data$), and the results of 
 the linear regression ($@lm.roi$) from the ROI. In particular, this function 
 might be useful for quality management during the development of high-throughput 
-technologies. The function can also be used to compare two conditions of a qPCR 
-experiment Figure~\ref{figure:MFIaggr_conditions}. An analysis via the 
-\emph{shiny} \textsl{MFIaggr.gui} app is shown in Figure~\ref{figure:MFIaggr2}.
+technologies.
 
 <<MFIaggr_intro,warning=FALSE,message=FALSE,fig.show='hold', fig.width = 6, fig.cap=fig23_cap,fig.scap=fig23_scap>>=
 par(las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
@@ -842,12 +841,20 @@ plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)],
 #      llul = c(1,40)), CV = FALSE)
 @
 
+The function can also be used to compare two conditions of a qPCR experiment. In 
+our example we tried to spot differences between a measurement during the 
+annealing phase and the elongation phase 
+(Figure~\ref{figure:MFIaggr_conditions}).
+
 <<MFIaggr_conditions,warning=FALSE,message=FALSE,fig.show='hold', fig.width = 6, fig.cap=fig24_cap,fig.scap=fig24_scap>>=
 par(las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
     font = 2, cex.main = 1.2, oma = c(1,1,1,1))
 
 plot(x = MFIaggr(VIMCFX96_60, fluo = c(2L:10)), y = MFIaggr(VIMCFX96_69, fluo = c(2L:10)))
 @
+
+An analysis via the 
+\emph{shiny} \textsl{MFIaggr.gui} app is shown in Figure~\ref{figure:MFIaggr2}.
 
 \begin{figure}[ht]
 \centering
@@ -890,18 +897,14 @@ plot(MFIaggr(VIMCFX96_60[, 1], VIMCFX96_60[, 2:ncol(VIMCFX96_60)],
              llul = c(1,40)), CV = FALSE)
 @
 
-\textsl{MFIaggr} can be used to analyze the heteroskedasticity in a given 
-data set. Heteroskedasticity (“hetero” = different, “skedasis” = 
-dispersion) is present if the variance (error term) is not constant. In 
-case the variance is constant data are considered to be homoskedastic. If 
-the error terms do not have constant variance, they are said to be 
-homoskedastic. Analysis of the heteroskedasticity can give some insight 
-into the characteristics of a system. In the following example we 
-compared the VIMCFX96\_60 and VIMCFX96\_69 data sets. Both data set were 
-obtained from the same qPCR run in a Bio-Rad CFX96. However, data from the 
-VIMCFX96\_60 data set were obtained during the annealing phase at 60 
-degree 
-Celsius and during the 
+\textsl{MFIaggr} analyzes the heteroskedasticity. Heteroskedasticity (“hetero” = 
+different, “skedasis” = dispersion) is present if the variance (error term) is 
+not constant. If the error terms do not have a constant variance, they are 
+homoskedastic. Analysis of the heteroskedasticity can give some insight into the 
+characteristics of a system. In the following example we compared the 
+VIMCFX96\_60 and VIMCFX96\_69 data sets. Both data set were obtained from the 
+same qPCR run in a Bio-Rad CFX96. However, data from the VIMCFX96\_60 data set 
+were obtained during the annealing phase at 60 degree Celsius and during the 
 elongation phase at $69\,^{\circ}\mathrm{C}$. The heteroskedasticity increased 
 expectedly during the amplification reaction. The variance in the 
 elongation phase (Figure~\ref{figure:MFIaggr_all}C and D) was lower than 
@@ -1361,8 +1364,8 @@ $movaww$. $movaww$ is the window size used for the moving average. The parameter
 $savgol$ for Savitzky-Golay smoothing filter can be tuned by the parameter $p$ 
 (see \textsl{sgolayfilt} (\emph{signal}) for details). The parameter $smooth$ 
 for cubic spline smooth can be tuned by the parameter $df.fact$. A $df.fact$ 
-value of 1 will leave the raw data almost unaffected while a value 0.5 will 
-smooth the curve considerably. The parameter $spline$ for standard cubic spline 
+value of 1 leaves the raw data almost unaffected while a value 0.5 smooths the 
+curve strongly. The parameter $spline$ for standard cubic spline 
 smooth has currently no additional parameter. The parameter $supsmu$ for 
 Friedman's SuperSmoother can be tuned by the parameter \textsl{span}. The 
 parameter $whit1$ (first order finite difference penalty) and $whit2$ (second 
@@ -1413,7 +1416,7 @@ the model fit on the semi logarithmic plot in log-linear phase
 further computations only on a subset of consecutive measurements for which 
 calculated efficiencies have the lowest variance. Other methods loosen the 
 assumption that background fluorescence is a constant value and instead describe 
-it as a function of the cycle number. For example the algorithm used in SoFar 
+it as a function of the cycle number. For example the algorithm used in \textbf{SoFar} 
 \citep{wilhelm_2003} fits a nonlinear saturation function to measurement points 
 before the start of the exponential growth phase. Parameters of the saturation 
 function are chosen to minimize the sum of squared residuals of the fitted 
@@ -1426,11 +1429,11 @@ noise. The taking-difference linear regression method has a premise that
 changes of fluorescence between subsequent cycles are exclusively caused by the 
 amplification of the product \citep{rao_2013}. The corrected values are 
 calculated by simply subtracting the fluorescence value in the former cycle 
-from fluorescence in the latter. Of course in this case the real fluorescence 
-value in the first cycle is unknown, so the number of cycles that can be used in 
-following computations is reduced by one. 
+from fluorescence in the latter. The real fluorescence 
+value in the first cycle is unknown. Therefore, the number of cycles used for 
+the computation is reduced by one. 
 
-The Real-Time PCR Miner algorithm is also nearly assumption-free 
+The \textbf{Real-Time PCR Miner} algorithm is also nearly assumption-free 
 \citep{zhao_2005}. The principle is that background 
 fluorescence is similar in the small groups of subsequent measurements. So the 
 first step of the algorithm is division of subsequent measurement points 
@@ -1445,12 +1448,12 @@ To find the beginning of the lag phase and end of plateau phase is important for
 the goodness-of-fit for both exponential-phase-only and S-shaped models. There 
 are two strategies. The first narrows the area of the search to the neighborhood 
 of their theoretical values determined by a fitted model of the amplification 
-reaction. To this group belongs SoFar \citep{wilhelm_2003}. The algorithm looks 
+reaction. To this group belongs \textbf{SoFar} \citep{wilhelm_2003}. The algorithm looks 
 for the start and the end of the exponential phase near the second derivatives 
 of the function representing the relation between logarithm of the fluorescence 
 and the cycle number. The available correction guarantees that the start of 
 amplification has higher value than background noise. The very similar procedure 
-is implemented in Real-Time PCR Miner \citep{zhao_2005}, where background noise 
+is implemented in \textbf{Real-Time PCR Miner} \citep{zhao_2005}, where background noise 
 is also used as parameter in implemented models to calculate theoretical the 
 start of the amplification process. The end of amplification process is detected 
 by calculating the third derivative of implemented S-shaped model. The second 
@@ -1458,11 +1461,11 @@ approach does not require theoretical values. A very intuitive solution,
 designated take-off point, by Tichopad et al. (2003) \citep{tichopad_2003} 
 describes the lag phase using a linear function. Random deviations are taken 
 into account as standardized residuals. The method starts with a fitting of a 
-linear function to first three measurement points. If none of residuals is 
-considered an outlier with a statistical test, the algorithm fits a new linear 
+linear function to first three measurement points. If none of the residuals is 
+statistically identified as outlier, the algorithm fits a new linear 
 model to the first four measurement points and so on. The procedure stops when 
 two last points are designated as outliers. The first of aforementioned outliers 
-is considered the end of lag phase. It is worth noting that this algorithm is 
+defines the end of lag phase. It is worth noting that this algorithm is 
 versatile enough to also detect the beginning of the plateau phase.
 
 The algorithm of \textsl{bg}.\textsl{max} is based on the assumption that the 
@@ -1532,9 +1535,9 @@ We used to the \textsl{bg}.\textsl{max} algorithm to analyze amplification curve
 data from a capillary convective PCR (capillaryPCR $\emph{chipPCR}$ data set). 
 The data were used as raw data (Figure~\ref{figure:bgmax_ccPCR}~A) and 
 pre-processed data (Figure~\ref{figure:bgmax_ccPCR}~B) using the \textsl{CPP} 
-function. For both cases it was possible to receive results, which can be used 
-for further processing. We observed no significant difference between the raw 
-and pre-processed data.
+function. For both cases it was possible to receive results for further 
+processing. We observed no significant difference between the raw and 
+pre-processed data.
 
 Warnings in code chunk below were suppressed.
 <<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide',warning=FALSE,fig.width = 11, fig.height = 11>>=
@@ -1595,8 +1598,8 @@ if the data from an experiment have considerable variation regarding the
 background and plateau signal. Therefore, normalization of amplification curve 
 data is a common task during the data analysis. To scale the fluorescence 
 between 0 and 1 a \emph{Min-Max normalization} (Equation~\ref{eq:normalization}) 
-can be used \citep{roediger_RJ_2013}. We propose an alternative normalization 
-based on quantiles (Equation~\ref{eq:quantile_normalization}). Quantiles are 
+is recommended \citep{roediger_RJ_2013}. We propose a quantile based normalization 
+as alternative (Equation~\ref{eq:quantile_normalization}). Quantiles are 
 less affected by outliers. The method can be invoked by the parameter $norm = 
 "luqn"$. Although this does not scale all values between zero and one we found 
 it to be useful for noisy data. The parameter $qnL$ is symmetrically used to set 
@@ -1688,8 +1691,8 @@ The slope in a curve can be corrected by a linear regression. \textsl{CPP} and \
 offers four linear regression models to calculate the slope based on the 
 background range. This includes a ordinary least squares method (\textsl{lm}, 
 \emph{stats}) but also three robust methods. The robust regression methods are 
-considered to be less vulnerable to outliers. This feature is especially useful, 
-when the background range contains considerable noise. The methods are (I) a 
+less vulnerable to outliers. This feature is especially useful, 
+when the background range contains noise. The methods are (I) a 
 nonparametric rank-based estimator \citep{Kloke_2012}, (II) quantile regression 
 \citep{Koenker_2008} and (III) a MM-type estimators for linear regression 
 \citep{Todorov_2009}. By default, the MM-type estimator is used. In all cases 
@@ -1708,13 +1711,13 @@ extrapolation it is possible to apply a correction of the slope.
 \textsl{lm.coefs} is a wrapper around functions performing normal (linear least 
 squares) and robust linear regression. If the robust linear regression is 
 impossible, performs \textsl{lm.coefs} a linear regression using the least 
-squares method. This function can be used to calculate the background of an 
+squares method. This function calculates the estimated background of an 
 amplification curve. The coefficients of the analysis can be used for a 
-trend-based correction of the entire data set. Thereby either a robust linear 
-regression by computing MM-type regression estimators, a nonparametric 
-rank-based estimator or a standard linear regression model. Care is needed when 
-using trans with time series (see \textsl{lm} from the $\emph{stats}$ package 
-for details).
+trend-based correction of the entire data set (Figure~\ref{figure:lmcoef}). 
+Thereby either a robust linear regression by computing MM-type regression 
+estimators, a nonparametric rank-based estimator or a standard linear regression 
+model. Care is needed when using trans with time series (see \textsl{lm} from 
+the $\emph{stats}$ package for details).
 
 <<lmcoef,fig.show='hold',fig.cap=fig17_cap,fig.scap=fig17_scap>>=
 par(bty = "n")
@@ -1745,7 +1748,7 @@ number and fluorescence level. Hence, we integrated the \textsl{inder} function.
 derivatives by a five-point stencil, a commonly used finite difference method. 
 These methods approximate derivative in a given point by adding up products of 
 nearby values of function and their weights~\citep{Dahlquist_2008}. This function 
-can be used to estimate the approximate cycle of quantification (Cq). 
+can estimate the approximate cycle of quantification (Cq). 
 Differentiation is a method for background suppression and reduction of the 
 inter sample background amplitude variations 
 (Figure~\ref{figure:inder_fit}~A~and~B). Smoothing may enhance the calculation 
@@ -1957,7 +1960,7 @@ derivative of a quadratic function at the approximate $SDM$.
 5-parameter curve fit function}
 
 In the previous example we used smoothing and the \textsl{inder} method to 
-calculate the $SDM$. But, smoothing may alter peak signal considerably. For 
+calculate the $SDM$. But, smoothing will alter peak signal. For 
 example, peak height reduction and peak width increase are 
 a common problem. An alternative technique to determine the $FDM$ or $SDM$ is 
 by fitting the raw data. In the next example we used the \textsl{drm} 
@@ -2022,23 +2025,22 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 
 \section{Threshold cycle method}
 
-The \textsl{th}.\textsl{cyc} function can be used to calculate the 
-quantification cycle. In contrast to the $FDM$ and $SDM$ methods requires this 
-method a proper baselining \citep{ruijter_2009, ruijter_2013, 
-tellinghuisen_2014}. In qPCR analysis are other approaches the method of choice. 
-This function was implemented primarily for the analysis of amplification from 
-qIA but also usable for qPCR if used cautiously. We implement a symmetric 
-approximation algorithm based on linear and quadratic least squares regression. 
-The Threshold Cycle (Ct) (Cq according to MIQE, see \citep{bustin_miqe_2009}) is 
-the cycle number at which the fluorescence exceeds significantly a point above 
-the baseline and defined threshold in a particular samples. Thus the Ct is the 
-cycle when sufficient numbers of amplicons have accumulated. The 
-\textsl{th}.\textsl{cyc} calculates the intersection of the user defined Ct 
-value (r) and a linear regression or quadratic polynomial in the range of the 
-user defined Ct value. Therefore, 
-\textsl{th}.\textsl{cyc} has no requirement to fit a "complex" non linear model 
-to the entire data set but rather focuses on the specific area. The polynomial 
-is calculated from four neighbor values at the fluorescence threshold.
+The \textsl{th}.\textsl{cyc} function calculates the quantification cycle (cycle 
+time). This method requires a proper baselining. Note: In qPCR analysis exist 
+more sophisticated methods \citep{ruijter_2009, ruijter_2013, 
+tellinghuisen_2014}. This function was implemented primarily for the analysis of 
+amplification from qIA but also usable for qPCR if used cautiously. We implement 
+a symmetric approximation algorithm based on linear and quadratic least squares 
+regression. The Threshold Cycle (Ct) (Cq according to MIQE, see 
+\citep{bustin_miqe_2009}) is the cycle number at which the fluorescence exceeds 
+significantly a point above the baseline and defined threshold in a particular 
+samples. Thus the Ct is the cycle when sufficient numbers of amplicons have 
+accumulated. The \textsl{th}.\textsl{cyc} calculates the intersection of the 
+user defined Ct value (r) and a linear regression or quadratic polynomial in the 
+range of the user defined Ct value. Therefore, \textsl{th}.\textsl{cyc} has no 
+requirement to fit a "complex" non linear model to the entire data set but 
+rather focuses on the specific area. The polynomial is calculated from four 
+neighbor values at the fluorescence threshold.
 
 Warnings in following code chunks were suppressed.
 <<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap,fig.scap=fig2_scap>>=
@@ -2223,11 +2225,11 @@ amplification efficiency (AE) can be estimated from individual samples or a set
 of samples to compensate the presence of inhibitors and noise. Indirect methods 
 use fitted mathematical models or estimate the AE from absolute fluorescence 
 values \citep{liu_2002, tichopad_2003, alvarez_2007, smith_2007, batsch_2008, 
-mallona_2011}. The \emph{qpcR} has many functions, which can be used 
-for the indirect estimation of the AE. However, most commonly used is the 
-''direct method'' \citep{liu_2002, stahlberg_2003}. Herein, the AE is estimated 
-from dilution series of a template. The AE of a qPCR reaction is calculated from 
-the slope of the standard curve (Equation~\ref{eq:AE}).
+mallona_2011}. The \emph{qpcR} has many functions for indirect estimation of the 
+AE. However, most commonly used is the ''direct method'' \citep{liu_2002, 
+stahlberg_2003}. Herein, the AE is estimated from dilution series of a template. 
+The AE of a qPCR reaction is calculated from the slope of the standard curve 
+(Equation~\ref{eq:AE}).
 
 \begin{equation} \label{eq:AE}
 AE = \frac{10^{(-1/m)}}{2} * 100
