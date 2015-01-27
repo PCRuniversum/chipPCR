@@ -345,7 +345,7 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   
   error.plot.text <- paste0("ROI samples: ", format(ncol.y, nsmall = 3), "\n",
                        "ROI mean: ", format(stats[1], nsmall = 3), " \u00b1 ", 
-                       format(stats[4], nsmall = 2), "\n",
+                       format(stats[3], nsmall = 2), "\n",
                        "ROI median: ", format(stats[2], nsmall = 3), " \u00b1 ", 
                        format(stats[4], nsmall = 2))
   
@@ -418,14 +418,14 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
   #Plot the Coefficient of Variance
   layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
   
-  error.plot.text <- paste0("ROI samples: ", format(ncol.y[[1]], nsmall = 3), "; ",
+  error.plot.text <- paste0("samples: ", format(ncol.y[[1]], nsmall = 3), "; ",
                             format(ncol.y[[2]], nsmall = 3), "\n",
-                            "ROI mean: ", format(stats[[1]][1], nsmall = 3), " \u00b1 ", 
-                            format(stats[[1]][4], nsmall = 2), "; ",
+                            "mean:\n A ", format(stats[[1]][1], nsmall = 3), " \u00b1 ", 
+                            format(stats[[1]][3], nsmall = 2), "; B ",
                             format(stats[[2]][1], nsmall = 3), " \u00b1 ", 
-                            format(stats[[2]][4], nsmall = 2), "\n",
-                            "ROI median: ", format(stats[[1]][2], nsmall = 3), " \u00b1 ", 
-                            format(stats[[1]][4], nsmall = 2), "; ",
+                            format(stats[[2]][3], nsmall = 2), "\n",
+                            "median:\n A ", format(stats[[1]][2], nsmall = 3), " \u00b1 ", 
+                            format(stats[[1]][4], nsmall = 2), "; B ",
                             format(stats[[2]][2], nsmall = 3), " \u00b1 ", 
                             format(stats[[2]][4], nsmall = 2))
   
@@ -471,10 +471,10 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
     mtext(paste0("Deviation: ", deviation.measure), 4, cex = 0.75)
   }
   
+  legend("topleft", c("A", "B"), pch = c(19,19), col = c(col, adjustcolor(col, alpha.f = 0.25)))
   # Add a range for the ROI
   abline(v = llul[[1]], col = "lightgrey", lwd = 1.25)
   abline(v = llul[[2]], col = "lightgrey", lwd = 1.25, lty = 6)
-  
   mtext(error.plot.text, side = 1, line = 4.8, cex = 0.75)
   mtext("Cycle", side = 1, line = 2, cex = 0.8)
   
@@ -497,9 +497,9 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
          pch = pch, ylab = "Sample Quantiles")
   points(qqnorm2[["x"]], qqnorm2[["y"]], col = adjustcolor(col, alpha.f = 0.25),
          pch = pch)
-  mtext("Theoretical Quantiles", side = 1, line = 2, cex = 0.8)
-  mtext(paste0("\nBreusch-Pagan Test p-value: ", 
-               format(stats[[1]]["heter.p"], digits = 4), "; ",
+  mtext("Theoretical Quantiles", side = 1.5, line = 2, cex = 0.75)
+  mtext(paste0("\nBreusch-Pagan Test p-value: A ", 
+               format(stats[[1]]["heter.p"], digits = 4), "; B ",
                format(stats[[2]]["heter.p"], digits = 4)),
         side = 1, line = 3, cex = 0.75)
   qqline(x, col = col)
