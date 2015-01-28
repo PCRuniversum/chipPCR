@@ -471,12 +471,17 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
     mtext(paste0("Deviation: ", deviation.measure), 4, cex = 0.75)
   }
   
-  legend("topleft", c("A", "B"), pch = c(19,19), col = c(col, adjustcolor(col, alpha.f = 0.25)))
+  
   # Add a range for the ROI
   abline(v = llul[[1]], col = "lightgrey", lwd = 1.25)
   abline(v = llul[[2]], col = "lightgrey", lwd = 1.25, lty = 6)
   mtext(error.plot.text, side = 1, line = 4.8, cex = 0.75)
   mtext("Cycle", side = 1, line = 2, cex = 0.8)
+  
+  #add legend
+  legend("topleft", c("A", "B"), pch = c(pch, pch), lty = c(1, 1), 
+         col = c(col, adjustcolor(col, alpha.f = 0.25)),
+         bg = "white")
   
   par(mar=c(4.1, 4.1, 4.1, 2.1))
   
