@@ -418,16 +418,17 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
   #Plot the Coefficient of Variance
   layout(matrix(c(1,2,1,3), 2, 2, byrow = TRUE))
   
-  error.plot.text <- paste0("samples: ", format(ncol.y[[1]], nsmall = 3), "; ",
-                            format(ncol.y[[2]], nsmall = 3), "\n",
-                            "mean:\n A ", format(stats[[1]][1], nsmall = 3), " \u00b1 ", 
-                            format(stats[[1]][3], nsmall = 2), "; B ",
-                            format(stats[[2]][1], nsmall = 3), " \u00b1 ", 
-                            format(stats[[2]][3], nsmall = 2), "\n",
-                            "median:\n A ", format(stats[[1]][2], nsmall = 3), " \u00b1 ", 
-                            format(stats[[1]][4], nsmall = 2), "; B ",
-                            format(stats[[2]][2], nsmall = 3), " \u00b1 ", 
-                            format(stats[[2]][4], nsmall = 2))
+  error.plot.text <- paste0(
+    #"samples: ", format(ncol.y[[1]], nsmall = 3), "; ",
+    #format(ncol.y[[2]], nsmall = 3), "\n",
+    "mean:\n A ", format(stats[[1]][1], nsmall = 3), " \u00b1 ", 
+    format(stats[[1]][3], nsmall = 2), "; B ",
+    format(stats[[2]][1], nsmall = 3), " \u00b1 ", 
+    format(stats[[2]][3], nsmall = 2), "\n",
+    "median:\n A ", format(stats[[1]][2], nsmall = 3), " \u00b1 ", 
+    format(stats[[1]][4], nsmall = 2), "; B ",
+    format(stats[[2]][2], nsmall = 3), " \u00b1 ", 
+    format(stats[[2]][4], nsmall = 2))
   
   density.plot.text <- paste("ROI cycle ", 
                              llul[[1]][1], " to ", llul[[1]][2], "; ",
@@ -475,7 +476,7 @@ setMethod("plot", signature(x = "refMFI", y = "refMFI"), function(x, y, CV = FAL
   # Add a range for the ROI
   abline(v = llul[[1]], col = "lightgrey", lwd = 1.25)
   abline(v = llul[[2]], col = "lightgrey", lwd = 1.25, lty = 6)
-  mtext(error.plot.text, side = 1, line = 4.8, cex = 0.75)
+  mtext(error.plot.text, side = 1, line = 5.5, cex = 0.75)
   mtext("Cycle", side = 1, line = 2, cex = 0.8)
   
   #add legend
