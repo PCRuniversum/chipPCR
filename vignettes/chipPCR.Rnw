@@ -616,7 +616,7 @@ reaction,
 (e.g., moving average, Savitzky-Golay smoothing).
 \end{itemize}
 
-In addition, further the (auxiliary) functions:
+Additionally, further the (auxiliary) functions:
 
 \begin{itemize}
 \item \textsl{amptester}: to detect the start and end of an amplification curve, 
@@ -665,11 +665,11 @@ Details on \emph{shiny} are described in Section~\ref{sec:work_environment}.
 (Figure~\ref{figure:smoothing_intro}) function.
 
 A GUI for the simulation and analysis of amplification reactions is shown below. 
-This approach is usable to run a GUI on a local machine without the requirement 
-to connect to the Internet. Prerequisites are a local installation of 
+It is possible to run a GUI in web browser on a local machine without the Internet connection. 
+Prerequisites are a local installation of 
 \textbf{R}, with installed $\emph{shiny}$ and $\emph{chipPCR}$ packages and a 
-modern web browser. Note: Ad-blocking software may cause malfunctions. The GUI 
-is invoked by pasting the following code snippet into a \textbf{R} console.
+modern web browser. Ad-blocking software may cause malfunctions and should be turned off. 
+The GUI is invoked by pasting the following code snippet into a \textbf{R} console.
 
 <<AmpSim_GUI,eval = FALSE>>=
 # Load the shiny package (chipPCR should already be loaded).
@@ -685,7 +685,7 @@ runGist('https://gist.github.com/michbur/e1def41598f1d0c1e2e6')
 
 The function opens a $\emph{chipPCR}$ webpage in the default web browser 
 (Figure~\ref{figure:browser}) with all parameters of the \textsl{AmpSim} 
-function. In addition, shows the GUI some information calculated by the 
+function. In addition to this, shows the GUI some information calculated by the 
 \textsl{bg}.\textsl{max} in a summary field and a plot below the simulated 
 amplification curve.
 
@@ -813,8 +813,9 @@ of independent reaction vessels or the analysis of replicate experiments.
 
 The basic idea is to analyze only a region of interest 
 (ROI) from a dataset. \textsl{MFIaggr} is a relative of the \textsl{MFIerror} 
-function from the \emph{MBmca} \citep{roediger_RJ_2013} package. However, this functions enables a fine 
-grained analysis of specific parts of the curve data. The function returns an 
+function from the \emph{MBmca} \citep{roediger_RJ_2013} package. However, this function 
+enables a fine 
+grained analysis of specific parts of the curve data. \textsl{MFIaggr} returns an 
 object of the class list with the columns ``Cycle'', ``Location'' (Mean, 
 Median), ``Deviation'' (Standard Deviation, Median Absolute Deviation) and 
 ``Coefficient of Variation''. Using the option $rob = TRUE$ the median and the 
@@ -920,7 +921,7 @@ elongation phase at $69\,^{\circ}\mathrm{C}$. The heteroskedasticity increased
 expectedly during the amplification reaction. The variance in the 
 elongation phase (Figure~\ref{figure:MFIaggr_all}C and D) was lower than 
 in the annealing phase (Figure~\ref{figure:MFIaggr_all}A and B). The 
-heteroskedasticity was significant in during the 
+heteroskedasticity was significant during the 
 (Figure~\ref{figure:MFIaggr_all}A) first 15 cycles at $60\,^{\circ}\mathrm{C}$.
 
 <<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig15_cap,fig.scap=fig15_scap>>=
@@ -963,7 +964,7 @@ mtext("D", cex = 2, side = 3, adj = 0)
 
 \textsl{plotCurves} visualizes many curves on one plot in separate cells
 allowing quick experiment assessment (Figure~\ref{figure:plotCurves}). In 
-addition, \textsl{plotCurves} has an option to run an unsupervised 
+addition to this, \textsl{plotCurves} has an option to run an unsupervised 
 \textsl{CPP} pre-processing step on the raw data. This smooths the 
 data (Savitzky-Golay smoothing), removes missing values (spline 
 interpolation by default) and performs a background subtraction (base-lining 
@@ -1018,7 +1019,7 @@ linear trend over the entire dataset. However, this step has to be performed
 with caution since this operation effects the amplification efficiency. The 
 background is assumed to be constant for the entire measurement. Care is also 
 needed when using $trans$ with time series (see \textsl{lm} from the 
-$\emph{stats}$ package for details). In addition, all data are normalized between 
+$\emph{stats}$ package for details). Additionally, all data are normalized between 
 there minimum and maximum. This is taken care of by the \textsl{normalizer} 
 function. Smoothing of the data is finally done based on an 
 instance of the \textsl{smoother} function. By default, a Savitsky-Golay filter 
@@ -1614,7 +1615,7 @@ affected by outliers. The method can be invoked by the parameter $norm =
 "luqn"$. Although this does not scale all values between zero and one we found 
 it to be useful for noisy data. The parameter $qnL$ is symmetrically used to set 
 the level for the quantiles. By default, the 3~\% and 97~\% quantiles are used 
-for the normalization. In addition, a normalization to maximum 
+for the normalization. In addition to this, a normalization to maximum 
 (Equation~\ref{eq:max_normalization}, 
 Figure~\ref{figure:normalization}~\emph{D}) and by standard score 
 (Equation~\ref{eq:zscore_normalization}, 
