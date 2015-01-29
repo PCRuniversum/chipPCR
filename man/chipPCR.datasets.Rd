@@ -109,7 +109,7 @@ Highly replicate number amplification curves with an approximate
 amplification efficiency of 100 percent at cycle number 18. The data were 
 derived from a simulation such as the AmpSim function.
 
-\strong{Isothermal Amplifcation - Helicase Dependent Amplification}
+\strong{Isothermal Amplification - Helicase Dependent Amplification}
 
 \code{\link[chipPCR]{C67}}:
 A Helicase Dependent Amplification (HDA) of HPRT1 (Homo sapiens 
