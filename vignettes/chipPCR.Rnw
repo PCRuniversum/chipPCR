@@ -27,7 +27,7 @@
 \par} \makeatother
 
 \title{Supplement to: ``chipPCR: an R Package to Pre-Process Amplification Curve Data''}
-\author{Stefan R\"{o}diger* and Micha\l{} Burdukiewicz and Peter Schierack}
+\author{Stefan R\"{o}diger*, Micha\l{} Burdukiewicz and Peter Schierack}
 \date{}
 
 \begin{document}
@@ -1385,6 +1385,7 @@ filter, derived from the \emph{ptw} package, can be tuned by the parameter
 $lambda$. For further details on the smoothers refer to the documentation of the 
 parent functions.
 }
+\begin{center}
 \begin{tabular}{lccc}
   \hline
   Method & Parameter & value & Parent\\ \hline
@@ -1403,7 +1404,9 @@ parent functions.
   All smoother & $all$ & defaults &
   \\ \hline
 \end{tabular}
+\end{center}
 \end{table*}
+
 
 \section{\textsl{bg}.\textsl{max} - a function to estimate the start and end of an amplification reaction}
 \label{sec:bgmax}
@@ -2121,7 +2124,7 @@ legend("topleft", c("Run 1", "Run 2", "Run 3", "Control"),
 Dependent Amplification}
 \label{sec:HDA}
 
-In this example for time-dependent reactions we analyzed a helicase dependent 
+In this example for time-dependent reactions we examined a helicase dependent 
 amplification (HDA). The target was human Vimentin (Vim). The VideoScan Platform 
 \citep{roediger_highly_2013} was used to monitor the amplification. The HDA was 
 performed at $65\,^{\circ}\mathrm{C}$ \citep{spiess_impact_2014}. Three 
@@ -2305,7 +2308,7 @@ circa 87.3~\% for the gene \textit{MLC-2v} in the VideoScan HCU
 tested in this experiment it just save to say that the hardware of the HCU works 
 reliably.
 
-<<CPP_C54,fig.show='hold',fig.cap=fig7_cap,fig.scap=fig7_scap>>=
+<<CPP_C54,fig.show='hold',fig.cap=fig7_cap,fig.scap=fig7_scap,message=FALSE>>=
 require(MBmca)
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
 par(fig = c(0,0.5,0,1), new = TRUE)
@@ -2337,7 +2340,7 @@ Cq.D3 <- diffQ2(D3, inder = TRUE)[["xTm1.2.D2"]][1]
 
 res.dil <- data.frame(dilution, rbind(Cq.D1, Cq.D2, Cq.D3))
 par(fig = c(0.5,1,0,0.5), new = TRUE)
-plot(effcalc(res.dil[, 1], res.dil[, 2]))
+plot(effcalc(res.dil[, 1], res.dil[, 2]), res.fit = NULL)
 @
 
 

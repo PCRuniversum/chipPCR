@@ -549,7 +549,7 @@ setMethod("summary", signature(object = "eff"), function(object) {
 setMethod("plot", signature(x = "eff"), function(x, xlab = "log10(Concentration)", 
                                                  ylab = "Cq", 
                                                  main = "Efficiency Plot", 
-                                                 trend = TRUE, res.fit = TRUE, CI = FALSE, 
+                                                 trend = TRUE, res.fit = "topright", CI = FALSE, 
                                                  level = 0.95, type = "p", 
                                                  pch = 19, er.length = 0.05, 
                                                  col = "black") {
@@ -583,15 +583,6 @@ setMethod("plot", signature(x = "eff"), function(x, xlab = "log10(Concentration)
   # Calculate goodness of fit
   Rsquared <- round(summary(lm.res)[["r.squared"]], 3)
   
-  
-  # Add "legend" with amplification efficiency, goodness of fit to plot
-  # ToDo: expression(italic(R)^2 == Rsquared) for ... "R^2 = ", Rsquared ...?
-  if (res.fit) {
-    main <- paste0("Efficiency = ", AE, " %", "\n",
-                   "R^2 = ", Rsquared, "\n",
-                   "r = ", round(cortest$estimate, 3), sign.out, "\n"
-    )
-  }
   # Plot the Coefficient of Variance
   plot(res[, 1], res[, 2], ylim = c(min(res[, 2] - res[, 3]), 
                                     max(res[, 2] + res[, 3])), xlab = xlab, 
@@ -622,6 +613,14 @@ setMethod("plot", signature(x = "eff"), function(x, xlab = "log10(Concentration)
   if (trend) {
     abline(lm.res)
   }
+  
+  # Add "legend" with amplification efficiency, goodness of fit to plot
+  # ToDo: expression(italic(R)^2 == Rsquared) for ... "R^2 = ", Rsquared ...?
+  if (!is.null(res.fit))
+    legend(res.fit, paste0("Efficiency = ", AE, " %", "\n",
+                              "R^2 = ", Rsquared, "\n",
+                              "r = ", round(cortest[["estimate"]], 3), sign.out, "\n"),
+           bty = "n")
   
   #   # Restore default graphic parameters
   #   par(default.par)
