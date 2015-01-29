@@ -53,6 +53,7 @@ fig1_cap <- "The amplification curves were generated with the
 \\textsl{AmpSim} function. All Cqs are unique due to the use of random 
 value, which were added to the starting Cq of 25. The parameter $noise = 
 0.03$ adds some scatter to the amplification curve data."
+
 fig1_scap <- "Simulation of a qPCR experiment using \\textsl{AmpSim} 
 function."
 
@@ -63,6 +64,7 @@ regression. \\textbf{B)} Quadratic regression) for the calculation of the
 Cq. In both cases the highest R squared value determines how many left 
 and right neighbors above and the below the defined threshold level 
 are used."
+
 fig2_scap <- "Working principle of \\textsl{th}.\\textsl{cyc}."
 
 fig3_cap <- "Application of \\textsl{th}.\\textsl{cyc} for the analysis of 
@@ -78,7 +80,7 @@ of ccPCR data."
 
 fig4_cap <- "Application of the \\textsl{CPP} and 
 \\textsl{th}.\\textsl{cyc} functions.
-\\textbf{A)} The raw data of the VIMCFX96\\_60 data set were 
+\\textbf{A)} The raw data of the VIMCFX96\\_60 dataset were 
 plotted without pre-processing. \\textbf{B)} All amplification curve data 
 were pre-processed with the CPP function. The parameter $trans$ was set to 
 $TRUE$, which lead to a linear trend correction and base-lining. By 
@@ -93,7 +95,7 @@ fig4_scap <- "Application of the \\textsl{CPP} and
 
 
 fig5_cap <- "Comparison of the normalization functions from \\textsl{CPP}.
-The VIMCFX96\\_60 data set (96-well plate cycler, Bio-Rad 
+The VIMCFX96\\_60 dataset (96-well plate cycler, Bio-Rad 
 CFX96, EvaGreen detection) was used. \\emph{(A)} Raw data of all 
 amplification curves. The signals are superimposed to circa 2200 RFU and 
 the inter-sample baseline and plateau shift is high. Note the positive 
@@ -119,7 +121,7 @@ fig6_scap <- "Amplification standard curve simulation and regression
 analysis."
 
 fig7_cap <- "Calculation of the amplification efficiency.
-Data of a VideoScan HCU dilution experiment (C54 data set) 
+Data of a VideoScan HCU dilution experiment (C54 dataset) 
 were analyzed. \\emph{(A)} Visualization of the raw data. One of the three 
 dilutions contains a missing value due to a sensor error. \\emph{(B, top 
 panel)} The CPP function was used to baseline, to remove the missing value 
@@ -175,7 +177,7 @@ Derivative Maximum) values with the \\textsl{diffQ2} function."
 fig11_cap <- "Amplification curve profiles from the Bio-Rad iQ5 thermo 
 cycler 
 for the human gene \\textit{HPRT1}.
-\\emph{(A)} The \\textsl{C126EG595} data set was used with 
+\\emph{(A)} The \\textsl{C126EG595} dataset was used with 
 96 replicates of equal starting numbers of template molecules. Vertical 
 lines represent the Cq ($SDM$ method) determined with inder method on 
 amplification curves fitted with a 5-parameter curve function. Curves with 
@@ -189,13 +191,13 @@ fig11_scap <- "Amplification curve profiles from the Bio-Rad iQ5 thermo
 cycler 
 for the human gene \\textit{HPRT1}."
 
-fig12_cap <- "Signal analysis using the VIMCFX96\\_60 data set (96-well 
+fig12_cap <- "Signal analysis using the VIMCFX96\\_60 dataset (96-well 
 plate cycler (Bio-Rad CFX96)). All cycles (ROI: 1 -- 40) were analyzed by 
 the \\textsl{MFIaggr} function. The density plot (right upper panel) and 
 quantile-quantile analysis (right lower panel) show no normal 
 distribution. Due to the sigmoidal curve structure is the density function 
 bimodal."
-fig12_scap <- "Signal analysis using the VIMCFX96\\_60 data set (96-well 
+fig12_scap <- "Signal analysis using the VIMCFX96\\_60 dataset (96-well 
 plate cycler (Bio-Rad CFX96))."
 
 fig13_cap <- "Helicase dependent amplification (HDA) of Vimentin (Vim) in the 
@@ -224,7 +226,7 @@ variance. The plot shows the cycle dependent variance measured at 60 degree
 Celsius (annealing phase; A, B) and 69 degree Celsius (elongation phase, C, D)of 
 96 qPCR replicate amplification curves. First cycles 1 to 10 and next the cycles 
 1 to 40 were analyzed. The Breusch-Pagan confirmed the heteroskedasticity in the 
-amplification curve data. The VIMCFX96\\_60 and VIMCFX96\\_69 data sets were 
+amplification curve data. The VIMCFX96\\_60 and VIMCFX96\\_69 datasets were 
 used."
 
 fig15_scap <- "Use of \\textsl{MFIaggr} to test for heteroskedasticity using the 
@@ -270,12 +272,12 @@ between raw data and pre-processed data."
 fig19_scap <- "Application of the \\textsl{bg}.\\textsl{max} function to detect 
 the start and end of an amplification reaction in a capillary convective PCR."
 
-fig20_cap <- "Inspection of the reps384 data set. The reps384 data set was used 
+fig20_cap <- "Inspection of the reps384 dataset. The reps384 dataset was used 
 for the analysis of the impact of imputed missing values. Three areas of the 
 curve data were defined as ``Linear phase'' (red, cycle 1 -- 10), ``Exponential 
 phase'' (blue, cycle 11 -- 33), ``Plateau phase'' (green, cycle 34 -- 40)."
 
-fig20_scap <- "Inspection of the reps384 data set."
+fig20_scap <- "Inspection of the reps384 dataset."
 
 fig21_cap <- "Analysis and interpretation of real-time amplification curves. \\emph{(A)} The 
 fluorescence values are plotted against the cycle. The amplification curve 
@@ -315,7 +317,7 @@ the amplification curve. Optimized time series smoother, like the Kalman filter
 fig22_scap <- "Smoother and filter methods of the \\emph{chipPCR} package."
 
 fig23_cap <- "Sample code for the analysis with the \\textsl{MFIaggr} function. 
-The VIMCFX96\\_60 data set (96-well plate cycler (Bio--Rad CFX96)) was used. 
+The VIMCFX96\\_60 dataset (96-well plate cycler (Bio--Rad CFX96)) was used. 
 Either all or a subset of the cycles (ROI: 1 -- 10) or all cycles (ROI: 1 -- 40) 
 (Figure~\\ref{figure:MFIaggr_all}) were analyzed. The density plot (right upper 
 panel) and quantile-quantile analysis (right lower panel) show no normal 
@@ -325,7 +327,7 @@ bimodal."
 fig23_scap <- "Signal analysis by the \\textsl{MFIaggr} function."
 
 fig24_cap <- "Analysis of two PCR condition with the \\textsl{MFIaggr} function. 
-The VIMCFX96\\_60 and VIMCFX96\\_69 data set (96-well plate cycler (Bio--Rad 
+The VIMCFX96\\_60 and VIMCFX96\\_69 dataset (96-well plate cycler (Bio--Rad 
 CFX96)) were used. A subset of cycles (ROI: 2 -- 10) was analyzed for a qPCR 
 measured during the annealing phase and elongation phase. The density 
 plot (right upper panel) and quantile-quantile analysis (right lower panel) show 
@@ -337,11 +339,11 @@ fig24_scap <- "Analysis of two PCR condition with the \\textsl{MFIaggr} function
 fig25_cap <- "Calculation of the amplification efficiency from an qPCR 
 experiment. DNA of Vimentin (\\emph{A}) and MLC-2v (\\emph{B}) was diluted 
 and amplified in a Roche Light Cycler 1.5. The data were taken from the C60.amp 
-data set. Cqs ($SDM$) of were calculated by the \\textsl{inder} function and 
+dataset. Cqs ($SDM$) of were calculated by the \\textsl{inder} function and 
 analyzed with \\textsl{effcalc}. The amplification efficiency was (\\emph{C}) 
 95.1~\\% for Vimentin and  (\\emph{D}) 94.1~\\%  for MLC-2v."
 
-fig25_scap <- "Calculation of the amplification efficiency for the C60.amp data set."
+fig25_scap <- "Calculation of the amplification efficiency for the C60.amp dataset."
 
 @
 
@@ -370,18 +372,16 @@ setback especially during development of new instruments, when the precise and
 reproducible processing of raw data is indispensable.
 
 \textbf{Results and Conclusion: } %if any 
-$\emph{chipPCR}$ is a versatile \textbf{R} package for pre-processing and quality 
-analysis of amplification curve data from conventional quantitative polymerase 
-chain reactions (qPCR) and quantitative isothermal amplification (qIA) reactions. 
-This supplement gives details and examples for the $\emph{chipPCR}$ package. 
-For further function details, use cases and examples we refer the 
-reader to the $\emph{chipPCR}$ manual. The package contains data sets, which 
-were generated by helicase dependent amplification (HDA) or polymerase chain 
-reaction (PCR) under various temperature conditions and detection systems, such 
-as hydrolysis probes and intercalating dyes. Examples for their usage are 
-presented herein. Its utility is elaborated on both real and simulated data 
-sets. The structure of the packages is open for integration to Web-based and 
-standalone \emph{shiny} applications.
+$\emph{chipPCR}$ is a versatile \textbf{R} package for pre-processing and 
+quality analysis of amplification curve data from conventional quantitative 
+polymerase chain reactions (qPCR) and quantitative isothermal amplification 
+(qIA) reactions. The package contains datasets, which were generated by 
+helicase dependent amplification (HDA) or polymerase chain reaction (PCR) under 
+various temperature conditions and detection systems, such as hydrolysis probes 
+and intercalating dyes. Its utility is elaborated on both real and simulated 
+datasets. The structure of the packages is open for integration to Web-based 
+and standalone \emph{shiny} applications. This supplement gives details and 
+examples for package.
 \end{abstract}
 
 \section{Availability, requirements and setting up a working environment}
@@ -406,7 +406,7 @@ validated against this definition and have to comply to it at any time.
 \emph{S4} methods are declared by calls to \textsl{setMethod} together with the 
 names and signatures of the arguments. Signatures are used for identification of 
 classes of one or more arguments of the methods. \textsl{setGeneric} declares 
-generic functions. \emph{S4} classes require a higher effort than \emph{S3} 
+generic functions. \emph{S4} classes require a higher development effort than \emph{S3} 
 classes, but assure strictly that objects in a class have the required slots, 
 that data in the slots have consistent names and classes. Additional information 
 (e.g., results, parameters) can be included. \emph{S4} assures better control on 
@@ -416,10 +416,10 @@ $\emph{chipPCR}$ package and use partially parallel computing (\textsl{smoother}
 function) to keep the code fast.
 
 The vignette can be viewed from \textbf{R} using command: vignette("chipPCR"). 
-Details of the experimental set-up for the data sets are described in the manual 
-of the $\emph{chipPCR}$ package or in the citations.
-
-To start an analysis it is required to choose a data set (as shown below).
+Details of the experimental set-up for the datasets are described in the manual 
+of the $\emph{chipPCR}$ package and in the 
+citations.
+To start an analysis it is required to choose a dataset (as shown below).
 
 <<load_data,message=FALSE,results='asis'>>=
 # Load chipPCR 
@@ -444,7 +444,7 @@ functionality of $\emph{chipPCR}$ originates from experimental plugins for the
 The \emph{shiny} framework \citep{shiny_2014} can be used to build and deploy 
 GUIs for the desktop (web browser) or services for interactive web applications. 
 \emph{shiny} enables to build plugin-like applications with highly customizable 
-widgets (e.g., sliders, plots, reports) for a efficient extension. \emph{shiny} 
+widgets (e.g., sliders) for a efficient extension. \emph{shiny} 
 applications update live and interactively. The user interfaces can be built 
 entirely using \textbf{R} and operates in any \textbf{R} environment 
 (cross-platform). Currently, the functions \textsl{AmpSim}, \textsl{th.cyc}, 
@@ -494,7 +494,7 @@ amplification of noise \citep{larionov_2005, tuomi_2010, roediger_RJ_2013,
 ruijter_2013, tellinghuisen_2014}.
 
 \textbf{R} is widely used for the analysis of qPCR data. Most \textbf{R} 
-packages focus on the read-in and (post)-processing of data sets, which 
+packages focus on the read-in and (post)-processing of datasets, which 
 originate from commercial qPCR systems. Fundamental steps of amplification curve 
 analysis are: (1) raw data read-in, (2) amplification curve pre-processing 
 (e.g., noise reduction, outlier removal), (3) amplification curve processing 
@@ -524,9 +524,9 @@ such as hard to reproduce analysis on other platforms, difficulties during the
 adoption to changing experimental setups and limited sophisticated statistical 
 tools.
 
-<<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE,fig.width = 11, fig.height = 11>>=
-# Use AmpSim to generate an amplification curve with 40 cycles
-# and a different Cq.
+<<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE,fig.width = 11, fig.height = 9>>=
+# Use AmpSim to generate amplification curves with 40 cycles
+# and different Cq's.
 res.pos <- AmpSim(cyc = 1:40, noise = TRUE, b.eff = -12, nnl = 0.02)
 res.pos[5, 2] <- res.pos[5, 2] * 6
 
@@ -810,7 +810,7 @@ variables $x_i$, where $i \in \{1, ..., n\}$. Use cases include the comparison
 of independent reaction vessels or the analysis of replicate experiments.
 
 The basic idea is to analyze only a region of interest 
-(ROI) from a data set. \textsl{MFIaggr} is a relative of the \textsl{MFIerror} 
+(ROI) from a dataset. \textsl{MFIaggr} is a relative of the \textsl{MFIerror} 
 function from the \emph{MBmca} \citep{roediger_RJ_2013} package. However, this functions enables a fine 
 grained analysis of specific parts of the curve data. The function returns an 
 object of the class list with the columns ``Cycle'', ``Location'' (Mean, 
@@ -898,7 +898,7 @@ ROI (intercept, slope, R~squared) and the Breusch--Pagan test to test for
 heteroscedasticity in a linear regression model.
 
 In our example we analyzed the raw fluorescence from 96 replicates 
-("VIMCFX96\_60" data set) of a qPCR experiment for the human gene 
+($\emph{VIMCFX96\_60}$ dataset) of a qPCR experiment for the human gene 
 \textit{Vimentin}. The \textsl{MFIaggr} plot shows that the analysis of 
 all cycles is non-normal distributed (Figure~\ref{figure:MFIaggr_all}). 
 
@@ -912,9 +912,9 @@ different, “skedasis” = dispersion) is present if the variance (error term) 
 not constant. If the error terms do not have a constant variance, they are 
 homoskedastic. Analysis of the heteroskedasticity can give some insight into the 
 characteristics of a system. In the following example we compared the 
-VIMCFX96\_60 and VIMCFX96\_69 data sets. Both data set were obtained from the 
-same qPCR run in a Bio-Rad CFX96. However, data from the VIMCFX96\_60 data set 
-were obtained during the annealing phase at 60 degree Celsius and during the 
+$\emph{VIMCFX96\_60}$ and $\emph{VIMCFX96\_69}$ datasets. Both dataset were obtained from the 
+same qPCR run in a Bio-Rad CFX96. While the $\emph{VIMCFX96\_60}$ dataset 
+was obtained during the annealing phase at $60\,^{\circ}\mathrm{C}$ and during the 
 elongation phase at $69\,^{\circ}\mathrm{C}$. The heteroskedasticity increased 
 expectedly during the amplification reaction. The variance in the 
 elongation phase (Figure~\ref{figure:MFIaggr_all}C and D) was lower than 
@@ -990,8 +990,8 @@ $\emph{chipPCR}$ package to pre-process the data. We have chosen to state
 function names and give some information on the working principle. Details will 
 be explained in the subsequent sections to avoid confusion of the reader. Here, 
 we show the application of the \textsl{CPP} function, as a proposed workflow for 
-customized pre-processor functions. Data were taken from the VIMCFX96\_60 data 
-set. This data set was measured with a Bio-Rad CFX96 thermo-cycler with 96 
+customized pre-processor functions. Data were taken from the $\emph{VIMCFX96\_60}$ data 
+set. This dataset was measured with a Bio-Rad CFX96 thermo-cycler with 96 
 replicates (see $\emph{chipPCR}$ manual for experiential details).
 
 The \textsl{CPP} function encompasses algorithms to pre-process amplification curves. 
@@ -1013,7 +1013,7 @@ rank-based estimator or a standard linear regression model. \textsl{CPP} uses by
 default a robust linear regression (MM-type estimator) as integrated in the 
 \textsl{lm}.\textsl{coefs} function. A defined range of the 
 amplification curve (typically the background range) is used to extrapolate the 
-linear trend over the entire data set. However, this step has to be performed 
+linear trend over the entire dataset. However, this step has to be performed 
 with caution since this operation effects the amplification efficiency. The 
 background is assumed to be constant for the entire measurement. Care is also 
 needed when using $trans$ with time series (see \textsl{lm} from the 
@@ -1060,7 +1060,7 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 
 Experimental technologies may produce missing values (NA) at 
 random due to sensor drop-outs or other technical difficulties. Many analytical 
-functions stop to progress or discard entire data sets. This 
+functions stop to progress or discard entire datasets. This 
 behavior is rational for unknown data structures. However, in case of 
 amplification curve data it is justified to impute NAs because the structure 
 generally resembles an S-shaped curve. Standard approaches include substitution 
@@ -1094,10 +1094,10 @@ imputes missing values in a single column of data (linear approximation by
 default). However, the data can also be estimated from an approximation by 
 splines.
 
-The ``reps384'' data set from the $\emph{qpcR}$ package 
+The ``reps384'' dataset from the $\emph{qpcR}$ package 
 \citep{Spiess_qpcR_2014} was used to compare the influence of imputation on real-world 
 data. The experimental details were described in \citep{ruijter_2013}. The 
-``reps384'' data set consists of 379 replicate amplification curves (see 
+``reps384'' dataset consists of 379 replicate amplification curves (see 
 documentation of the $\emph{qpcR}$ package for details). Our in-silico 
 experiment was designed as followed: Either one or three missing values were 
 artificially to each amplification curve at random positions. We separated the 
@@ -1252,7 +1252,7 @@ par(mfrow = c(1,1))
 }
 \caption{Test of the \textsl{fixNA} function using the spline and linear 
 imputation for qPCR data with missing values. Missing values were artificially 
-introduced into the ``reps384'' data set from the $\emph{qpcR}$ package. We 
+introduced into the ``reps384'' dataset from the $\emph{qpcR}$ package. We 
 found no significant difference between raw data and data with imputed missing 
 values. $R^2$ and correlation coefficients of curves were close to 1 with 
 p-value $< 10^{-6}$} 
@@ -1541,7 +1541,7 @@ par(mfrow = c(1,1))
 @
 
 The \textsl{bg}.\textsl{max} algorithm was used to analyze amplification curve 
-data from a capillary convective PCR (capillaryPCR $\emph{chipPCR}$ data set). 
+data from a capillary convective PCR (capillaryPCR $\emph{chipPCR}$ dataset). 
 The data were used as raw data (Figure~\ref{figure:bgmax_ccPCR}~A) and 
 pre-processed data (Figure~\ref{figure:bgmax_ccPCR}~B) using the \textsl{CPP} 
 function. For both cases it was possible to receive results for further 
@@ -1554,7 +1554,7 @@ Warnings in code chunk below were suppressed.
 par(mfrow = c(2,1), las = 0, bty = "n")
 
 # Use of bg.max for time-dependent measurements. Amplification curves 
-# from the capillaryPCR data set were processed in a loop. The results of 
+# from the capillaryPCR dataset were processed in a loop. The results of 
 #  bg.max are added to the plot. 
 
 colors <- rainbow(8)
@@ -1601,7 +1601,7 @@ within an experiment have in most cases different minimum and maximum values.
 For the visualization of the data it is recommended to scale the data within a 
 defined range. Eventually, this helps to grasp the data faster. In particular, a 
 comparison of data from different measurements and/or scaling is easier if data 
-are normalized. \textsl{normalizer} is a function to normalize any data set. It 
+are normalized. \textsl{normalizer} is a function to normalize any dataset. It 
 is possible to chose from different methods (see Details). This is recommended 
 if the data from an experiment have considerable variation regarding the 
 background and plateau signal. Therefore, normalization of amplification curve 
@@ -1706,7 +1706,7 @@ nonparametric rank-based estimator \citep{Kloke_2012}, (II) quantile regression
 \citep{Koenker_2008} and (III) a MM-type estimators for linear regression 
 \citep{Todorov_2009}. By default, the MM-type estimator is used. In all cases 
 takes \textsl{CPP} a defined range of the amplification curve to extrapolate the 
-linear trend over the entire data set. However, this step his to be performed 
+linear trend over the entire dataset. However, this step his to be performed 
 with caution since this operation effects the amplification efficiency. The 
 background is assumed to be constant for the entire measurement.
 
@@ -1722,7 +1722,7 @@ squares) and robust linear regression. If the robust linear regression is
 impossible, performs \textsl{lm.coefs} a linear regression using the least 
 squares method. This function calculates the estimated background of an 
 amplification curve. The coefficients of the analysis can be used for a 
-trend-based correction of the entire data set (Figure~\ref{figure:lmcoef}). 
+trend-based correction of the entire dataset (Figure~\ref{figure:lmcoef}). 
 Thereby either a robust linear regression by computing MM-type regression 
 estimators, a nonparametric rank-based estimator or a standard linear regression 
 model. Care is needed when using trans with time series (see \textsl{lm} from 
@@ -2046,13 +2046,13 @@ samples. Thus the Ct is the cycle when sufficient numbers of amplicons have
 accumulated. The \textsl{th}.\textsl{cyc} calculates the intersection of the 
 user defined Ct value (r) and a linear regression or quadratic polynomial in the 
 range of the user defined Ct value. Therefore, \textsl{th}.\textsl{cyc} has no 
-requirement to fit a "complex" non linear model to the entire data set but 
+requirement to fit a "complex" non linear model to the entire dataset but 
 rather focuses on the specific area. The polynomial is calculated from four 
 neighbor values at the fluorescence threshold.
 
 Warnings in following code chunks were suppressed.
 <<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap,fig.scap=fig2_scap>>=
-# Raw data from the VIMCFX96_69 data set.
+# Raw data from the VIMCFX96_69 dataset.
 # Cycles x and Fluoresce values y
 x <- VIMCFX96_69[, 1]
 y <- VIMCFX96_69[, 2]
@@ -2095,7 +2095,7 @@ legend("topleft", paste("Cq (Ct) = ", round(res[1], 3)))
 \label{sec:ccPCR}
 
 In the following example we analyzed a continuous amplification reaction. The 
-data were taken from the \textsl{capillaryPCR} data set from the 
+data were taken from the \textsl{capillaryPCR} dataset from the 
 $\emph{chipPCR}$ package measured with capillary convective PCR (ccPCR) 
 technology. We used a modified device of the ccPCR system as described by 
 \citep{chou_rapid_2011}. For technical details see the supplement of 
@@ -2299,7 +2299,7 @@ plot(effcalc(tmp[, 1], tmp[, 2:4]), CI = TRUE)
 mtext("B", cex = 1.1, side = 3, adj = 0, font = 2) 
 @
 
-Next we analyzed the C54 data set from the $\emph{chipPCR}$ package with the \textsl{effcalc} 
+Next we analyzed the C54 dataset from the $\emph{chipPCR}$ package with the \textsl{effcalc} 
 function. Herein, a qPCR Experiment for the amplification of 
 \textit{MLC-2v} using the VideoScan heating/cooling-unit was performed. Calculation of the 
 Cq required pre-processing of the data. One amplification curve contained a missing value 
@@ -2353,7 +2353,7 @@ print(xtable(effcalc(res.dil[, 1], res.dil[, 2]),
       caption = "Output of the effcalc function.", label = "table:effcalc_output"))
 @
 
-In another example we used \textsl{effcalc} function to analyze the C60.amp data 
+In another example we used \textsl{effcalc} function to analyze the $\emph{C60.amp}$ data 
 set from the $\emph{chipPCR}$ package. All data of the human genes Vimentin 
 (Figure~\ref{figure:effcalc_VIM_MLC}~A) and \textit{MLC-2v} 
 (Figure~\ref{figure:effcalc_VIM_MLC}~B) were amplified in a Roche Light Cycler 
@@ -2399,7 +2399,7 @@ plot(effcalc(res[, 1], res[, 3]))
 mtext("D", cex = 1.2, side = 3, adj = 0, font = 2)
 @
 
-\section{Data sets}
+\section{Datasets}
 
 \begin{enumerate}
 <<summ.datasets,echo=FALSE,results='asis'>>=
@@ -2412,7 +2412,7 @@ tmp <- apply(datdf, 1, function(i) {
   if(grepl("_", safe.name, fixed = TRUE)) {
     safe.name <- sub("_", ".", i, fixed = TRUE)
   }
-  cat("\\item Data set: ", safe.name, "\n\\begin{itemize}\n\\item Data set type: ", 
+  cat("\\item Dataset: ", safe.name, "\n\\begin{itemize}\n\\item Dataset type: ", 
       i[3], "\n\\item Description: ", i[2], "\n\\item Number of variables: ", i[4], 
       "\n\\item Number of measurements: ", i[5], "\n\\end{itemize}\n")
 })
