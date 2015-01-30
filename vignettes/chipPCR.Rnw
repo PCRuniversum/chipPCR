@@ -50,8 +50,8 @@ library(knitr)
 opts_chunk$set(fig.lp="figure:",tidy=TRUE, tidy.opts=list(width.cutoff=60))
 
 fig1_cap <- "The amplification curves were generated with the 
-\\textsl{AmpSim} function. All Cqs are unique due to the use of random 
-value, which were added to the starting Cq of 25. The parameter $noise = 
+\\textsl{AmpSim} function. All Cqs are unique since random 
+value were added to the starting Cq of 25. The parameter $noise = 
 0.03$ adds some scatter to the amplification curve data."
 
 fig1_scap <- "Simulation of a qPCR experiment using \\textsl{AmpSim} 
@@ -219,13 +219,13 @@ the position of the missing values. The red lined shows the amplification
 curve after unsupervised pre-processing (using an instance of \\textsl{CPP})."
 fig14_scap <- "The \\textsl{plotCurves} function."
 
-fig15_cap <- "Use of \\textsl{MFIaggr} to test for heteroskedasticity using the 
-Breusch-Pagan test. The data were aggregated with the \\textsl{MFIaggr} function 
-and assigned to the object res. The standard deviation was transformed to the 
-variance. The plot shows the cycle dependent variance measured at 60 degree 
-Celsius (annealing phase; A, B) and 69 degree Celsius (elongation phase, C, D)of 
-96 qPCR replicate amplification curves. First cycles 1 to 10 and next the cycles 
-1 to 40 were analyzed. The Breusch-Pagan confirmed the heteroskedasticity in the 
+fig15_cap <- "\\textsl{MFIaggr} to test for heteroskedasticity. The data were 
+aggregated with the \\textsl{MFIaggr} function and assigned to the object res. 
+The standard deviation was transformed to the variance. The plot shows the cycle 
+dependent variance measured at 60 degree Celsius (annealing phase; A, B) and 69 
+degree Celsius (elongation phase, C, D)of 96 qPCR replicate amplification 
+curves. First cycles 1 to 10 and next the cycles 1 to 40 were analyzed. The 
+Breusch-Pagan of \\textsl{MFIaggr} confirmed the heteroskedasticity in the 
 amplification curve data. The VIMCFX96\\_60 and VIMCFX96\\_69 datasets were 
 used."
 
@@ -237,7 +237,7 @@ data, which results in data points not observable in reality. The rounder
 function averages such result to the real values of cycle number. An 
 amplification curve was simulated with the \\textsl{AmpSim} function."
 
-fig16_scap <- "Use of rounder to average numeric derivatives to the real 
+fig16_scap <- "Application of rounder to average numeric derivatives to the real 
 values of cycle number."
 
 fig17_cap <- "\\textsl{lm.coefs} a function to compute linear model 
@@ -625,16 +625,16 @@ Additionally, further the (auxiliary) functions:
 \item \textsl{lm.coefs}: to compute linear model coefficients, 
 \item \textsl{normalizer}: to normalize data between a user defined range, 
 \item \textsl{plotCurves}: to plots many curves on one plot in separate cells allowing quick assessment, 
-\item \textsl{th.cyc}): to calculate the number of cycles at which the fluorescence exceeds a defined threshold, called the threshold cycle (Cq),
+\item \textsl{th.cyc}: to calculate the number of cycles at which the fluorescence exceeds a defined threshold, called the threshold cycle (Cq),
 \end{itemize}
 
-are available. These functions are typically used for post-processing (e.g., Cq calculation, amplification 
-efficiency calculation) and quality analysis are available from the 
-$\emph{chipPCR}$ package. For more information please refer to the following 
-sections. Selected functionality is used in the \emph{RDML} 
-\citep{blagodatskikh_2014} package. Most of the functions are element of other 
-functions in this package. For example, \textsl{fixNA} is embedded in most 
-functions to prevent potential problem during processing due to missing values.
+are available. These are used for post-processing (e.g., Cq calculation, 
+amplification efficiency calculation) and quality analysis. For more information 
+please refer to the following sections. Selected functionality is used in the 
+\emph{RDML} \citep{blagodatskikh_2014} package. Most of the functions are 
+central elements of other $\emph{chipPCR}$ functions. For example, 
+\textsl{fixNA} is embedded in most functions to prevent errors due to missing 
+values.
 
 \section{\textsl{AmpSim} - a function to simulate amplification curves}
 \label{sec:AmpSim}
@@ -649,20 +649,16 @@ simulation of amplification curves \citep{ritz_2008, spiess_2008, gerhard_2014}.
 fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
 \end{equation}
 
-It is an intrinsic property of \textsl{AmpSim} to generate unique results if the 
+\textsl{AmpSim} has the intrinsic property to generate unique results if the 
 $noise$ parameter is set $TRUE$. This is due the use of the \textsl{rnorm} 
-(\emph{stats}) function to simulate noise. If data need to be replicated 
-identically use \textsl{set.seed(123)} to alter the random number generator 
-(RNG) state. For example, the amplification curves of 
-Figure~\ref{figure:AmpSim_effcalc}~\emph{A} are generated with the same starting 
-parameter of \textsl{AmpSim} but noise was added. \textsl{AmpSim}.\textsl{gui} 
-is a \emph{shiny} GUI \citep{shiny_2014} implementation for \textsl{AmpSim}. The 
-code example below is an example how-to invoke the \textsl{AmpSim}.\textsl{gui}. 
-Details on \emph{shiny} are described in Section~\ref{sec:work_environment}. 
-\textsl{AmpSim} was also used to illustrate the \textsl{inder} function 
-(Figure~\ref{figure:SDM}), the \textsl{fixNA} function 
-(Figure~\ref{figure:fixNA}) and the use of the \textsl{smoother} 
-(Figure~\ref{figure:smoothing_intro}) function.
+(\emph{stats}) function to simulate noise. For identically replicated data use 
+\textsl{set.seed(123)} to alter the random number generator (RNG) state. The 
+amplification curves of Figure~\ref{figure:AmpSim_effcalc}~\emph{A} are 
+generated with the same starting parameter of \textsl{AmpSim} but noise was 
+added. \textsl{AmpSim}.\textsl{gui} is a \emph{shiny} GUI \citep{shiny_2014} 
+implementation for \textsl{AmpSim}. Below an example how-to 
+invoke the \textsl{AmpSim}.\textsl{gui} is shown. Details on \emph{shiny} are described 
+in Section~\ref{sec:work_environment}.
 
 A GUI for the simulation and analysis of amplification reactions is shown below. 
 It is possible to run a GUI in web browser on a local machine without the Internet connection. 
@@ -740,6 +736,10 @@ sim <- sapply(1L:8, function(i) {
 })
 @
 
+\textsl{AmpSim} was also used to 
+illustrate the \textsl{inder} function (Figure~\ref{figure:SDM}), the 
+\textsl{fixNA} function (Figure~\ref{figure:fixNA}) and the use of the 
+\textsl{smoother} (Figure~\ref{figure:smoothing_intro}) function.
 
 \section{Single-blinded, randomized judging of amplification curves}
 \label{sec:humanrater}
@@ -1328,41 +1328,40 @@ tmp <- sapply(2:9, function(i) {
 @
 
 The presence of noise may cause many false estimates for the $FDM$ (first 
-derivative maximum) and $SDM$ (second derivative maximum). To minimize this 
-problem, it is possible to smooth the first derivative of the amplification 
-curve. Many methods integrated the moving average as first pre-processing step 
-(e.g., \citep{shain_2008}). The moving average filter is a linear filter, which 
+derivative maximum) and $SDM$ (second derivative maximum). To reduce noise, it 
+is possible to smooth the first derivative of the amplification curve. Many 
+methods integrated the moving average as first pre-processing step (e.g., 
+\citep{shain_2008}). The moving average filter is a linear filter, which 
 replaces sequentially data points with the average of the neighbor data points. 
 The average is calculated from a defined span (``window'') of odd count (e.g., 
 3, 5). The ``average'' herein may refer to the arithmetic mean, the median, the 
 geometric or the exponential mean. The \textsl{smoother} function uses 
-exclusively the arithmetic mean. Moving average is intuitive and easy to 
-implement but it lags behind a trend and ignores rapid changes. For example, the 
-3- and 5-window moving average (running mean) filters are useful to pre-process 
-data, but always leads to a forerun of few cycles. This is in particular 
-problematic in the exponential phase. Splines apply non-parametric regression by 
-local cubic polynomials between knot points \citep{Nie_2012}. Other examples for 
-smoothers include Savitzky-Golay smoothing filter, Friedman's SuperSmoother, and 
-the Weighted Whittaker smoother (see the \textsl{smoother} function for 
-details).
+exclusively the arithmetic mean. The the moving average is intuitive and easy to 
+implement. However, such processed data lags behind a trend, ignores rapid 
+changes. and lead to a forerun of few cycles \citep{spiess_impact_2014}. This is 
+in particular problematic in the exponential phase. Splines apply non-parametric 
+regression by local cubic polynomials between knot points \citep{Nie_2012}. 
+Other examples for smoothers include Savitzky-Golay smoothing filter, Friedman's 
+SuperSmoother, and the Weighted Whittaker smoother (see the \textsl{smoother} 
+function for details).
 
-Many functions (e.g., Savitsky-Golay filter) of $\emph{chipPCR}$ assume uniform 
-(equally spaced) sampling. Therefore, it is recommended to pre-process the data 
-to have equally spaced values. The function \textsl{smoother} and \textsl{CPP} 
-(inherited from \textsl{smoother}) give a warning in such cases. The 
-\textsl{smoother} function enables users to tune behavior of the chosen 
-smoothing algorithm by using nearly all parameters available in called 
-subroutines and at the same time uniforms input and output. It should be noted 
-that smoothing may alter the curve shape and thus lead to artificial results. 
-Smoothed data are easier to read but introduce a bias to the pre-processed data. 
-Therefore, the prime use of smoothers is processing data for visualization 
-purposes. However, it is not recommended to smooth signals unsupervised prior to 
-statistical procedures (e.g., least-squares curve fitting). All smoothing 
-algorithms are ``lossy'' to a certain extent and may change the curve shape 
-significantly. In particular, the residual evaluation of a fit may lead to false 
-prediction, because noise after smoothing may be mistaken for signal. Signals 
-after curve smoothing can be used to locate peaks but it should cautiously be 
-used to measure peaks \citep{spiess_impact_2014}.
+Many smoothing and filter functions (e.g., Savitsky-Golay filter) of 
+$\emph{chipPCR}$ assume uniform (equally spaced) sampling. The function 
+\textsl{smoother} and \textsl{CPP} (inherited from \textsl{smoother}) give a 
+warning in such cases. It is recommended to pre-process the data to have equally 
+spaced values. The \textsl{smoother} function enables users to tune behavior of 
+the chosen smoothing algorithm by using nearly all parameters available in 
+called subroutines and at the same time uniforms input and output. It should be 
+noted that smoothing may alter the curve shape and thus lead to artificial 
+results. Smoothed data are easier to read but introduce a bias to the 
+pre-processed data. Therefore, the prime use of smoothers is processing data for 
+visualization purposes. However, it is not recommended to smooth signals 
+unsupervised prior to statistical procedures (e.g., least-squares curve 
+fitting). All smoothing algorithms are ``lossy'' to a certain extent and may 
+change the curve shape significantly. In particular, the residual evaluation of 
+a fit may lead to false prediction, because noise after smoothing may be 
+mistaken for signal. Signals after curve smoothing can be used to locate peaks 
+but it should cautiously be used to measure peaks \citep{spiess_impact_2014}.
 
 \section*{Tables}
 \begin{table*}[b]
@@ -1430,7 +1429,7 @@ the model fit on the semi logarithmic plot in log-linear phase
 further computations only on a subset of consecutive measurements for which 
 calculated efficiencies have the lowest variance. Other methods loosen the 
 assumption that background fluorescence is a constant value and instead describe 
-it as a function of the cycle number. For example the algorithm used in \textbf{SoFar} 
+it as a function of the cycle number. The algorithm in \textbf{SoFar} 
 \citep{wilhelm_2003} fits a nonlinear saturation function to measurement points 
 before the start of the exponential growth phase. Parameters of the saturation 
 function are chosen to minimize the sum of squared residuals of the fitted 
@@ -1496,8 +1495,7 @@ signals tend to overshot in the first cycles a default value of 2 (for qPCR) is
 chosen. \textsl{bg}.\textsl{max} tries also to estimate the end of an 
 amplification reaction (Figure~\ref{figure:bgmax}). See section 
 \textsl{bg}.\textsl{max} ``Details'' of the $\emph{chipPCR}$ manual for further 
-details. Application of this function is for example a rational basis for 
-trimming of unneeded data.
+details. This function is a rational basis for trimming of unneeded data.
 
 <<bgmax,fig.cap=fig18_cap,fig.scap=fig18_scap,fig.show='hold',message=FALSE,results='hide',fig.width = 11, fig.height = 8>>=
 par(las = 0, mfrow = c(2,1), bty = "n", oma = c(.5,.5,.5,.5))
@@ -1546,12 +1544,11 @@ par(mfrow = c(1,1))
 @
 
 The \textsl{bg}.\textsl{max} algorithm was used to analyze amplification curve 
-data from a capillary convective PCR ($\emph{capillaryPCR}$ dataset, $\emph{chipPCR}$ package). 
-The data were used as raw data (Figure~\ref{figure:bgmax_ccPCR}~A) and 
+data from a capillary convective PCR ($\emph{capillaryPCR}$ dataset, 
+$\emph{chipPCR}$ package). The raw data (Figure~\ref{figure:bgmax_ccPCR}~A) and 
 pre-processed data (Figure~\ref{figure:bgmax_ccPCR}~B) using the \textsl{CPP} 
-function. For both cases it was possible to receive results for further 
-processing. We observed no significant difference between the raw and 
-pre-processed data.
+showed comparable curvatures. We observed no significant difference between the raw 
+and pre-processed data.
 
 Warnings in code chunk below were suppressed.
 <<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide',warning=FALSE,fig.width = 11, fig.height = 11>>=
@@ -1599,19 +1596,15 @@ for (i in c(1,3,5,7)) {
 
 \section{Normalization of amplification curve data}
 
-It is a common characteristic of amplification curve data that the fluorescence 
-values between samples vary (e.g., due to high background, sample inhomogeneities and 
-variances in dye quantities, Figure~\ref{figure:normalization}~\emph{A}). Data 
-within an experiment have in most cases different minimum and maximum values. 
-For the visualization of the data it is recommended to scale the data within a 
-defined range. Eventually, this helps to grasp the data faster. In particular, a 
-comparison of data from different measurements and/or scaling is easier if data 
-are normalized. \textsl{normalizer} is a function to normalize any data by 
-different methods (see Details). This is recommended if the data from an 
-experiment have considerable variation regarding the background and plateau 
-signal. Therefore, normalization of amplification curve data is a common task 
-during the data analysis. To scale the fluorescence between 0 and 1 a 
-\emph{Min-Max normalization} (Equation~\ref{eq:normalization}) is recommended 
+As illustrated in Figure~\ref{figure:normalization}~\emph{A}, it is a common 
+characteristic of amplification curve data that the fluorescence values in the baseline and plateau region  
+vary between samples (e.g., due to high background, variances in dye 
+quantities). Minimum and maximum values differ within an experiment. For 
+visualization it is recommended to scale the data. This helps to grasp the data 
+faster and alleviates the comparison of data from different measurements and/or 
+scaling. \textsl{normalizer} is a function to normalize any data by different 
+methods (see Details). To scale the fluorescence between 0 and 1 a \emph{Min-Max 
+normalization} (Equation~\ref{eq:normalization}) is recommended 
 \citep{roediger_RJ_2013}. We propose a quantile based normalization as 
 alternative (Equation~\ref{eq:quantile_normalization}). Quantiles are less 
 affected by outliers. The method can be invoked by the parameter $norm = 
@@ -1701,37 +1694,31 @@ lin <- apply(tmp[, -1], 2, function(x) lines(tmp[, 1], CPP(tmp[, 1], x,
                                                            method.norm = "zscore")$y))
 @
 
-The slope in a curve can be corrected by a linear regression. \textsl{CPP} and \textsl{lm.coefs} 
-offers four linear regression models to calculate the slope based on the 
-background range. This includes a ordinary least squares method (\textsl{lm}, 
-\emph{stats}) but also three robust methods. The robust regression methods are 
-less vulnerable to outliers. This feature is especially useful, 
-when the background range contains noise. The methods are (I) a 
-nonparametric rank-based estimator \citep{Kloke_2012}, (II) quantile regression 
-\citep{Koenker_2008} and (III) a MM-type estimators for linear regression 
-\citep{Todorov_2009}. By default, the MM-type estimator is used. In all cases 
-takes \textsl{CPP} a defined range of the amplification curve to extrapolate the 
-linear trend over the entire dataset. However, this step his to be performed 
-with caution since this operation effects the amplification efficiency. The 
-background is assumed to be constant for the entire measurement.
 
-\section{Compute linear model coefficients - Background subtraction based 
+\subsection{Compute linear model coefficients - Background subtraction based 
 on linear models}
 
 The slope of the background range is often unequal to zero and in most cased 
-accompanied by a positive or negative trend. By using a linear trend 
-extrapolation it is possible to apply a correction of the slope.
-
-\textsl{lm.coefs} is a wrapper around functions performing normal (linear least 
-squares) and robust linear regression. If the robust linear regression is 
-impossible, performs \textsl{lm.coefs} a linear regression using the least 
-squares method. This function calculates the estimated background of an 
-amplification curve. The coefficients of the analysis can be used for a 
-trend-based correction of the entire dataset (Figure~\ref{figure:lmcoef}). 
-Thereby either a robust linear regression by computing MM-type regression 
-estimators, a nonparametric rank-based estimator or a standard linear regression 
-model. Care is needed when using trans with time series (see \textsl{lm} from 
-the $\emph{stats}$ package for details).
+accompanied by a positive or negative trend. It is possible to correct the slope 
+by a linear trend extrapolation. The functions \textsl{lm.coefs} and 
+\textsl{CPP} are wrappers for functions to perform normal (linear least squares) 
+and robust linear regression. \textsl{lm.coefs} calculates the estimated 
+background of an amplification curve. This includes a ordinary least squares 
+method (\textsl{lm}, \emph{stats}) and also three robust methods. Robust 
+regression methods are less vulnerable to outliers. This feature is especially 
+useful, when the background range contains noise. The robust methods are (I) a 
+nonparametric rank-based estimator \citep{Kloke_2012}, (II) quantile regression 
+\citep{Koenker_2008} and (III) a MM-type estimators for linear regression 
+\citep{Todorov_2009}. By default, the MM-type estimator is used. Under the 
+assumption that the background is constant takes \textsl{CPP} or 
+\textsl{lm.coefs} a defined range of the amplification curve (e.g., background 
+range) to extrapolate the linear trend over the entire data. The coefficients of 
+the analysis can be used for a trend-based correction of the entire dataset 
+(Figure~\ref{figure:lmcoef}). If the robust linear regression is impossible, 
+performs \textsl{lm.coefs} a linear regression using the least squares method. 
+However, this operation effects the amplification efficiency. Care is needed 
+when using trans with time series (see \textsl{lm} from the $\emph{stats}$ 
+package for details).
 
 <<lmcoef,fig.show='hold',fig.cap=fig17_cap,fig.scap=fig17_scap>>=
 par(bty = "n")
