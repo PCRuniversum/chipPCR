@@ -528,7 +528,7 @@ such as hard to reproduce analysis on other platforms, difficulties during the
 adoption to changing experimental setups and limited sophisticated statistical 
 tools.
 
-<<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE,fig.width = 11, fig.height = 9>>=
+<<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
 # Use AmpSim to generate amplification curves with 40 cycles
 # and different Cq's.
 res.pos <- AmpSim(cyc = 1:40, noise = TRUE, b.eff = -12, nnl = 0.02)
@@ -713,7 +713,7 @@ photo-bleaching and other influences on a qPCR reaction. The following
 example illustrates the use of \textsl{AmpSim} 
 (Figure~\ref{figure:AmpSim_random}).
 
-<<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig1_cap,fig.scap=fig1_scap>>=
+<<AmpSim_random,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig1_cap,fig.scap=fig1_scap,fig.width = 11, fig.height = 8>>=
 # Draw an empty plot for 40 cycles with user defined parameters.
 
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -843,7 +843,7 @@ the linear regression ($@lm.roi$) from the ROI. In particular, this function
 might be useful for quality management during the development of high-throughput 
 technologies.
 
-<<MFIaggr_intro,warning=FALSE,message=FALSE,fig.show='hold', fig.width = 6, fig.cap=fig23_cap,fig.scap=fig23_scap>>=
+<<MFIaggr_intro,warning=FALSE,message=FALSE,fig.show='hold', fig.cap=fig23_cap,fig.scap=fig23_scap,fig.width = 11, fig.height = 8>>=
 par(las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
     font = 2, cex.main = 1.2, oma = c(1,1,1,1))
 
@@ -859,7 +859,7 @@ our example we tried to spot differences between a measurement during the
 annealing phase and the elongation phase 
 (Figure~\ref{figure:MFIaggr_conditions}).
 
-<<MFIaggr_conditions,warning=FALSE,message=FALSE,fig.show='hold', fig.width = 6, fig.cap=fig24_cap,fig.scap=fig24_scap>>=
+<<MFIaggr_conditions,warning=FALSE,message=FALSE,fig.show='hold', fig.cap=fig24_cap,fig.scap=fig24_scap,fig.width = 11, fig.height = 8>>=
 par(las = 0, bty = "n", cex.axis = 1.2, cex.lab = 1.2, 
     font = 2, cex.main = 1.2, oma = c(1,1,1,1))
 
@@ -924,7 +924,7 @@ in the annealing phase (Figure~\ref{figure:MFIaggr_all}A and B). The
 heteroskedasticity was significant during the 
 (Figure~\ref{figure:MFIaggr_all}A) first 15 cycles at $60\,^{\circ}\mathrm{C}$.
 
-<<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig15_cap,fig.scap=fig15_scap>>=
+<<MFIaggr_heteroskedasticity,fig.show='hold',fig.cap=fig15_cap,fig.scap=fig15_scap,fig.width = 11, fig.height = 8>>=
 par(mfrow = c(2,2), bty = "n")
 # Create a helper function "hsk.test" to analyze the heteroskedasticity
 # and the variance.
@@ -973,7 +973,7 @@ dataset with potentially problematic amplification curves. The output of the
 plot is arranged in an orthogonal matrix.
 
 
-<<plotCurves,fig.show='hold',fig.cap=fig14_cap,fig.scap=fig14_scap,warning=FALSE>>=
+<<plotCurves,fig.show='hold',fig.cap=fig14_cap,fig.scap=fig14_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
 y <- VIMCFX96_60[, 2L:9]
 # Introduce some missing values.
 y[c(10, 22, 3, 25, 26, 15, 27, 23, 4), c(5, 7, 4, 2, 1)] <- NA
@@ -1027,7 +1027,7 @@ was used to smooth the data. The following code is a representative example for
 the use of \textsl{CPP} (Figure~\ref{figure:workflow}). Warnings in following 
 code chunks were suppressed.
 
-<<workflow,fig.show='hold',fig.cap=fig4_cap,fig.scap=fig4_scap,warning=FALSE>>=
+<<workflow,fig.show='hold',fig.cap=fig4_cap,fig.scap=fig4_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
 layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE), respect = TRUE)
 
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -1139,7 +1139,7 @@ introduce no significant bias on the tested parameters ``Cq (SDM, Cy0)'',
 We found that the difference between the linear and spline imputation is 
 negligible (p~1).
 
-<<fixNA_data,fig.show='hold',fig.cap=fig20_cap,fig.scap=fig20_scap,message=FALSE>>=
+<<fixNA_data,fig.show='hold',fig.cap=fig20_cap,fig.scap=fig20_scap,message=FALSE,fig.width = 11, fig.height = 8>>=
 library(qpcR)
 library(chipPCR)
 cols <- adjustcolor(2:4, 0.6)
@@ -1363,7 +1363,6 @@ a fit may lead to false prediction, because noise after smoothing may be
 mistaken for signal. Signals after curve smoothing can be used to locate peaks 
 but it should cautiously be used to measure peaks \citep{spiess_impact_2014}.
 
-\section*{Tables}
 \begin{table*}[b]
 \label{table:tab1}
 \caption{ Smoothing and filter methods of the 
@@ -1550,8 +1549,7 @@ pre-processed data (Figure~\ref{figure:bgmax_ccPCR}~B) using the \textsl{CPP}
 showed comparable curvatures. We observed no significant difference between the raw 
 and pre-processed data.
 
-Warnings in code chunk below were suppressed.
-<<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide',warning=FALSE,fig.width = 11, fig.height = 11>>=
+<<bgmax_ccPCR,fig.cap=fig19_cap,fig.scap=fig19_scap,fig.show='hold',message=FALSE,results='hide',warning=FALSE,fig.width = 11, fig.height = 8>>=
 # Set parameter for the plot.
 par(mfrow = c(2,1), las = 0, bty = "n")
 
@@ -1652,7 +1650,7 @@ percent quantiles).
 standard deviation of 1.
 \end{itemize}
 
-<<normalization,fig.show='hold',fig.cap=fig5_cap,fig.scap=fig5_scap>>=
+<<normalization,fig.show='hold',fig.cap=fig5_cap,fig.scap=fig5_scap,fig.width = 11, fig.height = 8>>=
 par(mfrow = c(2,3), las = 0, bty = "n", oma = c(.5,.5,.5,.5))
 tmp <- VIMCFX96_60
 
@@ -1720,7 +1718,7 @@ However, this operation effects the amplification efficiency. Care is needed
 when using trans with time series (see \textsl{lm} from the $\emph{stats}$ 
 package for details).
 
-<<lmcoef,fig.show='hold',fig.cap=fig17_cap,fig.scap=fig17_scap>>=
+<<lmcoef,fig.show='hold',fig.cap=fig17_cap,fig.scap=fig17_scap,fig.width = 11, fig.height = 8>>=
 par(bty = "n")
 plot(VIMCFX96_69[, 1], VIMCFX96_69[, 2], type = "l", xlab = "Cycle", 
      ylab = "Fluorescence")
@@ -1787,7 +1785,7 @@ smoothed data, which results in data points not observable in reality. The
 \textsl{rounder} function averages such result to the real values of cycle 
 number
 
-<<rounder_show,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig16_cap,fig.scap=fig16_scap>>=
+<<rounder_show,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig16_cap,fig.scap=fig16_scap,fig.width = 11, fig.height = 8>>=
 # Simulate an amplification curve with 40 cycles using the AmpSim 
 # function.
 isPCR <- AmpSim(cyc = 1:40)
@@ -1822,7 +1820,7 @@ function or combination of functions. The universality of stencil approach
 can find an application even in problems not related to the analysis of 
 amplification curve.
 
-<<SDM,fig.show='hold',fig.cap=fig9_cap,fig.scap=fig9_scap>>=
+<<SDM,fig.show='hold',fig.cap=fig9_cap,fig.scap=fig9_scap,fig.width = 11,fig.height = 8>>=
 # Use AmpSim to generate an amplification curve with 40 cycles
 # and an approximate Cq of 20 and assign it to the object isPCR.
 # isPCR is an object of the class "data.frame".
@@ -1953,7 +1951,7 @@ next example we used the \textsl{drm} function from the \emph{drc} package
 \textsl{inder} function was used to calculate the $SDM$ of the predicted models 
 (Figure~\ref{figure:inder_fit}).
 
-<<inder_fit,fig.cap=fig11_cap,fig.scap=fig11_scap,fig.show='hold',message=FALSE,results='hide'>>=
+<<inder_fit,fig.cap=fig11_cap,fig.scap=fig11_scap,fig.show='hold',message=FALSE,fig.width = 11,fig.height = 8,results='hide'>>=
 fit.amp <- function(cyc, fluo, plot = FALSE) {
   
   ampl <- quantile(fluo, 0.999)
@@ -2025,7 +2023,7 @@ fit a ``complex'' non linear model to the entire dataset but rather focuses on
 the specific area. The polynomial is calculated from four neighbor values at the 
 fluorescence threshold.
 
-<<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap,fig.scap=fig2_scap>>=
+<<thcyc,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig2_cap,fig.scap=fig2_scap,fig.width = 11, fig.height = 8>>=
 # Raw data from the VIMCFX96_69 dataset.
 # Cycles x and Fluoresce values y
 x <- VIMCFX96_69[, 1]
@@ -2084,7 +2082,7 @@ was used to determine the time required to reach a certain threshold level above
 the defined value (Threshold level ``r'' (80 $\mu$Volts)) 
 (Figure~\ref{figure:thcyc_ccPCR}~B).
 
-<<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap,fig.height=8,fig.width=11>>=
+<<thcyc_ccPCR,fig.show='hold',fig.cap=fig3_cap,fig.scap=fig3_scap,fig.width = 11, fig.height = 8>>=
 # Application of the th.cyc method to determine the Cq from a continuous
 # amplification reaction.
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
@@ -2134,7 +2132,7 @@ Temperature profile (after Preincubation):
 \end{itemize}
 
 
-<<HDA,fig.show='hold',fig.cap=fig13_cap,fig.scap=fig13_scap,message=FALSE,warning=FALSE>>=
+<<HDA,fig.show='hold',fig.cap=fig13_cap,fig.scap=fig13_scap,message=FALSE,warning=FALSE,fig.width = 11, fig.height = 8>>=
 par(mfrow = c(2,1), bty = "n")
 plot(NA, NA, xlim = c(0,5000), ylim = c(0.45,0.8), xlab = "Time (sec)", 
      ylab = "Fluorescence", main = "HDA - Raw data")
@@ -2166,7 +2164,7 @@ xr <- 3L:200
 lrg <- "least"
 
 # threshold level for the th.cyc function
-r <- 0.05
+r <- 0.025
 # Calculate in a loop the Cq values (Cycle threshold method) and add the
 # calculated time (in minutes) to the plot.
 for (i in c(2,4,6)) {
@@ -2226,7 +2224,7 @@ use of the \textsl{diffQ} and \textsl{diffQ2} function from the
 precise peak location, while the approximate $SDM$ is calculated from the 
 derivative of a quadratic function at the approximate $SDM$. 
 
-<<AmpSim_effcalc,fig.show='hold',fig.cap=fig6_cap,fig.scap=fig6_scap,message=FALSE>>=
+<<AmpSim_effcalc,fig.show='hold',fig.cap=fig6_cap,fig.scap=fig6_scap,fig.width = 11,fig.height = 8,message=FALSE>>=
 
 # Load MBmca package (v. 0.0.3-3 or later)
 require(MBmca)
@@ -2295,7 +2293,7 @@ circa 87.3~\% for the gene \textit{MLC-2v} in the VideoScan HCU
 tested in this experiment it just save to say that the hardware of the HCU works 
 reliably.
 
-<<CPP_C54,fig.show='hold',fig.cap=fig7_cap,fig.scap=fig7_scap,message=FALSE>>=
+<<CPP_C54,fig.show='hold',fig.cap=fig7_cap,fig.scap=fig7_scap,fig.width = 11,fig.height = 8,message=FALSE>>=
 require(MBmca)
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
 par(fig = c(0,0.5,0,1), new = TRUE)
@@ -2346,7 +2344,7 @@ complete analysis with few commands. The amplification efficiencies for both
 qPCRs was higher than 94~\% (Figure~\ref{figure:effcalc_VIM_MLC}~C~and~D, 
 Table~\ref{table:effcalc_output}).
 
-<<effcalc_VIM_MLC,fig.show='hold',fig.cap=fig25_cap,fig.scap=fig25_scap,fig.height=11,fig.width=11>>=
+<<effcalc_VIM_MLC,fig.show='hold',fig.cap=fig25_cap,fig.scap=fig25_scap,fig.width = 11, fig.height = 8>>=
 colors <- rep(rainbow(7), each = 2)
 par(mfrow = c(2,2))
 
@@ -2418,6 +2416,6 @@ and approved the final manuscript.
 
 \listoffigures
 
-\bibliography{roediger-burdukiewicz}      
+\bibliography{roediger-burdukiewicz}
 
 \end{document}
