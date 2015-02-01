@@ -2007,12 +2007,12 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 
 \section{Threshold cycle method}
 
-The \textsl{th}.\textsl{cyc} function calculates the quantification cycle or in 
-isothermal amplification the cycle time. This method requires a proper 
-baselining. Note: In qPCR analysis exist more sophisticated methods 
+The \textsl{th}.\textsl{cyc} function calculates the Cq in qPCRs or cycle time in 
+quantitative isothermal amplification (qIA) experiments. This method requires a proper 
+baselining. Note: In qPCR analysis exist more sophisticated quantification methods 
 \citep{ruijter_2009, ruijter_2013, tellinghuisen_2014}. This function was 
-implemented primarily for the analysis of amplification from qIA but also usable 
-for qPCR if used cautiously. We implement a symmetric approximation algorithm 
+implemented primarily for the analysis qIA experiments but also usable 
+for qPCR. We implement a symmetric approximation algorithm 
 based on linear and quadratic least squares regression. The Threshold Cycle (Ct) 
 is the cycle number at which the fluorescence exceeds significantly a point 
 above the baseline and defined threshold in a particular samples. The 
