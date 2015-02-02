@@ -5,7 +5,7 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
   # Removing all NA Cq rows
   i <- apply(y[,-1], 1, function(yrow) all(is.na(yrow)))
   if (TRUE %in% i) {
-    x <- x[!i, ]
+    x <- x[!i]
     y <- y[!i, ]
     warning(
       sprintf("Row %i was removed because it do not contain any Cq data.",
