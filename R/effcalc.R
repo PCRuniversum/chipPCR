@@ -18,8 +18,8 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
   }
   
   if (ncol(data.frame(y)) > 1) {
-    y.m <- apply(y, 1, loc.fct)
-    y.sd <- apply(y, 1, dev.fct)
+    y.m <- apply(y, 1, function(x) loc.fct(x, na.rm = TRUE))
+    y.sd <- apply(y, 1, function(x) dev.fct(x, na.rm = TRUE))
   } else {
     y.m <- y
     y.sd <- rep(0, length(y))
