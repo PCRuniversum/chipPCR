@@ -9,7 +9,9 @@ Authors@R: c(
       email = "stefan.roediger@hs-lausitz.de", 
       role = c("cre", "aut")),
     person("Michal", "Burdukiewicz", 
-      email = "michalburdukiewicz@gmail.com", role = "aut"))
+      email = "michalburdukiewicz@gmail.com", role = "aut"),
+    person("Konstantin A.", "Blagodatskikh",
+      email = "k.blag@yandex.ru", role = "cbt"))
 Description: A collection of functions to pre-process
     amplification curve data. Amplification data can be obtained from
     conventional PCR reactions or isothermal amplification reactions. The
