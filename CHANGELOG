@@ -4,6 +4,7 @@ Changes from Version 0.0.8-3 to 0.0.8-4 [January 24 2015]
 * removed calculation of dB from CPP function
 * new plot option for MFIaggr function
 * Reference added to documentation
+* New contributor Konstantin A. Blagodatskikh
 
 Changes from Version 0.0.8-2 to 0.0.8-3 [September 28 2014]
 * build uses now: R CMD build --resave-data --compact-vignettes="gs+qpdf" chipPCR
