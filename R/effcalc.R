@@ -8,7 +8,7 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
     x <- x[!i]
     y <- y[!i, ]
     warning(
-      sprintf("Row %i was removed because it do not contain any Cq data.",
+      sprintf("Row %i was removed because it do not contain any Cq data.\n",
               which(i == TRUE)))
   }
   
