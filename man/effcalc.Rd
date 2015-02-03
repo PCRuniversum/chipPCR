@@ -28,7 +28,7 @@ Analysis of the amplification efficiency
   \item{x}{ is the column of a data frame for the concentration 
 	    (dilution). }
   
-  \item{y}{ are multiple columns of fluorescence values from a 
+  \item{y}{ are multiple columns of Cq values from a 
   \code{data.frame} (e.g., [, c(1:n)]). }
   
   \item{logx}{ is a logical parameter used to convert the concentration 

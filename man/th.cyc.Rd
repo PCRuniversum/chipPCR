@@ -36,11 +36,11 @@ th.cyc(x, y, r = 2500, auto = FALSE, linear = TRUE)
 }
   \item{auto}{
     is logical parameter which indicates if an automatic estimation of the 
-threshold should be used (Note: Experimental, not save to use).
+threshold should be used (Note: Experimental, not safe to use).
 }
   \item{linear}{
     is logical parameter which indicates if a linear or quadratic regression 
-    should be used for the calculation. (Note: Experimental, not save to use).
+    should be used for the calculation. (Note: Experimental, not safe to use).
 }
 }
 \details{
