@@ -2,14 +2,17 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
   testxy(x, y, txt.x = "Enter Concentration", txt.y = "Enter Cq data", 
          length = FALSE)
   
-  # Removing all NA Cq rows
-  i <- apply(y[,-1], 1, function(yrow) all(is.na(yrow)))
-  if (TRUE %in% i) {
-    x <- x[!i]
-    y <- y[!i, ]
-    warning(
-      sprintf("Row %i was removed because it does not contain Cq data.\n",
-              which(i == TRUE)))
+  #now the vignette line 2333 compiles
+  if(!is.matrix(y)) {
+    # Removing all NA Cq rows
+    i <- apply(y[,-1], 1, function(yrow) all(is.na(yrow)))
+    if (TRUE %in% i) {
+      x <- x[!i]
+      y <- y[!i, ]
+      warning(
+        sprintf("Row %i was removed because it does not contain Cq data.\n",
+                which(i == TRUE)))
+    }
   }
   
   if (logx) {
@@ -49,7 +52,7 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
   res <- res[which(is.finite(res[, 1])), ]
   
   if (nrow(res) < 2) {
-    stop("Can not perform calculation. At least two
+    stop("Cannot perform calculation. At least two
 	  dilutions required.")
   }
   if (nrow(res) == 2) {
@@ -85,10 +88,10 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
   
   cortest[["data.name"]] <- paste0("~ `", names(res)[2], "` and ", names(res)[1])
   
-# TO DO: change call to nicer format  
-#   lm.res[["call"]] <- paste0("lm(formula = ", 
-#                              paste0("`", names(res)[2], "` ~ ", names(res)[1]),
-#                              ", data = res)")
+  # TO DO: change call to nicer format  
+  #   lm.res[["call"]] <- paste0("lm(formula = ", 
+  #                              paste0("`", names(res)[2], "` ~ ", names(res)[1]),
+  #                              ", data = res)")
   
   new("eff", .Data = data.matrix(res),
       amplification.efficiency = AE,

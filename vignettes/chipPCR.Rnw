@@ -835,9 +835,9 @@ qPCR experiment for the human gene \textit{Vimentin}. The \textsl{MFIaggr} plot
 shows that the first ten cycles (noise) follow a normal distribution 
 (Figure~\ref{figure:MFIaggr_intro}). In contrast, the analysis of all cycles shows 
 expectedly a distribution, which significantly differs from a normal 
-distribution (Figure~\ref{figure:MFIaggr_all}). Setting the option $CV = FLASE$ 
-shows the relative standard deviation (RSD,~\%). Ideally the variance between 
-the amplification curves is low. Other results of \textsl{MFIaggr} include the 
+distribution (Figure~\ref{figure:MFIaggr_all}). Setting the option $CV = FALSE$ 
+shows the relative standard deviation (RSD,~\%). The variance between 
+the amplification curves of replicates should be low. Other results of \textsl{MFIaggr} include the 
 density analysis ($@density$), the quantile ($@qqnorm.data$), and the results of 
 the linear regression ($@lm.roi$) from the ROI. In particular, this function 
 might be useful for quality management during the development of high-throughput 
@@ -969,8 +969,8 @@ addition to this, \textsl{plotCurves} has an option to run an unsupervised
 data (Savitzky-Golay smoothing), removes missing values (spline 
 interpolation by default) and performs a background subtraction (base-lining 
 to zero). \textsl{plotCurves} has a colored indicator for rapid visualization of 
-dataset with potentially problematic amplification curves. The output of the 
-plot is arranged in an orthogonal matrix.
+dataset with potentially problematic amplification curves. The plot output is arranged 
+in a table-like fashion, where each curve is presented in different cell.
 
 
 <<plotCurves,fig.show='hold',fig.cap=fig14_cap,fig.scap=fig14_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
@@ -1062,15 +1062,15 @@ mtext("C", cex = 1.2, side = 3, adj = 0, font = 2)
 
 Experimental technologies may produce missing values (NA) at 
 random due to sensor drop-outs or other technical difficulties. Many analytical 
-functions stop to progress or discard entire datasets. This 
-behavior is rational for unknown data structures. However, in case of 
+functions stop to progress or discard entire datasets. Such conduct is reasonable, 
+when the data structure is unknown. However, in case of 
 amplification curve data it is justified to impute NAs because the structure 
 generally resembles an S-shaped curve. Standard approaches include substitution 
 with most frequent values, mean value imputation, last value carried forward, 
 bootstrapping, or substitution by correlation with replicate measurements 
 \citep{Harrell_2001}. In case of amplification curves other approaches are 
 favorable. Particularly, the transitions phases (e.g., background phase to 
-exponential phase) is potentially prone to bias.
+exponential phase) are potentially prone to bias.
 
 The NAs may be caused by detector problems, acquisition error or 
 other assorted problems. There are different ways to handle missing 
