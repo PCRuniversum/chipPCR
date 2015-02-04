@@ -3,7 +3,7 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
          length = FALSE)
   
   #now the vignette line 2333 compiles
-  if(!is.matrix(y)) {
+  if(is.matrix(y)) {
     # Removing all NA Cq rows
     i <- apply(y[,-1], 1, function(yrow) all(is.na(yrow)))
     if (TRUE %in% i) {
