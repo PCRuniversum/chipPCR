@@ -2,17 +2,17 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
   testxy(x, y, txt.x = "Enter Concentration", txt.y = "Enter Cq data", 
          length = FALSE)
   
-  #now the vignette line 2333 compiles
-  if(is.matrix(y)) {
-    # Removing all NA Cq rows
-    i <- apply(y[,-1], 1, function(yrow) all(is.na(yrow)))
-    if (TRUE %in% i) {
-      x <- x[!i]
-      y <- y[!i, ]
-      warning(
-        sprintf("Row %i was removed because it does not contain Cq data.\n",
-                which(i == TRUE)))
-    }
+  if(!is.matrix(y)) 
+    y <- as.matrix(y)
+  
+  # Removing all NA Cq rows
+  i <- apply(y, 1, function(yrow) all(is.na(yrow)))
+  if (TRUE %in% i) {
+    x <- x[!i]
+    y <- y[!i, ]
+    warning(
+      sprintf("Row %i was removed because it does not contain Cq data.\n",
+              which(i == TRUE)))
   }
   
   if (logx) {
