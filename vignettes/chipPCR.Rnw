@@ -524,8 +524,7 @@ powerful tools for data visualizations and automatic report generation.
 The $\emph{chipPCR}$ package was developed to automatize pre-processing, ease 
 data analysis/visualization and offer a quality control for the statistical 
 data analysis of qPCR or qIA experiments (Section~\ref{sec:functions}). 
-$\emph{chipPCR}$ is primarily targeted at developers of novel systems but non 
-the less users who process raw data of commercial systems can also utilize its functionalities.
+$\emph{chipPCR}$ is primarily targeted at developers of novel systems. Nontheless, users who process raw data of commercial systems can also utilize its functionalities.
 
 <<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
 # Use AmpSim to generate amplification curves with 40 cycles
@@ -599,14 +598,12 @@ text(27, 0.06, "Cq", col = "red")
 Main functions of the $\emph{chipPCR}$ package are:
 
 \begin{itemize}
-\item \textsl{AmpSim}: a 5-parameter model for a 
-S-shaped amplification curves accompanied by \textsl{AmpSim.gui} a \emph{shiny} 
-GUI, for \textsl{AmpSim},
-\item \textsl{bg.max}: a function to detect the start and end of an 
+\item \textsl{AmpSim}: to simulate S-shaped amplification curves based on a 5-parameter model accompanied by \textsl{AmpSim.gui} a \emph{shiny} GUI, for \textsl{AmpSim},
+\item \textsl{bg.max}: to detect the start and end of an 
 amplification reaction,
-\item \textsl{CPP}: wrapper for several pre-processing functions,
+\item \textsl{CPP}: to easily access several several pre-processing functions,
 \item \textsl{fixNA}: to impute missing values in a data column,
-\item \textsl{inder}: for interpolating first and second derivatives 
+\item \textsl{inder}: to interpolate first and second derivatives 
 interpolation using the five-point stencil (accompanied by 
 \textsl{rounder} function),
 \item \textsl{MFIaggr}: to analyze a bulk of replicates of an amplification 
@@ -620,7 +617,7 @@ Additionally, further the (auxiliary) functions:
 \begin{itemize}
 \item \textsl{amptester}: to detect the start and end of an amplification curve, 
 \item \textsl{effcalc}: to calculate the amplification efficiency, 
-\item \textsl{humanrater}: a graphical interface to rate curves, 
+\item \textsl{humanrater}: to rate curves using a graphical interface, 
 \item \textsl{lm.coefs}: to compute linear model coefficients, 
 \item \textsl{normalizer}: to normalize data between a user defined range, 
 \item \textsl{plotCurves}: to plots many curves on one plot in separate cells allowing quick assessment, 
@@ -638,7 +635,7 @@ values.
 \section{\textsl{AmpSim} - a function to simulate amplification curves}
 \label{sec:AmpSim}
 
-The \textsl{AmpSim} function is a simulator for amplification reactions. Use 
+The \textsl{AmpSim} function simulates amplification reactions. Use 
 cases include teaching, algorithm testing or the comparison of an experimental 
 system to the predicted (``optimal'') model. \textsl{AmpSim} uses a 5-parameter 
 model (Equation~\ref{eq:richards}), which is commonly used for the 
@@ -649,14 +646,15 @@ fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
 \end{equation}
 
 \textsl{AmpSim} has the intrinsic property to generate unique results if the 
-$noise$ parameter is set $TRUE$. This is due the use of the \textsl{rnorm} 
-(\emph{stats}) function to simulate noise. For identically replicated data use 
-\textsl{set.seed(123)} to alter the random number generator (RNG) state. The 
+$noise$ parameter is set $TRUE$. This is due the addition of normally distributed (as
+per \textsl{rnorm} function from \emph{stats} package) noise. For identically replicated
+noisy data set random seed (for example \textsl{set.seed(123)}). The 
 amplification curves of Figure~\ref{figure:AmpSim_effcalc}~\emph{A} are 
 generated with the same starting parameter of \textsl{AmpSim} but noise was 
-added. \textsl{AmpSim}.\textsl{gui} is a \emph{shiny} GUI \citep{shiny_2014} 
-implementation for \textsl{AmpSim}. Below an example how-to 
-invoke the \textsl{AmpSim}.\textsl{gui} is shown. Details on \emph{shiny} are described 
+added. 
+
+\textsl{AmpSim}.\textsl{gui} is a \emph{shiny} GUI \citep{shiny_2014} 
+implementation for \textsl{AmpSim}.Details on \emph{shiny} are described 
 in Section~\ref{sec:work_environment}. A GUI for the simulation and analysis of amplification reactions can be invoked by pasting the following code snippet into a \textbf{R} console.
 
 <<AmpSim_GUI,eval = FALSE>>=
@@ -667,7 +665,7 @@ require(shiny)
 # Invoke the shiny AmpSim app in the default web browser.
 runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
 
-# Call shiny app AmpSim from gist
+# Alternatively call shiny app AmpSim from gist
 runGist('https://gist.github.com/michbur/e1def41598f1d0c1e2e6')
 @
 
@@ -693,8 +691,8 @@ and the textual results of \textsl{bg}.\textsl{max}.}
 \label{figure:browser}
 \end{figure}
 
-\textsl{AmpSim} has several parameters to simulate an 
-amplification curve. $b.eff$ and $Cq$ are most connected with another. 
+\textsl{AmpSim} has several parameters controlling simulation of 
+amplification curves. $b.eff$ and $Cq$ are strongly connected with one another. 
 Thus changing one of them changes both values. $Cq$ is used to 
 define an approximate Cq value. The expression ``approximate Cq'' value is 
 used because the calculated Cq value varies depending on the preferred 
@@ -736,13 +734,11 @@ illustrate the \textsl{inder} function (Figure~\ref{figure:SDM}), the
 \section{Single-blinded, randomized judging of amplification curves}
 \label{sec:humanrater}
 
-Humans tend to bias the interpretation towards a desirable outcome. A 
-single-blinded and randomized experiment aims to reduce bias in the results, 
-which concealed from the human tester. The bias towards a certain result may be 
-intentional or unconscious. We developed the \textsl{humanrater} function to 
+Humans may bias the interpretation towards a desirable outcome. A 
+single-blinded and randomized experiment aims to reduce bias in the results. We developed the \textsl{humanrater} function to 
 evaluate the quality of curve data (e.g., amplification or melting curve data) 
-in a randomized, half-blind manner. \textsl{humanrater} is an interactive 
-function to rate a curve for a certain characteristic. \textsl{humanrater} draws 
+in a randomized, half-blind manner. The function allows interactive 
+rating a curve for a certain characteristic. \textsl{humanrater} draws 
 individual graphs of a curve and prompts an input field for the user. 
 Application of this function are numerous (e.g., compare the human rating and 
 the rating of a machine or the rating of several individual experts). A list of 
