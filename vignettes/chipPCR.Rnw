@@ -388,8 +388,8 @@ and standalone \emph{shiny} applications.
 \label{sec:work_environment}
 
 \emph{Convention: According to the MIQE guidelines (``Minimum Information for 
-publication of Quantitative real-time PCR Experiments'', 
-\citep{bustin_miqe_2009}) is the Ct referred to as quantification cycle (Cq). We 
+publication of Quantitative real-time PCR Experiments'' 
+\citep{bustin_miqe_2009}) the Ct is referred to as quantification cycle (Cq). We 
 use the expression Cq exclusively regardless of the amplification method and 
 mathematical principle.}
 
@@ -406,20 +406,22 @@ We use \textbf{R}'s object model \emph{S4} class system (see \emph{methods}
 package) to separate the interface and the implementation. Other than in 
 \textbf{R}'s \emph{S3} class system, \emph{S4} requires to declare classes, slots, 
 methods relationships explicitly and to establish formal declarations of 
-methods. Therefore, the number and types of slots in an instance of a class have 
-to be established at the time of the class definition. Objects from the class are 
-validated against this definition and have to comply to it at any time. 
-\emph{S4} methods are declared by calls to \textsl{setMethod} together with the 
-names and signatures of the arguments. Signatures are used for identification of 
-classes of one or more arguments of the methods. \textsl{setGeneric} declares 
-generic functions. \emph{S4} classes require a higher development effort than \emph{S3} 
-classes, but assure strictly that objects in a class have the required slots, 
-that data in the slots have consistent names and classes. Additional information 
-(e.g., results, parameters) can be included. \emph{S4} assures better control on 
-the object structure and the method dispatch \citep{Karatzoglou_2004}. For 
-high-throughput technologies we avoided loops in the core structures of the 
+methods. Therefore, the number and types of objects in slots in an instance of a class 
+have to be established at the time of the class definition. Objects belonging to the 
+class are validated against this definition and have to fulfil it at any time. 
+\textsl{setGeneric} declares generic functions. \emph{S4} methods are declared by calls 
+to \textsl{setMethod} together with the name of generic and signatures of the arguments.
+Signatures are used for identification of classes of one or more arguments of the methods. 
+
+\emph{S4} classes require a higher development effort than \emph{S3} 
+classes, but offer stricter control over the content of created object. Additional 
+information (e.g., results, parameters) can be included. \emph{S4} assures better control 
+on the object structure and the method dispatch \citep{Karatzoglou_2004}. 
+
+For high-throughput technologies we avoided loops in the core structures of the 
 $\emph{chipPCR}$ package and use partially parallel computing (\textsl{smoother} 
-function) to keep the code fast.
+function) to keep the code fast. We support the most popular R packages providing the
+communications layer required for parallel computing: \emph{parallel} and \emph{snow}.
 
 The vignette can be viewed from \textbf{R} using command: vignette("chipPCR"). 
 All experimental details for the datasets are described in the $\emph{chipPCR}$ 
@@ -449,15 +451,15 @@ to build and deploy GUIs for the desktop or as services for
 interactive web applications on servers. Prerequisites are an installation of 
 \textbf{R}, with installed $\emph{shiny}$ and $\emph{chipPCR}$ packages and a 
 modern web browser. It is possible to run a GUI in web browser on a local 
-machine without the Internet connection. \emph{shiny} enables to build 
+machine without the Internet connection. Ad-blocking software may cause malfunctions 
+and should be turned off. \emph{shiny} enables to build 
 plugin-like applications with highly customizable widgets (e.g., sliders) for a 
 efficient extension. \emph{shiny} applications update live and interactively. 
 The user interfaces can be built entirely using \textbf{R} and operates in any 
 \textbf{R} environment (cross-platform). The functions \textsl{AmpSim}, 
 \textsl{th.cyc}, \textsl{bg.max} and \textsl{amptester} are a part of 
-\emph{shiny} GUIs. Ad-blocking software may cause malfunctions and should be 
-turned off. Examples for these use case scenarios are given in the following 
-sections.
+\emph{shiny} GUIs. Examples and case studies for mentioned functions are presented in 
+the following sections.
 
 \section{Pre-processing of amplification curve data}
 \label{sec:problems}
