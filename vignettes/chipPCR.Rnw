@@ -15,7 +15,7 @@
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\theequation}{S\arabic{equation}}
-\DeclareUnicodeCharacter{00A0}{ }
+\DeclareUnicodeCharacter{00B1}{ }
 
 \makeatletter
 \renewcommand{\@maketitle}{
@@ -388,8 +388,8 @@ and standalone \emph{shiny} applications.
 \label{sec:work_environment}
 
 \emph{Convention: According to the MIQE guidelines (``Minimum Information for 
-publication of Quantitative real-time PCR Experiments'', 
-\citep{bustin_miqe_2009}) is the Ct referred to as quantification cycle (Cq). We 
+publication of Quantitative real-time PCR Experiments'' 
+\citep{bustin_miqe_2009}) the Ct is referred to as quantification cycle (Cq). We 
 use the expression Cq exclusively regardless of the amplification method and 
 mathematical principle.}
 
@@ -406,20 +406,22 @@ We use \textbf{R}'s object model \emph{S4} class system (see \emph{methods}
 package) to separate the interface and the implementation. Other than in 
 \textbf{R}'s \emph{S3} class system, \emph{S4} requires to declare classes, slots, 
 methods relationships explicitly and to establish formal declarations of 
-methods. Therefore, the number and types of slots in an instance of a class have 
-to be established at the time of the class definition. Objects from the class are 
-validated against this definition and have to comply to it at any time. 
-\emph{S4} methods are declared by calls to \textsl{setMethod} together with the 
-names and signatures of the arguments. Signatures are used for identification of 
-classes of one or more arguments of the methods. \textsl{setGeneric} declares 
-generic functions. \emph{S4} classes require a higher development effort than \emph{S3} 
-classes, but assure strictly that objects in a class have the required slots, 
-that data in the slots have consistent names and classes. Additional information 
-(e.g., results, parameters) can be included. \emph{S4} assures better control on 
-the object structure and the method dispatch \citep{Karatzoglou_2004}. For 
-high-throughput technologies we avoided loops in the core structures of the 
+methods. Therefore, the number and types of objects in slots in an instance of a class 
+have to be established at the time of the class definition. Objects belonging to the 
+class are validated against this definition and have to fulfil it at any time. 
+\textsl{setGeneric} declares generic functions. \emph{S4} methods are declared by calls 
+to \textsl{setMethod} together with the name of generic and signatures of the arguments.
+Signatures are used for identification of classes of one or more arguments of the methods. 
+
+\emph{S4} classes require a higher development effort than \emph{S3} 
+classes, but offer stricter control over the content of created object. Additional 
+information (e.g., results, parameters) can be included. \emph{S4} assures better control 
+on the object structure and the method dispatch \citep{Karatzoglou_2004}. 
+
+For high-throughput technologies we avoided loops in the core structures of the 
 $\emph{chipPCR}$ package and use partially parallel computing (\textsl{smoother} 
-function) to keep the code fast.
+function) to keep the code fast. We support the most popular R packages providing the
+communications layer required for parallel computing: \emph{parallel} and \emph{snow}.
 
 The vignette can be viewed from \textbf{R} using command: vignette("chipPCR"). 
 All experimental details for the datasets are described in the $\emph{chipPCR}$ 
@@ -449,15 +451,15 @@ to build and deploy GUIs for the desktop or as services for
 interactive web applications on servers. Prerequisites are an installation of 
 \textbf{R}, with installed $\emph{shiny}$ and $\emph{chipPCR}$ packages and a 
 modern web browser. It is possible to run a GUI in web browser on a local 
-machine without the Internet connection. \emph{shiny} enables to build 
+machine without the Internet connection. Ad-blocking software may cause malfunctions 
+and should be turned off. \emph{shiny} enables to build 
 plugin-like applications with highly customizable widgets (e.g., sliders) for a 
 efficient extension. \emph{shiny} applications update live and interactively. 
 The user interfaces can be built entirely using \textbf{R} and operates in any 
 \textbf{R} environment (cross-platform). The functions \textsl{AmpSim}, 
 \textsl{th.cyc}, \textsl{bg.max} and \textsl{amptester} are a part of 
-\emph{shiny} GUIs. Ad-blocking software may cause malfunctions and should be 
-turned off. Examples for these use case scenarios are given in the following 
-sections.
+\emph{shiny} GUIs. Examples and case studies for mentioned functions are presented in 
+the following sections.
 
 \section{Pre-processing of amplification curve data}
 \label{sec:problems}
@@ -484,20 +486,20 @@ specific curve parameters like the quantification cycle (Cq) and the
 amplification efficiency (AE) \cite{ruijter_2013, tellinghuisen_2014}.
 
 The data quality of experimental instruments is often not ready for end-user 
-analysis and presentation and may lead to misinterpretations and false 
+analysis and presentation may lead to misinterpretations as well as false 
 performance estimations. Therefore, novel technologies depend on tools to 
 pre-process raw data. Pre-processing specifically addresses raw data inspection, 
 steps to transform raw data in a compatible format for successive analysis steps 
 (e.g., smoothing, imputation of missing values), data reduction (e.g., removal 
 of invalid sets), noise reduction and data quality management. Noise is 
 challenging because derivative processes as used for ``cycle of quantification'' 
-methods (e.g., Second Derivative Maximum method) lead to an amplification of 
+methods (e.g., Second Derivative Maximum method) leads to an amplification of 
 noise \citep{larionov_2005, tuomi_2010, roediger_RJ_2013, ruijter_2013, 
 tellinghuisen_2014}. Pre-processing algorithms remove stochastic errors and 
 artefacts (e.g., noise, photo-bleaching effects, degassing effects, different 
 signal levels) illustrated in Figure~\ref{figure:problems}. However, 
-misinterpretations are more likely if non or manual (``arbitrary'') corrections 
-are performed. A manual alteration is in contradiction to reproducible research.
+misinterpretations are more likely if manual (``arbitrary'') corrections 
+are not performed. A manual alteration is in contradiction to reproducible research.
 
 \textbf{R} is widely used for the analysis of qPCR data. Most \textbf{R} 
 packages focus on the read-in and (post)-processing of datasets, which 
@@ -512,18 +514,17 @@ CRAN \citep{Dvinge_2009, Zhang_2010, heckmann_2011, perkins_2012,
 gehlenborg_2013, huntley_2013, zhang_2013, mccall_2014, pabinger_2014}. However, 
 there is no \textbf{R} package for pre-processing and quality analysis of 
 amplification curve data. Similar applies to other software solutions (compare 
-\citep{pabinger_2014}). Pre-processing is in most commercial cyclers a ``black 
-box''. This has limitations, such as hard to reproduce analysis on other 
-platforms, difficulties during the adoption to changing experimental setups and 
-limited sophisticated statistical tools. Moreover, it is desirable to set up 
+\citep{pabinger_2014}). Pre-processing in most commercial cyclers is a ``black 
+box'' model, where inner subroutines are not avaible for inspection. This approach limits
+reproduction of analysis on other platforms and introduces difficulties during the adoption 
+to new experimental setups or statistical tools. Moreover, it is desirable to set up 
 work-flows in an open environment, which enable downstream analyses and offer 
 powerful tools for data visualizations and automatic report generation.
 
-The $\emph{chipPCR}$ package was developed to automatize pre-processing, to ease 
-data analysis/visualization and to offer a quality control for the statistical 
-data analysis of qPCR and qIA experiments (Section~\ref{sec:functions}). 
-$\emph{chipPCR}$ is primarily targeted at developers of novel systems but non 
-the less at users who process raw data of commercial systems.
+The $\emph{chipPCR}$ package was developed to automatize pre-processing, ease 
+data analysis/visualization and offer a quality control for the statistical 
+data analysis of qPCR or qIA experiments (Section~\ref{sec:functions}). 
+$\emph{chipPCR}$ is primarily targeted at developers of novel systems. Nontheless, users who process raw data of commercial systems can also utilize its functionalities.
 
 <<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
 # Use AmpSim to generate amplification curves with 40 cycles
@@ -597,14 +598,12 @@ text(27, 0.06, "Cq", col = "red")
 Main functions of the $\emph{chipPCR}$ package are:
 
 \begin{itemize}
-\item \textsl{AmpSim}: a 5-parameter model for a 
-S-shaped amplification curves accompanied by \textsl{AmpSim.gui} a \emph{shiny} 
-GUI, for \textsl{AmpSim},
-\item \textsl{bg.max}: a function to detect the start and end of an 
+\item \textsl{AmpSim}: to simulate S-shaped amplification curves based on a 5-parameter model accompanied by \textsl{AmpSim.gui} a \emph{shiny} GUI, for \textsl{AmpSim},
+\item \textsl{bg.max}: to detect the start and end of an 
 amplification reaction,
-\item \textsl{CPP}: wrapper for several pre-processing functions,
+\item \textsl{CPP}: to easily access several several pre-processing functions,
 \item \textsl{fixNA}: to impute missing values in a data column,
-\item \textsl{inder}: for interpolating first and second derivatives 
+\item \textsl{inder}: to interpolate first and second derivatives 
 interpolation using the five-point stencil (accompanied by 
 \textsl{rounder} function),
 \item \textsl{MFIaggr}: to analyze a bulk of replicates of an amplification 
@@ -618,7 +617,7 @@ Additionally, further the (auxiliary) functions:
 \begin{itemize}
 \item \textsl{amptester}: to detect the start and end of an amplification curve, 
 \item \textsl{effcalc}: to calculate the amplification efficiency, 
-\item \textsl{humanrater}: a graphical interface to rate curves, 
+\item \textsl{humanrater}: to rate curves using a graphical interface, 
 \item \textsl{lm.coefs}: to compute linear model coefficients, 
 \item \textsl{normalizer}: to normalize data between a user defined range, 
 \item \textsl{plotCurves}: to plots many curves on one plot in separate cells allowing quick assessment, 
@@ -636,7 +635,7 @@ values.
 \section{\textsl{AmpSim} - a function to simulate amplification curves}
 \label{sec:AmpSim}
 
-The \textsl{AmpSim} function is a simulator for amplification reactions. Use 
+The \textsl{AmpSim} function simulates amplification reactions. Use 
 cases include teaching, algorithm testing or the comparison of an experimental 
 system to the predicted (``optimal'') model. \textsl{AmpSim} uses a 5-parameter 
 model (Equation~\ref{eq:richards}), which is commonly used for the 
@@ -647,14 +646,15 @@ fluo = bl + \frac{ampl - bl}{1 + \exp{(b.eff * (\log{cyc} - \log{Cq}))}}
 \end{equation}
 
 \textsl{AmpSim} has the intrinsic property to generate unique results if the 
-$noise$ parameter is set $TRUE$. This is due the use of the \textsl{rnorm} 
-(\emph{stats}) function to simulate noise. For identically replicated data use 
-\textsl{set.seed(123)} to alter the random number generator (RNG) state. The 
+$noise$ parameter is set $TRUE$. This is due the addition of normally distributed (as
+per \textsl{rnorm} function from \emph{stats} package) noise. For identically replicated
+noisy data set random seed (for example \textsl{set.seed(123)}). The 
 amplification curves of Figure~\ref{figure:AmpSim_effcalc}~\emph{A} are 
 generated with the same starting parameter of \textsl{AmpSim} but noise was 
-added. \textsl{AmpSim}.\textsl{gui} is a \emph{shiny} GUI \citep{shiny_2014} 
-implementation for \textsl{AmpSim}. Below an example how-to 
-invoke the \textsl{AmpSim}.\textsl{gui} is shown. Details on \emph{shiny} are described 
+added. 
+
+\textsl{AmpSim}.\textsl{gui} is a \emph{shiny} GUI \citep{shiny_2014} 
+implementation for \textsl{AmpSim}.Details on \emph{shiny} are described 
 in Section~\ref{sec:work_environment}. A GUI for the simulation and analysis of amplification reactions can be invoked by pasting the following code snippet into a \textbf{R} console.
 
 <<AmpSim_GUI,eval = FALSE>>=
@@ -665,7 +665,7 @@ require(shiny)
 # Invoke the shiny AmpSim app in the default web browser.
 runApp(paste(find.package("chipPCR")[1],"/AmpSim.gui", sep = ""))
 
-# Call shiny app AmpSim from gist
+# Alternatively call shiny app AmpSim from gist
 runGist('https://gist.github.com/michbur/e1def41598f1d0c1e2e6')
 @
 
@@ -691,8 +691,8 @@ and the textual results of \textsl{bg}.\textsl{max}.}
 \label{figure:browser}
 \end{figure}
 
-\textsl{AmpSim} has several parameters to simulate an 
-amplification curve. $b.eff$ and $Cq$ are most connected with another. 
+\textsl{AmpSim} has several parameters controlling simulation of 
+amplification curves. $b.eff$ and $Cq$ are strongly connected with one another. 
 Thus changing one of them changes both values. $Cq$ is used to 
 define an approximate Cq value. The expression ``approximate Cq'' value is 
 used because the calculated Cq value varies depending on the preferred 
@@ -734,6 +734,7 @@ illustrate the \textsl{inder} function (Figure~\ref{figure:SDM}), the
 \section{Single-blinded, randomized judging of amplification curves}
 \label{sec:humanrater}
 
+<<<<<<< HEAD
 Humans tend to have intentionally or unconsciously a bias towards a desirable 
 outcome. A single-blinded and randomized experiment aims to reduce bias in the 
 results, which concealed from the human tester. We developed the 
@@ -749,6 +750,23 @@ for ``ambiguous'' and $n$ for ``no''. It is possible to supply longer or shorter
 designations lists. In our example, we used \textsl{humanrater} in the 
 \textbf{RKWard} GUI (Figure~\ref{figure:humanrater}) to characterize 
 amplification curves from the ``testdata'' dataset.
+=======
+Humans may bias the interpretation towards a desirable outcome. A 
+single-blinded and randomized experiment aims to reduce bias in the results. We developed the \textsl{humanrater} function to 
+evaluate the quality of curve data (e.g., amplification or melting curve data) 
+in a randomized, half-blind manner. The function allows interactive 
+rating a curve for a certain characteristic. \textsl{humanrater} draws 
+individual graphs of a curve and prompts an input field for the user. 
+Application of this function are numerous (e.g., compare the human rating and 
+the rating of a machine or the rating of several individual experts). A list of 
+designations to characterize the amplification curve can be specified. The names 
+of elements specify short designations used during rating. Defaults are $y$ for 
+``yes'', $a$ for ``ambiguous'' and $n$ for ``no''. It is possible to supply 
+longer or shorter designations lists. In our example, we used \textsl{humanrater} 
+in the \textbf{RKWard} GUI (Figure~\ref{figure:humanrater}). We aimed to 
+characterize amplification curves which were randomly drawn from ``testdata'' to 
+avoid a bias by the user.
+>>>>>>> 4e59db28bbd2f1dbc1c865524e52edad6be98747
 
 <<humanrater_gui,eval = FALSE>>=
 # Create a set of data to be analyzed by humanrater.
