@@ -15,7 +15,7 @@
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\theequation}{S\arabic{equation}}
-\DeclareUnicodeCharacter{00A0}{ }
+\DeclareUnicodeCharacter{00B1}{ }
 
 \makeatletter
 \renewcommand{\@maketitle}{
