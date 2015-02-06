@@ -34,7 +34,6 @@
 
 \begin{document}
 
-
 \maketitle
 
 
@@ -670,8 +669,9 @@ runGist('https://gist.github.com/michbur/e1def41598f1d0c1e2e6')
 @
 
 The function opens a $\emph{chipPCR}$ webpage in the default web browser 
-(Figure~\ref{figure:browser}) with all parameters of the \textsl{AmpSim} 
-function. In addition to this, shows the GUI some information calculated by the 
+(Figure~\ref{figure:browser}). All parameters of the \textsl{AmpSim} 
+function may be set in the left part of the interface. 
+In addition to this, the GUI shows some information calculated by the 
 \textsl{bg}.\textsl{max} in a summary field and a plot below the simulated 
 amplification curve.
 
@@ -869,23 +869,7 @@ The plot of the \textsl{AmpSim}.\textsl{gui} is shown in a web browser
 \label{figure:MFIaggr2}
 \end{figure}
 
-\subsection{Parameters of \textsl{MFIaggr}}
 
-\textsl{MFIaggr} enables the analysis of specific parts of the 
-curve data as defined by the $llul$ parameter. $llul$ defines the lower 
-and upper data limit (cycles) for a region of interest (ROI). The function 
-returns an object with the columns ``Cycle'', ``Location'' (Mean, Median), 
-``Deviation'' (Standard Deviation, Median Absolute Deviation) and 
-``Coefficient of Variation''. Using the option $rob = TRUE$ the median and 
-the median absolute deviation (MAD) are calculated instead of the mean and 
-standard deviation. \textsl{MFIaggr} has the parameter $llul$ to define the 
-lower and upper data limit (cycle) for a ROI. Invoked by $@stats$ reports 
-\textsl{MFIaggr} further information such as inter quartile range (IQR), 
-medcouple (robust measure of skewness), skewness (Pearson's second 
-skewness coefficient), signal-to-noise ratio (SNR), variance-to-mean ratio 
-(VRM), number of missing values (NAs), results from a linear fit of the 
-ROI (intercept, slope, R~squared) and the Breusch--Pagan test to test for 
-heteroscedasticity in a linear regression model.
 
 In our example we analyzed the raw fluorescence from 96 replicates 
 ($\emph{VIMCFX96\_60}$ dataset) of a qPCR experiment for the human gene 
