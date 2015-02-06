@@ -486,20 +486,20 @@ specific curve parameters like the quantification cycle (Cq) and the
 amplification efficiency (AE) \cite{ruijter_2013, tellinghuisen_2014}.
 
 The data quality of experimental instruments is often not ready for end-user 
-analysis and presentation and may lead to misinterpretations and false 
+analysis and presentation may lead to misinterpretations as well as false 
 performance estimations. Therefore, novel technologies depend on tools to 
 pre-process raw data. Pre-processing specifically addresses raw data inspection, 
 steps to transform raw data in a compatible format for successive analysis steps 
 (e.g., smoothing, imputation of missing values), data reduction (e.g., removal 
 of invalid sets), noise reduction and data quality management. Noise is 
 challenging because derivative processes as used for ``cycle of quantification'' 
-methods (e.g., Second Derivative Maximum method) lead to an amplification of 
+methods (e.g., Second Derivative Maximum method) leads to an amplification of 
 noise \citep{larionov_2005, tuomi_2010, roediger_RJ_2013, ruijter_2013, 
 tellinghuisen_2014}. Pre-processing algorithms remove stochastic errors and 
 artefacts (e.g., noise, photo-bleaching effects, degassing effects, different 
 signal levels) illustrated in Figure~\ref{figure:problems}. However, 
-misinterpretations are more likely if non or manual (``arbitrary'') corrections 
-are performed. A manual alteration is in contradiction to reproducible research.
+misinterpretations are more likely if manual (``arbitrary'') corrections 
+are not performed. A manual alteration is in contradiction to reproducible research.
 
 \textbf{R} is widely used for the analysis of qPCR data. Most \textbf{R} 
 packages focus on the read-in and (post)-processing of datasets, which 
@@ -514,18 +514,18 @@ CRAN \citep{Dvinge_2009, Zhang_2010, heckmann_2011, perkins_2012,
 gehlenborg_2013, huntley_2013, zhang_2013, mccall_2014, pabinger_2014}. However, 
 there is no \textbf{R} package for pre-processing and quality analysis of 
 amplification curve data. Similar applies to other software solutions (compare 
-\citep{pabinger_2014}). Pre-processing is in most commercial cyclers a ``black 
-box''. This has limitations, such as hard to reproduce analysis on other 
-platforms, difficulties during the adoption to changing experimental setups and 
-limited sophisticated statistical tools. Moreover, it is desirable to set up 
+\citep{pabinger_2014}). Pre-processing in most commercial cyclers is a ``black 
+box'' model, where inner subroutines are not avaible for inspection. This approach limits
+reproduction of analysis on other platforms and introduces difficulties during the adoption 
+to new experimental setups or statistical tools. Moreover, it is desirable to set up 
 work-flows in an open environment, which enable downstream analyses and offer 
 powerful tools for data visualizations and automatic report generation.
 
-The $\emph{chipPCR}$ package was developed to automatize pre-processing, to ease 
-data analysis/visualization and to offer a quality control for the statistical 
-data analysis of qPCR and qIA experiments (Section~\ref{sec:functions}). 
+The $\emph{chipPCR}$ package was developed to automatize pre-processing, ease 
+data analysis/visualization and offer a quality control for the statistical 
+data analysis of qPCR or qIA experiments (Section~\ref{sec:functions}). 
 $\emph{chipPCR}$ is primarily targeted at developers of novel systems but non 
-the less at users who process raw data of commercial systems.
+the less users who process raw data of commercial systems can also utilize its functionalities.
 
 <<problems,warning=FALSE,message=FALSE,fig.show='hold',fig.cap=fig21_cap,fig.scap=fig21_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
 # Use AmpSim to generate amplification curves with 40 cycles
