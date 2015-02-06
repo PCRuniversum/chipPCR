@@ -732,23 +732,21 @@ illustrate the \textsl{inder} function (Figure~\ref{figure:SDM}), the
 \section{Single-blinded, randomized judging of amplification curves}
 \label{sec:humanrater}
 
-Humans tend to bias the interpretation towards a desirable outcome. A 
-single-blinded and randomized experiment aims to reduce bias in the results, 
-which concealed from the human tester. The bias towards a certain result may be 
-intentional or unconscious. We developed the \textsl{humanrater} function to 
-evaluate the quality of curve data (e.g., amplification or melting curve data) 
-in a randomized, half-blind manner. \textsl{humanrater} is an interactive 
-function to rate a curve for a certain characteristic. \textsl{humanrater} draws 
-individual graphs of a curve and prompts an input field for the user. 
-Application of this function are numerous (e.g., compare the human rating and 
-the rating of a machine or the rating of several individual experts). A list of 
-designations to characterize the amplification curve can be specified. The names 
-of elements specify short designations used during rating. Defaults are $y$ for 
-``yes'', $a$ for ``ambiguous'' and $n$ for ``no''. It is possible to supply 
-longer or shorter designations lists. In our example, we used \textsl{humanrater} 
-in the \textbf{RKWard} GUI (Figure~\ref{figure:humanrater}). We aimed to 
-characterize amplification curves which were randomly drawn from ``testdata'' to 
-avoid a bias by the user.
+Humans tend to have intentionally or unconsciously a bias towards a desirable 
+outcome. A single-blinded and randomized experiment aims to reduce bias in the 
+results, which concealed from the human tester. We developed the 
+\textsl{humanrater} function to evaluate curve data (e.g., amplification or 
+melting curve data) randomized and half-blind. \textsl{humanrater} is an 
+interactive function to rate a curve for a certain characteristic. 
+\textsl{humanrater} draws individual graphs of a curve and prompts an input 
+field. Applications the comparison of the human rating and the rating of a 
+machine or the rating of several individual experts. A list of designations to 
+characterize the amplification curve can be specified. The names of elements 
+specify short designations used during rating. Defaults are $y$ for ``yes'', $a$ 
+for ``ambiguous'' and $n$ for ``no''. It is possible to supply longer or shorter 
+designations lists. In our example, we used \textsl{humanrater} in the 
+\textbf{RKWard} GUI (Figure~\ref{figure:humanrater}) to characterize 
+amplification curves from the ``testdata'' dataset.
 
 <<humanrater_gui,eval = FALSE>>=
 # Create a set of data to be analyzed by humanrater.
