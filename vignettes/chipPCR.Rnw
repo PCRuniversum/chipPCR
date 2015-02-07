@@ -110,14 +110,13 @@ normalization}, \\emph{(E)} \\emph{lugn-normalization} with a cut off 3\\%
 and \\emph{(F)} \\emph{zscore-normalization}."
 fig5_scap <- "Comparison of the normalization functions from \\textsl{CPP}"
 
-fig6_cap <- "Amplification standard curve simulation and regression 
-analysis. \\emph{(A)} \\textsl{AmpSim} was used to synthesize a qPCR experiment of 
-six dilutions (three replicates per dilution) standard samples. The Cqs 
-were determined by the $SDM$ method (solid black vertical lines). 
-\\emph{(B)} effcalc was used to automatically perform a linear regression. 
-The regression curve (\\textendash) was plotted as the decadic logarithm of 
-input concentration versus the Cq. The 95\\% confidence interval is shown 
-be the light-blue solid lines."
+fig6_cap <- "Amplification standard curve simulation and regression analysis. 
+\\emph{(A)} \\textsl{AmpSim} was used to synthesize a qPCR experiment of six 
+dilutions (three replicates per dilution) standard samples. The Cqs were 
+determined by the $SDM$ method (solid black vertical lines). \\emph{(B)} effcalc 
+was used to automatically perform a linear regression (decadic logarithm 
+of input concentration versus the Cq). The 95\\% confidence interval is shown be 
+the light-blue solid lines."
 fig6_scap <- "Amplification standard curve simulation and regression 
 analysis."
 
@@ -129,9 +128,8 @@ panel)} The CPP function was used to baseline, to remove the missing value
 (\\textcolor{red}{\\textendash}) and to smooth 
 (\\textcolor{black}{\\textendash}, \\textcolor{red}{\\textendash}, 
 \\textcolor{green}{\\textendash}) the raw data. \\emph{(B, bottom panel)}. 
-The Cqs ($SDM$) of the pre-processed data were calculated by diffQ2 (see 
-main text) and analyzed with \\textsl{effcalc}. The amplification 
-efficiency approximately at 87.3~\\%."
+The Cqs ($SDM$ by diffQ function) were determined. An amplification 
+efficiency of 87.3~\\% was calculated with the \\textsl{effcalc} function."
 
 fig7_scap <- "Calculation of the amplification efficiency."
 
@@ -336,12 +334,12 @@ elongation phase show a similar distribution but differ in their MFI levels."
 
 fig24_scap <- "Analysis of two PCR condition with the \\textsl{MFIaggr} function."
 
-fig25_cap <- "Calculation of the amplification efficiency from an qPCR 
-experiment. DNA of Vimentin (\\emph{A}) and MLC-2v (\\emph{B}) was diluted 
-and amplified in a Roche Light Cycler 1.5. The data were taken from the C60.amp 
-dataset. Cqs ($SDM$) of were calculated by the \\textsl{inder} function and 
-analyzed with \\textsl{effcalc}. The amplification efficiency was (\\emph{C}) 
-95.1~\\% for Vimentin and  (\\emph{D}) 94.1~\\%  for MLC-2v."
+fig25_cap <- "Calculation of the amplification efficiency (AE) from an qPCR 
+experiment. DNA of Vimentin (\\emph{A}) and MLC-2v (\\emph{B}) was diluted and 
+amplified in a Roche Light Cycler 1.5 (C60.amp dataset). Cqs ($SDM$) of were 
+calculated by the \\textsl{inder} function and analyzed with \\textsl{effcalc}. 
+The AE was (\\emph{C}) 95.1~\\% for Vimentin and  
+(\\emph{D}) 94.1~\\%  for MLC-2v."
 
 fig25_scap <- "Calculation of the amplification efficiency for the C60.amp dataset."
 
@@ -624,7 +622,7 @@ Additionally, further the (auxiliary) functions:
 \end{itemize}
 
 are available. These are used for post-processing (e.g., Cq calculation, 
-amplification efficiency calculation) and quality analysis. For more information 
+AE calculation) and quality analysis. For more information 
 please refer to the following sections. Selected functionality is used in the 
 \emph{RDML} \citep{blagodatskikh_2014} package. Most of the functions are 
 central elements of other $\emph{chipPCR}$ functions. For example, 
@@ -989,7 +987,7 @@ default a robust linear regression (MM-type estimator) as integrated in the
 \textsl{lm}.\textsl{coefs} function. A defined range of the 
 amplification curve (typically the background range) is used to extrapolate the 
 linear trend over the entire dataset. However, this step has to be performed 
-with caution since this operation effects the amplification efficiency. The 
+with caution since this operation effects the AE. The 
 background is assumed to be constant for the entire measurement. Caution is 
 needed when using $trans$ with time series (see \textsl{lm} from the 
 $\emph{stats}$ package for details). Additionally, all data are normalized between 
@@ -1687,7 +1685,7 @@ range) to extrapolate the linear trend over the entire data. The coefficients of
 the analysis can be used for a trend-based correction of the entire dataset 
 (Figure~\ref{figure:lmcoef}). If the robust linear regression is impossible, 
 performs \textsl{lm.coefs} a linear regression using the least squares method. 
-However, this operation effects the amplification efficiency. Care is needed 
+However, this operation effects the AE. Care is needed 
 when using trans with time series (see \textsl{lm} from the $\emph{stats}$ 
 package for details).
 
@@ -1737,11 +1735,10 @@ cycles. In context of qIA, a higher $Nip$ might be appropriate.
 \subsection{Quantitative description of amplification reactions}
 
 The Cq is a relative value, which depends on the template copy number, 
-instrument, reagents, amplification efficiency and probe technology. Low Cqs 
+instrument, reagents, AE and probe technology. Low Cqs 
 correlate with high quantities template copy numbers. Real-time technologies 
 enable the quantification of nucleic acids by calculation of specific curve 
-parameters like the quantification cycle (Cq) and the amplification efficiency 
-(AE) based on the kinetics of the amplification curve. The Cq represents the 
+parameters like the Cq and the AE based on the kinetics of the amplification curve. The Cq represents the 
 number of cycles (time for qIA) needed to reach a defined fluorescence signal 
 level in the exponential phase of the amplification curve. The Cq can be 
 determined from a fixed threshold value or by various analytical algorithm as 
@@ -2158,12 +2155,12 @@ abline(h = r, lty = 2)
 \section{Amplification efficiency}
 
 Various influences alter amplification reactions. The amplification efficiency 
-is controlled by a complex interaction of the intrinsic and extrinsic factors 
+(AE) is controlled by a complex interaction of the intrinsic and extrinsic factors 
 like reaction conditions, substrate consumption, primer dimmer formation and 
 molecule specific reaction rates \citep{mehra_2005}. Some probe systems are 
 perceived as bias-introducing. Therefore, qPCR reaction should be corrected 
-based on the amplification efficiency \citep{tuomi_2010, ruijter_2014}. The 
-amplification efficiency (AE) can be estimated from individual samples or a set 
+based on the AE \citep{tuomi_2010, ruijter_2014}. The 
+AE can be estimated from individual samples or a set 
 of samples to compensate the presence of inhibitors and noise. Indirect methods 
 use fitted mathematical models or estimate the AE from absolute fluorescence 
 values \citep{liu_2002, tichopad_2003, alvarez_2007, smith_2007, batsch_2008, 
@@ -2180,7 +2177,7 @@ AE = \frac{10^{(-1/m)}}{2} * 100
 \textsl{effcalc} is used for the automatic calculation of the AE of 
 a dilution series (Figure~\ref{figure:AmpSim_effcalc}). An object of the class 
 list contains the ``Concentration'', Cqs, deviation of the Cqs, "Coefficient of 
-Variance" sequentially in the columns, the amplification efficiency (\%) 
+Variance" sequentially in the columns, the AE (\%) 
 according to Equation~\ref{eq:AE}, the results of the linear regression and the 
 correlation test (Pearson) (Table~\ref{table:effcalc_output}). The 
 \textsl{effcalc} has several options to enhance the plot. For example, it is 
@@ -2260,7 +2257,7 @@ Cq required pre-processing of the data. One amplification curve contained a miss
 (Figure~\ref{figure:CPP_C54}~A) which was removed by the spline method in \textsl{CPP}. 
 Additionally, the data were baselined (linear model, robust MM-estimator) and smoothed by 
 Savitzky-Golay smoothing (Figure~\ref{figure:CPP_C54}~B). The final analysis 
-with the \textsl{effcalc} function showed that the amplification efficiency is 
+with the \textsl{effcalc} function showed that the AE is 
 circa 87.3~\% for the gene \textit{MLC-2v} in the VideoScan HCU 
 (Figure~\ref{figure:CPP_C54}~C). However, since only few measure points were 
 tested in this experiment it just save to say that the hardware of the HCU works 
