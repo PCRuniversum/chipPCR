@@ -1053,22 +1053,20 @@ of a data column. However, in non-linear processes such as amplification
 processes its is reasonable to estimate the missing values from a trend. 
 
 The function \textsl{fixNA} imputes missing values in a single column of data 
-(response). The imputation is based either on a linear approximation or an 
+(response) either on linear approximation or an 
 approximation by cubic splines (default) (Figure~\ref{figure:fixNA}). Other 
 smoothing functions such as the Savitzky-Golay smoothing filter have the 
 intrinsic capability to remove missing values \citep{Savitzky_1964, 
-Eilers_2003}. However, such functionality was not yet implemented. This linear 
+Eilers_2003}. However, such functionality is not yet implemented. This linear 
 approach is useful but may be problematic on the phases other than background or 
-plateau phases of an amplification reaction. The parameter spline on 
+plateau phases of an amplification reaction. The parameter ``spline'' of 
 \textsl{fixNA} enables a trend estimation on cubic splines and may be more 
-appropriate in most scenarios. The function \textsl{fixNA} imputes missing 
-values in a single column of data by linear approximation (default) or spline 
-approximation.
+appropriate in most scenarios.
 
 The $\emph{reps384}$ dataset from the $\emph{qpcR}$ package 
 \citep{Spiess_qpcR_2014} was used to compare the influence of imputation on real-world 
 data. The experimental details were described in \citep{ruijter_2013}. The 
-$\emph{reps384}$ dataset consists of 379 replicate amplification curves (see 
+dataset consists of 379 replicate amplification curves (see 
 documentation of the $\emph{qpcR}$ package for details). Our in-silico 
 experiment was designed as followed: Either one or three missing values were 
 artificially to each amplification curve at random positions. We separated the 
