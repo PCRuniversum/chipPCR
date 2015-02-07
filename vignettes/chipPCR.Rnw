@@ -79,18 +79,16 @@ or equal to the threshold level ($r$)."
 fig3_scap <- "Application of \\textsl{th}.\\textsl{cyc} for the analysis 
 of ccPCR data."
 
-fig4_cap <- "Application of the \\textsl{CPP} and 
-\\textsl{th}.\\textsl{cyc} functions.
-\\textbf{A)} The raw data of the VIMCFX96\\_60 dataset were 
-plotted without pre-processing. \\textbf{B)} All amplification curve data 
-were pre-processed with the CPP function. The parameter $trans$ was set to 
-$TRUE$, which lead to a linear trend correction and base-lining. By 
-default a Savitzky-Golay filter was used to smooth the data. The data were 
-normalized between 0 and 1 ($method.norm = 'minm'$). \\textbf{C)} All 
-Cqs were calculated with \\textsl{th}.\\textsl{cyc} function. The Cq for the raw data was 
-$17.25 \\pm 0.5$ (at $r = 2575$) and $17.1 \\pm 0.1$ (at $r = 0.1$) for 
-the pre-processed data. Our results indicate that the dispersion of the Cq 
-values was slightly lower."
+fig4_cap <- "Application of the \\textsl{CPP} and \\textsl{th}.\\textsl{cyc} 
+functions. \\textbf{A)} The raw data of the VIMCFX96\\_60 dataset were 
+\\textbf{B)} pre-processed with the CPP function and finally plotted. 
+The parameter $trans$ was set to $TRUE$, which lead to a linear trend correction 
+and base-lining. By default a Savitzky-Golay filter was used to smooth the data. 
+The data were normalized between 0 and 1 ($method.norm = 'minm'$). \\textbf{C)} 
+All Cqs were calculated with \\textsl{th}.\\textsl{cyc} function. The Cq for the 
+raw data was $17.25 \\pm 0.5$ (at $r = 2575$) and $17.1 \\pm 0.1$ (at $r = 0.1$) 
+for the pre-processed data. Our results indicate that the dispersion of the Cq 
+values was slightly lower for the pre-processed data."
 fig4_scap <- "Application of the \\textsl{CPP} and 
 \\textsl{th}.\\textsl{cyc} functions."
 
@@ -958,8 +956,8 @@ plotCurves(VIMCFX96_60[, 1], y, nrow = 2, type = "l", CPP = TRUE)
 \section{Proposed workflow}
 
 In the previous section we showed different methods to investigate specific 
-properties of the measured data. Next, we focus on methods of the 
-$\emph{chipPCR}$ package to pre-process the data. We have chosen to state 
+properties of the measured data. Next, we focused on pre-processing methods of the 
+$\emph{chipPCR}$ package. We have chosen to state 
 function names and give some information on the working principle. Details will 
 be explained in the subsequent sections to avoid confusion of the reader. Here, 
 we show the application of the \textsl{CPP} function, as a proposed workflow for 
@@ -967,36 +965,36 @@ customized pre-processor functions. Data were taken from the $\emph{VIMCFX96\_60
 set. This dataset was measured with a Bio-Rad CFX96 thermo-cycler with 96 
 replicates (see $\emph{chipPCR}$ manual for experiential details).
 
-The \textsl{CPP} function encompasses algorithms to pre-process amplification curves. 
-This includes normalization, background subtraction, outlier removal (\textsl{fixNA} function) in the 
-background range and tests for positive amplification reactions. \textsl{CPP} 
-uses the \textsl{bg}.\textsl{max} function to estimate automatically the start 
-of the amplification process. The background range is often noisy, which 
-makes it hard to determine a meaningful background value. Therefore, 
-\textsl{CPP} can optionally remove outliers by finding the value with the 
-smallest and largest difference from the mean as provided by the $rm.outlier$ 
-function from the $\emph{outlier}$ package \citep{Komsta_2011}. $rm.outlier$ 
-detects these outliers by a simple rule without statistical testing and replaces 
-it by the sample mean. Outliers herein referrers to the smallest and largest 
-value, which has maximum difference from the sample mean. The slope of the 
-background range is often unequal to zero. By setting the parameter $trans$ it 
-is possible to apply a simple correction of the slope. Thereby either a robust 
-linear regression by computing MM-type regression estimators, a nonparametric 
-rank-based estimator or a standard linear regression model. \textsl{CPP} uses by 
-default a robust linear regression (MM-type estimator) as integrated in the 
-\textsl{lm}.\textsl{coefs} function. A defined range of the 
+The \textsl{CPP} function is a wrapper for pre-processing algorithms, which 
+includes normalization, background subtraction, outlier removal (\textsl{fixNA} 
+function) in the background range and tests for positive amplification 
+reactions. \textsl{CPP} uses the \textsl{bg}.\textsl{max} function to estimate 
+automatically the start of the amplification process. The background range is 
+often noisy, which makes it hard to determine a meaningful background value. 
+Therefore, \textsl{CPP} can optionally remove outliers by finding the value with 
+the smallest and largest difference from the mean as provided by the 
+$rm.outlier$ function from the $\emph{outlier}$ package \citep{Komsta_2011}. 
+$rm.outlier$ detects these outliers by a simple rule without statistical testing 
+and replaces it by the sample mean. Outliers herein referrers to the smallest 
+and largest value, which has maximum difference from the sample mean. The slope 
+of the background range is often unequal to zero. By setting the parameter 
+$trans$ it is possible to apply a simple correction of the slope. Thereby either 
+a robust linear regression by computing MM-type regression estimators, a 
+nonparametric rank-based estimator or a standard linear regression model. 
+\textsl{CPP} uses by default a robust linear regression (MM-type estimator) as 
+integrated in the \textsl{lm}.\textsl{coefs} function. A defined range of the 
 amplification curve (typically the background range) is used to extrapolate the 
 linear trend over the entire dataset. However, this step has to be performed 
-with caution since this operation effects the AE. The 
-background is assumed to be constant for the entire measurement. Caution is 
-needed when using $trans$ with time series (see \textsl{lm} from the 
-$\emph{stats}$ package for details). Additionally, all data are normalized between 
-there minimum and maximum. This is taken care of by the \textsl{normalizer} 
-function. Smoothing of the data is finally done based on an 
-instance of the \textsl{smoother} function. By default, a Savitsky-Golay filter 
-was used to smooth the data. The following code is a representative example for 
-the use of \textsl{CPP} (Figure~\ref{figure:workflow}). Warnings in following 
-code chunks were suppressed.
+with caution since this operation effects the AE. The background is assumed to 
+be constant for the entire measurement. Caution is needed when using $trans$ 
+with time series (see \textsl{lm} from the $\emph{stats}$ package for details). 
+Additionally, all data are normalized between there minimum and maximum. This is 
+taken care of by the \textsl{normalizer} function. Smoothing of the data is 
+finally done based on an instance of the \textsl{smoother} function. By default, 
+a Savitsky-Golay filter was used to smooth the data. The following code is a 
+representative example for the use of \textsl{CPP} 
+(Figure~\ref{figure:workflow}). Warnings in following code chunks were 
+suppressed.
 
 <<workflow,fig.show='hold',fig.cap=fig4_cap,fig.scap=fig4_scap,warning=FALSE,fig.width = 11, fig.height = 8>>=
 layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE), respect = TRUE)
@@ -2080,7 +2078,7 @@ Dependent Amplification}
 \label{sec:HDA}
 
 In this example for time-dependent reactions we examined a helicase dependent 
-amplification (HDA). The target was human Vimentin (Vim). The VideoScan Platform 
+amplification (HDA). The target was human \textit{Vimentin} (Vim). The VideoScan Platform 
 \citep{roediger_highly_2013} was used to monitor the amplification. The HDA was 
 performed at $65\,^{\circ}\mathrm{C}$ \citep{spiess_impact_2014}. Three 
 concentrations of input DNA (D1, D2, D3) were used (Figure~\ref{figure:HDA}). In 
