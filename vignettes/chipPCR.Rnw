@@ -2305,7 +2305,7 @@ print(xtable(effcalc(res.dil[, 1], res.dil[, 2]),
 @
 
 In another example we used \textsl{effcalc} function to analyze the $\emph{C60.amp}$ data 
-set from the $\emph{chipPCR}$ package. All data of the human genes Vimentin 
+set from the $\emph{chipPCR}$ package. All data of the human genes \textit{Vimentin} 
 (Figure~\ref{figure:effcalc_VIM_MLC}~A) and \textit{MLC-2v} 
 (Figure~\ref{figure:effcalc_VIM_MLC}~B) were amplified in a Roche Light Cycler 
 1.5 and detected by the HRM dye EvaGreen in independent experiments. As shown in 
