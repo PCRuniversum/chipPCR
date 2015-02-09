@@ -1059,29 +1059,28 @@ smoothing functions such as the Savitzky-Golay smoothing filter have the
 intrinsic capability to remove missing values \citep{Savitzky_1964, 
 Eilers_2003}. However, such functionality is not yet implemented. This linear 
 approach is useful but may be problematic on the phases other than background or 
-plateau phases of an amplification reaction. The parameter ``spline'' of 
+plateau phases of an amplification reaction. The parameter $spline$ of 
 \textsl{fixNA} enables a trend estimation on cubic splines and may be more 
 appropriate in most scenarios.
 
 The $\emph{reps384}$ dataset from the $\emph{qpcR}$ package 
-\citep{Spiess_qpcR_2014} was used to compare the influence of imputation on real-world 
-data. The experimental details were described in \citep{ruijter_2013}. The 
-dataset consists of 379 replicate amplification curves (see 
-documentation of the $\emph{qpcR}$ package for details). Our in-silico 
+\citep{Spiess_qpcR_2014} was used to compare the influence of imputation on 
+real-world data. The experimental details were described in 
+\citep{ruijter_2013}. The dataset consists of 379 replicate amplification curves 
+(see documentation of the $\emph{qpcR}$ package for details). Our in-silico 
 experiment was designed as followed: Either one or three missing values were 
 artificially to each amplification curve at random positions. We separated the 
 amplification curve in three fixed regions (``Linear phase'' (cycle 1 -- 10), 
 ``Exponential phase'' (cycle 11 -- 34), ``Plateau phase'' (cycle 34 -- 40), 
 Figure~\ref{figure:fixNA_data}) and investigated the impact on the pPCR 
-parameters ``Cq (SDM, Cy0)'' and curve background parameter ``bg''. The 
+parameters ``Cq (SDM, Cy0)'' and curve background parameter $bg$. The 
 performance of the imputed models was analyzed the goodness-of-fit in this 
-region by the commonly normalized used root-mean-squared-error (NRMSE). The 
-smaller the NRMSE the better the imputation is. Using this approach we compared 
-the imputation by ``linear approximation'' ($fixNA(x, y, spline = FALSE)$) and 
-``spline approximation'' ($fixNA(x, y, spline = TRUE)$). Our results show that 
-the imputation with the spline method worked reliably and introduced no 
-significant bias to all investigated parameters. To compare the linear and 
-spline-based imputation we performed a Kruskal-Wallis rank sum test 
+region by the commonly normalized used root-mean-squared-error (NRMSE). We 
+compared the imputation by ``linear approximation'' ($fixNA(x, y, spline = 
+FALSE)$) and ``spline approximation'' ($fixNA(x, y, spline = TRUE)$). Our 
+results show that the imputation with the spline method worked reliably and 
+introduced no significant bias to all investigated parameters. To compare the 
+linear and spline-based imputation we performed a Kruskal-Wallis rank sum test 
 (\textsl{kruskal.test}, $\emph{stats}$ package \citep{RCT_2013}).
 
 Our in-silico experiments showed that cubic spline interpolation yielded the most probable 
@@ -1219,12 +1218,12 @@ par(mfrow = c(1,1))
 \scalebox{0.6}{
 \includegraphics{fixNA_test1.png}
 }
-\caption{Test of the \textsl{fixNA} function using the spline and linear 
-imputation for qPCR data with missing values. Missing values were artificially 
-introduced into the $\emph{reps384}$ dataset from the $\emph{qpcR}$ package. We 
-found no significant difference between raw data and data with imputed missing 
-values. $R^2$ and correlation coefficients of curves were close to 1 with 
-p-value $< 10^{-6}$} 
+\caption{Imputation of missing values in amplification curve data by splines and 
+linear trends. Missing values were artificially introduced into the 
+$\emph{reps384}$ dataset from the $\emph{qpcR}$ package and imputed by the 
+\textsl{fixNA} function. We found no significant difference between raw data and 
+data with imputed missing values. $R^2$ and correlation coefficients of curves 
+were close to 1 with p-value $< 10^{-6}$.}
 \label{figure:test_fixNA}
 \end{figure}
 
@@ -1232,14 +1231,13 @@ p-value $< 10^{-6}$}
 \section{Smoothing and filtering}
 \label{sec:smoothing_filterring}
 
-Amplification curve data of experimental thermo-cyclers may deliver results, 
-which are hard to interpret due to noise. For data presentation it is often 
+For data presentation it is often 
 useful to smooth or filter the data. Smoothing and filtering are different 
-approaches with a similar outcome. Both pre-process an input signal as output 
+approaches with similar goals. Both pre-process an input signal as output 
 for subsequent analysis steps. Filtering uses methods of signal processing and 
 takes a data input and apply a function to form an output. Smoothing in contrast 
 uses statistical approaches, like local regression models (e.g., least squares 
-estimate) or cubic splines. Therefore, we developed the 
+estimate) or cubic splines. We developed the 
 \textsl{smoother} function, which is a wrapper for smoother functions and 
 filters commonly used to process amplification curve data. \textsl{smoother} 
 inherited traits (Table~\ref{table:tab1}) of the parent functions 
@@ -1312,8 +1310,8 @@ Other examples for smoothers include Savitzky-Golay smoothing filter, Friedman's
 SuperSmoother, and the Weighted Whittaker smoother (see the \textsl{smoother} 
 function for details).
 
-Many smoothing and filter functions (e.g., Savitsky-Golay filter) of 
-$\emph{chipPCR}$ assume uniform (equally spaced) sampling. The function 
+Selected smoothing and filter functions (e.g., Savitsky-Golay filter) 
+assume uniform (equally spaced) sampling. The function 
 \textsl{smoother} and \textsl{CPP} (inherited from \textsl{smoother}) give a 
 warning in such cases. It is recommended to pre-process the data to have equally 
 spaced values. The \textsl{smoother} function enables users to tune behavior of 
@@ -1332,23 +1330,20 @@ but it should cautiously be used to measure peaks \citep{spiess_impact_2014}.
 
 \begin{table*}[b]
 \label{table:tab1}
-\caption{ Smoothing and filter methods of the 
-$\emph{chipPCR}$ package. The parameter $lowess$ for LOWESS smoother 
-(locally-weighted polynomial regression) can be tuned by the parameters $f$ and 
-$iter$. The parameter $mova$ for moving average can be tuned by the parameter 
-$movaww$. $movaww$ is the window size used for the moving average. The parameter 
-$savgol$ for Savitzky-Golay smoothing filter can be tuned by the parameter $p$ 
-(see \textsl{sgolayfilt} (\emph{signal}) for details). The parameter $smooth$ 
-for cubic spline smooth can be tuned by the parameter $df.fact$. A $df.fact$ 
-value of 1 leaves the raw data almost unaffected while a value 0.5 smooths the 
-curve strongly. The parameter $spline$ for standard cubic spline 
-smooth has currently no additional parameter. The parameter $supsmu$ for 
-Friedman's SuperSmoother can be tuned by the parameter \textsl{span}. The 
-parameter $whit1$ (first order finite difference penalty) and $whit2$ (second 
-order finite difference penalty) for Weighted Whittaker smoother smoothing 
-filter, derived from the \emph{ptw} package, can be tuned by the parameter 
-$lambda$. For further details on the smoothers refer to the documentation of the 
-parent functions.
+\caption{ Smoothing and filter methods of the $\emph{chipPCR}$ package. The 
+parameter $lowess$ (locally-weighted polynomial regression, LOWESS) can be 
+adjusted by the parameters $f$ and $iter$. The parameter $mova$ (moving average) 
+can be adjusted the windowsize parameter $movaww$. The parameter $savgol$ 
+(Savitzky-Golay smoothing filter) can be adjusted by the parameter $p$. The 
+parameter $smooth$ (cubic spline smooth) can be adjusted by the parameter 
+$df.fact$. A $df.fact$ value of 1 smooths the data least while a value of 0.5 
+smooths the curve strongly. The parameter $spline$ (standard cubic spline 
+smooth) has no additional parameter. The parameter $supsmu$ (Friedman's 
+SuperSmoother) can be adjusted by the parameter \textsl{span}. The parameter 
+$whit1$ (first order finite difference penalty) and $whit2$ (second order finite 
+difference penalty) for Weighted Whittaker smoothing filter can be adjusted by 
+the parameter $lambda$. For further details on the smoothers refer to the 
+documentation of the parent functions.
 }
 \begin{center}
 \begin{tabular}{lccc}
