@@ -461,7 +461,11 @@ the following sections.
 
 Quantitative polymerase chain reaction (qPCR) and quantitative isothermal 
 amplification (qIA) are standard methods to amplify nucleic acids (e.g., genomic 
-DNA, copy DNA) \citep{pabinger_2014}. \citep{cobb_1994}. Software implementation for \textbf{R} \citep{qualityTools}
+DNA, copy DNA) \citep{pabinger_2014}. The Taguchi method is used in engineering 
+optimization processes and related disciplines. However, applications include 
+PCR application too \citep{cobb_1994, thanakiatkrai_2012}. Basically, it is possible 
+to determine the optimal conditions for PCR based assays. A software implementation for 
+\textbf{R} is available from the $\emph{qualityTools}$ package \citep{qualityTools}.
 Recently amplification 
 methods with continuous temperature gradients (e.g., microfluidics, capillary 
 convective PCR (ccPCR)) emerged 
