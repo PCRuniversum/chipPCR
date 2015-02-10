@@ -461,14 +461,16 @@ the following sections.
 
 Quantitative polymerase chain reaction (qPCR) and quantitative isothermal 
 amplification (qIA) are standard methods to amplify nucleic acids (e.g., genomic 
-DNA, copy DNA) \citep{cobb_1994, pabinger_2014}. Recently amplification methods 
-with continuous temperature gradients (e.g., microfluidics, capillary 
-convective PCR (ccPCR)) emerged \citep{chou_rapid_2011,rodiger_nucleic_2014,spiess_impact_2014}. 
-Isothermal amplification is a monocyclic reaction at a constant temperature. 
-Conversely, PCR is a polycyclic reaction with repeated thermal cycling condition 
-steps (denaturation, annealing, elongation) and measurements at discrete cycle 
-steps. The curve shape of isothermal amplification reactions do not necessarily 
-follow a S-shaped structure and the measurement is time-based (continuous, not 
+DNA, copy DNA) \citep{pabinger_2014}. \citep{cobb_1994}. Software implementation for \textbf{R} \citep{qualityTools}
+Recently amplification 
+methods with continuous temperature gradients (e.g., microfluidics, capillary 
+convective PCR (ccPCR)) emerged 
+\citep{chou_rapid_2011,rodiger_nucleic_2014,spiess_impact_2014}. Isothermal 
+amplification is a monocyclic reaction at a constant temperature. Conversely, 
+PCR is a polycyclic reaction with repeated thermal cycling condition steps 
+(denaturation, annealing, elongation) and measurements at discrete cycle steps. 
+The curve shape of isothermal amplification reactions do not necessarily follow 
+a S-shaped structure and the measurement is time-based (continuous, not 
 mandatory equidistant) in contrast to a cycle-based (discontinuous) measurement 
 of qPCRs. The number of measure points is usually higher than in qPCR experiments. All these 
 amplification methods are used in different real-time monitoring technologies, 
