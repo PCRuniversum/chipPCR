@@ -346,7 +346,7 @@ setMethod("plot", signature(x = "refMFI"), function(x, CV = FALSE, type = "p",
   error.plot.text <- paste0("ROI samples: ", format(ncol.y, nsmall = 3), "\n",
                        "ROI mean : SD\n", format(stats[1], nsmall = 3), " \u00b1 ", 
                        format(stats[3], nsmall = 2), "\n",
-                       "ROI median : SD\n", format(stats[2], nsmall = 3), " \u00b1 ", 
+                       "ROI median : MAD\n", format(stats[2], nsmall = 3), " \u00b1 ", 
                        format(stats[4], nsmall = 2))
   
   density.plot.text <- paste("ROI cycles: ", 
