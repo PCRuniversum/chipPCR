@@ -1,11 +1,10 @@
-year <- sub("-.*", "", meta$Date)
-note <- sprintf("R package version %s", meta$Version)
-title <- paste0(meta$Package, ": ", meta$Title)
+citHeader("To cite chipPCR in publications, please use:")
 
-bibentry(bibtype = "Manual",
-         title = title,
-         author = c(person("Stefan", "Roediger"),
-                    person("Michal", "Burdukiewicz")),
-         year = year,
-         note = note,
-         url = "http://CRAN.R-project.org/package=chipPCR")
+citEntry(entry = "Manual",
+  author = "Stefan Roediger and Michal Burdukiewicz",
+  title = "chipPCR: Toolkit of helper functions to pre-process amplification data",
+  year = "2014",
+  note = "R package version 0.0.8-4",
+  url = "http://CRAN.R-project.org/package=chipPCR",
+  textVersion = "Roediger S and Burdukiewicz M (2014). chipPCR: Toolkit of helper functions to pre-process amplification data. R package version 0.0.8-4, <URL: http://CRAN.R-project.org/package=chipPCR>."
+)
