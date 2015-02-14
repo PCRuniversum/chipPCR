@@ -17,7 +17,6 @@ quantified at the annealing step.
   ("index") contains intex of a sample and second column ("Cycle") contains the number 
   of cycle. Consecutive columns EG1-EG32 contains fluorescence data for Eva Green dye.
   Consecutive columns HP1-HP32 contains data for hydrolysis probe.
-  }
 }
 \details{
 MLC-2v was amplified in the Roche Ligth Cycler 1.5. The the change of 
