@@ -8,7 +8,7 @@ Amplification Curve Simulation Graphical User Interface
 Launches graphical user interface that allows simulating and analyzing 
 amplification reactions. The function will open the GUI in a webpage
 of the default browser. All parameters of the \code{\link[chipPCR]{AmpSim}} 
-function can be used. In addition shows the GUI some information calculated
+function can be used. In addition to this, the GUI shows some information calculated
 by the \code{\link[chipPCR]{bg.max}} in a summary field and a plot
 below the simulated amplification curve.
 }

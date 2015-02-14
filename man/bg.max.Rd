@@ -11,8 +11,8 @@
 Simple function to detect and correct the background range
 }
 \description{
-The function \code{\link[chipPCR]{bg.max}} is intended to detect and 
-correct background noise. The detection is made without any assumptions 
+The function \code{\link[chipPCR]{bg.max}} detects and corrects background noise. 
+The detection is made without any assumptions 
 regarding the model of the function.
 }
 \usage{
@@ -55,8 +55,8 @@ any specific amplification is detectable. The raw data (e.g., fluorescence
 intensity) measured after each step (cycle or time point) follow a 
 non-linear progress. The background is assumed to be constant for the 
 entire measurement. The algorithm of \code{\link[chipPCR]{bg.max}} is based 
-on the assumption that the signal difference of successive cycles in the 
-linear ground phase is approximately constant. After transition in the 
+on the assumption that during the linear ground phase the signal difference 
+of successive cycles is approximately constant. After transition to the 
 early exponential phase the signal changes drastically. First data are 
 smoothed by Friedman's 'super smoother' (as found in 
 \code{\link[stats]{supsmu}}. Thereof the approximate first and second 
@@ -64,14 +64,14 @@ derivative are calculated by a five-point stencil
 \code{link[chipPCR]{inder}}. 
 
 The difference of cycles at the maxima of the first and second approximate 
-derivative and a correction factor are used to estimate the range before 
-the exponential phase. This simple function finds the background range 
-without modeling the function. the start of the background range is defined 
-be a fixed value. since many signals tend to overshot in the first cycles a 
-default value of 3 is chosen. \code{\link[chipPCR]{bg.max}} tries also to 
-estimate the end of an amplification reaction.
+derivative as well as a correction factor are used to estimate the range before 
+the exponential phase. This function finds the background range 
+without modeling the relationship between signal and cycle number. The start of 
+the background range is defined be a fixed value. Since many signals tend to 
+overshot in the first cycles a default value of 3 is chosen. 
+\code{\link[chipPCR]{bg.max}} tries also to estimate the end of an amplification 
+reaction.
 
---
 The following paragraphs describe methods to detect the background range 
 of amplification curves. Currently none of them is implemented as R 
 function.

@@ -5,8 +5,7 @@
 Amplification test
 }
 \description{
-The function \code{\link[chipPCR]{amptester}} can be used to test if an 
-amplification is significant.
+The function \code{\link[chipPCR]{amptester}} tests if an amplification is significant.
 }
 \usage{
 amptester(y, manual = FALSE, noiselevel = 0.08, background = NULL)
@@ -33,8 +32,8 @@ The values can be added by the user or taken from the
 }
 }
 \details{
-  The function tries to estimate if a amplification process is taking 
-place. Several instances of tests are included. The first involves a 
+The function tries to estimate if data indicates an amplification process. 
+Several instances of tests are included. The first involves a 
 semiautomatic test if the range of the background is lower than the range 
 of the assumed signal. To differ between the ranges an instance of 
 \code{\link[chipPCR]{bg.max}} is used. Herein, the function assumes that an 
