@@ -5,8 +5,8 @@
 humanrater, a graphical interface to rate curves
 }
 \description{
-The function \code{humanrater} is an interactive function, which can be 
-used to rate a curve for a certain characteristic. \code{humanrater} draws
+\code{humanrater} allows rating a curve for a certain characteristic in the interactive, 
+semi-blind manner. \code{humanrater} draws
 individual graphs of a curve and prompts an input field for the user. This
 function can be used to compare the human rating and the rating of a 
 machine.
@@ -41,9 +41,10 @@ additional arguments to \code{\link[graphics]{plot}} function.
 
 \details{
 A user can specify the list of designations characterizing the curve, where the names of
-elements specify short designations used during rating. Defaults are \code{y} for "yes", \code{a} for "ambiguous" and \code{n} for "no".
+elements specify short designations used during rating. Defaults are \code{y} for "yes", \code{a} 
+for "ambiguous" and \code{n} for "no".
 
-It is possible to supply longer or shorter designations lists. 
+The supplied designation list must have length at least two (for example "true"/"false").
 }
 
 \author{

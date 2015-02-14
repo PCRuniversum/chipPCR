@@ -23,7 +23,7 @@ However, the data can also be estimated from an approximation by splines.
 
 \arguments{
   \item{x}{
-    \code{x} is a vector containing the time or cycle values or data frame/matrix where second
+    \code{x} is a vector containing the time or cycle values or data frame/matrix where second 
     column contains missing data.
 }
   \item{y}{
@@ -31,9 +31,8 @@ However, the data can also be estimated from an approximation by splines.
     also a vector. 
 }
   \item{spline}{
-	\code{spline} is a logical operator which defines of missing values 
-	should be imputed by spline approximation as per 
-	\code{\link[stats]{spline}}. The default is linear a approximation as 
+	\code{spline} if \code{TRUE} missing values are imputed by spline approximation as per 
+	\code{\link[stats]{spline}}. The default \code{FAlSE} is linear a approximation as 
 	per \code{\link[stats]{approx}}.
 }
   \item{verbose}{

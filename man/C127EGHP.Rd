@@ -13,74 +13,10 @@ quantified at the annealing step.
 }
 \usage{data(C127EGHP)}
 \format{
-  A data frame with 40 observations on the following 66 variables.
-  \describe{
-    \item{\code{index}}{Index of sample}
-    \item{\code{Cycle}}{Cycles}
-    \item{\code{EG1}}{Eva Green}
-    \item{\code{EG2}}{Eva Green}
-    \item{\code{EG3}}{Eva Green}
-    \item{\code{EG4}}{Eva Green}
-    \item{\code{EG5}}{Eva Green}
-    \item{\code{EG6}}{Eva Green}
-    \item{\code{EG7}}{Eva Green}
-    \item{\code{EG8}}{Eva Green}
-    \item{\code{EG9}}{Eva Green}
-    \item{\code{EG10}}{Eva Green}
-    \item{\code{EG11}}{Eva Green}
-    \item{\code{EG12}}{Eva Green}
-    \item{\code{EG13}}{Eva Green}
-    \item{\code{EG14}}{Eva Green}
-    \item{\code{EG15}}{Eva Green}
-    \item{\code{EG16}}{Eva Green}
-    \item{\code{EG17}}{Eva Green}
-    \item{\code{EG18}}{Eva Green}
-    \item{\code{EG19}}{Eva Green}
-    \item{\code{EG20}}{Eva Green}
-    \item{\code{EG21}}{Eva Green}
-    \item{\code{EG22}}{Eva Green}
-    \item{\code{EG23}}{Eva Green}
-    \item{\code{EG24}}{Eva Green}
-    \item{\code{EG25}}{Eva Green}
-    \item{\code{EG26}}{Eva Green}
-    \item{\code{EG27}}{Eva Green}
-    \item{\code{EG28}}{Eva Green}
-    \item{\code{EG29}}{Eva Green}
-    \item{\code{EG30}}{Eva Green}
-    \item{\code{EG31}}{Eva Green}
-    \item{\code{EG32}}{Eva Green}
-    \item{\code{HP1}}{Hydrolysis probe}
-    \item{\code{HP2}}{Hydrolysis probe}
-    \item{\code{HP3}}{Hydrolysis probe}
-    \item{\code{HP4}}{Hydrolysis probe}
-    \item{\code{HP5}}{Hydrolysis probe}
-    \item{\code{HP6}}{Hydrolysis probe}
-    \item{\code{HP7}}{Hydrolysis probe}
-    \item{\code{HP8}}{Hydrolysis probe}
-    \item{\code{HP9}}{Hydrolysis probe}
-    \item{\code{HP10}}{Hydrolysis probe}
-    \item{\code{HP11}}{Hydrolysis probe}
-    \item{\code{HP12}}{Hydrolysis probe}
-    \item{\code{HP13}}{Hydrolysis probe}
-    \item{\code{HP14}}{Hydrolysis probe}
-    \item{\code{HP15}}{Hydrolysis probe}
-    \item{\code{HP16}}{Hydrolysis probe}
-    \item{\code{HP17}}{Hydrolysis probe}
-    \item{\code{HP18}}{Hydrolysis probe}
-    \item{\code{HP19}}{Hydrolysis probe}
-    \item{\code{HP20}}{Hydrolysis probe}
-    \item{\code{HP21}}{Hydrolysis probe}
-    \item{\code{HP22}}{Hydrolysis probe}
-    \item{\code{HP23}}{Hydrolysis probe}
-    \item{\code{HP24}}{Hydrolysis probe}
-    \item{\code{HP25}}{Hydrolysis probe}
-    \item{\code{HP26}}{Hydrolysis probe}
-    \item{\code{HP27}}{Hydrolysis probe}
-    \item{\code{HP28}}{Hydrolysis probe}
-    \item{\code{HP29}}{Hydrolysis probe}
-    \item{\code{HP30}}{Hydrolysis probe}
-    \item{\code{HP31}}{Hydrolysis probe}
-    \item{\code{HP32}}{Hydrolysis probe}
+  A data frame with 40 observations on the following 66 variables. The first columns
+  ("index") contains intex of a sample and second column ("Cycle") contains the number 
+  of cycle. Consecutive columns EG1-EG32 contains fluorescence data for Eva Green dye.
+  Consecutive columns HP1-HP32 contains data for hydrolysis probe.
   }
 }
 \details{

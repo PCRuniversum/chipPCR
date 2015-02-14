@@ -15,7 +15,7 @@ elongation step (68.5 deg Celsius).
 \format{
   A data frame with 40 observations on the following 97 variables. The 
 first 
-  column ("Cycles") contains the number of cylces and consecutive columns 
+  column ("Cycles") contains the number of cycles and consecutive columns 
   contain the replicates ("A01" to "H12").
 }
 \details{

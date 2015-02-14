@@ -11,9 +11,7 @@
 Analysis of the amplification efficiency
 }
 \description{
- effcalc is used for a fast calculation of the amplification efficiency of
- a dilution. \code{effcalc} returns an object of the class 
- list.
+ effcalc calculates the amplification efficiency of a dilution.
 }
 \usage{
 \S4method{effcalc}{numeric,numeric}(x, y, logx = TRUE, RSD = FALSE, rob = FALSE,
@@ -46,7 +44,7 @@ Analysis of the amplification efficiency
 }
 
 \value{
-  \code{\linkS4class{eff}} object.
+  an object of the class \code{\linkS4class{eff}}.
 }
 
 \author{

@@ -12,7 +12,7 @@ of the fluorescence was quantified at the annealing step (59.5 deg Celsius).
 \usage{data(C126EG595)}
 \format{
   A data frame with 40 observations on the following 97 variables. The first 
-  column ("Cycle") contains the number of cylces and consecutive columns 
+  column ("Cycle") contains the number of cycles and consecutive columns 
   contain the replicates ("A01" to "H12").
 }
 \details{
