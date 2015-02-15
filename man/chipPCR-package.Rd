@@ -43,7 +43,9 @@ from a data column. \code{\link[chipPCR]{CPP}} can be used to normalize
 curve data, to remove background, to remove outliers and further steps. The 
 package includes further functions to smooth the data by different 
 functions including LOWESS, Moving Average, Friedman's SuperSmoother, Cubic 
-Spline and Savitzky-Golay smoothing.
+Spline and Savitzky-Golay smoothing. 
+
+For more exhaustive description see the vignette (\code{vignette("chipPCR")}).
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz
