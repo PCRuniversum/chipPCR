@@ -11,7 +11,7 @@
 Interpolate derivatives
 }
 \description{
-A function \code{inder} ("in" + "der" = interpolate derivatives)) for 
+A function \code{inder} ("in" + "der" = interpolate derivatives) for 
 interpolating first and second derivatives using the five-point stencil. 
 Therefore this function can be used to estimate the Cq (cycle of 
 quantification) of an amplification curve. First positive derivative also 
@@ -61,17 +61,16 @@ accepted character values: "spline", "supsmu". If \code{NULL}, smoothing is not 
 }
 }
 \details{
-The function \code{y = f(x)} is numerically derived by five-point stencil. 
-This method do not require any assumptions regarding the function \code{f}.
+The function \code{y = f(x)} is numerically derived using the five-point stencil. 
+This method does not require any assumptions regarding the function \code{f}.
 
 A smoothing procedure greatly enhances calculating derivative calculation. \code{inder}
 uses two smoothing algorithms best suited for this approach. A smoothing can
 be ommited by setting \code{smooth.method} to \code{NULL}, which is advisable in case of 
-the data already smoothed.
+the already smoothed data.
 }
 \value{
-An object of \code{\linkS4class{der}} class containing smoothed original 
-data.
+An object of \code{\linkS4class{der}} class.
 }
 \references{
 Ruijter JM, Pfaffl MW, Zhao S, et al. (2013) Evaluation of qPCR curve 

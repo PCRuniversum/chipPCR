@@ -31,7 +31,7 @@ statistics.}
 }
 \section{Methods}{
   \describe{
-       \item{qqplot}{\code{signature(y = "refMFI")}: plots a normal QQ 
+       \item{qqnorm}{\code{signature(y = "refMFI")}: plots a normal QQ 
 plot. 
     See \code{\link[stats]{qqnorm}}}
     \item{qqline}{\code{signature(y = "refMFI")}: adds a line to QQ plot. 
@@ -61,7 +61,17 @@ Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R.
 \code{\link[chipPCR]{summary.refMFI}}
 }
 \examples{
-#PUT STH HERE
+data(VIMCFX96_60)
+
+res <- MFIaggr(VIMCFX96_60)
+#summarize analysis
+summary(res)
+#plot results of the analysis
+plot(res)
+#plot a QQ plot
+qqnorm(res)
+#add QQ line
+qqline(res)
 }
 
 \keyword{classes}

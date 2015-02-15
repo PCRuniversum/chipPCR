@@ -7,7 +7,7 @@
 Plot \code{bg} objects
 }
 \description{
-Draw quick diagnostic plots of amplification reaction.
+Draws diagnostic plots of amplification reaction.
 }
 \usage{
 \S4method{plot}{bg}(x, what = 1:3, add = FALSE, indicators = TRUE, 

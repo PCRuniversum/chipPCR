@@ -7,7 +7,7 @@
 Plot \code{der} objects
 }
 \description{
-Plot interpolate derivatives.
+Plots interpolated derivatives.
 }
 \usage{
 \S4method{plot}{der}(x, what = 1:3, add = FALSE, legend = TRUE, 
@@ -35,7 +35,8 @@ plot.
 }
 
   \item{plot.colors}{
-is a vectors of colors used in plot. Must have length 3.
+is a vectors of colors used in plot. Must have length 3 for the original function, first, 
+and second derivative, respectively.
 }
   \item{...}{
 Arguments to be passed further to the plot function, such as graphical 

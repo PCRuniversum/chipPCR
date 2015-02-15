@@ -4,7 +4,7 @@
 Threshold Cycle
 }
 \description{
-\code{th.cyc} is a function to calculate the number of cycles at which the 
+\code{th.cyc} calculates the number of cycles at which the 
 fluorescence exceeds a defined threshold, called the threshold cycle (Ct). 
 According to the MIQE guidelines the Ct is referred to as quantification 
 cycle (Cq). The calculated Cq is a relative value, which depends on the 
@@ -50,7 +50,7 @@ above the baseline and defined threshold in a particular samples. Thus the
 Ct is the cycle when sufficient numbers of amplicons have accumulated. The 
 \code{th.cyc} calculates the intersection of the user defined Ct value 
 (\code{r}) and a linear regression or quadratic polynomial in the range of 
-the user defined Ct value. In contrast to other methods is does 
+the user defined Ct value. In contrast to other methods, 
 \code{th.cyc} have no requirement to fit a "complex" non linear model to 
 the entire data set but rather focuses on the specific area. The polynomial 
 is calculated from four neighbor values at the fluorescence threshold.

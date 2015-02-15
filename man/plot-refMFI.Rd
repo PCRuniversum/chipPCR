@@ -58,10 +58,5 @@ Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R.
 \seealso{
 \code{\linkS4class{refMFI}}
 }
-\examples{
-
-#step-by-step plotting refMFI object
-
-}
 
 \keyword{hplot}

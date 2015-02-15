@@ -7,7 +7,7 @@
 Plot \code{eff} objects
 }
 \description{
-Draw quick diagnostic plots of the amplification efficiency.
+Draws diagnostic plots of the amplification efficiency.
 }
 \usage{
 \S4method{plot}{eff}(x, xlab = "log10(Concentration)", 

@@ -4,7 +4,7 @@
 Plot Curves in an Orthogonal Matrix
 }
 \description{
-Plots many curves on one plot in separate cells allowing quick assessment.
+Plots many curves on one plot in table-like fashion.
 }
 \usage{
 plotCurves(x, y, cyc = 1, fluo = 2:ncol(x), one.plot = FALSE, 
@@ -30,8 +30,8 @@ plotCurves(x, y, cyc = 1, fluo = 2:ncol(x), one.plot = FALSE,
 number of rows in plot. Applies only if \code{one.plot} is \code{FALSE}.
 }
   \item{CPP}{
-logical, if \code{TRUE} CPP analysis is added to a plot. Applies only if \code{one.plot} is
-\code{FALSE}.
+logical, if \code{TRUE} CPP analysis is added to a plot. Ignored if \code{one.plot} is
+\code{TRUE}.
 }
 
   \item{\dots}{
