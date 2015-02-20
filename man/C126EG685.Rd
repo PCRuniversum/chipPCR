@@ -6,7 +6,7 @@ qPCR Experiment for the Amplification of HPRT1 Using the Roche Light Cycler
 1.5
 }
 \description{
-A Quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
+A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
 2007) was performed in the Roche Light Cycler 1.5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
 elongation step (68.5 degree Celsius).
