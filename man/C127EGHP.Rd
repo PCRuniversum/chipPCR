@@ -25,7 +25,7 @@ and EvaGreen. The primer sequences for MLC-2v were taken from Roediger et al.
 (2013). A 10 micro L qPCR reaction was composed of 250 nM primer (forward and 
 reverse), qPCR Mix (according to the manufactures recommendations), 1 micro L 
 template  (MLC-2v amplification product), 60 nM hydrolysis probe probe for 
-MLC-2v. EvaGreen was used at 0.5x final. During the amplification was 
+MLC-2v. EvaGreen was used at 0.5 x final. During the amplification was 
 monitored 59.5 degree Celsius.
 }
 \source{

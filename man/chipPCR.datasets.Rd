@@ -35,13 +35,13 @@ Melt Curves MLC-2v and Vimentin for the qPCR experiment
 
 \code{\link[chipPCR]{C126EG595}}:
 A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
-2007) was performed in the Bio-Rad iQ5 thermo cycler. The 
+2007) was performed in a Bio-Rad iQ5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
 elongation step (59.5 degree Celsius).
 
 \code{\link[chipPCR]{C126EG685}}:
 A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
-2007) was performed in the Bio-Rad iQ5 thermo cycler. The 
+2007) was performed in a Bio-Rad iQ5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
 elongation step (68.5 degree Celsius).
 
