@@ -6,13 +6,13 @@ Melt Curves MLC-2v and Vimentin for the qPCR Experiment C60.amp Using the
 Roche Light Cycler 1.5
 }
 \description{
-Melting curves were continously monitored with the Light Cycler 1.5 
-(Roche). For details on sample preparation refere to 
+Melting curves were continuously monitored with the Light Cycler 1.5 
+(Roche). For details on sample preparation refer to 
 \link[chipPCR]{C60.amp}.
 }
 \usage{data(C60.melt)}
 \format{
-  A data frame with 128 observations on the following 65 variables. Refere 
+  A data frame with 128 observations on the following 65 variables. Refer 
 to \link[chipPCR]{C60.amp} for details of the specific samples.
   \describe{
     \item{\code{Index}}{Index of elements}
@@ -83,11 +83,11 @@ to \link[chipPCR]{C60.amp} for details of the specific samples.
   }
 }
 \details{
-Melting curves were continously monitored with the Light Cycler 1.5 
+Melting curves were continuously monitored with the Light Cycler 1.5 
 (Roche).
 }
 \source{
-Stefan Roediger, Clauia Deutschman (BTU Cottbus - Senftenberg)
+Stefan Roediger, Claudia Deutschmann (BTU Cottbus - Senftenberg)
 }
 \references{ A Highly Versatile Microscope Imaging Technology Platform for 
 the Multiplex Real-Time Detection of Biomolecules and Autoimmune 

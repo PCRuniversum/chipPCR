@@ -7,8 +7,8 @@ Melting Curve Measured with the Bio-Rad CFX96
 \description{
 Data set of a melting curve using the Bio-Rad CFX96 thermo cycler. The samples 
 of Vimentin were measured in the CFX96 as replicates according to Roediger et 
-al. (2013). The qunatitiation was performed during the gradient from 55 to 95 
-deg Celsius with a resolution of 0.5 deg Celsius per step.
+al. (2013). The quantification was performed during the gradient from 55 to 95 
+degree Celsius with a resolution of 0.5 degree Celsius per step.
 }
 \usage{data(VIMCFX96_meltcurve)}
 \format{
@@ -18,7 +18,7 @@ deg Celsius with a resolution of 0.5 deg Celsius per step.
 }
 
 \source{
-Stefan Roediger, Clauia Deutschman (BTU Cottbus - Senftenberg)
+Stefan Roediger, Claudia Deutschmann (BTU Cottbus - Senftenberg)
 }
 
 \references{
@@ -34,7 +34,7 @@ data(VIMCFX96_meltcurve)
 tmp <- VIMCFX96_meltcurve
 
 plot(NA, NA, xlim = c(55,95), ylim = c(2000, 7000), xlab = "Temperature 
-    (deg Celsius)",
+    (degree Celsius)",
     ylab = "RFU", main = "Melting curve in CFX96 (Bio-Rad)")
 apply(tmp[, 2:ncol(tmp)], 2, 
       function(x) lines(tmp[1:nrow(tmp),1],x))

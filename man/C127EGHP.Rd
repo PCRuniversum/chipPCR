@@ -6,7 +6,7 @@ qPCR Experiment for the Amplification of MLC-2v Using the Roche Light Cycler
 1.5
 }
 \description{
-Quantitive PCR (qPCR) with a hydrolysis probe (Cy5/BHQ2) and DNA binding dye 
+Quantitative PCR (qPCR) with a hydrolysis probe (Cy5/BHQ2) and DNA binding dye 
 (EvaGreen) (Mao et al. 2007) was performed in the Roche Light Cycler 1.5 
 thermo cycler. The cycle-dependent increase of the fluorescence was 
 quantified at the annealing step.
@@ -14,17 +14,17 @@ quantified at the annealing step.
 \usage{data(C127EGHP)}
 \format{
   A data frame with 40 observations on the following 66 variables. The first columns
-  ("index") contains intex of a sample and second column ("Cycle") contains the number 
+  ("index") contains index of a sample and second column ("Cycle") contains the number 
   of cycle. Consecutive columns EG1-EG32 contains fluorescence data for Eva Green dye.
   Consecutive columns HP1-HP32 contains data for hydrolysis probe.
 }
 \details{
-MLC-2v was amplified in the Roche Ligth Cycler 1.5. The the change of 
-fluorescence was simultaniously monitored for the Hydrolysis probe of MLC-2v 
+MLC-2v was amplified in the Roche Light Cycler 1.5. The the change of 
+fluorescence was simultaneously monitored for the Hydrolysis probe of MLC-2v 
 and EvaGreen. The primer sequences for MLC-2v were taken from Roediger et al. 
 (2013). A 10 micro L qPCR reaction was composed of 250 nM primer (forward and 
-reverse), qPCR Mix (accordingt to the manufactures recommendations), 1 micro L 
-template  (MLC-2v amplification product), 60 nM hydorlysis probe probe for 
+reverse), qPCR Mix (according to the manufactures recommendations), 1 micro L 
+template  (MLC-2v amplification product), 60 nM hydrolysis probe probe for 
 MLC-2v. EvaGreen was used at 0.5x final. During the amplification was 
 monitored 59.5 degree Celsius.
 }

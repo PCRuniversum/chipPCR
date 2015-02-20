@@ -6,17 +6,16 @@ Overview for data sets of the \code{chipPCR} package
 }
 \description{
 The \code{chipPCR} package contains numerous data sets from commercial and 
-experimental technologies for the amplifiaction of nucleic acids. The data 
+experimental technologies for the amplification of nucleic acids. The data 
 sets include results from qPCR experiments with the VideoScan HCU 
-(Roediger 
-et al. 2013), Bio-Rad (iQ5, CFX96), capilary convectiive PCR (ccPCR) and 
+(Roediger et al. 2013), Bio-Rad (iQ5, CFX96), capillary convective PCR (ccPCR) and 
 Roche Light Cycler 1.5. Real-time monitored amplification reactions were 
-performed using standard amplifiaction methods (qPCR, based on Taq 
-polymerase) and quantitive isothermal amplifiaction (qIA). In selected 
+performed using standard amplification methods (qPCR, based on Taq 
+polymerase) and quantitative isothermal amplification (qIA). In selected 
 data 
 sets are melting curves and dilution series available. Most of the data 
 sets have equidistant measure points. However, some datasets have none 
-homogenous measure points as indicated below.
+homogeneous measure points as indicated below.
 
 \strong{capillary convective PCR (ccPCR)}
 
@@ -35,29 +34,29 @@ Melt Curves MLC-2v and Vimentin for the qPCR experiment
 \code{\link[chipPCR]{C60.amp}} using the Roche Light Cycler 1.5
 
 \code{\link[chipPCR]{C126EG595}}:
-A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
+A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
 2007) was performed in the Bio-Rad iQ5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
-elongation step (59.5 deg Celsius).
+elongation step (59.5 degree Celsius).
 
 \code{\link[chipPCR]{C126EG685}}:
-A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
+A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
 2007) was performed in the Bio-Rad iQ5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
-elongation step (68.5 deg Celsius).
+elongation step (68.5 degree Celsius).
 
 \code{\link[chipPCR]{C127EGHP}}:
-Quantitive PCR (qPCR) with a hydrolysis probe (Cy5/BHQ2) and DNA binding 
+Quantitative PCR (qPCR) with a hydrolysis probe (Cy5/BHQ2) and DNA binding 
 dye (EvaGreen) (Mao et al. 2007) performed in the Roche Light Cycler 
 1.5 thermo cycler.
 
 \code{\link[chipPCR]{VIMCFX96_60}}:
 Human vimentin amplification curve data (measured during annealing phase at 
-60 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
+60 degree Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMCFX96_69}}:
-Human vimentin amplification curve data (measured during elongatio phase at 
-69 deg Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
+Human vimentin amplification curve data (measured during elongation phase at 
+69 degree Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMCFX96_meltcurve}}:
 Human vimentin melting curve data for 96 replicate samples in a Bio-Rad 
@@ -65,11 +64,11 @@ CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_595}}:
 Human vimentin amplification curve data (measured during annealing phase at 
-59.5 deg Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
+59.5 degree Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_685}}:
-Human vimentin amplification curve data (measured during elongatio phase at 
-68.5 deg Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
+Human vimentin amplification curve data (measured during elongation phase at 
+68.5 degree Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_melt}}:
 Human vimentin melting curve data for 96 replicate samples in a Bio-Rad 
@@ -83,7 +82,7 @@ amplification using different concentrations of MLC-2v input cDNA
 quantities. 
 
 \code{\link[chipPCR]{CD74}}:
-Quantitive PCR with a hydrolysis probe and DNA binding dye (EvaGreen) for 
+Quantitative PCR with a hydrolysis probe and DNA binding dye (EvaGreen) for 
 MLC-2v measured at 59.5 degree Celsius (annealing temperature), 68.5 
 degree Celsius (elongation temperature) and at 30 degree Celsius.
 
@@ -153,7 +152,7 @@ data(VIMiQ5_melt)
 tmp <- VIMiQ5_melt
 
 plot(NA, NA, xlim = c(55,95), ylim = c(0, 40000), 
-    xlab = "Temperature (deg Celsius)",ylab = "RFU", 
+    xlab = "Temperature (degree Celsius)",ylab = "RFU", 
     main = "Melting curve in iQ5 (Bio-Rad)")
 apply(tmp[, 2:ncol(tmp)], 2, 
       function(x) lines(tmp[1:nrow(tmp),1],x))

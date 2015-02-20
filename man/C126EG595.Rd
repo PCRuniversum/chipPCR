@@ -5,9 +5,9 @@
 qPCR Experiment for the Amplification of HPRT1 Using the Bio-Rad iQ5 thermo cycler
 }
 \description{
-A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 2007) 
+A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 2007) 
 was performed in the Bio-Rad iQ5 thermo cycler. The cycle-dependent increase 
-of the fluorescence was quantified at the annealing step (59.5 deg Celsius).
+of the fluorescence was quantified at the annealing step (59.5 degree Celsius).
 }
 \usage{data(C126EG595)}
 \format{
@@ -17,16 +17,16 @@ of the fluorescence was quantified at the annealing step (59.5 deg Celsius).
 }
 \details{
 HPRT1 was amplified in the Bio-Rad iQ5. The the change of 
-fluorescence was simultaniously monitored for the Hydrolysis probe of HPRT1 
+fluorescence was simultaneously monitored for the Hydrolysis probe of HPRT1 
 and EvaGreen. The primer sequences for HPRT1 were taken from Roediger et al. 
 (2013). A 10 micro L qPCR reaction was composed of 250 nM primer (forward and 
-reverse), qPCR Mix (accordingt to the manufactures recommendations), 1 micro L 
-template  (HPRT1 amplification product), 60 nM hydorlysis probe probe for 
+reverse), qPCR Mix (according to the manufactures recommendations), 1 micro L 
+template  (HPRT1 amplification product), 60 nM hydrolysis probe probe for 
 HPRT1. EvaGreen was used at 0.5x final. During the amplification was monitored 
 59.5 degree Celsius.
 }
 \source{
-Stefan Roediger, Clauia Deutschman (BTU Cottbus - Senftenberg)
+Stefan Roediger, Claudia Deutschmann (BTU Cottbus - Senftenberg)
 }
 \references{
 A Highly Versatile Microscope Imaging Technology Platform for the Multiplex 

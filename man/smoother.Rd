@@ -90,7 +90,7 @@ SuperSmoother, and Whittaker smoother. Several methods were integrated in the
 \code{chipPCR} package. A careful evaluation of this preprocessing step is of 
 high importance (Spiess et al. 2014).
 
-The function \code{\link[chipPCR]{smoother}} is a wrapper for smoother 
+\code{\link[chipPCR]{smoother}} is a wrapper for smoother 
 functions and filters commonly used to process amplification curve data. 
 The \code{\link[chipPCR]{smoother}} function was enhanced by functionality 
 of the \code{\link[chipPCR]{fixNA}} and \code{\link[chipPCR]{CPP}} 

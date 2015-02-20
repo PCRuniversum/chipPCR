@@ -11,9 +11,9 @@
 Simple function to detect and correct the background range
 }
 \description{
-The function \code{\link[chipPCR]{bg.max}} detects and corrects background noise. 
+\code{\link[chipPCR]{bg.max}} detects and corrects background noise. 
 The detection is made without any assumptions 
-regarding the model of the function.
+regarding the model of this function.
 }
 \usage{
 \S4method{bg.max}{numeric,numeric}(x, y, bg.corr = 1.3, bg.start = 2, 

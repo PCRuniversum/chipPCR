@@ -8,7 +8,7 @@ a routine to detect the start of an amplification reaction, several
 smoothers for amplification data, a function to distinguish positive and 
 negative amplification reactions and a function to determine the 
 amplification efficiency. The smoothers are based on LOWESS, moving 
-average, cubic splines, Savitzky-Golay and others.  
+average, cubic splines, Savitzky-Golay and others.
 
 In addition the first 
 approximate approximate derivative maximum (FDM) and second approximate 

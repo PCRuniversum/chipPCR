@@ -5,7 +5,7 @@
 Amplification test
 }
 \description{
-The function \code{\link[chipPCR]{amptester}} tests if an amplification is significant.
+The \code{\link[chipPCR]{amptester}} function tests if an amplification is significant.
 }
 \usage{
 amptester(y, manual = FALSE, noiselevel = 0.08, background = NULL)
@@ -32,11 +32,11 @@ The values can be added by the user or taken from the
 }
 }
 \details{
-The function tries to estimate if data indicates an amplification process. 
+This function tries to estimate if data indicates an amplification process. 
 Several instances of tests are included. The first involves a 
 semiautomatic test if the range of the background is lower than the range 
 of the assumed signal. To differ between the ranges an instance of 
-\code{\link[chipPCR]{bg.max}} is used. Herein, the function assumes that an 
+\code{\link[chipPCR]{bg.max}} is used. Herein, this function assumes that an 
 amplification takes place in case the signal of the amplification is larger 
 than the \code{\link[stats]{median}} + 5 * \code{\link[stats]{mad}} than 
 the background. The automatic test uses a Wilcoxon rank sum test 

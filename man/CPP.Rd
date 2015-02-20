@@ -12,7 +12,7 @@ Curve Pre-processor
 }
 
 \description{
-The function \code{\link[chipPCR]{CPP}} encompasses a set of functions to 
+\code{\link[chipPCR]{CPP}} encompasses a set of functions to 
 pre-process an amplification curve. The pre-processing includes options to 
 normalize curve data, to remove background, to remove outliers
 in the background range and to test if an amplification is significant.
@@ -108,13 +108,12 @@ replacement.  The mean is used by default.
 }
 
 \details{
-The function \code{\link[chipPCR]{CPP}} uses the function 
-\code{\link[chipPCR]{bg.max}} to estimate automatically the start of the 
+\code{\link[chipPCR]{CPP}} uses the \code{\link[chipPCR]{bg.max}} function to estimate automatically the start of the 
 amplification process. In the background range there is often noise which 
 makes it harder to determine a meaningful background value. Therefore 
 \code{\link[chipPCR]{CPP}} can optionally remove outliers by finding the 
 value with largest difference from the mean as provided by the 
-\code{\link[outliers]{rm.outlier}} function. The functions also tries to 
+\code{\link[outliers]{rm.outlier}} function. This function also tries to 
 prevent calculations of non amplified signals. 
 
 The slope of the background range is often unequal to 
@@ -152,7 +151,7 @@ for (i in 3:5) {
 	type = "b", pch = 20)
 }
 
-legend(50, 0.5, c("55 deg Celsius", "60 deg Celsius", "65 deg Celsius"), 
+legend(50, 0.5, c("55 degree Celsius", "60 degree Celsius", "65 degree Celsius"), 
 	col = c(1,2,3), pch = rep(20,3))
 
 # Use CPP to pre-process the data by removing the missing value and 
@@ -166,7 +165,7 @@ for (i in 3:5) {
   lines(C17[2:50, 1], y.cpp, col = i - 2, 
 	type = "b", pch = 20)
 }
-legend(50, 1, c("55 deg Celsius", "60 deg Celsius", "65 deg Celsius"), 
+legend(50, 1, c("55 degree Celsius", "60 degree Celsius", "65 degree Celsius"), 
 	col = c(1,2,3), pch = rep(20,3))
 par(mfrow = c(1,1))
 }

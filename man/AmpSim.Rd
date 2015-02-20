@@ -54,17 +54,17 @@ AmpSim(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1, Cq = 20,
 }
 }
 \details{
-The function \code{AmpSim} is a simple simulator for amplification reaction. 
-The function has several parameters which can be used to simulate the 
+\code{AmpSim} is a simple simulator for amplification reaction. 
+This function has several parameters which can be used to simulate the 
 amplification curve. \code{b.eff} and \code{Cq} are most connected with 
 another. Thus changing one of them will change both values. \code{Cq} can be 
-used to define an approximate Cq value. The expression "approximate Cq value" 
-is used here because the actual Cq value is dependent on the users preferred 
-method (e.g., Cy0 method, Second Derivative Maximum (SDM) method, threshold 
-method). The funtion can be used to see how an experimental system compares to 
-a predicted model. Moreover it can be used to simulate data with noise, 
-missing values (NA), signal-to-noise ratios, photo-bleaching and other 
-influences on a PCR reaction.
+used to define an approximate Cq value. The expression "approximate Cq value" is 
+used here because the actual Cq value is dependent on the users preferred method 
+(e.g., Cy0 method, Second Derivative Maximum (SDM) method, threshold method). 
+\code{AmpSim} can be used to compare an experimental system to a 
+predicted model. Moreover it can be used to simulate data with noise, missing 
+values (NA), signal-to-noise ratios, photo-bleaching and other influences on a 
+PCR reaction.
 }
 
 \references{

@@ -5,7 +5,7 @@
 Round der objects
 }
 \description{
-The function \code{\link[chipPCR]{inder}} calculates numeric derivatives on 
+\code{\link[chipPCR]{inder}} calculates numeric derivatives on 
 smoothed data which results in data points not observable in reality. The 
 \code{rounder} function averages such result to the real values of cycle 
 number.}

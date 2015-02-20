@@ -9,9 +9,9 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
   # Determine the time/cycle resolution of the data
   testxy(x, y)
   
-  # Determine the time or cycle resolution of the amplifification curve 
+  # Determine the time or cycle resolution of the amplification curve 
   # data is uniform. If not give a warning.
-  # TODO: add res.x to output of the functions
+  # TODO: add res.x to output of this functions
   d.x <- sapply(1L:(length(x) - 1), function(i) 
     abs(x[i] - x[i + 1]))
   

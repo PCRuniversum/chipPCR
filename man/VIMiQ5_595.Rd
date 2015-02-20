@@ -2,23 +2,23 @@
 \alias{VIMiQ5_595}
 \docType{data}
 \title{
-Amplfication Reaction Using the Bio-Rad iQ5
+Amplification Reaction Using the Bio-Rad iQ5
 }
 \description{
-Data set of an amplfication reaction using the Bio-Rad iQ5 thermo cycler. The 
+Data set of an amplification reaction using the Bio-Rad iQ5 thermo cycler. The 
 samples of Vimentin were amplified in the iQ5 as replicates according to 
-Roediger et al. (2013). The qunatitiation was performed during the annealing 
-step (59.5 deg Celsius).
+Roediger et al. (2013). The quantification was performed during the annealing 
+step (59.5 degree Celsius).
 }
 \usage{data(VIMiQ5_595)}
 \format{
   A data frame with 40 observations on the following 97 variables. The first 
-  column ("Cycles") contains the number of cylces and consecutive columns 
+  column ("Cycles") contains the number of cycles and consecutive columns 
   contain the replicates ("A01" to "H12").
   }
 
 \source{
-Stefan Roediger, Clauia Deutschman (BTU Cottbus - Senftenberg)
+Stefan Roediger, Claudia Deutschmann (BTU Cottbus - Senftenberg)
 }
 \references{
 A Highly Versatile Microscope Imaging Technology Platform for the Multiplex 
@@ -33,7 +33,7 @@ T595 <- rowMeans(VIMiQ5_595[, 2:ncol(VIMiQ5_595)])
 T685 <- rowMeans(VIMiQ5_685[, 2:ncol(VIMiQ5_685)])
 
 plot(1:length(T595), T595, main = "Fluorescence at different 
-    temperatures\nQuantitation in iQ5 (Bio-Rad)", xlab = "Cycle", 
+    temperatures\nQuantification in iQ5 (Bio-Rad)", xlab = "Cycle", 
     ylab = "Cycle dependent fluorescence", pch = 15, type = "b")
 lines(1:length(T685), T685, pch = 19, type = "b", col = 2)
 legend(1, 10000, c("Annealing (59.5 deg C)", "Elongation (68.5 deg C)"), 

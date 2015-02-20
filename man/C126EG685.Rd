@@ -2,14 +2,14 @@
 \alias{C126EG685}
 \docType{data}
 \title{
-qPCR Experiment for the Amplification of HPRT1 Using the Roche Ligth Cycler 
+qPCR Experiment for the Amplification of HPRT1 Using the Roche Light Cycler 
 1.5
 }
 \description{
-A Quantitive PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
-2007) was performed in the Roche Ligth Cycler 1.5 thermo cycler. The 
+A Quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
+2007) was performed in the Roche Light Cycler 1.5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
-elongation step (68.5 deg Celsius).
+elongation step (68.5 degree Celsius).
 }
 \usage{data(C126EG685)}	
 \format{
@@ -19,13 +19,13 @@ first
   contain the replicates ("A01" to "H12").
 }
 \details{
-MLC-2v was amplified in the Roche Ligth Cycler 1.5. The the change of 
-fluorescence was simultaniously monitored for the Hydrolysis probe of 
+MLC-2v was amplified in the Roche Light Cycler 1.5. The the change of 
+fluorescence was simultaneously monitored for the Hydrolysis probe of 
 MLC-2v and EvaGreen. The primer sequences for MLC-2v were taken from 
 Roediger et al. (2013). A 10 micro L qPCR reaction was composed of 250 nM 
-primer (forward and reverse), qPCR Mix (accordingt to the manufactures 
+primer (forward and reverse), qPCR Mix (according to the manufactures 
 recommendations), 1 micro L template  (MLC-2v amplification product), 60 nM 
-hydorlysis probe probe for MLC-2v. EvaGreen was used at 0.5x final. The 
+hydrolysis probe probe for MLC-2v. EvaGreen was used at 0.5x final. The 
 amplification was monitored at 68.5 degree Celsius (elongation step).
 }
 \source{
@@ -62,6 +62,6 @@ apply(tmp[, 2:ncol(tmp)], 2,
       function(x) lines(tmp[1:nrow(tmp),1],x))
       
 }
-\keyword{ hydorlysis }
+\keyword{ hydrolysis }
 \keyword{ EvaGreen }
 \keyword{ HPRT1 }

@@ -6,7 +6,7 @@ Highly Replicate Number Amplification Curves
 }
 \description{
 Highly replicate number amplification curves with an approximate amplification 
-efficiency of 62.5 percent at cycle number 18. The data were derivd from a 
+efficiency of 62.5 percent at cycle number 18. The data were derived from a 
 simulation such as the AmpSim function.
 }
 \usage{data(Eff625)}

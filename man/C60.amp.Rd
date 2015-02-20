@@ -50,12 +50,12 @@ Roch Light Cycler 1.5.
   }
 }
 \details{ 
-MLC-2v and Vimentin were amplified in the Roche Ligth Cycler 1.5. 
+MLC-2v and Vimentin were amplified in the Roche Light Cycler 1.5. 
 Decadic dilutions of the input cDNA were prepared. The  change of 
-fluorescence was simultaniously monitored with EvaGreen. The primer 
+fluorescence was simultaneously monitored with EvaGreen. The primer 
 sequences for MLC-2v were taken from Roediger et al. (2013). A 10 micro L 
 qPCR reaction was composed of 250 nM primer (forward and reverse), Roche 
-qPCR Master-Mix (accordingt to the manufactures recommendations) and 1 
+qPCR Master-Mix (according to the manufactures recommendations) and 1 
 micro L input DNA. EvaGreen was used at 1x final. During the amplification 
 was monitored 58 degree Celsius. Temperature profile:
 
@@ -67,7 +67,7 @@ was monitored 58 degree Celsius. Temperature profile:
     }
 }
 \source{
-Stefan Roediger, Clauia Deutschman (BTU Cottbus - Senftenberg)
+Stefan Roediger, Claudia Deutschmann (BTU Cottbus - Senftenberg)
 }
 \references{
 A Highly Versatile Microscope Imaging Technology Platform for the Multiplex 

@@ -66,7 +66,7 @@ This method does not require any assumptions regarding the function \code{f}.
 
 A smoothing procedure greatly enhances calculating derivative calculation. \code{inder}
 uses two smoothing algorithms best suited for this approach. A smoothing can
-be ommited by setting \code{smooth.method} to \code{NULL}, which is advisable in case of 
+be omitted by setting \code{smooth.method} to \code{NULL}, which is advisable in case of 
 the already smoothed data.
 }
 \value{

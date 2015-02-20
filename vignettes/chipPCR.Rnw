@@ -28,7 +28,7 @@
 \end{center}%
 \par} \makeatother
 
-\title{Supplement to: ``chipPCR: an R Package to Pre-Process Amplification Curve Data''}
+\title{Supplement to: ``chipPCR: an R Package to Pre-Process Raw Data of Amplification Curves''}
 \author{Stefan R\"{o}diger*, Micha\l{} Burdukiewicz and Peter Schierack}
 \date{}
 
@@ -41,7 +41,7 @@
 
 %\usepackage{Sweave}
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Supplement to: "chipPCR: an R Package to Pre-Process Amplification Curve Data"}
+%\VignetteIndexEntry{Supplement to: "chipPCR: an R Package to Pre-Process Raw Data of Amplification Curves"}
 %\VignetteDepends{chipPCR}
 %\VignetteKeywords{amplification curve pro-processing chipPCR R}
 %\VignettePackage{chipPCR}
@@ -111,7 +111,7 @@ fig5_scap <- "Comparison of the normalization functions from \\textsl{CPP}"
 fig6_cap <- "Amplification standard curve simulation and regression analysis. 
 \\emph{(A)} \\textsl{AmpSim} was used to synthesize a qPCR experiment of six 
 dilutions (three replicates per dilution) standard samples. The Cqs were 
-determined by the $SDM$ method (solid black vertical lines). \\emph{(B)} effcalc 
+determined by the $SDM$ method (solid black vertical lines). \\emph{(B)} \\textsl{effcalc} 
 was used to automatically perform a linear regression (decadic logarithm 
 of input concentration versus the Cq). The 95\\% confidence interval is shown be 
 the light-blue solid lines."
@@ -161,7 +161,7 @@ fig10_cap <- "Plot all data from C127EGHP and calculate the $SDM$ (Second
 Derivative Maximum) values with the \\textsl{diffQ2} function.
 \\emph{(A)} Plot the samples detected with EvaGreen and 
 \\emph{(B)} shows the same samples detected with the Hydrolysis probe for 
-MLC-2v. \\emph{(C)} Stripchart of the Cq values (\\textbullet) with the 
+\\textsl{MLC-2v}. \\emph{(C)} Stripchart of the Cq values (\\textbullet) with the 
 median (\\textcolor{red}{\\textendash}) and the median absolute deviation 
 (\\textcolor{blue}{\\textendash~\\textendash}). This result indicates, that the variance of 
 the derived from the detection with hydrolysis probes is higher than the 
@@ -196,7 +196,7 @@ bimodal."
 fig12_scap <- "Signal analysis using the VIMCFX96\\_60 dataset (96-well 
 plate cycler (Bio-Rad CFX96))."
 
-fig13_cap <- "Helicase dependent amplification (HDA) of Vimentin (Vim) in the 
+fig13_cap <- "Helicase dependent amplification (HDA) of \\textsl{Vimentin} (Vim) in the 
 VideoScan Platform. The HDA was performed at 65 degree Celsius. Three 
 concentrations of input DNA (D1, D2, D3) were used. The amplification curves 
 were smoothed by a moving average (windowsize 3) and base-lined by a robust 
@@ -204,7 +204,7 @@ linear regression by computing MM-type regression estimator. The
 \\textsl{th}.\\textsl{cyc} function was used to determine the time required to 
 reach the threshold level of 0.05 (--)." 
 
-fig13_scap <- "Helicase dependent amplification (HDA) of Vimentin (Vim)."
+fig13_scap <- "Helicase dependent amplification (HDA) of \\textsl{Vimentin} (Vim)."
 
 fig14_cap <- "The \\textsl{plotCurves} function. Plots many curves on one plot in 
 separate cells allowing quick assessment. Missing values were artificially 
@@ -333,11 +333,11 @@ elongation phase show a similar distribution but differ in their MFI levels."
 fig24_scap <- "Analysis of two PCR condition with the \\textsl{MFIaggr} function."
 
 fig25_cap <- "Calculation of the amplification efficiency (AE) from an qPCR 
-experiment. DNA of Vimentin (\\emph{A}) and MLC-2v (\\emph{B}) was diluted and 
+experiment. DNA of \\textsl{Vimentin} (\\emph{A}) and \\textsl{MLC-2v} (\\emph{B}) was diluted and 
 amplified in a Roche Light Cycler 1.5 (C60.amp dataset). Cqs ($SDM$) of were 
 calculated by the \\textsl{inder} function and analyzed with \\textsl{effcalc}. 
-The AE was (\\emph{C}) 95.1~\\% for Vimentin and  
-(\\emph{D}) 94.1~\\%  for MLC-2v."
+The AE was (\\emph{C}) 95.1~\\% for \\textsl{Vimentin} and  
+(\\emph{D}) 94.1~\\%  for \\textsl{MLC-2v}."
 
 fig25_scap <- "Calculation of the amplification efficiency for the C60.amp dataset."
 
@@ -361,7 +361,7 @@ Both the quantitative real-time polymerase chain reaction (qPCR) and isothermal
 amplification are standard methods used for the quantification of nucleic acids (DNA, 
 RNA). Numerous real-time read-out technologies with different technical 
 platforms have been developed so far. However, analysis of amplification curves consists of cascaded steps implemented in a similar manner across all existing technological platforms. Despite the growing interest in amplification-based techniques, there are 
-only few open source tools for pre-processing real-time amplication data. The availability of a software for pre-processing raw amplification data is mandatory in different scenarios, for example during the development, optimization and improvement of the functionality of instruments.
+only few open source tools for pre-processing real-time amplification data. The availability of a software for pre-processing raw amplification data is mandatory in different scenarios, for example during the development, optimization and improvement of the functionality of instruments.
 
 \textbf{Results and Conclusion: } %if any 
 $\emph{chipPCR}$ is a versatile \textbf{R} package for pre-processing 
@@ -475,22 +475,27 @@ microbead-chip technologies and commercial real-time thermo cyclers
 \citep{chang_2012, roediger_bead_qPCR_2013, rodiger_nucleic_2014}. Real-time 
 technologies enable the quantification of nucleic acids by calculation of 
 specific curve parameters like the quantification cycle (Cq) and the 
-amplification efficiency (AE) \cite{ruijter_2013, tellinghuisen_2014}.
+amplification efficiency (AE) \citep{ruijter_2013, tellinghuisen_2014}.
 
 The data quality of experimental instruments is often not suitable for end-user 
-analysis and presentation. Moreover, analysis of raw data may lead to misinterpretations and false performance estimates under certain conditions. Therefore, novel technologies usually depend on software for 
-pre-procession of raw data. Pre-processing specifically addresses raw data inspection, 
-steps to transform raw data in a compatible format for successive analysis steps 
-(e.g., smoothing, imputation of missing values), data reduction (e.g., removal 
-of invalid sets), noise reduction and data quality management. Noise is 
-challenging because derivative processes as used for ``cycle of quantification'' 
-methods (e.g., Second Derivative Maximum method) leads to an amplification of 
-noise \citep{larionov_2005, tuomi_2010, roediger_RJ_2013, ruijter_2013, 
+analysis and presentation. Moreover, analysis of raw data may lead to 
+misinterpretations and false performance estimates under certain conditions. 
+Therefore, novel technologies usually depend on software for pre-procession of 
+raw data. Pre-processing specifically addresses raw data inspection, steps to 
+transform raw data in a compatible format for successive analysis steps (e.g., 
+smoothing, imputation of missing values), data reduction (e.g., removal of 
+invalid sets), noise reduction and data quality management. Noise is challenging 
+because derivative processes as used for ``cycle of quantification'' methods 
+(e.g., Second Derivative Maximum method) leads to an amplification of noise 
+\citep{larionov_2005, tuomi_2010, roediger_RJ_2013, ruijter_2013, 
 tellinghuisen_2014}. Pre-processing algorithms remove stochastic errors and 
 artefacts (e.g., noise, photo-bleaching effects, degassing effects, different 
 signal levels) as illustrated in Figure~\ref{figure:problems}. However, 
-misinterpretations are more likely if arbitrary manual corrections 
-are not performed. A manual alteration is in contradiction to reproducible research.
+misinterpretations are more likely if arbitrary manual corrections are not 
+performed. A manual alteration is in contradiction to reproducible research. In 
+particular, open source scientific software and the associated input and output 
+data are central structural elements to enable recomputability and 
+reproducibility of results \citep{Blanton_2014, Jacobs_2014, Stodden_2014}. 
 
 \textbf{R} is widely used for the analysis of qPCR data. Most \textbf{R} 
 packages focus on the read-in, processing and post-processing of datasets 

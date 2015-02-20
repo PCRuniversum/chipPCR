@@ -2,23 +2,23 @@
 \alias{VIMCFX96_69}
 \docType{data}
 \title{
-Amplfication Reaction Using the Bio-Rad CFX96
+Amplification Reaction Using the Bio-Rad CFX96
 }
 \description{
-Data set of an amplfication reaction using the Bio-Rad CFX96 thermo cycler. 
+Data set of an amplification reaction using the Bio-Rad CFX96 thermo cycler. 
 The samples of Vimentin were amplified in the CFX96 as replicates according to 
-Roediger et al. (2013). The qunatitiation was performed during the elongation 
-step (69 deg Celsius).
+Roediger et al. (2013). The quantification was performed during the elongation 
+step (69 degree Celsius).
 }
 \usage{data(VIMCFX96_69)}
 \format{
   A data frame with 40 observations on the following 97 variables. The first 
-  column ("Cycle") contains the number of cylces and consecutive columns 
+  column ("Cycle") contains the number of cycles and consecutive columns 
   contain the replicates ("A1" to "H12").
 }
 
 \source{
-Stefan Roediger, Clauia Deutschman (BTU Cottbus - Senftenberg)
+Stefan Roediger, Claudia Deutschmann (BTU Cottbus - Senftenberg)
 }
 \references{
 A Highly Versatile Microscope Imaging Technology Platform for the Multiplex 
@@ -36,7 +36,7 @@ T60 <- rowMeans(VIMCFX96_60[, 2:ncol(VIMCFX96_60)])
 T69 <- rowMeans(VIMCFX96_69[, 2:ncol(VIMCFX96_69)])
 
 plot(1:length(T60), T60, main = "Fluorescence at different 
-      temperatures\nQuantitation in CFX96 (Bio-Rad)", xlab = "Cycle", 
+      temperatures\nQuantification in CFX96 (Bio-Rad)", xlab = "Cycle", 
       ylab = "Cycle dependent fluorescence", pch = 15, type = "b")
 lines(1:length(T69), T69, pch = 19, type = "b", col = 2)
 legend(1, 4500, c("Annealing (60 deg C)", "Elongation (69 deg C)"), 

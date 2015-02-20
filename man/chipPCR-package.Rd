@@ -31,13 +31,12 @@ The latest source code is available via:
 \tabular{ll}{
 Package: \tab chipPCR\cr
 Type: \tab Package\cr
-Version: \tab 0.0.8-3\cr
-Date: \tab 2014-09-29\cr
+Version: \tab 0.0.8-4\cr
+Date: \tab 2015-02-20\cr
 License: \tab GPL-3\cr
 }
-The function \code{\link[chipPCR]{bg.max}} can be used to remove missing 
-values in amplification curve data. The function 
-\code{\link[chipPCR]{amptester}} is used to test if an amplification is 
+\code{\link[chipPCR]{bg.max}} can be used to remove missing 
+values in amplification curve data. \code{\link[chipPCR]{amptester}} tests if an amplification is 
 positive. \code{\link[chipPCR]{fixNA}} is used to impute missing values 
 from a data column. \code{\link[chipPCR]{CPP}} can be used to normalize 
 curve data, to remove background, to remove outliers and further steps. The 

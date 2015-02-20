@@ -37,7 +37,7 @@ The primer sequences for HPRT1 were taken from Roediger et al. (2013).
 Preincubation: This mixture was incubated for 2 min at 95 degree. Celsius 
 and immediately placed on ice. 12.5 micro L of reaction buffer B which was 
 composed of 1.25 micro L 10x buffer, 40 mM NaCl, 5 mM MgSO4, 1.75 micro L 
-dNTPs, 0.2 x Evagreen, 1 micro L Enzyme mix and A. bidest. The fluorescence 
+dNTPs, 0.2 x EvaGreen, 1 micro L Enzyme mix and A. bidest. The fluorescence 
 measurement started directly after adding buffer B and the preincubation step.
 Temperature profile if the iQ5 thermo cycler (after Preincubation):
 - 60 seconds at 65 degree Celsius 

@@ -30,7 +30,7 @@ A. bidest which was covered with 50 micro L mineral oil. The primer sequences
 for HPRT1 were taken from Roediger et al. (2013). Preincubation: This mixture 
 was incubated for 2 min at 95 degree. Celsius and immediately placed on ice. 
 12.5 micro L of reaction buffer B which was composed of 1.25 micro L 10x 
-buffer, 40 mM NaCl, 5 mM MgSO4, 1.75 micro L dNTPs, 0.2 x Evagreen, 1 micro L 
+buffer, 40 mM NaCl, 5 mM MgSO4, 1.75 micro L dNTPs, 0.2 x EvaGreen, 1 micro L 
 Enzyme mix and A. bidest. The fluorescence measurement in VideoScan HCU 
 started directly after adding buffer B at 55, 60 or 65 degree Celsius and 
 revealed optimal conditions for the amplification when using 60 or 65 degree 

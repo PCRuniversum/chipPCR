@@ -26,7 +26,7 @@ from Roediger et al. (2013). The amplification was detected in solution of
 the 1 HCU (see Roediger et al. 2013 for details). A 20 micro L PCR reaction 
 was composed of 250 nM primer (forward and reverse), 1x Maxima Probe qPCR 
 Master Mix (Fermentas), 1 micro L template (MLC-2v amplification product in 
-different dilutions), 50 nM hydorlysis probe probe for MLC-2v and A. 
+different dilutions), 50 nM hydrolysis probe probe for MLC-2v and A. 
 bidest. During the amplification, fluorescence was measured at 59.5 degree 
 Celsius. The Cy5 channel was used to monitor the MLC-2v specific hydrolysis 
 probe. Input stock cDNA was used undiluted (D1). D2 was 1/1000 and D3 

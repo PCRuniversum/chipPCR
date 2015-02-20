@@ -11,7 +11,7 @@
 Impute missing values into a column of amplification data
 }
 \description{
-The function \code{\link[chipPCR]{fixNA}} imputes missing values in a single 
+\code{\link[chipPCR]{fixNA}} imputes missing values in a single 
 column of data. The imputation is based on a linear approximation by default. 
 However, the data can also be estimated from an approximation by splines.
 }
@@ -50,8 +50,7 @@ eliminated by a imputation. Imputation encompasses various approaches. This
 includes to calculate a location parameter (e.g., mean, median) or other 
 significant values (e.g., minimum, maximum, modus) of a data column. However, 
 in non-linear processes such as amplification processes its is better to 
-estimate the missing values from a trend. The function 
-\code{\link[chipPCR]{fixNA}} was empirically tested and relies on a linear 
+estimate the missing values from a trend. \code{\link[chipPCR]{fixNA}} was empirically tested and relies on a linear 
 trend estimation based on the \code{\link[stats]{approx}} function. This 
 approach is useful but may be problematic on the phases other then background 
 or plateau phases of an amplification reaction. The parameter 
