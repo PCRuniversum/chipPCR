@@ -9,8 +9,8 @@ quantities using the Bio-Rad iQ5 thermo cycler
 A Helicase Dependent Amplification (HDA) of HPRT1 (Homo sapiens 
 hypoxanthine phosphoribosyltransferase 1) was performed at three different 
 input DNA quantities using the Bio-Rad iQ5 thermo cycler. The HDA was 
-performed at 65 degree Celsius. The optimal temperature for a HDA is circa 
-65 degree Celsius. Lower temperatures will affect the slope and plateau of 
+performed at 65 degrees Celsius. The optimal temperature for a HDA is circa 
+65 degrees Celsius. Lower temperatures will affect the slope and plateau of 
 the HDA amplification curve.
 }
 \usage{data(C67)}
@@ -40,8 +40,8 @@ composed of 1.25 micro L 10x buffer, 40 mM NaCl, 5 mM MgSO4, 1.75 micro L
 dNTPs, 0.2 x EvaGreen, 1 micro L Enzyme mix and A. bidest. The fluorescence 
 measurement started directly after adding buffer B and the preincubation step.
 Temperature profile if the iQ5 thermo cycler (after Preincubation):
-- 60 seconds at 65 degree Celsius 
-- 11 seconds at 55 degree Celsius && Measurement
+- 60 seconds at 65 degrees Celsius 
+- 11 seconds at 55 degrees Celsius && Measurement
 }
 \source{
 Claudia Deutschmann & Stefan Roediger, BTU Cottbus - Senftenberg, 

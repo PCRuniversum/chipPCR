@@ -8,7 +8,7 @@ Amplification Reaction Using the Bio-Rad iQ5
 Data set of an amplification reaction using the Bio-Rad iQ5 thermo cycler. The 
 samples of Vimentin were amplified in the iQ5 as replicates according to 
 Roediger et al. (2013). The quantification was performed during the annealing 
-step (59.5 degree Celsius).
+step (59.5 degrees Celsius).
 }
 \usage{data(VIMiQ5_595)}
 \format{

@@ -9,7 +9,7 @@ qPCR Experiment for the Amplification of HPRT1 Using the Roche Light Cycler
 A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
 2007) was performed in the Roche Light Cycler 1.5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
-elongation step (68.5 degree Celsius).
+elongation step (68.5 degrees Celsius).
 }
 \usage{data(C126EG685)}	
 \format{
@@ -26,7 +26,7 @@ Roediger et al. (2013). A 10 micro L qPCR reaction was composed of 250 nM
 primer (forward and reverse), qPCR Mix (according to the manufactures 
 recommendations), 1 micro L template  (MLC-2v amplification product), 60 nM 
 hydrolysis probe probe for MLC-2v. EvaGreen was used at 0.5 x final. The 
-amplification was monitored at 68.5 degree Celsius (elongation step).
+amplification was monitored at 68.5 degrees Celsius (elongation step).
 }
 \source{
 Claudia Deutschmann & Stefan Roediger, BTU Cottbus - Senftenberg, 
@@ -55,7 +55,7 @@ tmp <- C126EG685
 plot(NA,NA, xlim = c(1,40), ylim = c(min(tmp[, 2:ncol(tmp)]), 
     max(tmp[, 2:ncol(tmp)])), xlab = "Cycle", 
     ylab = "RFU (FAM)", 
-    main = "Amplification monitored at \n68.5 degree Celsius (elongation 
+    main = "Amplification monitored at \n68.5 degrees Celsius (elongation 
 step)")
 
 apply(tmp[, 2:ncol(tmp)], 2, 

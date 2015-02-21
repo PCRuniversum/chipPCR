@@ -17,32 +17,32 @@ temperatures in order to estimate temperature dependent effects.
   fluorescence. Dilution A, 1x; Dilution B, 1:10; Dilution B, 1:100.
   \describe{
       \item{\code{Cycle}}{PCR cycles}
-      \item{\code{EG.30.A}}{refMFI at 30 degree Celsius, EvaGreen, Dilution A}
-      \item{\code{EG.59.5.A}}{refMFI at 59.5 degree Celsius, EvaGreen, Dilution A}
-      \item{\code{EG.68.5.A}}{refMFI at 68.5 degree Celsius, EvaGreen, Dilution A}
-      \item{\code{HP.30.A}}{refMFI at 30 degree Celsius, hydrolysis probe, 
+      \item{\code{EG.30.A}}{refMFI at 30 degrees Celsius, EvaGreen, Dilution A}
+      \item{\code{EG.59.5.A}}{refMFI at 59.5 degrees Celsius, EvaGreen, Dilution A}
+      \item{\code{EG.68.5.A}}{refMFI at 68.5 degrees Celsius, EvaGreen, Dilution A}
+      \item{\code{HP.30.A}}{refMFI at 30 degrees Celsius, hydrolysis probe, 
 			    Dilution A}
-      \item{\code{HP.59.5.A}}{refMFI at 59.5 degree Celsius, hydrolysis probe, 
+      \item{\code{HP.59.5.A}}{refMFI at 59.5 degrees Celsius, hydrolysis probe, 
 			      Dilution A}
-      \item{\code{HP.68.5.A}}{refMFI at 68.5 degree Celsius, hydrolysis probe, 
+      \item{\code{HP.68.5.A}}{refMFI at 68.5 degrees Celsius, hydrolysis probe, 
 			      Dilution A}
-      \item{\code{EG.30.B}}{refMFI at 30 degree Celsius, EvaGreen, Dilution B}
-      \item{\code{EG.59.5.B}}{refMFI at 59.5 degree Celsius, EvaGreen, Dilution B}
-      \item{\code{EG.68.5.B}}{refMFI at 68.5 degree Celsius, EvaGreen, Dilution B}
-      \item{\code{HP.30.B}}{refMFI at 30 degree Celsius, hydrolysis probe, 
+      \item{\code{EG.30.B}}{refMFI at 30 degrees Celsius, EvaGreen, Dilution B}
+      \item{\code{EG.59.5.B}}{refMFI at 59.5 degrees Celsius, EvaGreen, Dilution B}
+      \item{\code{EG.68.5.B}}{refMFI at 68.5 degrees Celsius, EvaGreen, Dilution B}
+      \item{\code{HP.30.B}}{refMFI at 30 degrees Celsius, hydrolysis probe, 
 			    Dilution B}
-      \item{\code{HP.59.5.B}}{refMFI at 59.5 degree Celsius, hydrolysis probe, 
+      \item{\code{HP.59.5.B}}{refMFI at 59.5 degrees Celsius, hydrolysis probe, 
 			      Dilution B}
-      \item{\code{HP.68.5.B}}{refMFI at 68.5 degree Celsius, hydrolysis probe, 
+      \item{\code{HP.68.5.B}}{refMFI at 68.5 degrees Celsius, hydrolysis probe, 
 			      Dilution B}
-      \item{\code{EG.30.C}}{refMFI at 30 degree Celsius, EvaGreen, Dilution C}
-      \item{\code{EG.59.5.C}}{refMFI at 59.5 degree Celsius, EvaGreen, Dilution C}
-      \item{\code{EG.68.5.C}}{refMFI at 68.5 degree Celsius, EvaGreen, Dilution C}
-      \item{\code{HP.30.C}}{refMFI at 30 degree Celsius, hydrolysis probe, 
+      \item{\code{EG.30.C}}{refMFI at 30 degrees Celsius, EvaGreen, Dilution C}
+      \item{\code{EG.59.5.C}}{refMFI at 59.5 degrees Celsius, EvaGreen, Dilution C}
+      \item{\code{EG.68.5.C}}{refMFI at 68.5 degrees Celsius, EvaGreen, Dilution C}
+      \item{\code{HP.30.C}}{refMFI at 30 degrees Celsius, hydrolysis probe, 
 			    Dilution C}
-      \item{\code{HP.59.5.C}}{refMFI at 59.5 degree Celsius, hydrolysis probe, 
+      \item{\code{HP.59.5.C}}{refMFI at 59.5 degrees Celsius, hydrolysis probe, 
 			      Dilution C}
-      \item{\code{HP.68.5.C}}{refMFI at 68.5 degree Celsius, hydrolysis probe, 
+      \item{\code{HP.68.5.C}}{refMFI at 68.5 degrees Celsius, hydrolysis probe, 
 			      Dilution C}
   }
 }
@@ -56,8 +56,8 @@ Roediger et al. 2013 for details). A 20 micro L PCR reaction was composed of
 (Fermentas), 1 micro L template (MLC-2v amplification product in different 
 dilutions), 50 nM hydrolysis probe probe for MLC-2v, 0.5 x EvaGreen and A. 
 bidest. During the amplification, fluorescence was measured at 3 different 
-temperatures, at 59.5 degree Celsius the annealing temperature, at 68.5 degree 
-Celsius the elongation temperature and at 30 degree Celsius. The FAM channel 
+temperatures, at 59.5 degrees Celsius the annealing temperature, at 68.5 degree 
+Celsius the elongation temperature and at 30 degrees Celsius. The FAM channel 
 was used to monitor EvaGreen and the Cy5 channel to monitor the MLC-2v specific 
 hydrolysis probe.
 }
@@ -81,7 +81,7 @@ implication of its physicochemical properties for qPCR applications.
 # First example
 # Comparison of smoothers and filter on amplification curves
 # Amplification curves were measured at three temperature (30, 
-# 59.5, 68.5 degree Celsius) using the VideoScan HCU (see 
+# 59.5, 68.5 degrees Celsius) using the VideoScan HCU (see 
 # Roediger et al. 2013 for details). MLC-2v was amplified.
 # The change of fluorescence was monitored by the intercalating
 # dye EvaGreen and hydrolysis probes.

@@ -7,7 +7,7 @@ Helicase Dependent Amplification of pCNG1 using the VideoScan Platform
 \description{
 A Helicase Dependent Amplification (HDA) of pCNG1 was performed. The VideoScan 
 Platform (Roediger et al. (2013)) was used to monitor the amplification. The 
-HDA was performed at 65 degree Celsius. Two concentrations of input DNA were 
+HDA was performed at 65 degrees Celsius. Two concentrations of input DNA were 
 used.
 }
 \usage{data(C81)}
@@ -32,10 +32,10 @@ placed on ice. Reaction mix B) 5 micro L A. bidest., 1.25 micro L 10x buffer,
 2 micro L NaCl, 1.25 micro L MgSO4, 1.75 micro L dNTPs, 0.25 micro L EvaGreen, 
 1 micro L enzyme mix. The mix was covered with 50 micro L mineral oil. The 
 fluorescence measurement in VideoScan HCU started directly after adding 
-buffer B at 65 degree Celsius. A 1x (D1) and a 1:10 dilution (D2) were tested.
+buffer B at 65 degrees Celsius. A 1x (D1) and a 1:10 dilution (D2) were tested.
 Temperature profile (after Preincubation):
-- 60 seconds at 65 degree Celsius 
-- 11 seconds at 55 degree Celsius && Measurement
+- 60 seconds at 65 degrees Celsius 
+- 11 seconds at 55 degrees Celsius && Measurement
 }
 \source{
 Claudia Deutschmann & Stefan Roediger, BTU Cottbus - Senftenberg, Senftenberg, 

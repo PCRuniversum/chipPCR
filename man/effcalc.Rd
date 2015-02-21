@@ -72,8 +72,7 @@ Sept. 2005. ISSN 0006-3592. doi: 10.1002/bit.20555. PMID: 15986490.
 M. Guescini, D. Sisti, M. B. Rocchi, L. Stocchi, and V. Stocchi. A new 
 real-time PCR method to overcome significant quantitative inaccuracy due to 
 slight amplification inhibition. \emph{BMC Bioinformatics}, 9(1):326, July 
-2008. ISSN 1471-2105. doi: 10.1186/1471-2105-9-326. \url{http: 
-//www.biomedcentral.com/1471-2105/9/326/abstract}. PMID: 18667053.
+2008. ISSN 1471-2105. doi: 10.1186/1471-2105-9-326. \url{http://www.biomedcentral.com/1471-2105/9/326/abstract}. PMID: 18667053.
 
 A. Tichopad, M. Dilger, G. Schwarz, and M. W. Pfaffl. Standardized 
 determination of real-time PCR efficiency from a single reaction set-up. 

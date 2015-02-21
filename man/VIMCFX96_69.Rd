@@ -8,7 +8,7 @@ Amplification Reaction Using the Bio-Rad CFX96
 Data set of an amplification reaction using the Bio-Rad CFX96 thermo cycler. 
 The samples of Vimentin were amplified in the CFX96 as replicates according to 
 Roediger et al. (2013). The quantification was performed during the elongation 
-step (69 degree Celsius).
+step (69 degrees Celsius).
 }
 \usage{data(VIMCFX96_69)}
 \format{

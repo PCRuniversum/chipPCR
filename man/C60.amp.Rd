@@ -57,7 +57,7 @@ sequences for MLC-2v were taken from Roediger et al. (2013). A 10 micro L
 qPCR reaction was composed of 250 nM primer (forward and reverse), Roche 
 qPCR Master-Mix (according to the manufactures recommendations) and 1 
 micro L input DNA. EvaGreen was used at 1x final. During the amplification 
-was monitored 58 degree Celsius. Temperature profile:
+was monitored 58 degrees Celsius. Temperature profile:
 
     95 deg C for 8 minutes
     40 x {

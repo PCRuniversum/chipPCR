@@ -9,8 +9,8 @@ VideoScan Platform 2.0
 A Helicase Dependent Amplification (HDA) of HPRT1 (Homo sapiens 
 hypoxanthine phosphoribosyltransferase 1) was performed at different 
 temperatures in the VideoScan Platform 2.0 (similar to Roediger et al. 
-(2013)). The HDA was performed at 55, 60 and 65 degree Celsius. The optimal 
-temperature for a HDA is circa 65 degree Celsius. Lower temperatures will 
+(2013)). The HDA was performed at 55, 60 and 65 degrees Celsius. The optimal 
+temperature for a HDA is circa 65 degrees Celsius. Lower temperatures will 
 affect the slope and plateau of the HDA amplification curve.
 }
 \usage{data(C17)}
@@ -19,9 +19,9 @@ affect the slope and plateau of the HDA amplification curve.
   \describe{
     \item{\code{C17.t}}{Elapsed time during HDA in seconds.}
     \item{\code{C17.cycle}}{a numeric vector}
-    \item{\code{C17.T55}}{Time-dependent fluorescence at 55 degree Celsius}
-    \item{\code{C17.T60}}{Time-dependent fluorescence at 60 degree Celsius}
-    \item{\code{C17.T65}}{Time-dependent fluorescence at 65 degree Celsius}
+    \item{\code{C17.T55}}{Time-dependent fluorescence at 55 degrees Celsius}
+    \item{\code{C17.T60}}{Time-dependent fluorescence at 60 degrees Celsius}
+    \item{\code{C17.T65}}{Time-dependent fluorescence at 65 degrees Celsius}
   }
 }
 \details{
@@ -36,11 +36,11 @@ Celsius and immediately placed on ice. 12.5 micro L of reaction buffer B
 which was composed of 1.25 micro L 10x buffer, 40 mM NaCl, 5 mM MgSO4, 1.75 
 micro L dNTPs, 0.2 x EvaGreen, 1 micro L Enzyme mix and A. bidest. The 
 fluorescence measurement in VideoScan HCU started directly after adding 
-buffer B at 55, 60 or 65 degree Celsius and revealed optimal conditions for 
-the amplification when using 60 or 65 degree Celsius.
+buffer B at 55, 60 or 65 degrees Celsius and revealed optimal conditions for 
+the amplification when using 60 or 65 degrees Celsius.
 Temperature profile (after Preincubation):
-- 60 seconds at 65 degree Celsius 
-- 11 seconds at 55 degree Celsius && Measurement
+- 60 seconds at 65 degrees Celsius 
+- 11 seconds at 55 degrees Celsius && Measurement
 }
 \source{
 Claudia Deutschmann & Stefan Roediger, BTU Cottbus - Senftenberg, 
@@ -62,7 +62,7 @@ plot(NA, NA, xlim = c(0,5000), ylim = c(0,1.2), xlab = "Time [sec]",
   points(C17[, 1], C17[, 3], type = "b", col = 1, pch = 20)
   points(C17[, 1], C17[, 4], type = "b", col = 2, pch = 20)
   points(C17[, 1], C17[, 5], type = "b", col = 3, pch = 20)
-legend(2000, 0.4, c("55 degree Celsius", "60 degree Celsius", "65 degree Celsius"), 
+legend(2000, 0.4, c("55 degrees Celsius", "60 degrees Celsius", "65 degrees Celsius"), 
 	col = c(1,2,3), pch = rep(20,3))
 
 }

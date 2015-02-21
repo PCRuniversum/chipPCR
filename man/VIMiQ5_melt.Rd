@@ -8,7 +8,7 @@ Melting Curve Measured with the Bio-Rad iQ5
 Data set of a melting curve using the Bio-Rad iQ5 thermo cycler. The 
 samples of Vimentin were measured in the CFX96 as replicates according to 
 Roediger et al. (2013). The quantification was performed during the gradient 
-from 55 to 95 degree Celsius with a resolution of 0.5 degree Celsius per step.
+from 55 to 95 degrees Celsius with a resolution of 0.5 degrees Celsius per step.
 }
 \usage{data(VIMiQ5_melt)}
 \format{
@@ -32,7 +32,7 @@ data(VIMiQ5_melt)
 tmp <- VIMiQ5_melt
 
 plot(NA, NA, xlim = c(55,95), ylim = c(0, 40000), 
-    xlab = "Temperature (degree Celsius)",ylab = "RFU", 
+    xlab = "Temperature (degrees Celsius)",ylab = "RFU", 
     main = "Melting curve in iQ5 (Bio-Rad)")
 apply(tmp[, 2:ncol(tmp)], 2, 
       function(x) lines(tmp[1:nrow(tmp),1],x))

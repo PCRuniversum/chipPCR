@@ -32,11 +32,11 @@ was incubated for 2 min at 95 degree. Celsius and immediately placed on ice.
 12.5 micro L of reaction buffer B which was composed of 1.25 micro L 10x 
 buffer, 40 mM NaCl, 5 mM MgSO4, 1.75 micro L dNTPs, 0.2 x EvaGreen, 1 micro L 
 Enzyme mix and A. bidest. The fluorescence measurement in VideoScan HCU 
-started directly after adding buffer B at 55, 60 or 65 degree Celsius and 
+started directly after adding buffer B at 55, 60 or 65 degrees Celsius and 
 revealed optimal conditions for the amplification when using 60 or 65 degree 
 Celsius. Temperature profile (after Preincubation):
-- 60 seconds at 65 degree Celsius 
-- 11 seconds at 55 degree Celsius && Measurement
+- 60 seconds at 65 degrees Celsius 
+- 11 seconds at 55 degrees Celsius && Measurement
 }
 \source{
 Claudia Deutschmann & Stefan Roediger, BTU Cottbus - Senftenberg, Senftenberg, 

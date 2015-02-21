@@ -37,13 +37,13 @@ Melt Curves MLC-2v and Vimentin for the qPCR experiment
 A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
 2007) was performed in a Bio-Rad iQ5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
-elongation step (59.5 degree Celsius).
+elongation step (59.5 degrees Celsius).
 
 \code{\link[chipPCR]{C126EG685}}:
 A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 
 2007) was performed in a Bio-Rad iQ5 thermo cycler. The 
 cycle-dependent increase of the fluorescence was quantified at the 
-elongation step (68.5 degree Celsius).
+elongation step (68.5 degrees Celsius).
 
 \code{\link[chipPCR]{C127EGHP}}:
 Quantitative PCR (qPCR) with a hydrolysis probe (Cy5/BHQ2) and DNA binding 
@@ -52,11 +52,11 @@ dye (EvaGreen) (Mao et al. 2007) performed in the Roche Light Cycler
 
 \code{\link[chipPCR]{VIMCFX96_60}}:
 Human vimentin amplification curve data (measured during annealing phase at 
-60 degree Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
+60 degrees Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMCFX96_69}}:
 Human vimentin amplification curve data (measured during elongation phase at 
-69 degree Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
+69 degrees Celsius) for 96 replicate samples in a Bio-Rad CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMCFX96_meltcurve}}:
 Human vimentin melting curve data for 96 replicate samples in a Bio-Rad 
@@ -64,11 +64,11 @@ CFX96 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_595}}:
 Human vimentin amplification curve data (measured during annealing phase at 
-59.5 degree Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
+59.5 degrees Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_685}}:
 Human vimentin amplification curve data (measured during elongation phase at 
-68.5 degree Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
+68.5 degrees Celsius) for 96 replicate samples in a Bio-Rad iQ5 thermo cycler.
 
 \code{\link[chipPCR]{VIMiQ5_melt}}:
 Human vimentin melting curve data for 96 replicate samples in a Bio-Rad 
@@ -83,8 +83,8 @@ quantities.
 
 \code{\link[chipPCR]{CD74}}:
 Quantitative PCR with a hydrolysis probe and DNA binding dye (EvaGreen) for 
-MLC-2v measured at 59.5 degree Celsius (annealing temperature), 68.5 
-degree Celsius (elongation temperature) and at 30 degree Celsius.
+MLC-2v measured at 59.5 degrees Celsius (annealing temperature), 68.5 
+degrees Celsius (elongation temperature) and at 30 degrees Celsius.
 
 \strong{Simulations}
 
@@ -118,7 +118,7 @@ input DNA quantities using the Bio-Rad iQ5 thermo cycler.
 \code{\link[chipPCR]{CD75}}:
 Helicase Dependent Amplification in the VideoScan HCU of HPRT1 (Homo 
 sapiens hypoxanthine phosphoribosyltransferase 1) measured at at 55, 60 or 
-65 degree Celsius.
+65 degrees Celsius.
 
 \code{\link[chipPCR]{C81}}:
 Helicase Dependent Amplification (HDA) of pCNG1 using the VideoScan 
@@ -152,7 +152,7 @@ data(VIMiQ5_melt)
 tmp <- VIMiQ5_melt
 
 plot(NA, NA, xlim = c(55,95), ylim = c(0, 40000), 
-    xlab = "Temperature (degree Celsius)",ylab = "RFU", 
+    xlab = "Temperature (degrees Celsius)",ylab = "RFU", 
     main = "Melting curve in iQ5 (Bio-Rad)")
 apply(tmp[, 2:ncol(tmp)], 2, 
       function(x) lines(tmp[1:nrow(tmp),1],x))

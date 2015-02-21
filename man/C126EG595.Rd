@@ -7,7 +7,7 @@ qPCR Experiment for the Amplification of HPRT1 Using the Bio-Rad iQ5 thermo cycl
 \description{
 A quantitative PCR (qPCR) with the DNA binding dye (EvaGreen) (Mao et al. 2007) 
 was performed in a Bio-Rad iQ5 thermo cycler. The cycle-dependent increase 
-of the fluorescence was quantified at the annealing step (59.5 degree Celsius).
+of the fluorescence was quantified at the annealing step (59.5 degrees Celsius).
 }
 \usage{data(C126EG595)}
 \format{
@@ -23,7 +23,7 @@ and EvaGreen. The primer sequences for HPRT1 were taken from Roediger et al.
 reverse), qPCR Mix (according to the manufactures recommendations), 1 micro L 
 template  (HPRT1 amplification product), 60 nM hydrolysis probe probe for 
 HPRT1. EvaGreen was used at 0.5 x final. During the amplification was monitored 
-59.5 degree Celsius.
+59.5 degrees Celsius.
 }
 \source{
 Stefan Roediger, Claudia Deutschmann (BTU Cottbus - Senftenberg)
@@ -46,7 +46,7 @@ tmp  <- C126EG595
 
 plot(NA,NA, xlim = c(1,40), ylim = c(min(tmp[, 2:ncol(tmp)]), 
    max(tmp[, 2:ncol(tmp)])), xlab = "Cycle", ylab = "RFU (FAM)", 
-   main = "Amplification monitored at \n58.5 degree Celsius (annealing step)")
+   main = "Amplification monitored at \n58.5 degrees Celsius (annealing step)")
 apply(tmp[, 2:ncol(tmp)], 2, 
       function(x) lines(tmp[1:nrow(tmp),1],x))
 }

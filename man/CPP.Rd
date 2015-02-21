@@ -151,7 +151,7 @@ for (i in 3:5) {
 	type = "b", pch = 20)
 }
 
-legend(50, 0.5, c("55 degree Celsius", "60 degree Celsius", "65 degree Celsius"), 
+legend(50, 0.5, c("55 degrees Celsius", "60 degrees Celsius", "65 degrees Celsius"), 
 	col = c(1,2,3), pch = rep(20,3))
 
 # Use CPP to pre-process the data by removing the missing value and 
@@ -165,7 +165,7 @@ for (i in 3:5) {
   lines(C17[2:50, 1], y.cpp, col = i - 2, 
 	type = "b", pch = 20)
 }
-legend(50, 1, c("55 degree Celsius", "60 degree Celsius", "65 degree Celsius"), 
+legend(50, 1, c("55 degrees Celsius", "60 degrees Celsius", "65 degrees Celsius"), 
 	col = c(1,2,3), pch = rep(20,3))
 par(mfrow = c(1,1))
 }
