@@ -104,7 +104,7 @@ PMID: 14530455 PMCID: PMC219490.
 
 J. Wilhelm, A. Pingoud, and M. Hahn. Real-time PCR-based method for the 
 estimation of genome sizes. \emph{Nucleic Acids Research}, 31(10):e56, May 
-2003. ISSN 0305-1048. \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC156059}. PMID: 12736322 PMCID: PMC156059.
+2003. ISSN 0305-1048. PMID: 12736322 PMCID: PMC156059.
 
 S. Zhao and R. D. Fernald. Comprehensive algorithm for quantitative 
 real-time polymerase chain reaction. \emph{Journal of computational 

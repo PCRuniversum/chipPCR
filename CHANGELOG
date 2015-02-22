@@ -1,4 +1,4 @@
-Changes from Version 0.0.8-3 to 0.0.8-5 [February 21 2015]
+Changes from Version 0.0.8-3 to 0.0.8-6 [February 22 2015]
 * Add citation("chipPCR")
 * Improved vignette
 * Improved documentation
@@ -8,6 +8,7 @@ Changes from Version 0.0.8-3 to 0.0.8-5 [February 21 2015]
 * several bug fixes
 * Reference Spiess et al. 2015 added to documentation
 * New contributor Konstantin A. Blagodatskikh
+* Adaption to new CRAN policies
 
 Changes from Version 0.0.8-2 to 0.0.8-3 [September 28 2014]
 * build uses now: R CMD build --resave-data --compact-vignettes="gs+qpdf" chipPCR
@@ -24,7 +25,7 @@ Changes from Version 0.0.8 to 0.0.8-1 [August 26 2014]
 * Fix CRAN issue
 
 Changes from Version 0.0.7 to 0.0.8-1 [August 25 2014]
-* Numerous bug fixes (see changelog at https://github.com/michbur/chipPCR)
+* Numerous bug fixes (see change-log at https://github.com/michbur/chipPCR)
 * New function th.cyc (threshold cycle method)
 * New function humanrater
 * New pco test for amptester
