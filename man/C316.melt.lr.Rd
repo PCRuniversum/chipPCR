@@ -5,6 +5,7 @@
   Melting Curves (resolution: 0.5 degrees Celsius / step) for the Gene adk Using the Bio-Rad iQ5 thermo cycler
 }
 \description{
+  A melting curve for adk was performed.
 }
 \usage{data("C316.melt.lr")}
 \format{
@@ -19,6 +20,8 @@
 
   adk fw: CTCAGGCTCAGTTCATCATGGA 
   adk rv: AGTTTGCCAGCATCCATAATGTC
+  
+  PCR conditions: \code{\link[chipPCR]{C316.amp}}
 }
 \source{
 Stefan Roediger, Claudia Deutschmann, Claudia Zelck (BTU Cottbus - Senftenberg)

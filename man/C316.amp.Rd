@@ -5,6 +5,7 @@
   qPCR Experiment for the Amplification of adk Using the Bio-Rad iQ5 thermo cycler
 }
 \description{
+  A quantitative real-time PCR of adk was performed.  
 }
 \usage{data("C316.amp")}
 \format{
@@ -19,6 +20,14 @@ primer sequences for adk were taken from this study.
 
 adk fw: CTCAGGCTCAGTTCATCATGGA 
 adk rv: AGTTTGCCAGCATCCATAATGTC
+
+  PCR conditions:
+    10 minutes at 95 degrees Celsius
+    40 x {
+      30 seconds at 95 degrees Celsius
+      45 seconds at 59 degrees Celsius
+      45 seconds at 68 degrees Celsius
+      }
 
 }
 \source{

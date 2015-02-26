@@ -1,33 +1,37 @@
-\name{C316.melt.hr}
-\alias{C316.melt.hr}
+\name{C317.amp}
+\alias{C317.amp}
 \docType{data}
 \title{
-  Melting Curves (resolution: 0.2 degrees Celsius / step) for the Gene adk Using 
-the Bio-Rad iQ5 thermo cycler
-}
+  qPCR Experiment for the Amplification of adk Using the Bio-Rad CFX96 thermo cycler
+  }
 \description{
-  A melting curve for adk was performed.
-}
-\usage{data("C316.melt.hr")}
+  A quantitative real-time PCR of adk was performed.
+  }
+\usage{data("C317.amp")}
 \format{
   A data frame with 40 observations on the following 97 variables. The first 
-  column ("T") contains the temperature (resolution: 0.2 degrees Celsius / step) 
-and consecutive columns 
+  column ("Cycle") contains the number of cycles and consecutive columns 
   contain the replicates ("A01" to "H12").
-}
+  }
 \details{
-  adk was amplified in the Bio-Rad iQ5. After PCR, the temperature-dependent 
-change of fluorescence was simultaneously monitored (EvaGreen, Mao et al. 2007). 
-The primer sequences for adk were taken from this study.
-
+  adk was amplified in the Bio-Rad CFX96. The change of fluorescence was 
+  simultaneously monitored (EvaGreen, Mao et al. 2007). The 
+  primer sequences for adk were taken from this study.
+  
   adk fw: CTCAGGCTCAGTTCATCATGGA 
   adk rv: AGTTTGCCAGCATCCATAATGTC
   
-  PCR conditions: \code{\link[chipPCR]{C316.amp}}
-}
+  PCR conditions:
+    10 minutes at 95 degrees Celsius
+    40 x {
+      30 seconds at 95 degrees Celsius
+      45 seconds at 59 degrees Celsius
+      45 seconds at 68 degrees Celsius
+      }
+  }
 \source{
-Stefan Roediger, Claudia Deutschmann, Claudia Zelck (BTU Cottbus - Senftenberg)
-}
+  Stefan Roediger, Claudia Deutschmann, Claudia Zelck (BTU Cottbus - Senftenberg)
+  }
 \references{
   A Highly Versatile Microscope Imaging Technology Platform for the Multiplex 
   Real-Time Detection of Biomolecules and Autoimmune Antibodies. S. Roediger, 
@@ -39,11 +43,11 @@ Stefan Roediger, Claudia Deutschmann, Claudia Zelck (BTU Cottbus - Senftenberg)
   Mao, F., Leung, W.-Y., Xin, X., 2007. Characterization of EvaGreen and the 
   implication of its physicochemical properties for qPCR applications. 
   \emph{BMC Biotechnol}. 7, 76.
-}
+  }
 \examples{
-data(C316.melt.hr)
-str(C316.melt.hr)
-}
+  data(C317.amp)
+  str(C317.amp)
+  }
 \keyword{datasets}
 \keyword{adk}
 \keyword{amplification}
