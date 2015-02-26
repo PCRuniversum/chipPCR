@@ -1,3 +1,6 @@
+Changes from Version 0.0.8-6 to 0.0.8-7 [March 15 2015]
+* New data sets
+
 Changes from Version 0.0.8-3 to 0.0.8-6 [February 22 2015]
 * Add citation("chipPCR")
 * Improved vignette
