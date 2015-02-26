@@ -13,7 +13,7 @@
   contain the replicates ("A01" to "H12").
 }
 \details{
-  adk was amplified in the Bio-Rad iQ5. The the change of fluorescence was 
+  adk was amplified in the Bio-Rad iQ5. The change of fluorescence was 
 simultaneously monitored (EvaGreen, Mao et al. 2007). The 
 primer sequences for adk were taken from this study.
 

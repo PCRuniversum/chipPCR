@@ -2,21 +2,23 @@
 \alias{C316.melt.hr}
 \docType{data}
 \title{
-  Melting Curves (resolution: 0.2 degrees Celsius / step) for the Gene adk Using the Bio-Rad iQ5 thermo cycler
+  Melting Curves (resolution: 0.2 degrees Celsius / step) for the Gene adk Using 
+the Bio-Rad iQ5 thermo cycler
 }
 \description{
 }
 \usage{data("C316.melt.hr")}
 \format{
   A data frame with 40 observations on the following 97 variables. The first 
-  column ("T") contains the temperature (resolution: 0.2 degrees Celsius / step) and consecutive columns 
+  column ("T") contains the temperature (resolution: 0.2 degrees Celsius / step) 
+and consecutive columns 
   contain the replicates ("A01" to "H12").
 }
 \details{
-  adk was amplified in the Bio-Rad iQ5. The the change of fluorescence was 
-  simultaneously monitored (EvaGreen, Mao et al. 2007). The 
-  primer sequences for adk were taken from this study.
-  
+  adk was amplified in the Bio-Rad iQ5. After PCR, the temperature-dependent 
+change of fluorescence was simultaneously monitored (EvaGreen, Mao et al. 2007). 
+The primer sequences for adk were taken from this study.
+
   adk fw: CTCAGGCTCAGTTCATCATGGA 
   adk rv: AGTTTGCCAGCATCCATAATGTC
 }
