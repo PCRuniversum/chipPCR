@@ -18,6 +18,8 @@
 simultaneously monitored (EvaGreen, Mao et al. 2007). The 
 primer sequences for adk were taken from this study.
 
+gDNA: 284.3 ng/microL DNA concentration, 260/280 ratio= 1.96
+
 adk fw: CTCAGGCTCAGTTCATCATGGA 
 adk rv: AGTTTGCCAGCATCCATAATGTC
 
