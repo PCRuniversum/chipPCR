@@ -21,6 +21,16 @@ Stefan Roediger, Michal Burdukiewicz.
 Any ad-blocking software may be cause of malfunctions. 
 }
 
+\examples{
+
+# The code chunk below will fail if the web browser is not installed. if on UNIX platform try:
+# as.vector(Sys.getenv("R_BROWSER"))
+require(shiny)
+# Invoke the shiny AmpSim app in the default browser
+if(interactive())
+  runApp(paste0(find.package("chipPCR")[1],"/amptester.gui"))
+
+}
 
 \seealso{
 \code{\link[chipPCR]{AmpSim}}, \code{\link[chipPCR]{bg.max}}
