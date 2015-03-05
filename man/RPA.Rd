@@ -13,7 +13,7 @@ by Lutz et al.(2009) in a centrifugal microfluidic foil cartridge.
   A data frame with 184 observations on the following 2 variables.
   \describe{
     \item{\code{Reaction.Time}}{Reaction Time [min]}
-    \item{\code{RFU}}{Relative fluorescence unints [RFU]}
+    \item{\code{RFU}}{Relative fluorescence units [RFU]}
   }
 }
 \details{
@@ -43,3 +43,4 @@ abline(h = 5, lty = 2, col = "grey")
 }
 \keyword{datasets}
 \keyword{RPA}
+\keyword{isothermal}
