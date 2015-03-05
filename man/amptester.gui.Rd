@@ -26,9 +26,10 @@ Any ad-blocking software may be cause of malfunctions.
 # The code chunk below will fail if the web browser is not installed. if on UNIX platform try:
 # as.vector(Sys.getenv("R_BROWSER"))
 # Invoke the shiny AmpSim app in the default browser
-if(interactive())
-  amptester.gui()
-
+\dontrun{
+#do not execute using example(), it breaks the sequence of the plots in shiny app
+amptester.gui()
+}
 }
 
 \seealso{
