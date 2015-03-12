@@ -47,6 +47,7 @@ The supplied designation list must have length at least two (for example "true"/
 Michal Burdukiewicz, Stefan Roediger
 }
 \examples{
+<<<<<<< HEAD
 testdata <- data.frame(1:35,
 			AmpSim(Cq = 15, noise = TRUE)[, 2],
 			AmpSim(Cq = 25, noise = TRUE)[, 2],
@@ -54,17 +55,38 @@ testdata <- data.frame(1:35,
 			AmpSim(Cq = 35, noise = TRUE)[, 2],
 			rnorm(35),
 			AmpSim(Cq = 45, noise = TRUE)[, 2])
+=======
+
+testdata <- data.frame(1:35,
+		       AmpSim(Cq = 15, noise = TRUE)[, 2], 
+		       AmpSim(Cq = 25, noise = TRUE)[, 2],
+		       rnorm(35),
+		       AmpSim(Cq = 35, noise = TRUE)[, 2],
+		       rnorm(35),
+		       AmpSim(Cq = 45, noise = TRUE)[, 2])
+
+>>>>>>> 87fd1f4ba6319fc543724a497cec7094d901c277
 #we strongly advise against running code below using 'example(humanrater)'
 #due to the highly interactive nature of this function (it would not end
 #without user's input), it is recommended to just copy lines below into R
 #command line
 \dontrun{
+<<<<<<< HEAD
   #check testdata for significance of amplification in two repeats
   human.test1 <- humanrater(testdata, repeats = 2)
   #check testdata for significance of amplification in one repeat and declare more
   #finger friendly (but less obvious) designations
   human.test2 <- humanrater(testdata, repeats = 1, list(q = "yes", w = "no"))
   }
+=======
+#check testdata for significance of amplification in two repeats
+human.test1 <- humanrater(testdata, repeats = 2)
+
+#check testdata for significance of amplification in one repeat and declare more
+#finger friendly (but less obvious) designations
+human.test2 <- humanrater(testdata, repeats = 1, list(q = "yes", w = "no"))
+}
+>>>>>>> 87fd1f4ba6319fc543724a497cec7094d901c277
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
