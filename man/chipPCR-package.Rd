@@ -31,8 +31,8 @@ The latest source code is available via:
 \tabular{ll}{
 Package: \tab chipPCR\cr
 Type: \tab Package\cr
-Version: \tab 0.0.8-8\cr
-Date: \tab 2015-02-20\cr
+Version: \tab 0.0.8-9\cr
+Date: \tab 2015-03-12\cr
 License: \tab GPL-3\cr
 }
 \code{\link[chipPCR]{bg.max}} can be used to remove missing 
