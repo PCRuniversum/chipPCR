@@ -31,7 +31,7 @@ The latest source code is available via:
 \tabular{ll}{
 Package: \tab chipPCR\cr
 Type: \tab Package\cr
-Version: \tab 0.0.8-4\cr
+Version: \tab 0.0.8-8\cr
 Date: \tab 2015-02-20\cr
 License: \tab GPL-3\cr
 }

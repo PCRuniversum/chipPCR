@@ -1,9 +1,9 @@
 Package: chipPCR
 Type: Package
 Title: Toolkit of Helper Functions to Pre-Process Amplification Data
-Version: 0.0.8-7
+Version: 0.0.8-8
 LazyData: true
-Date: 2015-02-22
+Date: 2015-03-12
 Authors@R: c(
     person("Stefan", "Roediger", 
 	   email = "stefan.roediger@hs-lausitz.de",
@@ -38,7 +38,7 @@ Imports:
     robustbase,
     shiny,
     signal
-Packaged: 2015-02-22 14:57:25 UTC; tux
+Packaged: 2015-03-12 14:57:25 UTC; tux
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2015-02-22 15:23:52
+Date/Publication: 2015-03-12 15:23:52

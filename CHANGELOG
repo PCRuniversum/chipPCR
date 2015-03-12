@@ -1,5 +1,9 @@
-Changes from Version 0.0.8-6 to 0.0.8-7 [March 15 2015]
+Changes from Version 0.0.8-7 to 0.0.8-8 [March 12 2015]
+* further CRAN changes
+
+Changes from Version 0.0.8-6 to 0.0.8-7 [March 12 2015]
 * New data sets
+* further CRAN changes
 
 Changes from Version 0.0.8-3 to 0.0.8-6 [February 22 2015]
 * Add citation("chipPCR")
