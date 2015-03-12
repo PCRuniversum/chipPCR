@@ -52,7 +52,7 @@ Michal Burdukiewicz, Stefan Roediger
 }
 
 \examples{
-\donttest{
+
 testdata <- data.frame(1:35,
 		       AmpSim(Cq = 15, noise = TRUE)[, 2], 
 		       AmpSim(Cq = 25, noise = TRUE)[, 2],
@@ -61,6 +61,11 @@ testdata <- data.frame(1:35,
 		       rnorm(35),
 		       AmpSim(Cq = 45, noise = TRUE)[, 2])
 
+#we strongly advise against running code below using 'example(humanrater)'
+#due to the highly interactive nature of this function (it would not end
+#without user's input), it is recommended to just copy lines below into R
+#command line
+\dontrun{
 #check testdata for significance of amplification in two repeats
 human.test1 <- humanrater(testdata, repeats = 2)
 
