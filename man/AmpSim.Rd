@@ -53,6 +53,7 @@ AmpSim(cyc = 1:35, b.eff = -25, bl = 0.05, ampl = 1, Cq = 20,
     the amplification reaction.
 }
 }
+
 \details{
 \code{AmpSim} is a simple simulator for amplification reaction. 
 This function has several parameters which can be used to simulate the 

@@ -43,6 +43,10 @@ threshold should be used (Note: Experimental, not safe to use).
     should be used for the calculation. (Note: Experimental, not safe to use).
 }
 }
+
+\value{
+An object of class \code{\linkS4class{th}}.}
+
 \details{
 The Threshold Cycle (Ct) (Cq according to MIQE, see Bustin et al. 2009) is 
 the cycle number at which the fluorescence exceeds significantly a point 
