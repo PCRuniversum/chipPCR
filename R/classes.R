@@ -605,8 +605,11 @@ setMethod("plot", signature(x = "eff"), function(x, xlab = "log10(Concentration)
     #     lines(rev(x.ci), predict.ci[ ,3], col = "lightblue")
   }
   # Add error bar to the location parameters
-  arrows(res[, 1], res[, 2] + res[, 3], res[, 1], 
-         res[, 2] - res[, 3], angle = 90, code = 3, length = er.length, 
+  arrow.data <-res[res[, 3] != 0, ] 
+  arrows(arrow.data[, 1], arrow.data[, 2] + arrow.data[, 3], 
+         arrow.data[, 1], 
+         arrow.data[, 2] - arrow.data[, 3], 
+         angle = 90, code = 3, length = er.length, 
          col = col)
   
   # Add trend line of linear regression to plot
