@@ -1,5 +1,8 @@
-Changes from Version 0.0.8-7 to 0.0.8-9 [March 12 2015]
+Changes from Version 0.0.8-7 to 0.0.8-9 [April 4 2015]
 * further CRAN changes
+* Less confusing error messages from th.cyc
+* Removed arrow warning in plot.eff 
+* assorted documentation improvements
 
 Changes from Version 0.0.8-6 to 0.0.8-7 [March 12 2015]
 * New data sets

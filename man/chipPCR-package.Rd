@@ -32,7 +32,7 @@ The latest source code is available via:
 Package: \tab chipPCR\cr
 Type: \tab Package\cr
 Version: \tab 0.0.8-9\cr
-Date: \tab 2015-03-12\cr
+Date: \tab 2015-04-05\cr
 License: \tab GPL-3\cr
 }
 \code{\link[chipPCR]{bg.max}} can be used to remove missing 
@@ -67,6 +67,11 @@ P. Schierack. \emph{Microchim Acta} 2014:1--18. DOI:
 
 Roediger S, Boehm A, Schimke I. Surface Melting Curve Analysis with R. 
 \emph{The R Journal} 2013;5:37--53.
+
+Spiess, A.-N., Deutschmann, C., Burdukiewicz, M., Himmelreich, R., Klat, K., 
+Schierack, P., Roediger, S., 2014. Impact of Smoothing on Parameter Estimation 
+in Quantitative DNA Amplification Experiments. \emph{Clinical Chemistry} 
+clinchem.2014.230656. doi:10.1373/clinchem.2014.230656
 }
 \keyword{ chipPCR }
 \seealso{
