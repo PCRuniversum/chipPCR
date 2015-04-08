@@ -1113,50 +1113,6 @@ rect(33.8, min(reps384[, -1]), 45, max(reps384[, -1]), border = NA, col = cols[3
 apply(reps384[, -1], 2, function(i) lines(reps384[, 1], i))
 @
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{rllll}
-\hline
-& Background - raw data & Background - fixed NA & cpD2 - raw data & cpD2 
-- fixed NA \\ 
-\hline
-Linear phase - 1 NA & $4606.43 \pm 186$ & $4606.53 \pm 186$ & $18.20 \pm 
-0.145$ & $18.20 \pm 0.145$ \\ 
-Exponential phase - 1 NA & $7555.31 \pm 468$ & $7555.28 \pm 468$ & 
-$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-Plateau phase  - 1 NA & $11736.60 \pm 1032$ & $11736.82 \pm 1032$ & 
-$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-Linear phase - 3 NA & $4606.43 \pm 186$ & $4607.05 \pm 186$ & $18.20 \pm 
-0.145$ & $18.20 \pm 0.145$ \\ 
-Exponential phase - 3 NA & $7555.31 \pm 468$ & $7555.15 \pm 468$ & 
-$18.20 \pm 0.145$ & $18.19 \pm 0.148$ \\ 
-Plateau phase  - 3 NA & $11736.60 \pm 1032$ & $11736.86 \pm 1033$ & 
-$18.20 \pm 0.145$ & $18.20 \pm 0.145$ \\ 
-\hline
-\end{tabular}
-
-\begin{tabular}{rlll}
-\hline
-& Cy0 - raw data & Cy0 - fixed NA & NRMSE \\ 
-\hline
-Linear phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00012 \pm 
-0.000133$ \\ 
-Exponential phase - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & 
-$0.00018 \pm 0.000176$ \\ 
-Plateau phase  - 1 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00026 
-\pm 0.000237$ \\ 
-Linear phase - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00033 \pm 
-0.00031$ \\ 
-Exponential phase - 3 NA & $11.73 \pm 1.06$ & $11.71 \pm 1.06$ & 
-$0.00078 \pm 0.000601$ \\ 
-Plateau phase  - 3 NA & $11.73 \pm 1.06$ & $11.73 \pm 1.06$ & $0.00072 
-\pm 0.000475$ \\ 
-\hline
-\end{tabular}
-\caption{Results of fixNA data imputation. $1 NA$ (=~one) or $3 NA$ (=~three) 
-missing values per amplification curve, respectively.}
-\label{table:fixNA}
-\end{table}
 
 <<fixNA,fig.show='hold',fig.cap=fig8_cap,fig.scap=fig8_scap>>=
 # Simulation of an ideal amplification curve with 40 cycles
@@ -1206,6 +1162,145 @@ par(mfrow = c(1,1))
 @
 
 \clearpage
+
+
+<<fixNA_simulation,echo=TRUE,eval=FALSE>>=
+# Evaluation of fixNA by introducing missing values and comparing efficiency measures
+# for imputed and raw data
+
+library(qpcR)
+library(chipPCR)
+
+linear_range <- 1L:10
+exponential_range <- 11L:33
+plateau_range <- 34L:45
+
+raw.eff <- t(sapply(2L:ncol(reps384), function(i) {
+  fit.raw <- pcrfit(reps384, cyc = 1, fluo = i)
+  c(cpD2.raw = efficiency(fit.raw, type = "cpD2", plot = FALSE)[["cpD2"]],
+    Cy0.raw = efficiency(fit.raw, type = "Cy0", plot = FALSE)[["Cy0"]],
+    background = mean(reps384[1L:5, i]))
+}))
+
+#calculate raw efficiency measures
+raw.df <- as.vector(apply(raw.eff, 2, function(i)
+  c(mean(i), sd(i))))
+
+#reformat raw data
+raw.df <- cbind(data.frame("none", 0, "-"), t(raw.df))
+colnames(raw.df) <- c("Imputation", "NA.number", "Phase", 
+                      "cpD2.mean", "cpD2.sd",
+                      "Cy0.mean", "Cy0.sd",
+                      "background.mean", "background.sd")
+
+#helper function introducing NA into data, fixing them and calculating efficiency 
+gen.fix <- function(number_points, phase, spline){
+  #copy raw data
+  temp_dat <- reps384[, -1]
+  
+  #introduce NA(s)
+  for(i in 1L:ncol(temp_dat))
+    temp_dat[sample(phase, 1), i] <- NA
+  
+  #impute missing values using fixNA
+  fixed_dat <- sapply(1L:ncol(temp_dat), function(i)
+    fixNA(reps384[, 1], temp_dat[, i], spline = spline))
+  
+  #compute efficiency measures
+  t(sapply(2L:ncol(fixed_dat), function(i) {
+    fit.fix <- pcrfit(cbind(reps384[, 1], fixed_dat), cyc = 1, fluo = i)
+    c(cpD2.fix = efficiency(fit.fix, type = "cpD2", plot = FALSE)[["cpD2"]],
+      Cy0.fix = efficiency(fit.fix, type = "Cy0", plot = FALSE)[["Cy0"]],
+      background = mean(fixed_dat[1L:5, i]))
+  }))
+}
+
+#calculate results for linear imputation
+res.linear <- lapply(c(1, 3), function(number_of_points)
+  lapply(list(linear_range, exponential_range, plateau_range), function(phase)
+    apply(gen.fix(number_of_points, phase, FALSE), 2, function(i)
+      c(mean(i), sd(i)))))
+linear.df <- data.frame(num = unlist(lapply(c(1, 3), rep, 3)), 
+                        region = rep(c("linear", "exponential", "plateau"), 2),
+                        do.call(rbind, lapply(unlist(res.linear, recursive = FALSE), as.vector))) 
+
+
+#calculate results for spline imputation
+res.spline <- lapply(c(1, 3), function(number_of_points)
+  lapply(list(linear_range, exponential_range, plateau_range), function(phase)
+    apply(gen.fix(number_of_points, phase, TRUE), 2, function(i)
+      c(mean(i), sd(i)))))
+spline.df <- data.frame(num = unlist(lapply(c(1, 3), rep, 3)), 
+                        region = rep(c("linear", "exponential", "plateau"), 2),
+                        do.call(rbind, lapply(unlist(res.linear, recursive = FALSE), as.vector)))
+
+#join and format results
+sim.res <- cbind(unlist(lapply(c("linear", "spline"), rep, 6)), 
+                 rbind(linear.df, spline.df))
+colnames(sim.res) <- c("Imputation", "NA.number", "Phase", 
+                       "cpD2.mean", "cpD2.sd",
+                       "Cy0.mean", "Cy0.sd",
+                       "background.mean", "background.sd")
+
+#join simulation results with results for raw data
+fixNA.evaluation <- rbind(raw.df, sim.res)
+xtable(fixNA.evaluation[, c(1L:7)], digit = 4)
+
+xtable(fixNA.evaluation[, c(1L:3, 8L:9)], digit = 4)
+@
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrlrrrr}
+  \hline
+ & Imputation & NA.number & phase & cpD2.mean & cpD2.sd & Cy0.mean & Cy0.sd \\ 
+  \hline
+1 & none & 0.0000 & - & 19.2931 & 0.1464 & 11.1806 & 1.1326 \\ 
+  2 & linear & 1.0000 & linear & 19.2932 & 0.1466 & 11.1801 & 1.1337 \\ 
+  3 & linear & 1.0000 & exponential & 19.2875 & 0.1472 & 11.1631 & 1.1351 \\ 
+  4 & linear & 1.0000 & plateau & 19.2932 & 0.1469 & 11.1814 & 1.1336 \\ 
+  5 & linear & 3.0000 & linear & 19.2929 & 0.1468 & 11.1803 & 1.1339 \\ 
+  6 & linear & 3.0000 & exponential & 19.2878 & 0.1465 & 11.1636 & 1.1351 \\ 
+  7 & linear & 3.0000 & plateau & 19.2932 & 0.1466 & 11.1815 & 1.1335 \\ 
+  8 & spline & 1.0000 & linear & 19.2932 & 0.1466 & 11.1801 & 1.1337 \\ 
+  9 & spline & 1.0000 & exponential & 19.2875 & 0.1472 & 11.1631 & 1.1351 \\ 
+  10 & spline & 1.0000 & plateau & 19.2932 & 0.1469 & 11.1814 & 1.1336 \\ 
+  11 & spline & 3.0000 & linear & 19.2929 & 0.1468 & 11.1803 & 1.1339 \\ 
+  12 & spline & 3.0000 & exponential & 19.2878 & 0.1465 & 11.1636 & 1.1351 \\ 
+  13 & spline & 3.0000 & plateau & 19.2932 & 0.1466 & 11.1815 & 1.1335 \\ 
+   \hline
+\end{tabular}
+\caption{Results of fixNA data
+       imputation, part 1: cpD2 and Cy0. NA column determines how many NA values were 
+       introduced in a given phase.} 
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrlrr}
+  \hline
+ & Imputation & NA.number & phase & background.mean & background.sd \\ 
+  \hline
+1 & none & 0.0000 & - & 4567.5648 & 184.7082 \\ 
+  2 & linear & 1.0000 & linear & 4568.2296 & 184.7895 \\ 
+  3 & linear & 1.0000 & exponential & 4568.0775 & 184.6828 \\ 
+  4 & linear & 1.0000 & plateau & 4568.0775 & 184.6828 \\ 
+  5 & linear & 3.0000 & linear & 4568.2859 & 184.5738 \\ 
+  6 & linear & 3.0000 & exponential & 4568.0775 & 184.6828 \\ 
+  7 & linear & 3.0000 & plateau & 4568.0775 & 184.6828 \\ 
+  8 & spline & 1.0000 & linear & 4568.2296 & 184.7895 \\ 
+  9 & spline & 1.0000 & exponential & 4568.0775 & 184.6828 \\ 
+  10 & spline & 1.0000 & plateau & 4568.0775 & 184.6828 \\ 
+  11 & spline & 3.0000 & linear & 4568.2859 & 184.5738 \\ 
+  12 & spline & 3.0000 & exponential & 4568.0775 & 184.6828 \\ 
+  13 & spline & 3.0000 & plateau & 4568.0775 & 184.6828 \\ 
+   \hline
+\end{tabular}
+\caption{Results of fixNA data
+       imputation, part 2: background. NA column determines how many NA values were 
+       introduced in a given phase.} 
+\end{table}
 
 
 \begin{figure}[ht]
