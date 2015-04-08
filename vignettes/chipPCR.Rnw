@@ -137,6 +137,7 @@ simulation function. \\emph{(B)} A missing value was introduced in the
 transition phase. The missing value was imputed either by \\emph{(C)} 
 linear approximation or \\emph{(D)} a cubic spline approximation. The 
 spline approximation nearly reconstituted the original curve."
+
 fig8_scap <- "Imputation of missing values in the data for generating amplification curves."
 
 fig9_cap <- "Quantification cycle (Cq) by the second derivative maximum 
@@ -1065,17 +1066,18 @@ real-world data. The experimental details have been described in
 \citep{ruijter_2013}. The dataset consists of 379 replicate amplification curves 
 (see documentation of the $\emph{qpcR}$ package for details). Our \textit{in-silico} 
 experiment was designed as followed: Either one or three missing values were 
-artificially added to each amplification curve at random positions. We separated the 
-amplification curve into three different regions (``Linear phase'' (cycle 1 -- 10), 
-``Exponential phase'' (cycle 11 -- 34) and ``Plateau phase'' (cycle 34 -- 40), 
-Figure~\ref{figure:fixNA_data}) and investigated the impact on the qPCR 
-parameters ``Cq (SDM, Cy0)'' and curve background parameter $bg$. The 
-performance of the imputed models was analyzed with the goodness-of-fit in this 
-region by the commonly used normalized root-mean-squared-error (NRMSE). We 
-compared the imputation by ``linear approximation'' ($fixNA(x, y, spline = 
-FALSE)$) and ``spline approximation'' ($fixNA(x, y, spline = TRUE)$). Our 
-results show that imputation with the spline method worked reliably and 
-introduced no significant bias to all the investigated parameters. The 
+artificially added to each amplification curve at random positions. We separated 
+the amplification curve into three different regions (``Linear phase'' (cycle 1 
+-- 10), ``Exponential phase'' (cycle 11 -- 34) and ``Plateau phase'' (cycle 34 
+-- 40), Figure~\ref{figure:fixNA_data}) and investigated the impact on the qPCR 
+parameters ``Cq (SDM, Cy0)'' and curve background parameter $bg$. The background 
+was calculated as mean and standard deviation. The performance of the imputed 
+models was analyzed with the goodness-of-fit in this region by the commonly used 
+normalized root-mean-squared-error (NRMSE). We compared the imputation by 
+``linear approximation'' ($fixNA(x, y, spline = FALSE)$) and ``spline 
+approximation'' ($fixNA(x, y, spline = TRUE)$). Our results show that imputation 
+with the spline method worked reliably and introduced no significant bias to all 
+the investigated parameters. The 
 Kruskal-Wallis rank sum test (\textsl{kruskal.test}, $\emph{stats}$ package 
 \citep{RCT_2013}) was used to compare the linear and spline-based imputation.
 
