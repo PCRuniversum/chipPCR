@@ -6,10 +6,9 @@
 Toolkit of functions to pre-process amplification data
 }
 \description{
-The \code{chipPCR} package is a toolkit of functions to pre-process 
+A toolkit of functions to pre-process 
 amplification curve data. Amplification data can be obtained from 
-conventional PCR reactions or isothermal amplification reactions. The 
-package contains functions to normalize and baseline amplification curves, 
+conventional PCR reactions or isothermal amplification reactions. Contains functions to normalize and baseline amplification curves, 
 a routine to detect the start of an amplification reaction, several 
 smoothers for amplification data, a function to distinguish positive and 
 negative amplification reactions and a function to determine the 
@@ -31,7 +30,7 @@ The latest source code is available via:
 \tabular{ll}{
 Package: \tab chipPCR\cr
 Type: \tab Package\cr
-Version: \tab 0.0.8-9\cr
+Version: \tab 0.0.8-10\cr
 Date: \tab 2015-04-05\cr
 License: \tab GPL-3\cr
 }
@@ -39,8 +38,7 @@ License: \tab GPL-3\cr
 values in amplification curve data. \code{\link[chipPCR]{amptester}} tests if an amplification is 
 positive. \code{\link[chipPCR]{fixNA}} is used to impute missing values 
 from a data column. \code{\link[chipPCR]{CPP}} can be used to normalize 
-curve data, to remove background, to remove outliers and further steps. The 
-package includes further functions to smooth the data by different 
+curve data, to remove background, to remove outliers and further steps. Contains further functions to smooth the data by different 
 functions including LOWESS, Moving Average, Friedman's SuperSmoother, Cubic 
 Spline and Savitzky-Golay smoothing. 
 
