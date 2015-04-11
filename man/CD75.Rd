@@ -2,10 +2,10 @@
 \alias{CD75}
 \docType{data}
 \title{
-Helicase Dependent Amplification in the VideoScan HCU
+Helicase Dependent Amplification in the 'VideoScan' 'HCU'
 }
 \description{
-Helicase Dependent Amplification in the VideoScan HCU of HPRT1 (Homo 
+Helicase Dependent Amplification in the 'VideoScan' 'HCU' of HPRT1 (Homo 
 sapiens hypoxanthine phosphoribosyltransferase 1)
 }
 \usage{data(CD75)}
@@ -22,7 +22,7 @@ sapiens hypoxanthine phosphoribosyltransferase 1)
   }
 }
 \details{
-To perform an isothermal amplification in VideoScan, standard conditions for 
+To perform an isothermal amplification in 'VideoScan', standard conditions for 
 the IsoAmp(R) III Universal tHDA Kit (Biohelix) were used. The reaction was 
 composed of 12.5 micro L buffer A containing 1.25 micro L 10x reaction buffer, 
 150 nM primer (forward and reverse), 0.75  micro L template (synthetic) and 
@@ -31,7 +31,7 @@ for HPRT1 were taken from Roediger et al. (2013). Preincubation: This mixture
 was incubated for 2 min at 95 degree. Celsius and immediately placed on ice. 
 12.5 micro L of reaction buffer B which was composed of 1.25 micro L 10x 
 buffer, 40 mM NaCl, 5 mM MgSO4, 1.75 micro L dNTPs, 0.2 x EvaGreen, 1 micro L 
-Enzyme mix and A. bidest. The fluorescence measurement in VideoScan HCU 
+Enzyme mix and A. bidest. The fluorescence measurement in 'VideoScan' 'HCU' 
 started directly after adding buffer B at 55, 60 or 65 degrees Celsius and 
 revealed optimal conditions for the amplification when using 60 or 65 degree 
 Celsius. Temperature profile (after Preincubation):

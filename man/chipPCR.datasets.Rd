@@ -7,7 +7,7 @@ Overview for data sets of the \code{chipPCR} package
 \description{
 The \code{chipPCR} package contains numerous data sets from commercial and 
 experimental technologies for the amplification of nucleic acids. The data 
-sets include results from qPCR experiments with the VideoScan HCU 
+sets include results from qPCR experiments with the 'VideoScan' 'HCU' 
 (Roediger et al. 2013), Bio-Rad (iQ5, CFX96), capillary convective PCR (ccPCR) and 
 Roche Light Cycler 1.5. Real-time monitored amplification reactions were 
 performed using standard amplification methods (qPCR, based on Taq 
@@ -77,7 +77,7 @@ iQ5 thermo cycler.
 \strong{standard qPCR - experimental thermo cyclers}
 
 \code{\link[chipPCR]{C54}}:
-qPCR Experiment in the VideoScan heating/cooling-unit for the 
+qPCR Experiment in the 'VideoScan' heating/cooling-unit for the 
 amplification using different concentrations of MLC-2v input cDNA 
 quantities. 
 
@@ -116,17 +116,17 @@ hypoxanthine phosphoribosyltransferase 1), performed at different
 input DNA quantities using the Bio-Rad iQ5 thermo cycler.
 
 \code{\link[chipPCR]{CD75}}:
-Helicase Dependent Amplification in the VideoScan HCU of HPRT1 (Homo 
+Helicase Dependent Amplification in the 'VideoScan' 'HCU' of HPRT1 (Homo 
 sapiens hypoxanthine phosphoribosyltransferase 1) measured at at 55, 60 or 
 65 degrees Celsius.
 
 \code{\link[chipPCR]{C81}}:
-Helicase Dependent Amplification (HDA) of pCNG1 using the VideoScan 
+Helicase Dependent Amplification (HDA) of pCNG1 using the 'VideoScan' 
 Platform (Roediger et al. (2013)). The HDA was performed at 65 degree 
 Celsius. Two concentrations of input DNA were used.
 
 \code{\link[chipPCR]{C85}}:
-Helicase Dependent Amplification (HDA) of Vimentin (Vim) in the VideoScan 
+Helicase Dependent Amplification (HDA) of Vimentin (Vim) in the 'VideoScan' 
 Platform (Roediger et al. (2013)). The HDA was performed at 65 degree 
 Celsius with three dilutions of input DNA.
 

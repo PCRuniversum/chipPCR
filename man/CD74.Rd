@@ -6,7 +6,7 @@ Quantitative PCR with a hydrolysis probe and DNA binding dye
 }
 \description{
 Quantitative PCR (qPCR) with a hydrolysis probe and DNA binding dye (EvaGreen) 
-(Mao et al. 2007) was performed in the VideoScan heating cooling unit. The 
+(Mao et al. 2007) was performed in the 'VideoScan' heating cooling unit. The 
 cycle-dependent increase of the fluorescence was quantified at three different 
 temperatures in order to estimate temperature dependent effects.
 }
@@ -47,10 +47,10 @@ temperatures in order to estimate temperature dependent effects.
   }
 }
 \details{
-The aim was to amplify MLC-2v in the VideoScan platform while the 
+The aim was to amplify MLC-2v in the 'VideoScan' platform while the 
 intercalating dye EvaGreen and a hydrolysis probe for MLC-2v were used 
 simultaneously. The primer sequences for MLC-2v were taken from Roediger et 
-al. (2013). The amplification was detected in solution of the 1 HCU (see 
+al. (2013). The amplification was detected in solution of the '1 HCU' (see 
 Roediger et al. 2013 for details). A 20 micro L PCR reaction was composed of 
 500 nM primer (forward and reverse), 1x Maxima Probe qPCR Master Mix 
 (Fermentas), 1 micro L template (MLC-2v amplification product in different 
@@ -81,7 +81,7 @@ implication of its physicochemical properties for qPCR applications.
 # First example
 # Comparison of smoothers and filter on amplification curves
 # Amplification curves were measured at three temperature (30, 
-# 59.5, 68.5 degrees Celsius) using the VideoScan HCU (see 
+# 59.5, 68.5 degrees Celsius) using the 'VideoScan' 'HCU' (see 
 # Roediger et al. 2013 for details). MLC-2v was amplified.
 # The change of fluorescence was monitored by the intercalating
 # dye EvaGreen and hydrolysis probes.
