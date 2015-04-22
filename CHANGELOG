@@ -1,5 +1,6 @@
-Changes from Version 0.0.8-10 to 0.0.8-11 [April 8 2015]
+Changes from Version 0.0.8-10 to 0.0.8-11 [April 31 2015]
 * further CRAN changes, VideoScan -> 'VideoScan', HCU -> 'HCU'
+* some further test of validity for the th.cyc function
 
 Changes from Version 0.0.8-9 to 0.0.8-10 [April 8 2015]
 * further CRAN changes

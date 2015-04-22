@@ -13,9 +13,9 @@ th.cyc <-
     # Before runing the analysis, test if signal is indeed larger than the 
     # threshold.
     
-#     if (quantile(xy[, 2], 0.9) <= r) {
+#     if (quantile(xy[, 2], 0.98) <= r) {
 #       # TODO: FIX OUTPUT
-#       stop("Maximum of signal lower than threshold (r).")
+#       warning("Maximum of amplification signal lower than threshold ('r'). Cosider to lower 'r'.")
 #     } else {
       # Actually used number of neighbours around the threshold value
       n <- seq(2, 8, 1)
@@ -38,7 +38,7 @@ th.cyc <-
         b <- xy.sum[[1]][["coefficients"]][2, 1]
         c <- xy.sum[[1]][["coefficients"]][1, 1]
         
-        # Calculate the exact Ct value at the user defined fluorescence threshold.
+        # Calculate the exact Cq (Ct value) at the user defined fluorescence threshold.
         # Use either the linear or quadratic model.
         
         sign <- inder(xy.sum[["values"]])
@@ -55,7 +55,10 @@ th.cyc <-
         x.cal <- (r - m) / n
       }
       
-      # Create the output fot the exact Ct value, the regression and the neighbours 
+      # Test if the calculated Cq (Ct value) is larger than the maximum number of the cycles
+      if (x.cal > max(y)) x.cal <- NA
+      
+      # Create the output fot the exact Cq (Ct value), the regression and the neighbours 
       # of the cycle and fluorescence values at the threshold fluorescence.
       
       res <-matrix(c(x.cal, r), ncol = 2)
@@ -64,7 +67,7 @@ th.cyc <-
       new("th", .Data = res, 
           stats = xy.sum[["summary"]], 
           input = data.matrix(xy.sum[["values"]]))
-#     }
+#       }
   }
 
 
