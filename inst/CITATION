@@ -1,10 +1,12 @@
 citHeader("To cite chipPCR in publications, please use:")
 
-citEntry(entry = "Manual",
-  author = "Stefan Roediger and Michal Burdukiewicz",
-  title = "chipPCR: Toolkit of helper functions to pre-process amplification data",
-  year = "2014",
-  note = "R package version 0.0.8-4",
-  url = "http://CRAN.R-project.org/package=chipPCR",
-  textVersion = "Roediger S and Burdukiewicz M (2014). chipPCR: Toolkit of helper functions to pre-process amplification data. R package version 0.0.8-4, <URL: http://CRAN.R-project.org/package=chipPCR>."
+citEntry(entry = "Article",
+  author = "Stefan Roediger and Michal Burdukiewicz and Peter Schierack",
+  title = "chipPCR: an R Package to Pre-Process Raw Data of Amplification Curves",
+  year = "2015",
+  doi = "10.1093/bioinformatics/btv205", 
+  url = "http://bioinformatics.oxfordjournals.org/content/early/2015/04/24/bioinformatics.btv205.abstract",
+  eprint = "http://bioinformatics.oxfordjournals.org/content/early/2015/04/24/bioinformatics.btv205.full.pdf+html",
+  journal = "Bioinformatics",
+  textVersion = "Roediger S, Burdukiewicz M and Schierack P (2015). chipPCR: an R Package to Pre-Process Raw Data of Amplification Curves. Bioinformatics first published online April 24, 2015 doi:10.1093/bioinformatics/btv205"
 )
