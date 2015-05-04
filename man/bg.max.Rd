@@ -61,7 +61,7 @@ early exponential phase the signal changes drastically. First data are
 smoothed by Friedman's 'super smoother' (as found in 
 \code{\link[stats]{supsmu}}. Thereof the approximate first and second 
 derivative are calculated by a five-point stencil 
-\code{link[chipPCR]{inder}}. 
+\code{\link[chipPCR]{inder}}. 
 
 The difference of cycles at the maxima of the first and second approximate 
 derivative as well as a correction factor are used to estimate the range before 
