@@ -62,7 +62,7 @@ upper and lower case names are accepted.
   }
   \item{CPP}{
 		  logical parameter which indicates if CPP (curve 
-pre-procssor) should be used.
+pre-processor) should be used.
   }
   \item{paralell}{
   	  should contain a cluster object, created by package \code{parallel} or 
