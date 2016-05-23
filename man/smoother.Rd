@@ -100,10 +100,10 @@ polynomial regression) can be tuned by the parameters \code{f} and
 "mova" for moving average can be tuned by the parameter \code{movaww}. 
 \code{movaww} is the window size used for the moving average (see 
 \code{\link[stats]{filter}} for details). The parameter "savgol" for 
-Savitzky-Golay smoothing filter can be tuned by the parameter \code{p} (see 
-\code{\link[signal]{sgolayfilt}} for details). The parameter "smooth" for 
-cubic spline smooth can be tuned by the parameter \code{df.fact}. A 
-\code{df.fact} value of 1 will leave the raw data almost unaffected while a 
+Savitzky-Golay smoothing filter can be tuned by the parameter \code{p} and 
+\code{n} (see \code{\link[signal]{sgolayfilt}} for details). The parameter 
+"smooth" for cubic spline smooth can be tuned by the parameter \code{df.fact}. 
+A \code{df.fact} value of 1 will leave the raw data almost unaffected while a 
 value 0.5 will smooth the curve considerably. For further details refer to 
 the \code{\link[stats]{smooth.spline}} function. The parameter "spline" for 
 standard cubic spline smooth has currently no additional parameter. The 

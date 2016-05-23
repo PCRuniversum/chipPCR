@@ -85,8 +85,8 @@ smoother <- function(x, y, trans = FALSE, bg.outliers = FALSE,
                       as.vector(stats::filter(x, filter = rep(1/movaww, movaww), 
                                               method = "convolution", sides = 2)), 
                       c(list(x = y.tmp), method[[i]])),
-                    savgol = do.call(function(y, p = 3)
-                      sgolayfilt(x = y, p = p)
+                    savgol = do.call(function(y, p = 3, n = p + 3 - p%%2)
+                      sgolayfilt(x = y, p = p, n = n)
                       , c(list(y = y.tmp), method[[i]])),
                     smooth = do.call(function(x, y, df.fact = 0.95) {
                       df.tmp <- data.frame(smooth.spline(x, y)[10])
