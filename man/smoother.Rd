@@ -154,7 +154,7 @@ tmp.smooths <- smoother(tmp, method = list("savgol",
                                            "smooth",
                                            "spline",
                                            "supsmu"),
-                        parallel = TRUE)
+                        parallel = cl)
 stopCluster(cl)
 }
 #else
