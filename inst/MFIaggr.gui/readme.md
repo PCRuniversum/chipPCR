@@ -3,7 +3,7 @@
 **MFIaggr** is used for a fast multiple comparison of the cycle dependent 
 variance of the fluorescence. It is a web-based implementation of function from package [chipPCR](http://github.com/michbur/chipPCR). 
 
-**Authors**: [Stefan Roediger](http://www.hs-lausitz.de/groups/multiplex-assays/bildbasierte-assays-imagebased-assays/members.html), [Michal Burdukiewicz](https://github.com/michbur).  
+**Authors**: [Stefan Roediger](https://www.researchgate.net/profile/Stefan_Roediger), [Michal Burdukiewicz](https://github.com/michbur).  
 
 ### Readme
 

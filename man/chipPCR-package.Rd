@@ -30,8 +30,8 @@ The latest source code is available via:
 \tabular{ll}{
 Package: \tab chipPCR\cr
 Type: \tab Package\cr
-Version: \tab 0.0.8-11\cr
-Date: \tab 2015-04-05\cr
+Version: \tab 0.0.8-12\cr
+Date: \tab 2017-06-22\cr
 License: \tab GPL-3\cr
 }
 \code{\link[chipPCR]{bg.max}} can be used to remove missing 
@@ -47,7 +47,7 @@ For more exhaustive description see the vignette (\code{vignette("chipPCR")}).
 \author{
 Stefan Roediger, Michal Burdukiewicz
 
-Maintainer: Stefan Roediger <stefan.roediger@hs-lausitz.de>
+Maintainer: Stefan Roediger <stefan.roediger@b-tu.de>
 
 }
 \references{
