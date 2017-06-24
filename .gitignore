@@ -215,6 +215,5 @@ pip-log.txt
 .mr.developer.cfg
 .Rproj.user
 .RData
-.Rbuildignore
 .Rhistory
 chipPCR.Rproj
