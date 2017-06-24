@@ -47,7 +47,7 @@ A vector of normalized fluorescence values.
 \references{
 Surface Melting Curve Analysis with R. S. Roediger, A. Boehm and I. 
 Schimke. \emph{The R Journal}. 5(2):37--52, 2013. 
-\url{http://journal.r-project.org}
+\url{https://journal.r-project.org}
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz

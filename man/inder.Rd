@@ -79,7 +79,7 @@ precision, and implications. \emph{Methods} San Diego Calif 59:32--46.
 
 Surface Melting Curve Analysis with R. S. Roediger, A. Boehm and I. 
 Schimke. \emph{The R Journal}. 5(2):37--52, 2013. 
-\url{http://journal.r-project.org}
+\url{https://journal.r-project.org}
 }
 \author{
 Stefan Roediger, Michal Burdukiewicz
