@@ -2130,7 +2130,7 @@ the defined value (Threshold level ``r'' (80 $\mu$Volts))
 # Application of the th.cyc method to determine the Cq from a continuous
 # amplification reaction.
 par(las = 0, bty = "n", oma = c(.5,.5,.5,.5))
-       
+
 plot(NA, NA, xlim = c(0,80), ylim = c(0,1200), xlab = "Time (min)", 
      ylab = "Voltage [micro V]", main = "ccPCR - Pre-processed Data")
 mtext("B", cex = 2, side = 3, adj = 0)
