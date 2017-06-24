@@ -56,7 +56,7 @@ th.cyc <-
     }
     
     # Test if the calculated Cq (Ct value) is larger than the maximum number of the cycles
-    if (x.cal < min(x) || x.cal > max(x)) x.cal <- NA
+    if (x.cal < min(x, na.rm = TRUE) || x.cal > max(x, na.rm = TRUE)) x.cal <- NA
     
     # Create the output fot the exact Ct value, the regression and the neighbours 
     # of the cycle and fluorescence values at the threshold fluorescence.
