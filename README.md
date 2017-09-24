@@ -1,5 +1,7 @@
 ![chipPCR](https://github.com/michbur/chipPCR/blob/master/vignettes/logo.png)
 
+chipPCR is published: Stefan Roediger, Michal Burdukiewicz, Peter Schierack; *chipPCR: an R package to pre-process raw data of amplification curves*, **Bioinformatics**, Volume 31, Issue 17, 1 September 2015, Pages 2900–2902, [https://doi.org/10.1093/bioinformatics/btv205](https://doi.org/10.1093/bioinformatics/btv205)
+
 The chipPCR package is a toolkit of functions to preprocess 
 amplification curve data. Amplification data can be obtained from 
 conventional PCR reactions or isothermal amplification reactions. The 
