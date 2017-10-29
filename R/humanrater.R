@@ -22,7 +22,7 @@ humanrater <-
       paste0("[", allowed.symbols[i], "] if ", designations[[i]])), collapse = ", ")
     
    # Determine the range of the ordinate values
-   y.quantiles <- quantile(x[, -1], c(0.25, 0.50, 0.75))
+   y.quantiles <- quantile(x[, -1], c(0.25, 0.50, 0.75), na.rm=TRUE)
 
     all.ratings <- sapply(1L:repeats, function(j) {
       if(repeats > 1)
@@ -37,12 +37,12 @@ humanrater <-
      # Assign all repeats to a matrix for proper tracking of the current index
       matrix.counts <- matrix(1L:total.repeats, ncol = repeats)
       
-      y.range <- range(x[, -1])
+      y.range <- range(x[, -1], na.rm=TRUE)
       
 	all.ratings <- sapply(1L:length(rating.order), function(i) {
 
      	plot(x[, 1], x[, rating.order[i]], main = paste0("Experiment ", rating.order[i], "\n", "Repeat ", j,
-     	  " of ", total.repeats, " experiments in total (", round(matrix.counts[i, j] / total.repeats * 100), " %)"), 
+     	  " of ", total.repeats, " experiments in total (", round(matrix.counts[i, j] / total.repeats * 100, 2), " %)"), 
 	     type = "b", pch = 19, lwd = 2, xlab = "Cycle", ylim = c(y.range[1], y.range[2]), ylab = "Fluorescence", ...)
 	
 	# Add lines of y value quantiles (25%, 50% and 75%)

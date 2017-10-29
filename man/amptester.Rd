@@ -47,6 +47,64 @@ to the references listed below. Instead of assigning a zero to negative
 amplification reaction uses the current implementation of 
 \code{\link[chipPCR]{amptester}} very small random values. This is because 
 some post function might fail in case all values are set to zero.
+
+# FIRST TEST - Shapiro test (SHt)
+
+This is a simple test based on the hypothesis that in case 
+amplification curve data come from noise is the distribution similar to a normal 
+distribution. The Shapiro's normality test is used to test this hypothesis. If 
+p is >= 5e-04, then the distribution of the curve data indicates noise (no 
+amplification).
+
+# SECOND TEST - Resids growth test (RGt)
+
+This tests if fluorescence values in a linear phase are stable. Whenever no amplification 
+occurs, fluorescence values quickly deviate from linear model. Their standardized
+residuals will be strongly correlated with their value. For real amplification curves,
+situation is much more stable. Noise (that means deviations from linear model) 
+in  background do not correlate strongly with the changes in fluorescence. 
+The decision is based on the threshold value (here 0.5).
+
+# THIRD TEST - Linear Regression test (LRt)
+
+This test determines the R^2 by a linear regression. The R^2 are determined from 
+a run of circa 15 percent range of the data. If a sequence of more than six R^2s 
+is larger than 0.8 is found that is likely a nonlinear signal. This is a bit 
+counterintuitive because R^2 of nonlinear data should be low.
+
+# FOURTH TEST (MANUAL) - Threshold test (THt)
+
+This a commonly employed method. In the manual test one needs to define a 
+fixed threshold. If the amplification curve signal exceeds the threshold than the 
+amplification reaction is positive. Waring: This method will report positive 
+amplification reaction if a negative amplification has a positive trend.
+
+# FOURTH TEST (AUTOMATIC) - Threshold test (THt)
+
+Apply a simple rule to take the first 20 percent and the last 15 percent of any 
+input data set and perform a Wilcoxon rank sum tests for the head (nh) and tail 
+(nt). This test is recommended over the manual THt. Waring: This method may 
+report positive amplification reaction if a negative amplification has a 
+positive trend.
+
+
+# FIFTH TEST - Signal level test (SLt)
+
+The meaningfulness of an amplification curve reaction can be tested by 
+comparison of the signals 1) A robust "sigma" rule by median + 2 * mad 2) 
+comparison of the signal/noise ratio. If less than 1.25 (25 percent) signal 
+increase it is likely that nothing happened during the reaction. Waring: This 
+method may report positive amplification reaction if a negative amplification 
+has a positive trend.
+
+# SIXTH TEST - pco test (pco)
+
+This test determines if the points in an amplification curve (like a polygon, in 
+particular non-convex polygons) are in a "clockwise" order. The sum over the 
+edges result in a positive value if the amplification curve is "clockwise" and 
+is negative if the curve is counter-clockwise ((x2 - x1)(y2 + y1)). From 
+experience is noise positive and "true" amplification curves "highly" negative. 
+This test depends on the definition of a threshold.
 }
 
 \value{

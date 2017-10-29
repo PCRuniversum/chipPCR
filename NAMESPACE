@@ -15,7 +15,7 @@ importFrom(graphics, abline, arrows, axis, layout, legend,
            lines, matplot, mtext, par, points, polygon,
            rect, rug, text)
 importFrom(grDevices, adjustcolor)
-importFrom(stats, coef, cor, lm, mad, median, na.omit,
+importFrom(stats, coef, cor, cor.test, lm, mad, median, na.omit,
            predict, predict.lm, qnorm, quantile, rnorm,
            rstudent, sd, shapiro.test, smooth.spline,
            wilcox.test)

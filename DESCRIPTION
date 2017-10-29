@@ -3,7 +3,7 @@ Type: Package
 Title: Toolkit of Helper Functions to Pre-Process Amplification Data
 Version: 0.0.8-12
 LazyData: true
-Date: 2017-06-22
+Date: 2017-10-31
 Authors@R: c(
     person("Stefan", "Roediger", 
 	   email = "stefan.roediger@b-tu.de",

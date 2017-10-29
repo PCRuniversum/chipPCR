@@ -41,7 +41,7 @@ amptester <-
     # SECOND TEST
     # Resids growth test (RGt)
     # test if fluorescence values in linear phase are stable. Whenever no amplification 
-    # occurs, fluorescence values quickly deviate from linear model. Their standarized
+    # occurs, fluorescence values quickly deviate from linear model. Their standardized
     # residuals will be strongly correlated with their value. For real amplification curves,
     # situation is much more stable. Noise (that means deviations from linear model) 
     # in  background do not correlate strongly with the changes in fluorescence. 
@@ -58,7 +58,7 @@ amptester <-
     # This test determines the R^2 by a linear regression. The R^2 are
     # determined from a run of circa 15 percent range of the data.
     # If a sequence of more than six R^2s is larger than 0.8 is found 
-    # thant is likely a nonlinear signal. This is a bit counterintuitive 
+    # that is likely a nonlinear signal. This is a bit counterintuitive 
     # because R^2 of nonlinear data should be low.
     
     ws <- ceiling((15 * length(y)) / 100)
@@ -95,7 +95,7 @@ amptester <-
     
     # FOURTH TEST (MANUAL)
     # Threshold test (THt)
-    # Manual test for positve amplification based on a fixed threshold
+    # Manual test for positive amplification based on a fixed threshold
     # value.
     if (manual) {
       signal <- median(y[-(background)]) - mad(y[-(background)])
@@ -125,7 +125,7 @@ amptester <-
     
     # FIFTH TEST
     # Signal level test (SLt)
-    # The meaninfulness can be tested by comparison of the signals
+    # The meaningfulness can be tested by comparison of the signals
     # 1) A robust "sigma" rule by median + 2 * mad 
     # 2) comparison of the signal/noise ratio. If less than 1.25 (25 percent) 
     # signal increase it is likely that nothing happened during the reaction.
@@ -148,7 +148,7 @@ amptester <-
       xy <- data.frame(predict(smooth.spline(1L:length(y), y)))
       sum(sapply(1L:(nrow(xy) - 1), 
                  function (i) {
-                   xy[i + 1, 1] - xy[i, 1] * xy[i + 1, 2] + xy[i, 2]
+                   (xy[i + 1, 1] - xy[i, 1]) * (xy[i + 1, 2] + xy[i, 2])
                  })
       )
     }
@@ -160,6 +160,16 @@ amptester <-
     lm.dat[["y"]] <- lm.dat[["y"]]/max(lm.dat[["y"]])
     slope.ratio <- coef(lm(y ~ x, lm.dat))
     res.pco <- pco(y)
+    
+    # SEVENTH TEST
+    x <- 1L:length(y)
+    head.dat <- head(cbind(x=x, y=y), 4)
+    tail.dat <- tail(cbind(x=x, y=y), 4)
+    
+    res.head.tail <- rbind(head.dat, tail.dat)
+    
+    res.head.tail.linreg <- summary(lm(res.head.tail[, "y"] ~ res.head.tail[, "x"]))
+    res.head.tail.cor.test <- cor.test(res.head.tail[, "x"],  res.head.tail[, "y"])
     
     # Output of the different tests
     rgt.dec <- ifelse(rgt.dec == "positive", TRUE, FALSE)
