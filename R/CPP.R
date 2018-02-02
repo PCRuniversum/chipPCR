@@ -35,7 +35,7 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = FALSE,
   }
   
   # Invoke smoother to improve data for further calculations
-  # SERVE BUG (Priority high): "mova" will caus problems because it 
+  # SERVE BUG (Priority high): "mova" will cause problems because it 
   # truncates the data (mova 3 -> first and last value miss at the end)
   
   if (smoother) {
@@ -67,7 +67,7 @@ CPP <- function(x, y, smoother = TRUE, method = "savgol", trans = FALSE,
   # Perform a normalization to a specified quantile value
   y.norm <- normalizer(y = y.norm, method.norm = method.norm, qnL = qnL)
  
-  # Test if the amplifification is likely to be positive
+  # Test if the amplification is likely to be positive
   if (amptest) {
     y.norm <- amptester(y.norm, manual = manual, 
                         background = range(BG), 

@@ -12,13 +12,13 @@ bg.max <- function(x, y, bg.corr = 1.3, bg.start = 2, inder.approx = TRUE) {
   if (bg.start < 0 || bg.start > length(x)) 
     stop(paste0("bg.start must be within ", x[1], "and ", length(x) - 6, " cycles."))
   
-  # Remove missing calues form y by using the fixNA function 
+  # Remove missing values form y by using the fixNA function 
   # with the cubic spline method.
   
   y <- fixNA(x, y, spline = TRUE)
   
   # Form the derivatives of the smoothed data.
-  # The maximum and the minimum of the seconde derivative
+  # The maximum and the minimum of the second derivative
   # are the starting points to define the approximate 
   # start and the end of the exponential phase.
   
@@ -38,7 +38,7 @@ bg.max <- function(x, y, bg.corr = 1.3, bg.start = 2, inder.approx = TRUE) {
   # Summary (Cqs) determined by the inder derivative method.
   # The values are used later on to calculate the stop of the 
   # background range (bg.stop) and the end of the exponential
-  # amplification process witht the transition in the 
+  # amplification process with the transition in the 
   # plateau phase (amp.stop).
   vals <- summary(der, print = FALSE)
   

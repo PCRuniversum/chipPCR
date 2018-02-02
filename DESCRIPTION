@@ -3,7 +3,7 @@ Type: Package
 Title: Toolkit of Helper Functions to Pre-Process Amplification Data
 Version: 0.0.8-12
 LazyData: true
-Date: 2017-10-31
+Date: 2018-02-02
 Authors@R: c(
     person("Stefan", "Roediger", 
 	   email = "stefan.roediger@b-tu.de",
@@ -38,7 +38,7 @@ Imports:
     robustbase,
     shiny,
     signal
-Packaged: 2015-04-08 14:57:25 UTC; tux
+Packaged: 2018-02-02 14:57:25 UTC; lux
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2015-04-08 15:23:52
+Date/Publication: 2018-02-02 15:23:52

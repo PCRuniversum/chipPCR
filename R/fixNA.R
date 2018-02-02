@@ -42,7 +42,7 @@ fixNA <- function(x, y, spline = TRUE, verbose = FALSE) {
   if (verbose) 
     message(paste(nNA, "missing value(s) imputed.", sep = " "))
   
-  # If NAs are present in the data set, substitie them by
+  # If NAs are present in the data set, impute them by
   # linear approximation or by splines
   if ((nNA > 0) && (class(try(approx(x, y, n = length(x)), 
                               silent = TRUE))!="try-error")) {

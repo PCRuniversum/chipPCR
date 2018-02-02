@@ -1,9 +1,10 @@
-Changes from Version 0.0.8-11 to 0.0.8-12 [October 31 2017]
+Changes from Version 0.0.8-11 to 0.0.8-12 [February 02 2018]
 * Improved plot of humanrater
 * Fixed function poc in amptester
 * Improved documentation for amptester
 * adopted the fairly new CRAN requirements
 * removed natbib.sty from vignettes
+* some improvements to grammar and spelling
 
 Changes from Version 0.0.8-10 to 0.0.8-11 [April 31 2015]
 * further CRAN changes, VideoScan -> 'VideoScan', HCU -> 'HCU'

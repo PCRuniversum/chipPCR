@@ -39,7 +39,7 @@ sec.endpoint1 <- function(y, h)
 sec.endpoint0 <- function(y, h)
   sec.beginpoint0(rev(y), h)
 
-# Defintion of the inder function
+# Definition of the inder function
 inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
   # Test validity ot the input data
   testxy(x, y)
@@ -74,7 +74,7 @@ inder <- function(x, y, Nip = 4, logy = FALSE, smooth.method = "spline") {
   
   # calculate h, naive approach
   h <- vapply(2L:length(x), function(i) x[i] - x[i - 1], 0)
-  # instead of zero, in statement should be the minina
+  # instead of zero, in statement should be the minima
   if (var(h) > .Machine[["double.eps"]]) 
     warning("Points are not equidistant. The results of interpolation 
 	      could be not correct.")

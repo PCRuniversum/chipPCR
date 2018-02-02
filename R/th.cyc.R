@@ -10,7 +10,7 @@ th.cyc <-
     # Determine type of threshold calculation
     r <- ifelse(auto, quantile(y[1L:10], 0.1) + 3 * mad(y[1L:10]), r)
     
-    # Before runing the analysis, test if signal is indeed larger than the 
+    # Before running the analysis, test if signal is indeed larger than the 
     # threshold.
     
 #     if (quantile(xy[, 2], 0.9) <= r) {
@@ -25,7 +25,7 @@ th.cyc <-
     res.th.est <- lapply(n, function(n) 
       th.est(xy, r = r, n, linear = linear))
     
-    # Results of the selection criterium R squared
+    # Results of the selection criterion R squared
     res.r.squ <- sapply(1L:length(n), function(i) 
       res.th.est[[i]][[1]][["r.squared"]])
     

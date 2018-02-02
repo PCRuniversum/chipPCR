@@ -81,11 +81,11 @@ amplification reaction if a negative amplification has a positive trend.
 
 # FOURTH TEST (AUTOMATIC) - Threshold test (THt)
 
-Apply a simple rule to take the first 20 percent and the last 15 percent of any 
-input data set and perform a Wilcoxon rank sum tests for the head (nh) and tail 
-(nt). This test is recommended over the manual THt. Waring: This method may 
-report positive amplification reaction if a negative amplification has a 
-positive trend.
+Takes the first 20 percent and the last 15 percent of any input data set 
+(amplification curve) and perform a Wilcoxon rank sum tests with the head (nh) 
+and tail (nt). This test is recommended over the manual THt. Warning: This 
+method may report positive amplification reaction if a negative amplification 
+has a positive trend.
 
 
 # FIFTH TEST - Signal level test (SLt)
@@ -105,6 +105,16 @@ edges result in a positive value if the amplification curve is "clockwise" and
 is negative if the curve is counter-clockwise ((x2 - x1)(y2 + y1)). From 
 experience is noise positive and "true" amplification curves "highly" negative. 
 This test depends on the definition of a threshold.
+
+# SEVENTH TEST - Slope ratio (SlR)
+
+Uses the inder function to find the approximated first derivative maximum, 
+second derivative minimum and the second derivative maximum. Next the raw 
+fluorescence at the approximated second derivative minimum and the second 
+derivative maximum are taken from the original data set. The fluorescence 
+intensities are normalized to the maximum fluorescence of this data. This data 
+is used for a linear regression. Where the slope is used.
+
 }
 
 \value{

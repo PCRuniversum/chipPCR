@@ -57,7 +57,7 @@ effcalc <- function(x, y, logx = TRUE, RSD = FALSE, rob = FALSE, level = 0.95) {
   }
   if (nrow(res) == 2) {
     warning("At least three dilutions should be used to 
-	    determine an amplificantion efficiency.")
+	    determine an amplification efficiency.")
   }
   
   # Decide which type of measure (e.g., mean vs. median, 
