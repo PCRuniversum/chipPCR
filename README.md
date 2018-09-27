@@ -35,6 +35,5 @@ install.packages("chipPCR")
 You can install the latest development version of the code directly from GitHub:
 
 ```
-# Install devtools, if you haven't already.
 source("https://install-github.me/michbur/chipPCR")
 ```
