@@ -1,0 +1,21 @@
+---
+title: "Supplement to: chipPCR: an R Package to Pre-Process Raw Data of Amplification Curves"
+author: "The chipPCR package authors"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::pdf_document:
+    number_sections: true
+    toc: true
+    toc_depth: 5
+header-includes:
+    - \usepackage[font={small}]{caption}
+bibliography: "roediger-burdukiewicz.bib"
+vignette: >
+  %\VignetteIndexEntry{Supplement to: chipPCR: an R Package to Pre-Process Raw Data of Amplification Curves}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The chipPCR vignette is in maintenance. The previous vignette still applies and can be found here: https://github.com/PCRuniversum/. For further reading please refere to our paper [@roediger_chippcr_2014].
+
+# References
