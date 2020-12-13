@@ -1,3 +1,4 @@
+x <- data
 humanrater <-
   function(x, cyc = 1, repeats = 1, 
            designations = list(y = "yes", a = "ambiguous", n = "not"), 
@@ -20,6 +21,14 @@ humanrater <-
       stop("All elements of 'designations' list must be named.")
     prompt.line <- paste(sapply(1L:length(designations), function(i)
       paste0("[", allowed.symbols[i], "] if ", designations[[i]])), collapse = ", ")
+    
+#     x.bg <- lapply(2L:ncol(x), function(i) {x[, i] / quantile(na.omit(x[, i]), .99)})
+#     
+#     x.bg.cbind <- do.call(cbind, x.bg)
+#     
+#     colnames(x.bg.cbind) <- colnames(x[, -1])
+#     
+#     x <- cbind(x[, 1], x.bg.cbind)
     
    # Determine the range of the ordinate values
    y.quantiles <- quantile(x[, -1], c(0.25, 0.50, 0.75), na.rm=TRUE)

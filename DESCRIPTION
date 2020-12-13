@@ -1,9 +1,9 @@
 Package: chipPCR
 Type: Package
 Title: Toolkit of Helper Functions to Pre-Process Amplification Data
-Version: 0.0.8-12
+Version: 0.0.8-13
 LazyData: true
-Date: 2018-02-02
+Date: 2020-12-13
 Authors@R: c(
     person("Stefan", "Roediger", 
 	   email = "stefan.roediger@b-tu.de",
