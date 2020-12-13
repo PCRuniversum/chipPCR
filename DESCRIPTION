@@ -38,7 +38,8 @@ Imports:
     robustbase,
     shiny,
     signal
-Packaged: 2018-02-02 14:57:25 UTC; lux
+Packaged: 2020 December; lux
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2018-02-02 15:23:52
+Language: en-US
+Date/Publication: 2020-12-13 15:23:52
