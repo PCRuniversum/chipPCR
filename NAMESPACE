@@ -10,7 +10,6 @@ importFrom(robustbase, lmrob)
 importFrom(robustbase, mc)
 importFrom(shiny, runApp)
 importFrom(signal, sgolayfilt)
-
 importFrom(graphics, abline, arrows, axis, layout, legend,
            lines, matplot, mtext, par, points, polygon,
            rect, rug, text)
