@@ -26,7 +26,7 @@ probes (TaqMan) were used.
 Installation
 ------------
 
-chipPCR is available [on CRAN](http://cran.r-project.org/web/packages/chipPCR/), so installation is as simple as:
+chipPCR is available [on CRAN](https://CRAN.R-project.org/package=chipPCR), so installation is as simple as:
 
 ```
 install.packages("chipPCR")

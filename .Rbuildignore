@@ -3,3 +3,4 @@
 ^.travis.yml$
 ^install_rdevel.sh
 ^\.github$
+^CRAN-RELEASE$
