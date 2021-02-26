@@ -18,7 +18,7 @@ vignette: >
 
 \newpage
 
-The previous vignette still applies and can be found [online at github](https://github.com/PCRuniversum/). For further reading please refer to the chipPCR paper @rodiger_chippcr_2015.
+The previous vignette still applies and can be found [online at github](https://github.com/PCRuniversum/). For further reading please refer to the paper @rodiger_chippcr_2015 about the $\emph{chipPCR}$ package.
 
 \newpage
 
@@ -29,7 +29,7 @@ Both the quantitative real-time polymerase chain reaction (qPCR) and isothermal
 amplification are standard methods used for the quantification of nucleic acids (DNA, 
 RNA). Numerous real-time read-out technologies with different technical 
 platforms have been developed so far. However, analysis of amplification curves consists of cascaded steps implemented similarly across all existing technological platforms. Despite the growing interest in amplification-based techniques, there are 
-only few open source tools for pre-processing real-time amplification data. The availability of a software for pre-processing raw amplification data is mandatory in different scenarios, for example during the development, optimization and improvement of the functionality of instruments.
+only few open source tools for pre-processing real-time amplification data. The availability of software for pre-processing raw amplification data is mandatory in different scenarios, for example during the development, optimization and improvement of the functionality of instruments.
 
 *Results and Conclusion:*
 $\emph{chipPCR}$ is a versatile *R* package for pre-processing 
@@ -46,15 +46,16 @@ Convention: According to the MIQE guidelines (``Minimum Information for
 publication of Quantitative real-time PCR Experiments'' 
 [@bustin_miqe_2009] is the threshold cycle (Ct) referred to as 
 quantification cycle (Cq). We use the expression Cq exclusively regardless of 
-the amplification method and mathematical principle. The abbreviations MFI, RFU 
-and refMFI refer to arbitrary units of mean fluorescence intensities.
+the amplification method and mathematical principle. The abbreviations MFI 
+(mean fluorescence intensity), RFU (relative fluorescence intensity)
+and refMFI (referenced MFI) are arbitrary units of fluorescence intensity.
 
 The software is available in an **R** environment or through web browser applications:
 
-- Project name: chipPCR, 
+- Project name: chipPCR,
 - [Project homepage (development)](https://github.com/michbur/chipPCR), 
-- [Project homepage at CRAN](http://cran.r-project.org/web/packages/chipPCR/index.html), 
-- Operating System: Platform independent, 
+- [Project homepage at CRAN](http://cran.r-project.org/web/packages/chipPCR/index.html),
+- Operating System: Platform independent,
 - Other requirement: R 3.1.0 or higher, 
 - License: GPL-3
 
@@ -62,10 +63,10 @@ We use **R**'s $\emph{S4}$ class system (see $\emph{methods}$
 package) to separate the interface and the implementation because, unlike the 
 **R**'s $\emph{S3}$ class system, it requires the explicit declaration of classes and the inheritance and relationship for each class or method. Therefore, the number and types of objects in slots in an instance of a class 
 have to be established at the time of the class definition. Objects belonging to the 
-class are validated against this definition and have to fulfill it at any time. 
+class are validated against this definition and have to fulfill it at any time.
 $\textsl{setGeneric}$ declares generic functions. $\emph{S4}$ methods are declared by calls 
 to $\textsl{setMethod}$ together with the name of generics and signatures of the arguments.
-Signatures are used for identification of classes of one or more arguments of the methods. 
+Signatures are used for identification of classes of one or more arguments of the methods.
 
 $\emph{S4}$ classes therefore require a higher development effort than $\emph{S3}$ 
 classes, but offer more stringent control over the contents of created objects. Additional 
@@ -93,7 +94,7 @@ Germany), Ralf Himmelreich (Fraunhofer ICT-IMM, Germany) and Katharina Klat
 data.
 
 **Authors' contributions:** SR conceived the study, and participated in its design and coordination and 
-wrote the manuscript. SR and MB jointly developed the software. All authors read 
+wrote the manuscript. SR and MB developed the software. All authors read 
 and approved the final version of the manuscript.
 
 # References
