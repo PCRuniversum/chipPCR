@@ -1,4 +1,3 @@
-x <- data
 humanrater <-
   function(x, cyc = 1, repeats = 1, 
            designations = list(y = "yes", a = "ambiguous", n = "not"), 
