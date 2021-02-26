@@ -32,7 +32,7 @@
   P. Schierack, A. Boehm, J. Nitschke, I. Berger, U. Froemmel, C. Schmidt, 
   M. Ruhland, I. Schimke, D. Roggenbuck, W. Lehmann and C. Schroeder.
   \emph{Advances in Biochemical Bioengineering/Biotechnology}. 133:33--74, 2013.
-  \url{http://www.ncbi.nlm.nih.gov/pubmed/22437246}
+  
   
   Mao, F., Leung, W.-Y., Xin, X., 2007. Characterization of EvaGreen and the 
   implication of its physicochemical properties for qPCR applications. 

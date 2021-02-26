@@ -27,7 +27,7 @@ Real-Time Detection of Biomolecules and Autoimmune Antibodies. S. Roediger,
 P. Schierack, A. Boehm, J. Nitschke, I. Berger, U. Froemmel, C. Schmidt, 
 M. Ruhland, I. Schimke, D. Roggenbuck, W. Lehmann and C. Schroeder.
 \emph{Advances in Biochemical Bioengineering/Biotechnology}. 133:33--74, 2013.
-\url{http://www.ncbi.nlm.nih.gov/pubmed/22437246}
+
 }
 \examples{
 data(VIMCFX96_meltcurve)
