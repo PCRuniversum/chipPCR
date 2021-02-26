@@ -143,20 +143,6 @@ legend(25, 0.8, c("Raw data", "savgol", "lowess", "mova 3", "mova 5",
 		  "smooth", "spline", "supsmu"), pch = 20, lwd = 2, 
 		  col = c(1:8))
 
-\dontrun{
-#on machines with multiple cores
-library(parallel)
-cl <- makeCluster(getOption("cl.cores", 2))
-tmp.smooths <- smoother(tmp, method = list("savgol",
-                                           "lowess",
-                                           mova = list(movaww = 3),
-                                           mova = list(movaww = 5),
-                                           "smooth",
-                                           "spline",
-                                           "supsmu"),
-                        parallel = cl)
-stopCluster(cl)
-}
 #else
 tmp.smooths <- smoother(tmp, method = list("savgol",
                                            "lowess",
