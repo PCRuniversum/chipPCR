@@ -26,7 +26,6 @@ Suggests:
     drc,
     knitr,
     markdown,
-    MBmca (>= 0.0.3-4),
     qpcR,
     RDML,
     xtable
