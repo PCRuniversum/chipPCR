@@ -1,6 +1,7 @@
-Changes from Version 0.0.8-12 to 0.0.8-13 [March 2021]
+Changes from Version 0.0.8-13 to 1.0 [February 2021]
 * Update maintainer email
 * Transition of Rnw to Rmd [WIP]
+* the first stable version
 
 Changes from Version 0.0.8-11 to 0.0.8-12 [February 02 2018]
 * Improved plot of humanrater
