@@ -32,6 +32,9 @@ Suggests:
     markdown,
     qpcR,
     RDML,
+    rmarkdown,
+    spelling,
+    testthat,
     xtable
 VignetteBuilder: knitr
 Imports:
