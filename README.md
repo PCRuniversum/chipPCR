@@ -1,6 +1,5 @@
 [![published in: Bioinformatics](https://img.shields.io/badge/published%20in-Bioinformatics-ff69b4.svg?style=flat)](https://doi.org/10.1093/bioinformatics/btv205)
 [![R-CMD-check](https://github.com/PCRuniversum/chipPCR/workflows/R-CMD-check/badge.svg)](https://github.com/PCRuniversum/chipPCR/actions)
-![chipPCR](https://github.com/PCRuniversum/chipPCR/blob/master/vignettes/logo.png)
 
 The chipPCR package is a toolkit of functions to preprocess 
 amplification curve data. Amplification data can be obtained from 
