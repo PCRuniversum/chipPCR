@@ -36,7 +36,7 @@ Suggests:
     spelling,
     testthat,
     xtable
-VignetteBuilder: knitr
+VignetteBuilder: knitr, rmarkdown
 Imports:
     lmtest,
     MASS,
